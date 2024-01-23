@@ -8,7 +8,6 @@ A fast paced cooking simulator.
 
 - Must be done in english
 - Must be in the correct branch
-- Mustn't contain a lot of code
 - Must be named according to the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) system 
 
 ### Branches
