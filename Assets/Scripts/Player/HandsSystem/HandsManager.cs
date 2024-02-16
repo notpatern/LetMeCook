@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class HandsManager : MonoBehaviour
+namespace Player.HandSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class HandsManager
     {
-        
+        public void LoadHand(GameObject food, HandsType handsType)
+        {
+            switch (handsType)
+            {
+                case HandsType.NONE:
+                    Debug.LogError("This should not happen but does.");
+                    break;
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

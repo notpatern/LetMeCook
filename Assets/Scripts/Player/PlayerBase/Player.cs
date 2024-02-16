@@ -1,18 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace Player
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public class Player : MonoBehaviour
     {
-        
+        [SerializeField] Interaction.PlayerInteraction playerInteraction;
+        [SerializeField] HandSystem.HandsManager handsManager;
+        [SerializeField] GameObject playerPrefab;
+
+        void Start()
+        {
+            handsManager = new HandSystem.HandsManager();
+
+            playerInteraction.BindPerformInteraction(handsManager.LoadHand);
+        }
+
+        void Update()
+        {
+            playerInteraction.Update(Time.deltaTime);
+        }
     }
 }

@@ -1,18 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class PlayerInteraction : MonoBehaviour
+namespace Player.Interaction
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class PlayerInteraction
     {
-        
-    }
+        [SerializeField] PlayerInteractionUI playerInteractionUI;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IInteractable m_CurrentInteraction;
+
+        [SerializeField] Transform m_Origin;
+
+        [SerializeField] float m_InteractionMaxDistance;
+        [SerializeField] LayerMask m_LayerMask;
+
+        public UnityEvent<GameObject, HandSystem.HandsType> m_OnActiveInteract;
+
+        public void BindPerformInteraction(UnityAction<GameObject, HandSystem.HandsType> action)
+        {
+            m_OnActiveInteract.AddListener(action);
+        }
+
+        public void Update(float dt)
+        {
+            StartInteraction();
+        }
+
+        public void StartInteraction()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(m_Origin.position, m_Origin.forward, out hit, m_InteractionMaxDistance, m_LayerMask))
+            {
+                m_CurrentInteraction = hit.transform.GetComponent<IInteractable>();
+
+                if (m_CurrentInteraction != null)
+                {
+                    playerInteractionUI.UpdateInteractionText("Press [F] to interact with " + m_CurrentInteraction.GetContext());
+                }
+            }
+        }
+
+        public void ActiveInteraction(HandSystem.HandsType handType)
+        {
+            m_OnActiveInteract.Invoke(m_CurrentInteraction.StartInteraction(), handType);
+        }
     }
 }
