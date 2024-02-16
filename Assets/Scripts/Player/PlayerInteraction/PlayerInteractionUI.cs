@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerInteractionUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] TMP_Text intereactionText;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateInteractionText(string data)
     {
-        
+        intereactionText.text = data;
     }
 }

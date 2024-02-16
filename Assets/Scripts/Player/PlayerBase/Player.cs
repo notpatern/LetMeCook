@@ -1,4 +1,3 @@
-using Player.HandSystem;
 using UnityEngine;
 
 namespace Player
@@ -10,11 +9,16 @@ namespace Player
         [SerializeField] HandSystem.HandsManager handsManager;
         [SerializeField] GameObject playerPrefab;
 
-        private void Start()
+        void Start()
         {
-            handsManager = new HandsManager();
+            handsManager = new HandSystem.HandsManager();
 
             playerInteraction.BindPerformInteraction(handsManager.LoadHand);
+        }
+
+        void Update()
+        {
+            playerInteraction.Update(Time.deltaTime);
         }
     }
 }

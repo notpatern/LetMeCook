@@ -35,16 +35,16 @@ namespace Player.Interaction
             {
                 m_CurrentInteraction = hit.transform.GetComponent<IInteractable>();
 
-                if (m_CurrentInteraction)
+                if (m_CurrentInteraction != null)
                 {
-                    
+                    playerInteractionUI.UpdateInteractionText("Press [F] to interact with " + m_CurrentInteraction.GetContext());
                 }
             }
         }
 
         public void ActiveInteraction(HandSystem.HandsType handType)
         {
-            m_OnActiveInteract.Invoke(m_CurrentInteraction.gameObject, handType);
+            m_OnActiveInteract.Invoke(m_CurrentInteraction.StartInteraction(), handType);
         }
     }
 }
