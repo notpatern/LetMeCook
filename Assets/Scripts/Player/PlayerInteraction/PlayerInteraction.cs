@@ -4,10 +4,11 @@ using UnityEngine.Events;
 
 namespace Player.Interaction
 {
-
     [Serializable]
     public class PlayerInteraction
     {
+        [SerializeField] PlayerInteractionUI playerInteractionUI;
+
         IInteractable m_CurrentInteraction;
 
         [SerializeField] Transform m_Origin;
@@ -15,19 +16,19 @@ namespace Player.Interaction
         [SerializeField] float m_InteractionMaxDistance;
         [SerializeField] LayerMask m_LayerMask;
 
-        public UnityEvent<GameObject, int> m_OnInteract;
+        public UnityEvent<GameObject, HandSystem.HandsType> m_OnActiveInteract;
 
-        public void BindPerformInteraction(UnityAction<GameObject, int> action)
+        public void BindPerformInteraction(UnityAction<GameObject, HandSystem.HandsType> action)
         {
-            m_OnInteract.AddListener(action);
+            m_OnActiveInteract.AddListener(action);
         }
 
         public void Update(float dt)
         {
-            TestInteraction();
+            StartInteraction();
         }
 
-        public void TestInteraction()
+        public void StartInteraction()
         {
             RaycastHit hit;
             if (Physics.Raycast(m_Origin.position, m_Origin.forward, out hit, m_InteractionMaxDistance, m_LayerMask))
@@ -36,9 +37,14 @@ namespace Player.Interaction
 
                 if (m_CurrentInteraction)
                 {
-                    m_OnInteract.Invoke(m_CurrentInteraction.gameObject, 0);
+                    
                 }
             }
+        }
+
+        public void ActiveInteraction(HandSystem.HandsType handType)
+        {
+            m_OnActiveInteract.Invoke(m_CurrentInteraction.gameObject, handType);
         }
     }
 }
