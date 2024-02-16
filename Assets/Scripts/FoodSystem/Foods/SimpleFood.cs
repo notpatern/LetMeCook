@@ -1,6 +1,8 @@
+using UnityEngine.Serialization;
+
 public class SimpleFood : Food
 {
-    FoodData _data;
+    [FormerlySerializedAs("_data")] public FoodData data;
 
-    public override string GetContext() => _data.foodName;
+    public override string GetContext() => data.foodName;
 }

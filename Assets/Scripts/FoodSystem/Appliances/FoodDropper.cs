@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodDropper : MonoBehaviour, IInteractable
 {
-    [SerializeField] FoodData m_givingFood;
+    [SerializeField] SimpleFood givingFood;
     
     public GameObject StartInteraction()
     {
         //TODO give food to the player's hand
-        return m_givingFood.foodPrefab;
+        return givingFood.data.foodPrefab;
     }
 
-    public string GetContext() => m_givingFood.foodName;
+    public string GetContext() => "dropper (" + givingFood.GetContext() + ")";
 }
