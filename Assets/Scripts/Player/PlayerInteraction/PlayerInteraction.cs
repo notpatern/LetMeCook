@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.ProBuilder.MeshOperations;
 
 namespace Player.Interaction
 {
@@ -16,7 +17,12 @@ namespace Player.Interaction
         [SerializeField] float m_InteractionMaxDistance;
         [SerializeField] LayerMask m_LayerMask;
 
-        public UnityEvent<GameObject, HandSystem.HandsType> m_OnActiveInteract;
+        UnityEvent<GameObject, HandSystem.HandsType> m_OnActiveInteract;
+
+        public void Init()
+        {
+            m_OnActiveInteract = new UnityEvent<GameObject, HandSystem.HandsType>();
+        }
 
         public void BindPerformInteraction(UnityAction<GameObject, HandSystem.HandsType> action)
         {
@@ -44,7 +50,15 @@ namespace Player.Interaction
 
         public void ActiveInteraction(HandSystem.HandsType handType)
         {
-            m_OnActiveInteract.Invoke(m_CurrentInteraction.StartInteraction(), handType);
+            if (m_CurrentInteraction != null)
+            {
+                m_OnActiveInteract.Invoke(m_CurrentInteraction.StartInteraction(), handType);
+
+            }
+            else
+            {
+                m_OnActiveInteract.Invoke(null, handType);
+            }
         }
     }
 }
