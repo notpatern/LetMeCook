@@ -1,3 +1,4 @@
+using Player.Interaction;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -25,6 +26,12 @@ namespace Player.Input
         private void Awake()
         {
             _playerInput = new PlayerInput();
+            m_OnWASDInput = new UnityEvent<Vector2>();
+            m_OnJumpInput = new UnityEvent();
+            m_OnDashinput = new UnityEvent();
+            m_OnInteractInput = new UnityEvent();
+            m_OnLeftHandInput = new UnityEvent<HandSystem.HandsType>();
+            m_OnRightHandInput = new UnityEvent<HandSystem.HandsType>();
         }
 
         private void OnEnable()
@@ -83,6 +90,8 @@ namespace Player.Input
 
         private void LeftHand(InputAction.CallbackContext context)
         {
+            if (m_OnLeftHandInput == null) Debug.LogError("oula");
+
             m_OnLeftHandInput.Invoke(HandSystem.HandsType.LEFT);
         }
 
@@ -113,13 +122,9 @@ namespace Player.Input
             m_OnInteractInput.AddListener(action);
         }
 
-        public void BindLeftHand(UnityAction<HandSystem.HandsType> action)
+        public void BindHandAction(UnityAction<HandSystem.HandsType> action)
         {
             m_OnLeftHandInput.AddListener(action);
-        }
-
-        public void BindRightHand(UnityAction<HandSystem.HandsType> action)
-        {
             m_OnRightHandInput.AddListener(action);
         }
     }
