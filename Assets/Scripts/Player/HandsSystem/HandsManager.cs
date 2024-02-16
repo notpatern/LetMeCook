@@ -1,11 +1,20 @@
+using System;
 using UnityEngine;
 
 namespace Player.HandSystem
 {
-
-    public class HandsManager : MonoBehaviour
+    [Serializable]
+    public class HandsManager
     {
-
+        public void LoadHand(GameObject food, HandsType handsType)
+        {
+            switch (handsType)
+            {
+                case HandsType.NONE:
+                    Debug.LogError("This should not happen but does.");
+                    break;
+            }
+        }
     }
 
 }
