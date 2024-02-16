@@ -1,17 +1,21 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace Player
 {
-    [SerializeField] PlayerInteraction playerInteraction;
-    [SerializeField] GameObject playerPrefab;
 
-    private void Start()
+    public class Player : MonoBehaviour
     {
-        playerInteraction.BindPerformInteraction(LoadHand);
-    }
+        [SerializeField] Interaction.PlayerInteraction playerInteraction;
+        [SerializeField] GameObject playerPrefab;
 
-    void LoadHand(GameObject food, int id)
-    {
-        Debug.Log("J'équipe :" + food + " id : " + id);
+        private void Start()
+        {
+            playerInteraction.BindPerformInteraction(LoadHand);
+        }
+
+        void LoadHand(GameObject food, int id)
+        {
+            Debug.Log("J'équipe :" + food + " id : " + id);
+        }
     }
 }

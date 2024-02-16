@@ -2,38 +2,42 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
-public class PlayerInteraction
+namespace Player.Interaction
 {
-    IInteractable m_CurrentInteraction;
 
-    [SerializeField] Transform m_Origin;
-
-    [SerializeField] float m_InteractionMaxDistance;
-    [SerializeField] LayerMask m_LayerMask;
-
-    public UnityEvent<GameObject, int> m_OnInteract;
-
-    public void BindPerformInteraction(UnityAction<GameObject, int> action)
-    { 
-        m_OnInteract.AddListener(action);
-    }
-
-    public void Update(float dt)
+    [Serializable]
+    public class PlayerInteraction
     {
-        TestInteraction();
-    }
+        IInteractable m_CurrentInteraction;
 
-    public void TestInteraction()
-    {
-        RaycastHit hit;
-        if(Physics.Raycast(m_Origin.position, m_Origin.forward, out hit, m_InteractionMaxDistance, m_LayerMask))
+        [SerializeField] Transform m_Origin;
+
+        [SerializeField] float m_InteractionMaxDistance;
+        [SerializeField] LayerMask m_LayerMask;
+
+        public UnityEvent<GameObject, int> m_OnInteract;
+
+        public void BindPerformInteraction(UnityAction<GameObject, int> action)
         {
-            m_CurrentInteraction = hit.transform.GetComponent<IInteractable>();
+            m_OnInteract.AddListener(action);
+        }
 
-            if(m_CurrentInteraction)
+        public void Update(float dt)
+        {
+            TestInteraction();
+        }
+
+        public void TestInteraction()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(m_Origin.position, m_Origin.forward, out hit, m_InteractionMaxDistance, m_LayerMask))
             {
-                m_OnInteract.Invoke(m_CurrentInteraction.gameObject, 0);
+                m_CurrentInteraction = hit.transform.GetComponent<IInteractable>();
+
+                if (m_CurrentInteraction)
+                {
+                    m_OnInteract.Invoke(m_CurrentInteraction.gameObject, 0);
+                }
             }
         }
     }
