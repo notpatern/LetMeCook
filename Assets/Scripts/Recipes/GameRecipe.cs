@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameRecipe : MonoBehaviour
@@ -34,7 +33,7 @@ public class GameRecipe : MonoBehaviour
     IEnumerable _FailRecipe()
     {
         // Make funny animation
-        yield return null;
+        yield return new WaitForSeconds(1f);
         RecipesManager.Instance.RemoveRecipe(recipe);
     }
 
@@ -42,5 +41,13 @@ public class GameRecipe : MonoBehaviour
     {
         if (completed) return;
         completed = true;
+        StartCoroutine("_CompleteRecipe");
+    }
+
+    IEnumerable _CompleteRecipe()
+    {
+        // Make funny animation
+        yield return new WaitForSeconds(1f);
+        RecipesManager.Instance.RemoveRecipe(recipe);
     }
 }

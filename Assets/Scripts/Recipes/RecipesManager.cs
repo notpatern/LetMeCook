@@ -4,6 +4,7 @@ using UnityEngine;
 public class RecipesManager : MonoBehaviour
 {
     public static RecipesManager Instance { get; private set; }
+    public RecipesDataBase dataBase;
     List<GameRecipe> activeRecipes;
 
     void Awake()
