@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.ProBuilder.MeshOperations;
 
 namespace Player.Interaction
 {
@@ -17,6 +16,8 @@ namespace Player.Interaction
         [SerializeField] float m_InteractionMaxDistance;
         [SerializeField] LayerMask m_LayerMask;
 
+        bool m_IsInteractionStopped;
+
         UnityEvent<GameObject, HandSystem.HandsType> m_OnActiveInteract;
 
         public void Init()
@@ -31,21 +32,39 @@ namespace Player.Interaction
 
         public void Update(float dt)
         {
-            StartInteraction();
+            UpdateInteraction();
         }
 
-        public void StartInteraction()
+        public void UpdateInteraction()
         {
             RaycastHit hit;
             if (Physics.Raycast(m_Origin.position, m_Origin.forward, out hit, m_InteractionMaxDistance, m_LayerMask))
             {
-                m_CurrentInteraction = hit.transform.GetComponent<IInteractable>();
-
-                if (m_CurrentInteraction != null)
-                {
-                    playerInteractionUI.UpdateInteractionText("Press [F] to interact with " + m_CurrentInteraction.GetContext());
-                }
+                OnStartInteraction(hit.transform.GetComponent<IInteractable>());
             }
+            else if(m_IsInteractionStopped)
+            {
+                OnResetInteraction();
+            }
+        }
+
+        void OnStartInteraction(IInteractable interaction)
+        {
+            if (m_CurrentInteraction != interaction)
+            {
+                m_CurrentInteraction = interaction;
+
+                playerInteractionUI.SetActiveInteractionText(true);
+                playerInteractionUI.UpdateInteractionText("Press [F] to interact with " + m_CurrentInteraction.GetContext());
+                m_IsInteractionStopped = true;
+            }
+        }
+
+        void OnResetInteraction()
+        {
+            playerInteractionUI.SetActiveInteractionText(false);
+            m_IsInteractionStopped = false;
+            m_CurrentInteraction = null;
         }
 
         public void ActiveInteraction(HandSystem.HandsType handType)

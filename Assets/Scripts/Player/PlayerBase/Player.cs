@@ -1,5 +1,3 @@
-using Player.Input;
-using Player.Interaction;
 using UnityEngine;
 
 namespace Player
@@ -10,7 +8,6 @@ namespace Player
         [SerializeField] Interaction.PlayerInteraction playerInteraction;
         Input.InputManager inputManager;
         [SerializeField] HandSystem.HandsManager handsManager;
-        [SerializeField] GameObject playerPrefab;
 
         void Start()
         {
