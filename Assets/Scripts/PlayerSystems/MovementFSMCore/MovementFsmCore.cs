@@ -44,8 +44,7 @@ namespace PlayerSystems.MovementFSMCore
             GetPlayerWalkingInputs();
             CheckForWall();
         }
-
-
+        
         private void SwitchState<TState>(Type state, FsmContext context) where TState : FsmState
         {
             _currentState = (TState)Activator.CreateInstance(
@@ -53,7 +52,6 @@ namespace PlayerSystems.MovementFSMCore
                 context
             );
         }
-        
 
         private bool CanWallRun()
         {
