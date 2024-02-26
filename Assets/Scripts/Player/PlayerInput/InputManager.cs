@@ -15,6 +15,7 @@ namespace Player.Input
         private InputAction _interact;
         private InputAction _leftHand;
         private InputAction _rightHand;
+        private InputAction _TogglePauseMenu;
 
         UnityEvent<Vector2> m_OnWASDInput;
         UnityEvent m_OnJumpInput;
@@ -22,6 +23,7 @@ namespace Player.Input
         UnityEvent m_OnInteractInput;
         UnityEvent<HandSystem.HandsType> m_OnLeftHandInput;
         UnityEvent<HandSystem.HandsType> m_OnRightHandInput;
+        UnityEvent m_TogglePauseMenu;
 
         private void Awake()
         {
@@ -32,32 +34,31 @@ namespace Player.Input
             m_OnInteractInput = new UnityEvent();
             m_OnLeftHandInput = new UnityEvent<HandSystem.HandsType>();
             m_OnRightHandInput = new UnityEvent<HandSystem.HandsType>();
+            m_TogglePauseMenu = new UnityEvent();
         }
 
         private void OnEnable()
         {
+            _playerInput.Enable();
             _wasd = _playerInput.Player.WASD;
-            _wasd.Enable();
             _wasd.performed += WasdMovement;
 
             _jump = _playerInput.Player.Jump;
-            _jump.Enable();
             _jump.performed += Jump;
 
             _dash = _playerInput.Player.Jump;
-            _dash.Enable();
             _dash.performed += Dash;
 
             _interact = _playerInput.Player.Interact;
-            _interact.Enable();
             _interact.performed += Interact;
 
             _leftHand = _playerInput.Player.LeftHand;
-            _leftHand.Enable();
             _leftHand.performed += LeftHand;
 
             _rightHand = _playerInput.Player.RightHand;
-            _rightHand.Enable();
+            _rightHand.performed += RightHand;
+
+            _rightHand = _playerInput.Player.RightHand;
             _rightHand.performed += RightHand;
         }
 
@@ -100,6 +101,11 @@ namespace Player.Input
             m_OnRightHandInput.Invoke(HandSystem.HandsType.RIGHT);
         }
 
+        private void TogglePauseMenu(InputAction.CallbackContext context)
+        {
+            m_TogglePauseMenu.Invoke();
+        }
+
 
         //Bind event---------------------------
         public void BindWasdMovement(UnityAction<Vector2> action)
@@ -126,6 +132,11 @@ namespace Player.Input
         {
             m_OnLeftHandInput.AddListener(action);
             m_OnRightHandInput.AddListener(action);
+        }
+
+        public void BindTogglePauseMenu(UnityAction action)
+        {
+            m_TogglePauseMenu.AddListener(action);
         }
     }
 

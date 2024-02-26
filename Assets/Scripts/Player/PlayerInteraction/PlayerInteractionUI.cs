@@ -1,17 +1,20 @@
 using UnityEngine;
 using TMPro;
 
-public class PlayerInteractionUI : MonoBehaviour
+namespace Player.Interaction
 {
-    [SerializeField] TMP_Text intereactionText;
-
-    public void SetActiveInteractionText(bool state)
+    public class PlayerInteractionUI : MonoBehaviour
     {
-        intereactionText.gameObject.SetActive(state);
-    }
+        [SerializeField] TMP_Text intereactionText;
 
-    public void UpdateInteractionText(string data)
-    {
-        intereactionText.text = data;
+        public void SetActiveInteractionText(bool state)
+        {
+            intereactionText.gameObject.SetActive(state);
+        }
+
+        public void UpdateInteractionText(string data)
+        {
+            intereactionText.text = data;
+        }
     }
 }

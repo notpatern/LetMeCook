@@ -1,4 +1,6 @@
+using TMPro.EditorUtilities;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -25,6 +27,11 @@ namespace Player
         void Update()
         {
             playerInteraction.Update(Time.deltaTime);
+        }
+
+        public void InitUIEvent(UIManager uIManager)
+        {
+            //inputManager.BindTogglePauseMenu(uIManager.pauseMenu.ToggleMenuState);
         }
     }
 }

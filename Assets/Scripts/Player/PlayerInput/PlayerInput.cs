@@ -80,6 +80,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TogglePauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""297e16bf-283d-4145-988a-748b32dfffb5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""RightHand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""551abf84-c25a-4c11-9e12-3e8d2b80d2bb"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TogglePauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_LeftHand = m_Player.FindAction("LeftHand", throwIfNotFound: true);
         m_Player_RightHand = m_Player.FindAction("RightHand", throwIfNotFound: true);
+        m_Player_TogglePauseMenu = m_Player.FindAction("TogglePauseMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_LeftHand;
     private readonly InputAction m_Player_RightHand;
+    private readonly InputAction m_Player_TogglePauseMenu;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -283,6 +305,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @LeftHand => m_Wrapper.m_Player_LeftHand;
         public InputAction @RightHand => m_Wrapper.m_Player_RightHand;
+        public InputAction @TogglePauseMenu => m_Wrapper.m_Player_TogglePauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +333,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RightHand.started += instance.OnRightHand;
             @RightHand.performed += instance.OnRightHand;
             @RightHand.canceled += instance.OnRightHand;
+            @TogglePauseMenu.started += instance.OnTogglePauseMenu;
+            @TogglePauseMenu.performed += instance.OnTogglePauseMenu;
+            @TogglePauseMenu.canceled += instance.OnTogglePauseMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -332,6 +358,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RightHand.started -= instance.OnRightHand;
             @RightHand.performed -= instance.OnRightHand;
             @RightHand.canceled -= instance.OnRightHand;
+            @TogglePauseMenu.started -= instance.OnTogglePauseMenu;
+            @TogglePauseMenu.performed -= instance.OnTogglePauseMenu;
+            @TogglePauseMenu.canceled -= instance.OnTogglePauseMenu;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -357,5 +386,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnLeftHand(InputAction.CallbackContext context);
         void OnRightHand(InputAction.CallbackContext context);
+        void OnTogglePauseMenu(InputAction.CallbackContext context);
     }
 }
