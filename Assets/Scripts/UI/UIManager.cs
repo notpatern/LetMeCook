@@ -14,28 +14,28 @@ public class UIManager : MonoBehaviour
         
     }
     
-    public void LoadBaseCanvas(GameObject canvas) //Load canvas for all the menus
+    public void LoadBaseCanvas(GameObject canvasPrefab) //Load canvas for all the menus
     {
         
     }
 
-    public void LoadPlayerHUD(GameObject canvas) //Load canvas for all the in game HUD
+    public void LoadPlayerHUD(GameObject canvasPrefab) //Load canvas for all the in game HUD
     {
-        playerHUD = canvas.GetComponent<PlayerHUD>();
+        playerHUD = Instantiate(canvasPrefab).GetComponent<PlayerHUD>();
     }
     
     public void LoadPauseMenu(GameObject prefab) //Load pause menu canvas 
     {
-        pauseMenu = prefab.GetComponent<PauseMenuUI>();
+        pauseMenu = Instantiate(prefab).GetComponent<PauseMenuUI>();
     }
 
-    public void LoadWinMenu(GameObject canvas) //Load win menu canvas
+    public void LoadWinMenu(GameObject prefab) //Load win menu canvas
     {
-        
+        winMenu = Instantiate(prefab).GetComponent<WinMenuUI>();
     }
 
-    public void LoadLoseMenu(GameObject canvas) //Load lose menu canvas
+    public void LoadLoseMenu(GameObject prefab) //Load lose menu canvas
     {
-        
+        loseMenu = Instantiate(prefab).GetComponent<LoseMenuUI>();
     }
 }
