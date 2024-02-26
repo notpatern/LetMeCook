@@ -9,13 +9,6 @@ namespace Player.Input
     public class InputManager : MonoBehaviour
     {
         [SerializeField] private PlayerInput _playerInput;
-        private InputAction _wasd;
-        private InputAction _jump;
-        private InputAction _dash;
-        private InputAction _interact;
-        private InputAction _leftHand;
-        private InputAction _rightHand;
-        private InputAction _TogglePauseMenu;
 
         UnityEvent<Vector2> m_OnWASDInput;
         UnityEvent m_OnJumpInput;
@@ -40,33 +33,19 @@ namespace Player.Input
         private void OnEnable()
         {
             _playerInput.Enable();
-            _wasd = _playerInput.Player.WASD;
-            _wasd.performed += WasdMovement;
 
-            _jump = _playerInput.Player.Jump;
-            _jump.performed += Jump;
-
-            _dash = _playerInput.Player.Jump;
-            _dash.performed += Dash;
-
-            _interact = _playerInput.Player.Interact;
-            _interact.performed += Interact;
-
-            _leftHand = _playerInput.Player.LeftHand;
-            _leftHand.performed += LeftHand;
-
-            _rightHand = _playerInput.Player.RightHand;
-            _rightHand.performed += RightHand;
-
-            _rightHand = _playerInput.Player.RightHand;
-            _rightHand.performed += RightHand;
+            _playerInput.Player.WASD.performed += WasdMovement;
+            _playerInput.Player.Jump.performed += Jump;
+            _playerInput.Player.Jump.performed += Dash;
+            _playerInput.Player.Interact.performed += Interact;
+            _playerInput.Player.LeftHand.performed += LeftHand;
+            _playerInput.Player.RightHand.performed += RightHand;
+            _playerInput.Player.TogglePauseMenu.performed += TogglePauseMenu;
         }
 
         private void OnDisable()
         {
-            _wasd.Disable();
-            _jump.Disable();
-            _dash.Disable();
+            _playerInput.Disable();
         }
 
         private void WasdMovement(InputAction.CallbackContext context)
@@ -91,8 +70,6 @@ namespace Player.Input
 
         private void LeftHand(InputAction.CallbackContext context)
         {
-            if (m_OnLeftHandInput == null) Debug.LogError("oula");
-
             m_OnLeftHandInput.Invoke(HandSystem.HandsType.LEFT);
         }
 

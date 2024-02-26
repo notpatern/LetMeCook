@@ -1,44 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace UI
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager
     {
+        GameObject menuCanvas;
         public MENUScripts.PauseMenuUI pauseMenu;
         public WinMenuUI winMenu;
         public LoseMenuUI loseMenu;
         public PlayerHUD playerHUD;
 
-        public void LoadUI()
+        public void LoadUI(LevelUIData levelUIData)
         {
+            LoadBaseCanvas(levelUIData.canvasPrefab);
+            LoadPlayerHUDCanvas(levelUIData.canvasPrefab);
 
+            LoadPauseMenu(levelUIData.pauseMenuPrefab);
         }
 
-        public void LoadBaseCanvas(GameObject canvasPrefab) //Load canvas for all the menus
+        void LoadBaseCanvas(GameObject canvasPrefab) //Load canvas for all the menus
         {
-
+            menuCanvas = Object.Instantiate(canvasPrefab);
         }
 
-        public void LoadPlayerHUD(GameObject canvasPrefab) //Load canvas for all the in game HUD
+        void LoadPlayerHUDCanvas(GameObject canvasPrefab) //Load canvas for all the in game HUD
         {
-            playerHUD = Instantiate(canvasPrefab).GetComponent<PlayerHUD>();
+            playerHUD = Object.Instantiate(canvasPrefab).GetComponent<PlayerHUD>();
         }
 
-        public void LoadPauseMenu(GameObject prefab) //Load pause menu canvas 
+        void LoadPauseMenu(GameObject prefab) //Load pause menu canvas 
         {
-            pauseMenu = Instantiate(prefab).GetComponent<MENUScripts.PauseMenuUI>();
+            pauseMenu = Object.Instantiate(prefab, menuCanvas.transform).GetComponent<MENUScripts.PauseMenuUI>();
         }
 
-        public void LoadWinMenu(GameObject prefab) //Load win menu canvas
+        void LoadWinMenu(GameObject prefab) //Load win menu canvas
         {
-            winMenu = Instantiate(prefab).GetComponent<WinMenuUI>();
+            winMenu = Object.Instantiate(prefab, playerHUD.transform).GetComponent<WinMenuUI>();
         }
 
-        public void LoadLoseMenu(GameObject prefab) //Load lose menu canvas
+        void LoadLoseMenu(GameObject prefab) //Load lose menu canvas
         {
-            loseMenu = Instantiate(prefab).GetComponent<LoseMenuUI>();
+            loseMenu = Object.Instantiate(prefab, playerHUD.transform).GetComponent<LoseMenuUI>();
         }
     }
 }
