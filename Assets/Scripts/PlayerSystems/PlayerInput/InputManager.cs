@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
-    private InputAction _wasd;
+    [HideInInspector] public InputAction wasd;
     private InputAction _jump;
     private InputAction _dash;
     private InputAction _interact;
@@ -16,8 +16,8 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _wasd = _playerInput.Player.WASD;
-        _wasd.Enable();
+        wasd = _playerInput.Player.WASD;
+        wasd.Enable();
 
         _jump = _playerInput.Player.Jump;
         _jump.Enable();
@@ -34,7 +34,7 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable()
     {
-        _wasd.Disable();
+        wasd.Disable();
         _jump.Disable();
         _dash.Disable();
     }
