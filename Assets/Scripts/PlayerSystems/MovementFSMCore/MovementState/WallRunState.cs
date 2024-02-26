@@ -3,12 +3,16 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 {
     public class WallRunState : FsmState
     {
-        void Start()
+        public WallRunState(FsmContext wallRunContext, MovementFsmCore fsmCore) : base(wallRunContext, fsmCore)
         {
-        
+            
+        }
+        public override void Init()
+        {
+            
         }
 
-        void Update()
+        public override void Update()
         {
         
         }
