@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "LetMeCook/Food Data")]
 public class FoodData : ScriptableObject
 {
     [Header("General")]
     public string foodName;
-    public GameObject foodPrefab;
+    public GameObject prefab;
 
     [Header("Bonus skill")]
     public bool dash = false;
@@ -13,7 +14,7 @@ public class FoodData : ScriptableObject
     public bool wallRide = false;
 
     [Header("Next step")]
-    public FoodData cookedFood;
+    public FoodData bakedFood;
     public FoodData choppedFood;
     public FoodData friedFood;
 }

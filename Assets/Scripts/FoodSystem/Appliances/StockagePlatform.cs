@@ -6,12 +6,12 @@ public class StockagePlatform : FoodCollector
 
     public string GetContext() => collectedFood.GetContext();
 
-    protected override void OnFoodCollected(GameObject foodObject)
+    protected override void OnFoodCollected()
     {
-        Rigidbody rb = foodObject.GetComponent<Rigidbody>();
+        Rigidbody rb = collectedFoodGo.GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeAll;
         
-        foodObject.transform.position = foodSpawn.position;
-        foodObject.transform.rotation = foodSpawn.rotation;
+        collectedFoodGo.transform.position = foodSpawn.position;
+        collectedFoodGo.transform.rotation = foodSpawn.rotation;
     }
 }
