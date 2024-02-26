@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public interface IInteractable
+namespace FoodSystem
 {
-    public GameObject StartInteraction();
-    public string GetContext();
+    public interface IInteractable
+    {
+        public GameObject StartInteraction();
+        public string GetContext();
+    }
 }

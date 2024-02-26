@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class LaunchableItem : MonoBehaviour
 {
-    Rigidbody rb;
     ItemLauncher _launcher;
     bool _doingTheBezierCurve = false;
     float _t;
