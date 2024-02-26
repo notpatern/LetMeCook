@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Hands : MonoBehaviour
+namespace Player.HandSystem
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Hands : MonoBehaviour
     {
-        
+        HandsType handsType;
     }
 
-    // Update is called once per frame
-    void Update()
+    public enum HandsType
     {
-        
+        NONE = 0,
+        LEFT = 1, RIGHT = 2
     }
 }

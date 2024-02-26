@@ -1,16 +1,34 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+namespace Player
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public class Player : MonoBehaviour
     {
-        
+        [SerializeField] Interaction.PlayerInteraction playerInteraction;
+        [SerializeField] Input.InputManager inputManager;
+        [SerializeField] HandSystem.HandsManager handsManager;
+
+        void Start()
+        {
+            handsManager = new HandSystem.HandsManager();
+
+            playerInteraction.Init();
+
+            playerInteraction.BindPerformInteraction(handsManager.LoadHand);
+            inputManager.BindHandAction(playerInteraction.ActiveInteraction);
+
+        }
+
+        void Update()
+        {
+            playerInteraction.Update(Time.deltaTime);
+        }
+
+        public void InitUIEvent(UI.UIManager uIManager)
+        {
+            inputManager.BindTogglePauseMenu(uIManager.pauseMenu.ToggleActiveMenuState);
+        }
     }
 }

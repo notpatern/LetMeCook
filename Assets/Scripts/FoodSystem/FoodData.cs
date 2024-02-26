@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodData : MonoBehaviour
+[CreateAssetMenu(menuName = "LetMeCook/Food Data")]
+public class FoodData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("General")]
+    public string foodName;
+    public GameObject foodPrefab;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Bonus skill")]
+    public bool dash = false;
+    public bool doubleJump = false;
+    public bool wallRide = false;
+
+    [Header("Next step")]
+    public FoodData cookedFood;
+    public FoodData choppedFood;
+    public FoodData friedFood;
 }

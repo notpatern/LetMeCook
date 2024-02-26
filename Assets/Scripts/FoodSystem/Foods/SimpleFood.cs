@@ -1,18 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.Serialization;
 
-public class SimpleFood : MonoBehaviour
+public class SimpleFood : Food
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [FormerlySerializedAs("_data")] public FoodData data;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override string GetContext() => data.foodName;
 }

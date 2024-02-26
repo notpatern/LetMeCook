@@ -1,56 +1,121 @@
+using Player.Interaction;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+namespace Player.Input
 {
-    [SerializeField] private PlayerInput _playerInput;
-    [HideInInspector] public InputAction wasd;
-    private InputAction _jump;
-    private InputAction _dash;
-    private InputAction _interact;
-
-    private void Awake()
+    public class InputManager : MonoBehaviour
     {
-        _playerInput = new PlayerInput();
-    }
+        [SerializeField] private PlayerInput _playerInput;
+        [HideInInspector] public InputAction wasd;
+        private InputAction _jump;
+        private InputAction _dash;
+        private InputAction _interact;
+        UnityEvent<Vector2> m_OnWASDInput;
+        UnityEvent m_OnJumpInput;
+        UnityEvent m_OnDashinput;
+        UnityEvent m_OnInteractInput;
+        UnityEvent<HandSystem.HandsType> m_OnLeftHandInput;
+        UnityEvent<HandSystem.HandsType> m_OnRightHandInput;
+        UnityEvent m_TogglePauseMenu;
 
-    private void OnEnable()
-    {
-        wasd = _playerInput.Player.WASD;
-        wasd.Enable();
+        private void Awake()
+        {
+            _playerInput = new PlayerInput();
+            m_OnWASDInput = new UnityEvent<Vector2>();
+            m_OnJumpInput = new UnityEvent();
+            m_OnDashinput = new UnityEvent();
+            m_OnInteractInput = new UnityEvent();
+            m_OnLeftHandInput = new UnityEvent<HandSystem.HandsType>();
+            m_OnRightHandInput = new UnityEvent<HandSystem.HandsType>();
+            m_TogglePauseMenu = new UnityEvent();
+        }
 
-        _jump = _playerInput.Player.Jump;
-        _jump.Enable();
-        _jump.performed += Jump;
+        private void OnEnable()
+        {
+            _playerInput.Enable();
 
-        _dash = _playerInput.Player.Jump;
-        _dash.Enable();
-        _dash.performed += Dash;
+            _playerInput.Player.WASD.performed += WasdMovement;
+            _playerInput.Player.Jump.performed += Jump;
+            _playerInput.Player.Jump.performed += Dash;
+            _playerInput.Player.Interact.performed += Interact;
+            _playerInput.Player.LeftHand.performed += LeftHand;
+            _playerInput.Player.RightHand.performed += RightHand;
+            _playerInput.Player.TogglePauseMenu.performed += TogglePauseMenu;
+        }
 
-        _interact = _playerInput.Player.Interact;
-        _interact.Enable();
-        _interact.performed += Interact;
-    }
+        private void OnDisable()
+        {
+            _playerInput.Disable();
+        }
 
-    private void OnDisable()
-    {
-        wasd.Disable();
-        _jump.Disable();
-        _dash.Disable();
-    }
+        private void WasdMovement(InputAction.CallbackContext context)
+        {
+            m_OnWASDInput.Invoke(context.ReadValue<Vector2>());
+        }
 
-    private void Jump(InputAction.CallbackContext context)
-    {
-        
-    }
+        private void Jump(InputAction.CallbackContext context)
+        {
+            m_OnJumpInput.Invoke();
+        }
 
-    private void Dash(InputAction.CallbackContext context)
-    {
-        
-    }
+        private void Dash(InputAction.CallbackContext context)
+        {
+            m_OnDashinput.Invoke();
+        }
 
-    private void Interact(InputAction.CallbackContext context)
-    {
-        
+        private void Interact(InputAction.CallbackContext context)
+        {
+            m_OnInteractInput.Invoke();
+        }
+
+        private void LeftHand(InputAction.CallbackContext context)
+        {
+            m_OnLeftHandInput.Invoke(HandSystem.HandsType.LEFT);
+        }
+
+        private void RightHand(InputAction.CallbackContext context)
+        {
+            m_OnRightHandInput.Invoke(HandSystem.HandsType.RIGHT);
+        }
+
+        private void TogglePauseMenu(InputAction.CallbackContext context)
+        {
+            m_TogglePauseMenu.Invoke();
+        }
+
+
+        //Bind event---------------------------
+        public void BindWasdMovement(UnityAction<Vector2> action)
+        {
+            m_OnWASDInput.AddListener(action);
+        }
+
+        public void BindJump(UnityAction action)
+        {
+            m_OnJumpInput.AddListener(action);
+        }
+
+        public void BindDash(UnityAction action)
+        {
+            m_OnDashinput.AddListener(action);
+        }
+
+        public void BindInteract(UnityAction action)
+        {
+            m_OnInteractInput.AddListener(action);
+        }
+
+        public void BindHandAction(UnityAction<HandSystem.HandsType> action)
+        {
+            m_OnLeftHandInput.AddListener(action);
+            m_OnRightHandInput.AddListener(action);
+        }
+
+        public void BindTogglePauseMenu(UnityAction action)
+        {
+            m_TogglePauseMenu.AddListener(action);
+        }
     }
 }
