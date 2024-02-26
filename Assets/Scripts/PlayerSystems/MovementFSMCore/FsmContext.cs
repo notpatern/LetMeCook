@@ -1,14 +1,26 @@
-﻿using UnityEngine;
+﻿using PlayerSystems.MovementFSMCore.DataClass;
 
 namespace PlayerSystems.MovementFSMCore
 {
     public abstract class FsmContext
     {
-        public ScriptableObject scriptableObject;
+        private readonly FsmData _fsmData;
         public float movementSpeed;
-        public FsmContext(ScriptableObject scriptableObject)
+        public float drag;
+        public float movementMultiplier;
+        public float jumpForce;
+
+        protected FsmContext(FsmData fsmData)
         {
-            this.scriptableObject = scriptableObject;
+            this._fsmData = fsmData;
+        }
+
+        protected virtual void Init()
+        {
+            movementSpeed = _fsmData.movementSpeed;
+            drag = _fsmData.drag;
+            movementMultiplier = _fsmData.movementMultiplier;
+            jumpForce = _fsmData.jumpForce;
         }
     }
 }

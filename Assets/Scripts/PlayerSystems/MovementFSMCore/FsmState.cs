@@ -3,9 +3,13 @@
     public abstract class FsmState
     {
         public FsmContext context;
-        protected FsmState(FsmContext context)
+        public MovementFsmCore fsmCore;
+        public bool canJump;
+        
+        protected FsmState(FsmContext context, MovementFsmCore fsmCore)
         {
             this.context = context;
+            this.fsmCore = fsmCore;
         }
 
         public abstract void Init();
