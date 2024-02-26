@@ -9,7 +9,7 @@ namespace UI.MENUScripts
 {
     public class PauseMenuUI : MonoBehaviour
     {
-        void ToggleActiveMenuState()
+        public void ToggleActiveMenuState()
         {
             bool state = !gameObject.activeSelf;
             gameObject.SetActive(state);
@@ -17,7 +17,7 @@ namespace UI.MENUScripts
             Cursor.visible = state;
         }
 
-        void QuitButton(string sceneName)
+        public void QuitButton(string sceneName)
         {
             EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
             sceneName.ToLower();
