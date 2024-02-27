@@ -1,18 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Player.Interaction;
 using UnityEngine;
 
 public class PlayerHUD : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public PlayerInteractionUI playerInteractionUI;
 }

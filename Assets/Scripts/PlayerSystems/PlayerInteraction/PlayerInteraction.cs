@@ -7,8 +7,6 @@ namespace Player.Interaction
     [Serializable]
     public class PlayerInteraction
     {
-        [SerializeField] PlayerInteractionUI playerInteractionUI;
-
         IInteractable m_CurrentInteraction;
 
         [SerializeField] Transform m_Origin;
@@ -18,16 +16,19 @@ namespace Player.Interaction
 
         bool m_IsInteractionStopped;
 
-        UnityEvent<GameObject, HandSystem.HandsType> m_OnActiveInteract;
-
-        public void Init()
-        {
-            m_OnActiveInteract = new UnityEvent<GameObject, HandSystem.HandsType>();
-        }
-
+        UnityEvent<GameObject, HandSystem.HandsType> m_OnActiveInteract = new UnityEvent<GameObject, HandSystem.HandsType>();
+        UnityEvent<bool, string> m_OnStartInteraction = new UnityEvent<bool, string>();
+        UnityEvent<bool> m_OnEndInteraction = new UnityEvent<bool>();
+        
         public void BindPerformInteraction(UnityAction<GameObject, HandSystem.HandsType> action)
         {
             m_OnActiveInteract.AddListener(action);
+        }
+
+        public void BindOnInteractionUI(UnityAction<bool, string> startAction, UnityAction<bool> endAction)
+        {
+            m_OnStartInteraction.AddListener(startAction);
+            m_OnEndInteraction.AddListener(endAction);
         }
 
         public void Update(float dt)
@@ -54,17 +55,21 @@ namespace Player.Interaction
             {
                 m_CurrentInteraction = interaction;
 
-                playerInteractionUI.SetActiveInteractionText(true);
-                playerInteractionUI.UpdateInteractionText("Press [F] to interact with " + m_CurrentInteraction.GetContext());
+                m_OnStartInteraction.Invoke(true, m_CurrentInteraction.GetContext());
                 m_IsInteractionStopped = true;
             }
         }
 
         void OnResetInteraction()
         {
-            playerInteractionUI.SetActiveInteractionText(false);
+            m_OnEndInteraction.Invoke(false);
             m_IsInteractionStopped = false;
             m_CurrentInteraction = null;
+        }
+
+        public void PlayerInteractionUIActiveText(string context)
+        {
+            
         }
 
         public void ActiveInteraction(HandSystem.HandsType handType)

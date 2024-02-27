@@ -12,9 +12,15 @@ namespace Player.Interaction
             intereactionText.gameObject.SetActive(state);
         }
 
-        public void UpdateInteractionText(string data)
+        void UpdateInteractionText(string data)
         {
-            intereactionText.text = data;
+            intereactionText.text = "Press [F] to interact with " + data;
+        }
+
+        public void StartInteraction(bool state, string data)
+        {
+            SetActiveInteractionText(state);
+            UpdateInteractionText(data);
         }
     }
 }
