@@ -160,6 +160,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 4294967295
   inputManager: {fileID: 180129497}
+  movementFsmCore: {fileID: 0}
 --- !u!4 &180129496
 Transform:
   m_ObjectHideFlags: 0
@@ -600,6 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea5dd0b0237d324dba37f6aabcc6f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultLevelData: {fileID: 11400000, guid: 52b1262684663464faab3f400d5afa2f, type: 2}
   levelData: {fileID: 11400000, guid: 22a12519f21a98042b28e68e6e07d26d, type: 2}
   player: {fileID: 180129495}
 --- !u!4 &1130020535

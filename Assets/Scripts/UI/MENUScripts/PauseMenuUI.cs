@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace UI.MENUScripts
 {
@@ -19,18 +14,7 @@ namespace UI.MENUScripts
 
         public void QuitButton(string sceneName)
         {
-            EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
-            sceneName.ToLower();
-            foreach (EditorBuildSettingsScene scene in scenes)
-            {
-                string currentSceneName = scene.path;
-                currentSceneName = currentSceneName.Substring(currentSceneName.LastIndexOf('\\') + 1);
-                currentSceneName = currentSceneName.Substring(0, currentSceneName.Length - 6);
-                if (sceneName == currentSceneName)
-                {
-                    SceneManager.LoadScene(sceneName);
-                }
-            }
+            LevelLoader.instance.LoadLevel(sceneName);
         }
     }
 }

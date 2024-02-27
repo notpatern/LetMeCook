@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="LevelUIData", menuName ="LetMeCook/LevelUIData")]
+[CreateAssetMenu(fileName ="LevelUIData", menuName ="LetMeCook/LevelData/LevelUIData")]
 public class LevelUIData : ScriptableObject
 {
     public GameObject canvasPrefab;
