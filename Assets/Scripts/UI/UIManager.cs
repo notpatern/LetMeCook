@@ -6,14 +6,14 @@ namespace UI
     {
         GameObject menuCanvas;
         public MENUScripts.PauseMenuUI pauseMenu;
+        public PlayerHUD playerHUD;
         public WinMenuUI winMenu;
         public LoseMenuUI loseMenu;
-        public PlayerHUD playerHUD;
 
         public void LoadUI(LevelUIData levelUIData)
         {
             LoadBaseCanvas(levelUIData.canvasPrefab);
-            LoadPlayerHUDCanvas(levelUIData.canvasPrefab);
+            LoadPlayerHUDCanvas(levelUIData.playerHUBPrefab);
 
             LoadPauseMenu(levelUIData.pauseMenuPrefab);
         }
@@ -31,16 +31,6 @@ namespace UI
         void LoadPauseMenu(GameObject prefab) //Load pause menu canvas 
         {
             pauseMenu = Object.Instantiate(prefab, menuCanvas.transform).GetComponent<MENUScripts.PauseMenuUI>();
-        }
-
-        void LoadWinMenu(GameObject prefab) //Load win menu canvas
-        {
-            winMenu = Object.Instantiate(prefab, playerHUD.transform).GetComponent<WinMenuUI>();
-        }
-
-        void LoadLoseMenu(GameObject prefab) //Load lose menu canvas
-        {
-            loseMenu = Object.Instantiate(prefab, playerHUD.transform).GetComponent<LoseMenuUI>();
         }
     }
 }

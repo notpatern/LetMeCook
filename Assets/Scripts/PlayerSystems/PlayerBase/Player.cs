@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -14,8 +13,6 @@ namespace Player
         {
             handsManager = new HandSystem.HandsManager();
 
-            playerInteraction.Init();
-
             playerInteraction.BindPerformInteraction(handsManager.LoadHand);
             inputManager.BindHandAction(playerInteraction.ActiveInteraction);
 
@@ -28,7 +25,11 @@ namespace Player
 
         public void InitUIEvent(UI.UIManager uIManager)
         {
+            //Inputs----------
             inputManager.BindTogglePauseMenu(uIManager.pauseMenu.ToggleActiveMenuState);
+
+            //Interaction-----
+            playerInteraction.BindOnInteractionUI(uIManager.playerHUD.playerInteractionUI.StartInteraction, uIManager.playerHUD.playerInteractionUI.SetActiveInteractionText);
         }
     }
 }
