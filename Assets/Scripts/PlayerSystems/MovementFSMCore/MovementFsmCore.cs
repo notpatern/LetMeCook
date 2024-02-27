@@ -1,15 +1,8 @@
-
 using System;
-using System.Dynamic;
+using Player.Input;
 using PlayerSystems.MovementFSMCore.DataClass;
-using PlayerSystems.MovementFSMCore.MovementState;
-using UnityEditor.Rendering;
-using UnityEditor.ShaderGraph.Drawing.Inspector.PropertyDrawers;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.ProBuilder.MeshOperations;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
+
 
 namespace PlayerSystems.MovementFSMCore
 {

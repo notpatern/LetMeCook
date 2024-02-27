@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FoodSystem
+namespace Player.Interaction
 {
     public interface IInteractable
     {

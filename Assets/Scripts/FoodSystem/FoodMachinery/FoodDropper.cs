@@ -1,4 +1,5 @@
 using FoodSystem.FoodType;
+using Player.Interaction;
 using UnityEngine;
 
 namespace FoodSystem.FoodMachinery

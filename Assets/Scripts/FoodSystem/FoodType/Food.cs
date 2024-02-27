@@ -1,3 +1,4 @@
+using Player.Interaction;
 using UnityEngine;
 
 namespace FoodSystem.FoodType
