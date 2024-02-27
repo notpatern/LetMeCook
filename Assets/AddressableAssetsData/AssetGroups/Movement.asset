@@ -16,7 +16,22 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: b3ee4a9a38ca816468db2a7efdb0fbb2
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: d754bfb4441e41a48abc059f0612ca1d
+    m_Address: MovementData/AirData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f7e20aa25b509348a569744c37fe3b5
+    m_Address: MovementData/GroundData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64e029d2ea5c1dd46b874028adb3abcd
+    m_Address: MovementData/WallRunData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f09321b090cd51e44abfed3533c225ea, type: 2}
   m_SchemaSet:

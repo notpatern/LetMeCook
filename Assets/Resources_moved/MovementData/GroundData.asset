@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58496b1376a444cd919029b79c527bb3, type: 3}
-  m_Name: AirData
+  m_Script: {fileID: 11500000, guid: 04784500b7c04f2a87238bd85cc45753, type: 3}
+  m_Name: GroundData
   m_EditorClassIdentifier: 
-  movementSpeed: 0
-  drag: 0
-  movementMultiplier: 0
-  jumpForce: 0
+  movementSpeed: 15
+  drag: 9
+  movementMultiplier: 1
+  jumpForce: 15
+  maxMovementSpeed: 10
+  useGravity: 0

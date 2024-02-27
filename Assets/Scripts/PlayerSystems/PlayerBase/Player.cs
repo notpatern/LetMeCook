@@ -1,3 +1,4 @@
+using PlayerSystems.HandsSystem;
 using PlayerSystems.MovementFSMCore;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,12 +10,12 @@ namespace Player
     {
         [SerializeField] Interaction.PlayerInteraction playerInteraction;
         [SerializeField] Input.InputManager inputManager;
-        [SerializeField] HandSystem.HandsManager handsManager;
+        [SerializeField] HandsManager handsManager;
         public MovementFsmCore movementFsmCore;
 
         void Start()
         {
-            handsManager = new HandSystem.HandsManager();
+            handsManager = new HandsManager();
 
             playerInteraction.BindPerformInteraction(handsManager.LoadHand);
             inputManager.BindHandAction(playerInteraction.ActiveInteraction);
@@ -38,8 +39,8 @@ namespace Player
 
         public void InitFsmCore()
         {
-            inputManager.BindWasdMovement(movementFsmCore.currentState.UpdateMovementInput);
-            inputManager.BindJump(movementFsmCore.currentState.Jump);
+            inputManager.BindWasdMovement(movementFsmCore.OnMovementInputEvent);
+            inputManager.BindJump(movementFsmCore.OnJumpInputEvent);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace PlayerSystems.MovementFSMCore
         public float movementMultiplier;
         public float jumpForce;
         public float maxMovementSpeed;
+        public bool useGravity;
 
         protected FsmContext(FsmData fsmData)
         {
@@ -23,6 +24,7 @@ namespace PlayerSystems.MovementFSMCore
             movementMultiplier = _fsmData.movementMultiplier;
             jumpForce = _fsmData.jumpForce;
             maxMovementSpeed = _fsmData.maxMovementSpeed;
+            useGravity = _fsmData.useGravity;
         }
     }
 }

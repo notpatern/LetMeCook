@@ -1,7 +1,8 @@
 using System;
+using Player.HandSystem;
 using UnityEngine;
 
-namespace Player.HandSystem
+namespace PlayerSystems.HandsSystem
 {
     [Serializable]
     public class HandsManager

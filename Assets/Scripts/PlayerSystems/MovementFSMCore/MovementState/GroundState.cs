@@ -5,7 +5,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
     {
         public GroundState(FsmContext context, MovementFsmCore fsmCore) : base(context, fsmCore)
         {
-            
         }
     }
 }
