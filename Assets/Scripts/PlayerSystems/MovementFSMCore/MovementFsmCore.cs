@@ -70,7 +70,6 @@ namespace PlayerSystems.MovementFSMCore
         
         public void OnMovementInputEvent(Vector2 input)
         {
-            Debug.Log(input);
             this.Input = input;
         }
 
