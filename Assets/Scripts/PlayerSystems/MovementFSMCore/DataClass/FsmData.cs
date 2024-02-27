@@ -9,5 +9,6 @@ namespace PlayerSystems.MovementFSMCore.DataClass
         public float movementMultiplier;
         public float jumpForce;
         public float maxMovementSpeed;
+        public bool useGravity;
     }
 }

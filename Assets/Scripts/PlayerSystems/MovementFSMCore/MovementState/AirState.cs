@@ -20,11 +20,13 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         }
         public override void Init()
         {
+            base.Init();
             _isWall = LayerMask.GetMask("isWall");
         }
 
         public override void Update()
         {
+            base.Update();
             CheckForWall();
             if (!CanWallRun())
             {

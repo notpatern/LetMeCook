@@ -38,8 +38,8 @@ namespace Player
 
         public void InitFsmCore()
         {
-            inputManager.BindWasdMovement(movementFsmCore.currentState.UpdateMovementInput);
-            inputManager.BindJump(movementFsmCore.currentState.Jump);
+            inputManager.BindWasdMovement(movementFsmCore.OnMovementInputEvent);
+            inputManager.BindJump(movementFsmCore.OnJumpInputEvent);
         }
     }
 }

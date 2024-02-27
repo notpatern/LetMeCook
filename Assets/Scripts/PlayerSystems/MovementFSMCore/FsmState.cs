@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using UnityEngine.PlayerLoop;
+﻿using PlayerSystems.MovementFSMCore.MovementContext;
+using PlayerSystems.MovementFSMCore.MovementState;
+using UnityEngine;
 
 namespace PlayerSystems.MovementFSMCore
 {
@@ -8,8 +9,7 @@ namespace PlayerSystems.MovementFSMCore
         protected readonly FsmContext context;
         protected readonly MovementFsmCore fsmCore;
         public bool canJump;
-        public Vector3 movementDir;
-        private Vector2 input;
+        protected Vector3 movementDir;
         
         protected FsmState(FsmContext context, MovementFsmCore fsmCore)
         {
@@ -21,6 +21,7 @@ namespace PlayerSystems.MovementFSMCore
         {
             context.Init();
             fsmCore.rb.drag = context.drag;
+            fsmCore.rb.useGravity = context.useGravity;
         }
 
         public virtual void Update()
@@ -43,31 +44,32 @@ namespace PlayerSystems.MovementFSMCore
 
             return new Vector2(xMag, yMag);
         }
-
-        public void UpdateMovementInput(Vector2 newInput)
-        {
-            input = newInput;
-        }
         
         protected virtual void Movement()
         {
             Vector2 mag = FindVelRelativeToLook();
             float xMag = mag.x, yMag = mag.y;
 
-            if (input.x > 0 && xMag > context.maxMovementSpeed) input.x = 0;
-            if (input.x < 0 && xMag < -context.maxMovementSpeed) input.x = 0;
-            if (input.y > 0 && yMag > context.maxMovementSpeed) input.y = 0;
-            if (input.y < 0 && yMag < -context.maxMovementSpeed) input.y = 0;
+            Vector2 newInput = fsmCore.Input;
+
+            if (newInput.x > 0 && xMag > context.maxMovementSpeed) newInput.x = 0;
+            if (newInput.x < 0 && xMag < -context.maxMovementSpeed) newInput.x = 0;
+            if (newInput.y > 0 && yMag > context.maxMovementSpeed) newInput.y = 0;
+            if (newInput.y  < 0 && yMag < -context.maxMovementSpeed) newInput.y = 0;
             
-            movementDir = fsmCore.orientation.forward * input.y +
-                           fsmCore.orientation.right * input.x;
+            movementDir = fsmCore.orientation.forward * newInput.y +
+                           fsmCore.orientation.right * newInput.x;
             
             fsmCore.rb.AddForce(movementDir * (context.movementSpeed * context.movementMultiplier), ForceMode.Force);
         }
 
         public virtual void Jump()
         {
-            fsmCore.rb.AddForce(Vector3.up * context.jumpForce);
+            var vel = fsmCore.rb.velocity;
+            fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
+            
+            fsmCore.rb.AddForce(Vector3.up * context.jumpForce, ForceMode.Impulse);
+            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, 1));
         }
     }
 }
