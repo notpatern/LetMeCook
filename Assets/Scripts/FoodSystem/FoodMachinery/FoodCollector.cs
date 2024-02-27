@@ -37,6 +37,13 @@ namespace FoodSystem.FoodMachinery
             OnFoodCollected();
         }
 
+        protected void ResetCollector()
+        {
+            collectedFood = null;
+            collectedFoodData = null;
+            collectedFoodGo = null;
+        }
+
         protected abstract void OnFoodCollected();
     }
 }

@@ -1,27 +1,27 @@
+using ItemLaunch;
 using UnityEngine;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
 {
-    public class FoodTransformer : FoodCollector
+    [RequireComponent(typeof(ItemLauncher))]
+    public abstract class FoodTransformer : FoodCollector
     {
-        [SerializeField] protected ItemLauncher launcher;
-    
-        [SerializeField] protected Transform foodSpawnPoint;
-        [SerializeField] protected float releaseForce = 5f;
+        protected ItemLauncher launcher;
 
         float _timer = 0f;
         [SerializeField] float cookingTime = 5f;
         bool _cooking = false;
 
-        [Header(("Cooking parameters"))]
-        [SerializeField] bool needChopped;
-        [SerializeField] bool needBaked;
-        [SerializeField] bool needFried;
-
         void Awake() { launcher = GetComponent<ItemLauncher>(); }
 
         protected override void OnFoodCollected()
         {
+            if (!CheckIfCanCook(collectedFoodData[0]))
+            {
+                ResetCollector();
+                return;
+            }
+            
             canCollect = false;
             _timer = cookingTime;
             _cooking = true;
@@ -41,10 +41,11 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         protected virtual void ReleaseFood()
         {
-            collectedFoodData = null;
-            collectedFoodGo = null;
+            ResetCollector();
             canCollect = true;
             _cooking = false;
         }
+
+        protected abstract bool CheckIfCanCook(FoodData foodData);
     }
 }

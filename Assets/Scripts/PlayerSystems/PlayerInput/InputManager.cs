@@ -37,6 +37,7 @@ namespace Player.Input
             _playerInput.Enable();
 
             _playerInput.Player.WASD.performed += WasdMovement;
+            _playerInput.Player.WASD.canceled += WasdMovement;
             _playerInput.Player.Jump.performed += Jump;
             _playerInput.Player.Jump.performed += Dash;
             _playerInput.Player.Interact.performed += Interact;

@@ -1,6 +1,8 @@
 using System;
 using Player.Input;
 using PlayerSystems.MovementFSMCore.DataClass;
+using PlayerSystems.MovementFSMCore.MovementContext;
+using PlayerSystems.MovementFSMCore.MovementState;
 using UnityEngine;
 
 
@@ -10,37 +12,35 @@ namespace PlayerSystems.MovementFSMCore
     {
         [Header("References")] 
         [SerializeField] private LayerMask isGround;
-        private InputManager _inputManager;
-        private FsmState _currentState;
+        [HideInInspector] public FsmState currentState;
         public FsmWallRunData wallRunData;
         public FsmAirData airData;
+        public FsmGroundData groundData;
         
         [Header("Player")] 
         public Rigidbody rb;
         public Transform orientation;
-        public Vector2 playerWalkingInputs;
         
         private void Start()
         {
-            _inputManager = GetComponent<InputManager>();
             rb = GetComponent<Rigidbody>();
+            currentState = new GroundState(new GroundContext(groundData), this);
         }
     
         private void Update()
         {
-            GetPlayerWalkingInputs();
-            _currentState.Update();
+            currentState.Update();
         }
         
         public void SwitchState<TState>(Type state, FsmContext context) where TState : FsmState
         {
-            _currentState = (TState)Activator.CreateInstance(
+            currentState = (TState)Activator.CreateInstance(
                 state,
                 context,
                 this
             );
         }
-        
+
         public bool Grounded()
         {
             return Physics.Raycast(
@@ -49,11 +49,6 @@ namespace PlayerSystems.MovementFSMCore
                 1.2f,
                 isGround
             );
-        }
-
-        private void GetPlayerWalkingInputs()
-        {
-            playerWalkingInputs = _inputManager.wasd.ReadValue<Vector2>();
         }
     }
 }

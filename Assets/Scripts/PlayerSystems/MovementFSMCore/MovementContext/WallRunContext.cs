@@ -16,7 +16,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
             this._wallRunContext = wallRunContext;
         }
 
-        protected override void Init()
+        public override void Init()
         {
             base.Init();
             sideJumpForce = _wallRunContext.sideJumpForce;
