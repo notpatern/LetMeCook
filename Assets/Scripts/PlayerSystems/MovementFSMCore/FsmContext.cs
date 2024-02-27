@@ -9,18 +9,20 @@ namespace PlayerSystems.MovementFSMCore
         public float drag;
         public float movementMultiplier;
         public float jumpForce;
+        public float maxMovementSpeed;
 
         protected FsmContext(FsmData fsmData)
         {
             this._fsmData = fsmData;
         }
 
-        protected virtual void Init()
+        public virtual void Init()
         {
             movementSpeed = _fsmData.movementSpeed;
             drag = _fsmData.drag;
             movementMultiplier = _fsmData.movementMultiplier;
             jumpForce = _fsmData.jumpForce;
+            maxMovementSpeed = _fsmData.maxMovementSpeed;
         }
     }
 }

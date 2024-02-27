@@ -35,12 +35,12 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         
         private bool CanWallRun()
         {
-            if (_wallLeft && fsmCore.playerWalkingInputs == new Vector2(-1, 1))
+            if (_wallLeft && movementDir == new Vector3(-1, 0, 1))
             {
                 return true;
             }
 
-            return _wallRight && fsmCore.playerWalkingInputs == new Vector2(1, 1);
+            return _wallRight && movementDir == new Vector3(1,0, 1);
         }
 
         private void CheckForWall()

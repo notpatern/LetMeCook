@@ -8,5 +8,6 @@ namespace PlayerSystems.MovementFSMCore.DataClass
         public float drag;
         public float movementMultiplier;
         public float jumpForce;
+        public float maxMovementSpeed;
     }
 }
