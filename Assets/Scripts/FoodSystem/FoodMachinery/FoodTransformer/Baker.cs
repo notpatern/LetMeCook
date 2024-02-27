@@ -1,3 +1,4 @@
+using ItemLaunch;
 using UnityEngine;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
@@ -7,11 +8,13 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         protected override void ReleaseFood()
         {
             GameObject newFood = Instantiate(collectedFoodData[0].bakedFood.prefab,
-                foodSpawnPoint.position, foodSpawnPoint.rotation);
+                launcher.StartPoint, Quaternion.identity);
 
             launcher.ThrowItem(newFood.GetComponent<LaunchableItem>());
         
             base.ReleaseFood();
         }
+        
+        protected override bool CheckIfCanCook(FoodData foodData) => foodData.bakedFood != null;
     }
 }
