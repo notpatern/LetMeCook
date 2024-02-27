@@ -16,7 +16,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         
         public AirState(FsmContext airState, MovementFsmCore fsmCore) : base(airState, fsmCore)
         {
-            
         }
         public override void Init()
         {
@@ -33,6 +32,15 @@ namespace PlayerSystems.MovementFSMCore.MovementState
                 return;
             }
             fsmCore.SwitchState<WallRunState>(typeof(WallRunState), new WallRunContext(fsmCore.wallRunData));
+        }
+
+        public override void Jump()
+        {
+            var vel = fsmCore.rb.velocity;
+            fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
+            
+            fsmCore.rb.AddForce(Vector3.up * context.jumpForce, ForceMode.Impulse);
+            canJump = false;
         }
         
         private bool CanWallRun()

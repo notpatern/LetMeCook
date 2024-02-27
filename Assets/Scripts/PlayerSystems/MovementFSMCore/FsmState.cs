@@ -20,6 +20,7 @@ namespace PlayerSystems.MovementFSMCore
         public virtual void Init()
         {
             context.Init();
+            canJump = true;
             fsmCore.rb.drag = context.drag;
             fsmCore.rb.useGravity = context.useGravity;
         }

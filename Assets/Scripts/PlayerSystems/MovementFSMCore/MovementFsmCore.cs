@@ -52,7 +52,7 @@ namespace PlayerSystems.MovementFSMCore
             {
                 SwitchState<GroundState>(typeof(GroundState), new GroundContext(groundData));
             }
-            else
+            else if (!Grounded() && currentState.GetType() == typeof(GroundState))
             {
                 SwitchState<AirState>(typeof(AirState), new AirContext(airData));
             }
@@ -75,6 +75,11 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
+            if (!currentState.canJump)
+            {
+                return;
+            }
+            
             currentState.Jump();
         }
     }
