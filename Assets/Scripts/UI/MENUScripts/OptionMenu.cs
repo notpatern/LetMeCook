@@ -30,6 +30,7 @@ namespace UI.MENUScripts
 
         void Awake()
         {
+            m_GraphicsPanel.SetActive(false);
             //SetDefaultValues
             LoadResolution();
 
@@ -113,7 +114,6 @@ namespace UI.MENUScripts
             Screen.SetResolution(m_deviceAvailableResolutions[m_currentSelectedResolutionID].width, m_deviceAvailableResolutions[m_currentSelectedResolutionID].height, isFullScreen);
             m_ResolutionText.text = ((int)m_deviceAvailableResolutions[m_currentSelectedResolutionID].refreshRateRatio.value).ToString() + "fps | " + m_deviceAvailableResolutions[m_currentSelectedResolutionID].width + "x" + m_deviceAvailableResolutions[m_currentSelectedResolutionID].height;
             
-            Debug.Log("setPlayerPrefs : " + m_currentSelectedResolutionID + "  |  " + isFullScreen);
             PlayerPrefs.SetInt("is_fullscreen", isFullScreen ? 1 : 0);
             PlayerPrefs.SetInt("current_resolution_id", m_currentSelectedResolutionID);
         }
