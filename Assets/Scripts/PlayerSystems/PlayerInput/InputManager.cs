@@ -1,4 +1,3 @@
-using Player.Interaction;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -7,7 +6,7 @@ namespace Player.Input
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private PlayerInput _playerInput;
+        public static PlayerInput s_PlayerInput;
         [HideInInspector] public InputAction wasd;
         private InputAction _jump;
         private InputAction _dash;
@@ -22,7 +21,7 @@ namespace Player.Input
 
         private void Awake()
         {
-            _playerInput = new PlayerInput();
+            s_PlayerInput = new PlayerInput();
             m_OnWASDInput = new UnityEvent<Vector2>();
             m_OnJumpInput = new UnityEvent();
             m_OnDashinput = new UnityEvent();
@@ -34,21 +33,21 @@ namespace Player.Input
 
         private void OnEnable()
         {
-            _playerInput.Enable();
+            s_PlayerInput.Enable();
 
-            _playerInput.Player.WASD.performed += WasdMovement;
-            _playerInput.Player.WASD.canceled += WasdMovement;
-            _playerInput.Player.Jump.performed += Jump;
-            _playerInput.Player.Jump.performed += Dash;
-            _playerInput.Player.Interact.performed += Interact;
-            _playerInput.Player.LeftHand.performed += LeftHand;
-            _playerInput.Player.RightHand.performed += RightHand;
-            _playerInput.Player.TogglePauseMenu.performed += TogglePauseMenu;
+            s_PlayerInput.Player.WASD.performed += WasdMovement;
+            s_PlayerInput.Player.WASD.canceled += WasdMovement;
+            s_PlayerInput.Player.Jump.performed += Jump;
+            s_PlayerInput.Player.Jump.performed += Dash;
+            s_PlayerInput.Player.Interact.performed += Interact;
+            s_PlayerInput.Player.LeftHand.performed += LeftHand;
+            s_PlayerInput.Player.RightHand.performed += RightHand;
+            s_PlayerInput.Player.TogglePauseMenu.performed += TogglePauseMenu;
         }
 
         private void OnDisable()
         {
-            _playerInput.Disable();
+            s_PlayerInput.Disable();
         }
 
         private void WasdMovement(InputAction.CallbackContext context)

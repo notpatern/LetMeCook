@@ -23,10 +23,12 @@ namespace UI.MENUScripts
         [SerializeField] Button m_RightButtonResolution;
         [SerializeField] Toggle m_SetFullScreenMode;
         [SerializeField] Button m_GraphicsParameter;
+        [SerializeField] Button m_ControlsParameter;
         [SerializeField] TMP_Text m_ResolutionText;
         
         [Header("Menus")]
         [SerializeField] GameObject m_GraphicsPanel;
+        [SerializeField] GameObject m_ControlsPanel;
 
         void Awake()
         {
@@ -45,8 +47,29 @@ namespace UI.MENUScripts
             m_RightButtonResolution.onClick.AddListener(() => {SwitchToNextResolution(1);});
             m_SetFullScreenMode.onValueChanged.AddListener(SetFullScreenMode);
             m_GraphicsParameter.onClick.AddListener(ToggleGraphicsParameter);
+            m_ControlsParameter.onClick.AddListener(ToggleControlsParameter);
 
-            m_GraphicsPanel.SetActive(false);
+            CloseAllPanel();
+        }
+
+        void CloseAllPanel(GameObject ignoredPanel = null)
+        {
+            if(ignoredPanel)
+            {
+                GameObject[] panels = {m_GraphicsPanel, m_ControlsPanel};
+
+                foreach(GameObject panel in panels)
+                {
+                    if(panel == ignoredPanel) continue;
+
+                    panel.SetActive(false);
+                }
+            }
+            else
+            {
+                m_GraphicsPanel.SetActive(false);
+                m_ControlsPanel.SetActive(false);
+            }
         }
 
         void LoadResolution()
@@ -124,13 +147,21 @@ namespace UI.MENUScripts
             UpdateResolution();
         }
 
+        void ConfirmGraphicsParameters()
+        {
+            
+        }
+
         void ToggleGraphicsParameter()
         {
+            CloseAllPanel(m_GraphicsPanel);
             m_GraphicsPanel.SetActive(!m_GraphicsPanel.activeSelf);
         }
 
-        void ConfirmGraphicsParameters()
+        void ToggleControlsParameter()
         {
+            CloseAllPanel(m_ControlsPanel);
+            m_ControlsPanel.SetActive(!m_ControlsPanel.activeSelf);
             
         }
     }

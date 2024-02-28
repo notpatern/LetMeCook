@@ -1,3 +1,4 @@
+using Player.Input;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "DefaultLevelData", menuName = "LetMeCook/LevelData/DefaultLevelData", order = 9)]
