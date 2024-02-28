@@ -5,12 +5,12 @@ namespace UI.MENUScripts
 {
     public class PauseMenuUI : MonoBehaviour
     {
-        GameObject optionMenuGo;
+        OptionMenu optionMenu;
         [SerializeField] Button optionMenuButton;
 
         public void Init(UIManager uIManager)
         {
-            optionMenuGo = uIManager.optionMenu.gameObject;
+            optionMenu = uIManager.optionMenu;
 
             optionMenuButton.onClick.AddListener(ToggleOptionMenu);
         }
@@ -22,7 +22,7 @@ namespace UI.MENUScripts
             Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = state;
 
-            optionMenuGo.SetActive(false);
+            optionMenu.SetActiveOptionMenu(false);
         }
 
         public void QuitButton(string sceneName)
@@ -32,7 +32,7 @@ namespace UI.MENUScripts
 
         public void ToggleOptionMenu()
         {
-            optionMenuGo.SetActive(!optionMenuGo.activeSelf);
+            optionMenu.ToggleOptionMenu();
         }
     }
 }

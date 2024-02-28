@@ -15,7 +15,7 @@ namespace Player.Input
 
         public static void LoadMap()
         {
-            if (File.Exists(Application.persistentDataPath + "/controlsOverrides.qt"))
+            if (File.Exists(Application.persistentDataPath + "/controlOverrides.qt"))
             {
                 LoadControlOverrides();
             }
@@ -76,7 +76,7 @@ namespace Player.Input
 
         private static void SaveControlOverrides()
         {
-            FileStream file = new FileStream(Application.persistentDataPath + "/controlsOverrides.qt", FileMode.OpenOrCreate);
+            FileStream file = new FileStream(Application.persistentDataPath + "/controlOverrides.qt", FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(file, OverridesDictionary);
             file.Close();
@@ -84,12 +84,12 @@ namespace Player.Input
 
         private static void LoadControlOverrides()
         {
-            if (!File.Exists(Application.persistentDataPath + "/controlsOverrides.qt"))
+            if (!File.Exists(Application.persistentDataPath + "/controlOverrides.qt"))
             {
                 return;
             }
 
-            FileStream file = new FileStream(Application.persistentDataPath + "/controlsOverrides.qt", FileMode.OpenOrCreate);
+            FileStream file = new FileStream(Application.persistentDataPath + "/controlOverrides.qt", FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
             OverridesDictionary = bf.Deserialize(file) as Dictionary<string, string>;
             file.Close();

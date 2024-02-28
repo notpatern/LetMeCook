@@ -13,6 +13,8 @@ namespace Manager
                 Instantiate(defaultLevelData.LevelLoader);
             }
 
+            GraphicsOption.GraphicsOptionManagement.LoadGraphicsOptionManagement();
+
             ControlsRemapping.LoadMap();
         }
     }
