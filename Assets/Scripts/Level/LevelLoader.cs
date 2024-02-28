@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -59,14 +58,13 @@ public class LevelLoader : MonoBehaviour
 
     bool CheckSceneName(string sceneName)
     {
-        EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
-        sceneName.ToLower();
-        foreach (EditorBuildSettingsScene scene in scenes)
+        int scenesCount = SceneManager.sceneCountInBuildSettings;
+
+        string currentSceneName;
+        for(int i=0; i < scenesCount; i++)
         {
-            string currentSceneName = scene.path;
-            currentSceneName = currentSceneName.Substring(currentSceneName.LastIndexOf('\\') + 1);
-            currentSceneName = currentSceneName.Substring(0, currentSceneName.Length - 6);
-            if (sceneName == currentSceneName)
+            currentSceneName = System.IO.Path.GetFileNameWithoutExtension( SceneUtility.GetScenePathByBuildIndex( i ) );
+            if (sceneName.ToLower() == currentSceneName.ToLower())
             {
                 return true;
             }
@@ -80,7 +78,6 @@ public class LevelLoader : MonoBehaviour
         while(!operation.isDone)
         {
             loadProgressFill.fillAmount = operation.progress;
-            Debug.Log(operation.progress);
             yield return null;
         } 
         gameObject.SetActive(false);
