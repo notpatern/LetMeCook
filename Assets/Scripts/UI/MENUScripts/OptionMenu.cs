@@ -27,7 +27,7 @@ namespace UI.MENUScripts
         [Header("Menus")]
         [SerializeField] GameObject m_GraphicsPanel;
 
-        void Awake()
+        void StartOptions()
         {
             //SetDefaultValues
             LoadResolution();

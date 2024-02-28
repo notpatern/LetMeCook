@@ -22,6 +22,7 @@ namespace ItemLaunch
         public Vector3 StartTangent => Vector3.Lerp(StartPoint, EndPoint, t1) + Vector3.up * height;
         public Vector3 EndTangent => Vector3.Lerp(EndPoint, StartPoint, t2) + Vector3.up * height;
 
+        #if UNITY_EDITOR
         void OnDrawGizmos()
         {
             if (!debugMode)
@@ -35,7 +36,7 @@ namespace ItemLaunch
                 EndTangent,
                 Color.red, null, 10f);
         }
-
+        #endif
         public void ThrowItem(LaunchableItem launchedItem) { launchedItem.Init(this); }
     }
 }
