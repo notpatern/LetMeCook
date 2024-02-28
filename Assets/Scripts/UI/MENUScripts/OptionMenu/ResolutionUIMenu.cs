@@ -14,7 +14,7 @@ namespace UI.MENUScripts.Options
         [SerializeField] Button m_RightButtonResolution;
         [SerializeField] Button m_ApplyGraphicsParameters;
 
-        void Awake()
+        void Start()
         {
             m_SetFullScreenMode.SetIsOnWithoutNotify(PlayerPrefs.GetInt("is_fullscreen", 0) != 0);
 
@@ -25,6 +25,8 @@ namespace UI.MENUScripts.Options
             m_SetFullScreenMode.onValueChanged.AddListener(GraphicsOptionManagement.s_Instance.SetFullScreenMode);
 
             m_ApplyGraphicsParameters.onClick.AddListener(GraphicsOptionManagement.s_Instance.ApplyGraphicsOptions);
+
+            ResetUIToCurrentAppliedInfos();
         }
 
         void SwitchToNextResolution(int dir)

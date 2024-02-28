@@ -29,7 +29,9 @@ namespace GraphicsOption
         void LoadGraphicOptions()
         {
             LoadResolution();
+            isFullScreen = PlayerPrefs.GetInt("is_fullscreen", 0) != 0 ? true : false;
             m_currentSelectedResolutionID = PlayerPrefs.GetInt("current_resolution_id", m_currentSelectedResolutionID);
+            m_DirtySelectedResolutionID = m_currentSelectedResolutionID;
 
             UpdateResolution();
         }
@@ -69,7 +71,7 @@ namespace GraphicsOption
 
                     if(IsResolutionsSameSize(Screen.resolutions[i], Screen.currentResolution))
                     {
-                        m_DirtySelectedResolutionID = currentResolutionId-1;
+                        m_currentSelectedResolutionID = currentResolutionId-1;
                     }
                 }
             }
@@ -123,6 +125,7 @@ namespace GraphicsOption
             Screen.SetResolution(m_deviceAvailableResolutions[m_currentSelectedResolutionID].width, m_deviceAvailableResolutions[m_currentSelectedResolutionID].height, isFullScreen);
             
             PlayerPrefs.SetInt("is_fullscreen", isFullScreen ? 1 : 0);
+            
             PlayerPrefs.SetInt("current_resolution_id", m_currentSelectedResolutionID);
         }
     }
