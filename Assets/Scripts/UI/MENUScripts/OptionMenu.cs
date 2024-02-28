@@ -7,6 +7,7 @@ namespace UI.MENUScripts
 {
     public class OptionMenu : MonoBehaviour
     {
+        //TODO put OptionSystem as singleton and link optionMenu with only front-end
         //Fullscreen--------
         bool isFullScreen = false;
         //------------------
@@ -27,7 +28,7 @@ namespace UI.MENUScripts
         [Header("Menus")]
         [SerializeField] GameObject m_GraphicsPanel;
 
-        void StartOptions()
+        void Awake()
         {
             //SetDefaultValues
             LoadResolution();
@@ -50,11 +51,12 @@ namespace UI.MENUScripts
         void LoadResolution()
         {
             m_deviceAvailableResolutions = new Resolution[Screen.resolutions.Length];
+            RefreshRate defaultResolutionFrameRate = Screen.currentResolution.refreshRateRatio;
 
             int currentResolutionId = -1;
             for(int i=0; i<Screen.resolutions.Length; i++)
             {
-                if(IsAuthorizedRatio(Screen.resolutions[i]))
+                if(IsAuthorizedRatio(Screen.resolutions[i]) && Screen.resolutions[i].refreshRateRatio.value == defaultResolutionFrameRate.value)
                 {
                     currentResolutionId ++;
                     m_deviceAvailableResolutions[currentResolutionId] = Screen.resolutions[i];
@@ -103,8 +105,13 @@ namespace UI.MENUScripts
 
         void UpdateResolution()
         {
+            if(m_currentSelectedResolutionID >= m_deviceAvailableResolutions.Length)
+            {
+                m_currentSelectedResolutionID = m_deviceAvailableResolutions.Length-1;
+            }
+
             Screen.SetResolution(m_deviceAvailableResolutions[m_currentSelectedResolutionID].width, m_deviceAvailableResolutions[m_currentSelectedResolutionID].height, isFullScreen);
-            m_ResolutionText.text = m_deviceAvailableResolutions[m_currentSelectedResolutionID].width + "x" + m_deviceAvailableResolutions[m_currentSelectedResolutionID].height;
+            m_ResolutionText.text = ((int)m_deviceAvailableResolutions[m_currentSelectedResolutionID].refreshRateRatio.value).ToString() + "fps | " + m_deviceAvailableResolutions[m_currentSelectedResolutionID].width + "x" + m_deviceAvailableResolutions[m_currentSelectedResolutionID].height;
             
             Debug.Log("setPlayerPrefs : " + m_currentSelectedResolutionID + "  |  " + isFullScreen);
             PlayerPrefs.SetInt("is_fullscreen", isFullScreen ? 1 : 0);
