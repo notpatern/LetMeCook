@@ -1,12 +1,32 @@
+using System;
+using System.Collections.Generic;
 using Level.LevelDesign;
 using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(MovingPlatform))]
-[CanEditMultipleObjects]
 public class LookAtPointEditor : Editor
 {
-    SerializedProperty lookAtPoint;
+    SerializedProperty _platformKeys;
+    List<MovingPlatformKey> _keys = new();
+
+    void OnEnable()
+    {
+        _platformKeys = serializedObject.FindProperty("_platformKeys");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+        
+        
+        EditorGUILayout.LabelField(_platformKeys.arraySize.ToString());
+        
+        serializedObject.ApplyModifiedProperties();
+    }
+
+
+    /*SerializedProperty lookAtPoint;
 
     void OnEnable()
     {
@@ -42,5 +62,5 @@ public class LookAtPointEditor : Editor
             t.lookAtPoint = pos;
             t.Update();
         }
-    }
+    }*/
 }
