@@ -16,9 +16,7 @@ namespace Player
 
         void Start()
         {
-            handsManager = new HandsManager();
-
-            playerInteraction.BindPerformInteraction(handsManager.LoadHand);
+            playerInteraction.BindPerformInteraction(handsManager.UseHand);
             inputManager.BindHandAction(playerInteraction.ActiveInteraction);
 
             InitFsmCore();

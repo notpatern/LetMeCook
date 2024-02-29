@@ -19,10 +19,5 @@ namespace Manager
             LevelScoreDataTransmetor levelScoreDataTransmetor = Instantiate(new GameObject().AddComponent<LevelScoreDataTransmetor>());
             DontDestroyOnLoad(levelScoreDataTransmetor);
         }
-
-        void Start()
-        {
-            LevelLoader.s_instance.LoadLevel("EndGame");
-        }
     }
 }

@@ -11,24 +11,17 @@ namespace PlayerSystems.PlayerInput
         private InputAction _jump;
         private InputAction _dash;
         private InputAction _interact;
-        UnityEvent<Vector2> m_OnWASDInput;
-        UnityEvent m_OnJumpInput;
-        UnityEvent m_OnDashinput;
-        UnityEvent m_OnInteractInput;
-        UnityEvent<Player.HandSystem.HandsType> m_OnLeftHandInput;
-        UnityEvent<Player.HandSystem.HandsType> m_OnRightHandInput;
-        UnityEvent m_TogglePauseMenu;
+        UnityEvent<Vector2> m_OnWASDInput = new UnityEvent<Vector2>();
+        UnityEvent m_OnJumpInput = new UnityEvent();
+        UnityEvent m_OnDashinput = new UnityEvent();
+        UnityEvent m_OnInteractInput = new UnityEvent();
+        UnityEvent<Player.HandSystem.HandsType> m_OnLeftHandInput = new UnityEvent<Player.HandSystem.HandsType>();
+        UnityEvent<Player.HandSystem.HandsType> m_OnRightHandInput = new UnityEvent<Player.HandSystem.HandsType>();
+        UnityEvent m_TogglePauseMenu = new UnityEvent();
 
         private void Awake()
         {
             s_PlayerInput = new global::PlayerInput();
-            m_OnWASDInput = new UnityEvent<Vector2>();
-            m_OnJumpInput = new UnityEvent();
-            m_OnDashinput = new UnityEvent();
-            m_OnInteractInput = new UnityEvent();
-            m_OnLeftHandInput = new UnityEvent<Player.HandSystem.HandsType>();
-            m_OnRightHandInput = new UnityEvent<Player.HandSystem.HandsType>();
-            m_TogglePauseMenu = new UnityEvent();
         }
 
         private void OnEnable()
