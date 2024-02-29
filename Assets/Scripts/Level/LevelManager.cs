@@ -1,4 +1,3 @@
-using Player.Input;
 using UnityEngine;
 
 namespace Manager
@@ -6,7 +5,7 @@ namespace Manager
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] DefaultLevelData defaultLevelData;
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             if(!LevelLoader.instance)
             {
@@ -14,8 +13,7 @@ namespace Manager
             }
 
             GraphicsOption.GraphicsOptionManagement.LoadGraphicsOptionManagement();
-
-            ControlsRemapping.LoadMap();
+            ControlOptions.ControlOptionsManagement.LoadControlOptionsManagement();
         }
     }
 }

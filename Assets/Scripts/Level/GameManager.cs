@@ -8,8 +8,9 @@ namespace Manager
         [SerializeField] LevelData levelData;
         [SerializeField] Player.Player player;
         UIManager uiManager;
-        void Awake()
+        override protected void Awake()
         { 
+            base.Awake();
             uiManager = new UIManager();
             uiManager.LoadUI(levelData.levelUIData);
             player.InitUIEvent(uiManager);

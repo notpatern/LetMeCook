@@ -17,7 +17,12 @@ namespace UI.MENUScripts.Options
         void Start()
         {
             m_SetFullScreenMode.SetIsOnWithoutNotify(PlayerPrefs.GetInt("is_fullscreen", 0) != 0);
+            BindUIInteractables();
+            ResetUIToCurrentAppliedInfos();
+        }
 
+        void BindUIInteractables()
+        {
             m_SetFullScreenMode.onValueChanged.AddListener(GraphicsOptionManagement.s_Instance.SetFullScreenMode);
             m_LeftButtonResolution.onClick.AddListener(() => {SwitchToNextResolution(-1);});
             m_RightButtonResolution.onClick.AddListener(() => {SwitchToNextResolution(1);});
@@ -26,7 +31,6 @@ namespace UI.MENUScripts.Options
 
             m_ApplyGraphicsParameters.onClick.AddListener(GraphicsOptionManagement.s_Instance.ApplyGraphicsOptions);
 
-            ResetUIToCurrentAppliedInfos();
         }
 
         void SwitchToNextResolution(int dir)
