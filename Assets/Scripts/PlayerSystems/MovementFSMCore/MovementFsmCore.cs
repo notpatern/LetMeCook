@@ -5,6 +5,7 @@ using PlayerSystems.MovementFSMCore.MovementContext;
 using PlayerSystems.MovementFSMCore.MovementState;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 
 namespace PlayerSystems.MovementFSMCore
@@ -18,6 +19,9 @@ namespace PlayerSystems.MovementFSMCore
         public FsmWallRunData wallRunData;
         public FsmAirData airData;
         public FsmGroundData groundData;
+        public FsmDashData dashData;
+
+        public new Transform camera;
 
         [Header("Player")] public Rigidbody rb;
         public Transform orientation;
@@ -35,7 +39,12 @@ namespace PlayerSystems.MovementFSMCore
             currentState.Update();
             HandleGroundedState();
         }
-        
+
+        private void FixedUpdate()
+        {
+            currentState.FixedUpdate();
+        }
+
         public void SwitchState<TState>(Type state, FsmContext context) where TState : FsmState
         {
             currentState = (TState)Activator.CreateInstance(
@@ -48,13 +57,13 @@ namespace PlayerSystems.MovementFSMCore
 
         private void HandleGroundedState()
         {
-            if (Grounded() && currentState.GetType() != typeof(GroundState))
+            if (Grounded() && currentState.GetType() == typeof(AirState))
             {
-                SwitchState<GroundState>(typeof(GroundState), new GroundContext(groundData));
+                SwitchState<GroundState>(typeof(GroundState), new GroundContext(groundData, true, true));
             }
             else if (!Grounded() && currentState.GetType() == typeof(GroundState))
             {
-                SwitchState<AirState>(typeof(AirState), new AirContext(airData));
+                SwitchState<AirState>(typeof(AirState), new AirContext(airData, 0f, currentState.context.canJump, currentState.context.canDash));
             }
         }
 
@@ -63,7 +72,7 @@ namespace PlayerSystems.MovementFSMCore
             return Physics.Raycast(
                 rb.position,
                 Vector3.down,
-                1.3f,
+                1.1f,
                 isGround
             );
         }
@@ -75,12 +84,22 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
-            if (!currentState.canJump)
+            if (!currentState.context.canJump)
             {
                 return;
             }
             
             currentState.Jump();
+        }
+
+        public void OnDashInputEvent()
+        {
+            if (!currentState.context.canDash)
+            {
+                return;
+            }
+            
+            currentState.Dash();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace PlayerSystems.Camera
         public float sensY;
 
         public Transform orientation;
-        public Transform camera;
+        public new Transform camera;
 
         float _xRotation;
         float _yRotation;
