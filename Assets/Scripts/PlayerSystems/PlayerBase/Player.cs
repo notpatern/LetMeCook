@@ -1,5 +1,6 @@
 using PlayerSystems.HandsSystem;
 using PlayerSystems.MovementFSMCore;
+using PlayerSystems.PlayerInput;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,7 +10,7 @@ namespace Player
     public class Player : MonoBehaviour
     {
         [SerializeField] Interaction.PlayerInteraction playerInteraction;
-        [SerializeField] Input.InputManager inputManager;
+        [SerializeField] InputManager inputManager;
         [SerializeField] HandsManager handsManager;
         public MovementFsmCore movementFsmCore;
 
