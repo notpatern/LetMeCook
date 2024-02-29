@@ -41,6 +41,7 @@ namespace Player
         {
             inputManager.BindWasdMovement(movementFsmCore.OnMovementInputEvent);
             inputManager.BindJump(movementFsmCore.OnJumpInputEvent);
+            inputManager.BindDash(movementFsmCore.OnDashInputEvent);
         }
     }
 }
