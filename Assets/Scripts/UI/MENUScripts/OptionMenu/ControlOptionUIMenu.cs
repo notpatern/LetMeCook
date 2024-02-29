@@ -14,7 +14,7 @@ namespace UI.MENUScripts.Options
 
         void Start()
         {
-            mouseSensitivitySlider.value = PlayerPrefs.GetFloat("game_options_sensitivity", 1.0f);
+            mouseSensitivitySlider.value = ControlOptionsManagement.s_Instance.GetMouseSensitivity();
             mouseSensitivitySlider.onValueChanged.AddListener(OnSliderValueChange);
 
             LoadKeybinds();

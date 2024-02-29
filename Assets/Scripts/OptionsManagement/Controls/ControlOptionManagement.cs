@@ -1,4 +1,5 @@
 using Player.Input;
+using UnityEngine;
 
 namespace ControlOptions
 {
@@ -7,7 +8,7 @@ namespace ControlOptions
         public static ControlOptionsManagement s_Instance;
 
         //Mouse
-        float mouseSensitivity = 0.0f;
+        float mouseSensitivity = 1.0f;
 
         public static void LoadControlOptionsManagement()
         {
@@ -15,12 +16,20 @@ namespace ControlOptions
             {
                 s_Instance = new ControlOptionsManagement();
                 ControlsRemapping.LoadMap();
+
+                s_Instance.mouseSensitivity = PlayerPrefs.GetFloat("control_options_mouse_sensitivity", 1.0f);
             }
         }
 
         public void SetMouseSensitivity(float newValue)
         {
             mouseSensitivity = newValue;
+            PlayerPrefs.SetFloat("control_options_mouse_sensitivity", mouseSensitivity);
+        }
+
+        public float GetMouseSensitivity()
+        {
+            return mouseSensitivity;
         }
     }
 }
