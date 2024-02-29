@@ -1,4 +1,3 @@
-using PlayerSystems.PlayerInput;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -40,17 +39,7 @@ namespace Player.Input
 
             ControlsRemapping.SuccessfulRebinding += OnSuccessfulRebinding;
 
-            //bool isGamepad = m_action.bindings[m_keybindsData.bindingIndex].path.Contains("Gamepad");
-            //bool isMouse = m_action.bindings[m_keybindsData.bindingIndex].path.Contains("Mouse");
             ControlsRemapping.RemapKeyboardMouseAction(m_action, m_keybindsData.bindingIndex);
-            /*if(isGamepad)
-                ControlsRemapping.RemapGamepadAction(m_action, m_keybindsData.bindingIndex);
-            else if(isMouse)
-                ControlsRemapping.RemapMouseAction(m_action, m_keybindsData.bindingIndex);
-            else
-            {
-                ControlsRemapping.RemapKeyboardAction(m_action, m_keybindsData.bindingIndex);
-            }*/
         }
 
         void OnSuccessfulRebinding(InputAction action)

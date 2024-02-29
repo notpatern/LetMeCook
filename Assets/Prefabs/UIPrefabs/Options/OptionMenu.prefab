@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Content: {fileID: 6978421847292905003}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -2423,6 +2423,7 @@ GameObject:
   - component: {fileID: 5071716519367352542}
   - component: {fileID: 5738919570943628306}
   - component: {fileID: 8171421242343940905}
+  - component: {fileID: 1607805074862053611}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -2471,6 +2472,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!114 &1607805074862053611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4892543595269582648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &4981303279524051106
 GameObject:
   m_ObjectHideFlags: 0
