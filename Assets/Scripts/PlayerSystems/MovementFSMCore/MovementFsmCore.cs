@@ -5,6 +5,7 @@ using PlayerSystems.MovementFSMCore.MovementContext;
 using PlayerSystems.MovementFSMCore.MovementState;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 
 namespace PlayerSystems.MovementFSMCore
@@ -14,47 +15,55 @@ namespace PlayerSystems.MovementFSMCore
         [Header("References")] [SerializeField]
         private LayerMask isGround;
 
-        [HideInInspector] public FsmState currentState;
+        private FsmState _currentState;
         public FsmWallRunData wallRunData;
         public FsmAirData airData;
         public FsmGroundData groundData;
+        public FsmDashData dashData;
+
+        public new Transform camera;
 
         [Header("Player")] public Rigidbody rb;
         public Transform orientation;
 
-        [HideInInspector] public Vector2 Input { private set; get; }
+        public Vector2 Input { private set; get; }
 
         private void Start()
         {
-            currentState = new GroundState(new GroundContext(groundData), this);
-            currentState.Init();
+            _currentState = new GroundState(new GroundContext(groundData), this);
+            _currentState.Init();
         }
     
         private void Update()
         {
-            currentState.Update();
+            _currentState.Update();
             HandleGroundedState();
         }
-        
+
+        private void FixedUpdate()
+        {
+            _currentState.FixedUpdate();
+        }
+
         public void SwitchState<TState>(Type state, FsmContext context) where TState : FsmState
         {
-            currentState = (TState)Activator.CreateInstance(
+            _currentState = (TState)Activator.CreateInstance(
                 state,
                 context,
                 this
             );
-            currentState.Init();
+            _currentState.Init();
         }
 
         private void HandleGroundedState()
         {
-            if (Grounded() && currentState.GetType() != typeof(GroundState))
+            if (Grounded() && _currentState.GetType() == typeof(AirState))
             {
-                SwitchState<GroundState>(typeof(GroundState), new GroundContext(groundData));
+                SwitchState<GroundState>(typeof(GroundState), new GroundContext(groundData, true, true));
             }
-            else if (!Grounded() && currentState.GetType() == typeof(GroundState))
+            else if (!Grounded() && _currentState.GetType() == typeof(GroundState))
             {
-                SwitchState<AirState>(typeof(AirState), new AirContext(airData));
+                SwitchState<AirState>(typeof(AirState), new AirContext(airData, 0f, _currentState.context.canJump, _currentState.context.canDash));
             }
         }
 
@@ -63,7 +72,7 @@ namespace PlayerSystems.MovementFSMCore
             return Physics.Raycast(
                 rb.position,
                 Vector3.down,
-                1.3f,
+                1.1f,
                 isGround
             );
         }
@@ -75,12 +84,22 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
-            if (!currentState.canJump)
+            if (!_currentState.context.canJump)
             {
                 return;
             }
             
-            currentState.Jump();
+            _currentState.Jump();
+        }
+
+        public void OnDashInputEvent()
+        {
+            if (!_currentState.context.canDash)
+            {
+                return;
+            }
+            
+            _currentState.Dash();
         }
     }
 }

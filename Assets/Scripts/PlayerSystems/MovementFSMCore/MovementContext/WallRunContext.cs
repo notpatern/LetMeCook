@@ -11,7 +11,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         public float wallGravity;
         public float wallCheckDistance;
         
-        public WallRunContext(FsmWallRunData wallRunContext) : base(wallRunContext)
+        public WallRunContext(FsmWallRunData wallRunContext, bool canJump = true, bool canDash = false) : base(wallRunContext, canJump, canDash)
         {
             this._wallRunContext = wallRunContext;
         }

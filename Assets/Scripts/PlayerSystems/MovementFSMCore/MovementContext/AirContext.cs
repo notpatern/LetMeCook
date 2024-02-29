@@ -7,7 +7,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         private readonly FsmAirData _airDataContext;
         public float wallRunExitTime;
         
-        public AirContext(FsmAirData airDataContext, float wallRunExitTime = 0) : base(airDataContext)
+        public AirContext(FsmAirData airDataContext, float wallRunExitTime = 0, bool canJump = true, bool canDash = true) : base(airDataContext, canJump, canDash)
         {
             this._airDataContext = airDataContext;
             this.wallRunExitTime = wallRunExitTime;

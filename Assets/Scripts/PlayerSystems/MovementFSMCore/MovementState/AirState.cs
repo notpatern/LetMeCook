@@ -1,10 +1,13 @@
-﻿using PlayerSystems.MovementFSMCore.MovementContext;
+﻿using PlayerSystems.MovementFSMCore.DataClass;
+using PlayerSystems.MovementFSMCore.MovementContext;
 using UnityEngine;
 
 namespace PlayerSystems.MovementFSMCore.MovementState
 {
     public class AirState : FsmState
     {
+        private readonly AirContext _context;
+        
         [Header("Wall Run Check")] 
         private LayerMask _isWall;
         private float _wallCheckDistance;
@@ -14,8 +17,9 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         private RaycastHit _wallLeftHit;
         private RaycastHit _wallHit;
         
-        public AirState(FsmContext airState, MovementFsmCore fsmCore) : base(airState, fsmCore)
+        public AirState(AirContext airContext, MovementFsmCore fsmCore) : base(airContext, fsmCore)
         {
+            this._context = airContext;
         }
         public override void Init()
         {
@@ -40,7 +44,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
             
             fsmCore.rb.AddForce(Vector3.up * context.jumpForce, ForceMode.Impulse);
-            canJump = false;
+            context.canJump = false;
         }
         
         private bool CanWallRun()

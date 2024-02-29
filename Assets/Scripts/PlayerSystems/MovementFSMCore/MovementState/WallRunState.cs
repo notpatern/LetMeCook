@@ -1,9 +1,11 @@
 
+using PlayerSystems.MovementFSMCore.MovementContext;
+
 namespace PlayerSystems.MovementFSMCore.MovementState
 {
     public class WallRunState : FsmState
     {
-        public WallRunState(FsmContext wallRunContext, MovementFsmCore fsmCore) : base(wallRunContext, fsmCore)
+        public WallRunState(WallRunContext wallRunContext, MovementFsmCore fsmCore) : base(wallRunContext, fsmCore)
         {
             
         }
