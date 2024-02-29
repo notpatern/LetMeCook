@@ -1,6 +1,7 @@
 ﻿using PlayerSystems.MovementFSMCore.DataClass;
+using UnityEngine;
 
-namespace PlayerSystems.MovementFSMCore
+namespace PlayerSystems.MovementFSMCore.MovementContext
 {
     public abstract class FsmContext
     {
@@ -11,10 +12,14 @@ namespace PlayerSystems.MovementFSMCore
         public float jumpForce;
         public float maxMovementSpeed;
         public bool useGravity;
+        public bool canJump;
+        public bool canDash;
 
-        protected FsmContext(FsmData fsmData)
+        protected FsmContext(FsmData fsmData, bool canJump, bool canDash)
         {
             this._fsmData = fsmData;
+            this.canJump = canJump;
+            this.canDash = canDash;
         }
 
         public virtual void Init()
