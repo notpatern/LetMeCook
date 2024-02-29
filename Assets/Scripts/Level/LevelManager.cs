@@ -7,7 +7,7 @@ namespace Manager
         [SerializeField] DefaultLevelData defaultLevelData;
         protected virtual void Awake()
         {
-            if(!LevelLoader.instance)
+            if(!LevelLoader.s_instance)
             {
                 Instantiate(defaultLevelData.LevelLoader);
             }

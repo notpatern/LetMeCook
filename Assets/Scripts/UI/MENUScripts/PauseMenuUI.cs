@@ -27,7 +27,7 @@ namespace UI.MENUScripts
 
         public void QuitButton(string sceneName)
         {
-            LevelLoader.instance.LoadLevel(sceneName);
+            LevelLoader.s_instance.LoadLevel(sceneName);
         }
 
         public void ToggleOptionMenu()

@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    public static LevelLoader instance;
+    public static LevelLoader s_instance;
     [SerializeField] Image loadProgressFill;
     void Awake()
     {
-        if(!instance)
+        if(!s_instance)
         {
-            instance = this;
+            s_instance = this;
             gameObject.SetActive(false);
             DontDestroyOnLoad(gameObject);
         }
