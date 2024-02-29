@@ -1,36 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace UI.MENUScripts
 {
     public class PauseMenuUI : MonoBehaviour
     {
+        OptionMenu optionMenu;
+        [SerializeField] Button optionMenuButton;
+
+        public void Init(UIManager uIManager)
+        {
+            optionMenu = uIManager.optionMenu;
+
+            optionMenuButton.onClick.AddListener(ToggleOptionMenu);
+        }
+
         public void ToggleActiveMenuState()
         {
             bool state = !gameObject.activeSelf;
             gameObject.SetActive(state);
             Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = state;
+
+            optionMenu.SetActiveOptionMenu(false);
         }
 
         public void QuitButton(string sceneName)
         {
-            EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
-            sceneName.ToLower();
-            foreach (EditorBuildSettingsScene scene in scenes)
-            {
-                string currentSceneName = scene.path;
-                currentSceneName = currentSceneName.Substring(currentSceneName.LastIndexOf('\\') + 1);
-                currentSceneName = currentSceneName.Substring(0, currentSceneName.Length - 6);
-                if (sceneName == currentSceneName)
-                {
-                    SceneManager.LoadScene(sceneName);
-                }
-            }
+            LevelLoader.instance.LoadLevel(sceneName);
+        }
+
+        public void ToggleOptionMenu()
+        {
+            optionMenu.ToggleOptionMenu();
         }
     }
 }

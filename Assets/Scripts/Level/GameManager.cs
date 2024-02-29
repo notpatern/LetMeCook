@@ -1,15 +1,18 @@
 using UI;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace Manager
 {
-    [SerializeField] LevelData levelData;
-    [SerializeField] Player.Player player;
-    UIManager uiManager;
-    void Awake()
-    { 
-        uiManager = new UIManager();
-        uiManager.LoadUI(levelData.levelUIData);
-        player.InitUIEvent(uiManager);
+    public class GameManager : LevelManager
+    {
+        [SerializeField] LevelData levelData;
+        [SerializeField] Player.Player player;
+        UIManager uiManager;
+        void Awake()
+        { 
+            uiManager = new UIManager();
+            uiManager.LoadUI(levelData.levelUIData);
+            player.InitUIEvent(uiManager);
+        }
     }
 }

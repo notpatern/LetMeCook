@@ -1,13 +1,12 @@
-using Player.Interaction;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace Player.Input
+namespace PlayerSystems.PlayerInput
 {
     public class InputManager : MonoBehaviour
     {
-        [SerializeField] private PlayerInput _playerInput;
+        public static global::PlayerInput s_PlayerInput;
         [HideInInspector] public InputAction wasd;
         private InputAction _jump;
         private InputAction _dash;
@@ -16,39 +15,39 @@ namespace Player.Input
         UnityEvent m_OnJumpInput;
         UnityEvent m_OnDashinput;
         UnityEvent m_OnInteractInput;
-        UnityEvent<HandSystem.HandsType> m_OnLeftHandInput;
-        UnityEvent<HandSystem.HandsType> m_OnRightHandInput;
+        UnityEvent<Player.HandSystem.HandsType> m_OnLeftHandInput;
+        UnityEvent<Player.HandSystem.HandsType> m_OnRightHandInput;
         UnityEvent m_TogglePauseMenu;
 
         private void Awake()
         {
-            _playerInput = new PlayerInput();
+            s_PlayerInput = new global::PlayerInput();
             m_OnWASDInput = new UnityEvent<Vector2>();
             m_OnJumpInput = new UnityEvent();
             m_OnDashinput = new UnityEvent();
             m_OnInteractInput = new UnityEvent();
-            m_OnLeftHandInput = new UnityEvent<HandSystem.HandsType>();
-            m_OnRightHandInput = new UnityEvent<HandSystem.HandsType>();
+            m_OnLeftHandInput = new UnityEvent<Player.HandSystem.HandsType>();
+            m_OnRightHandInput = new UnityEvent<Player.HandSystem.HandsType>();
             m_TogglePauseMenu = new UnityEvent();
         }
 
         private void OnEnable()
         {
-            _playerInput.Enable();
-
-            _playerInput.Player.WASD.performed += WasdMovement;
-            _playerInput.Player.WASD.canceled += WasdMovement;
-            _playerInput.Player.Jump.performed += Jump;
-            _playerInput.Player.Dash.performed += Dash;
-            _playerInput.Player.Interact.performed += Interact;
-            _playerInput.Player.LeftHand.performed += LeftHand;
-            _playerInput.Player.RightHand.performed += RightHand;
-            _playerInput.Player.TogglePauseMenu.performed += TogglePauseMenu;
+            s_PlayerInput.Enable();
+            
+            s_PlayerInput.Player.WASD.performed += WasdMovement;
+            s_PlayerInput.Player.WASD.canceled += WasdMovement;
+            s_PlayerInput.Player.Jump.performed += Jump;
+            s_PlayerInput.Player.Dash.performed += Dash;
+            s_PlayerInput.Player.Interact.performed += Interact;
+            s_PlayerInput.Player.LeftHand.performed += LeftHand;
+            s_PlayerInput.Player.RightHand.performed += RightHand;
+            s_PlayerInput.Player.TogglePauseMenu.performed += TogglePauseMenu;
         }
 
         private void OnDisable()
         {
-            _playerInput.Disable();
+            s_PlayerInput.Disable();
         }
 
         private void WasdMovement(InputAction.CallbackContext context)
@@ -73,12 +72,12 @@ namespace Player.Input
 
         private void LeftHand(InputAction.CallbackContext context)
         {
-            m_OnLeftHandInput.Invoke(HandSystem.HandsType.LEFT);
+            m_OnLeftHandInput.Invoke(Player.HandSystem.HandsType.LEFT);
         }
 
         private void RightHand(InputAction.CallbackContext context)
         {
-            m_OnRightHandInput.Invoke(HandSystem.HandsType.RIGHT);
+            m_OnRightHandInput.Invoke(Player.HandSystem.HandsType.RIGHT);
         }
 
         private void TogglePauseMenu(InputAction.CallbackContext context)
@@ -108,7 +107,7 @@ namespace Player.Input
             m_OnInteractInput.AddListener(action);
         }
 
-        public void BindHandAction(UnityAction<HandSystem.HandsType> action)
+        public void BindHandAction(UnityAction<Player.HandSystem.HandsType> action)
         {
             m_OnLeftHandInput.AddListener(action);
             m_OnRightHandInput.AddListener(action);
