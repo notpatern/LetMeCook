@@ -14,6 +14,7 @@ namespace Manager
             base.Awake();
             uiManager = new UIManager();
             uiManager.LoadUI(levelData.levelUIData);
+
             player.InitUIEvent(uiManager);
             
             LevelScoreDataTransmetor levelScoreDataTransmetor = Instantiate(new GameObject().AddComponent<LevelScoreDataTransmetor>());
