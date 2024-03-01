@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,13 +7,13 @@ namespace Level.LevelDesign
     [System.Serializable]
     public class MovingPlatform : MonoBehaviour
     {
-        [HideInInspector] public List<MovingPlatformKey> _platformKeys = new();
+        [SerializeField] List<MovingPlatformKey> platformKeys = new();
         
         int _index;
 
         void Start()
         {
-            if (_platformKeys.Count <= 1 || _index == _platformKeys.Count)
+            if (platformKeys.Count <= 1 || _index == platformKeys.Count)
             {
                 Destroy(this);
                 return;
@@ -24,8 +23,8 @@ namespace Level.LevelDesign
 
         IEnumerator MovePlatform()
         {
-            yield return new WaitForSeconds(_platformKeys[_index].pauseBeforeMoving);
-            MoveToKey(_platformKeys[_index].position, _platformKeys[_index].rotation, _platformKeys[_index].travelTime);
+            yield return new WaitForSeconds(platformKeys[_index].pauseBeforeMoving);
+            MoveToKey(platformKeys[_index].position, platformKeys[_index].rotation, platformKeys[_index].travelTime);
             OnEndTravel();
         }
 

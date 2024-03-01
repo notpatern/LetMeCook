@@ -1,66 +1,41 @@
 using System;
 using System.Collections.Generic;
 using Level.LevelDesign;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 [CustomEditor(typeof(MovingPlatform))]
 public class LookAtPointEditor : Editor
 {
-    SerializedProperty _platformKeys;
-    List<MovingPlatformKey> _keys = new();
+    MovingPlatform _platform;
+    SerializedProperty _keyList;
 
+    List<MovingPlatformKey> _tempKeyList = new List<MovingPlatformKey>();
+    
     void OnEnable()
     {
-        _platformKeys = serializedObject.FindProperty("_platformKeys");
+        _platform = target as MovingPlatform;
+        _keyList = serializedObject.FindProperty("platformKeys");
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        
-        
-        EditorGUILayout.LabelField(_platformKeys.arraySize.ToString());
-        
-        serializedObject.ApplyModifiedProperties();
-    }
-
-
-    /*SerializedProperty lookAtPoint;
-
-    void OnEnable()
-    {
-        lookAtPoint = serializedObject.FindProperty("lookAtPoint");
-    }
-
-    public override void OnInspectorGUI()
-    {
-        serializedObject.Update();
-        EditorGUILayout.PropertyField(lookAtPoint);
-        if (lookAtPoint.vector3Value.y > ((MovingPlatform)target).transform.position.y)
-        {
-            EditorGUILayout.LabelField("(Above this object)");
-        }
-        if (lookAtPoint.vector3Value.y < ((MovingPlatform)target).transform.position.y)
-        {
-            EditorGUILayout.LabelField("(Below this object)");
-        }
-        
-            
-        serializedObject.ApplyModifiedProperties();
-    }
-
-    public void OnSceneGUI()
-    {
-        var t = (target as MovingPlatform);
-
         EditorGUI.BeginChangeCheck();
-        Vector3 pos = Handles.PositionHandle(t.lookAtPoint, Quaternion.identity);
-        if (EditorGUI.EndChangeCheck())
+        
+        if (GUILayout.Button("Add Key"))
         {
-            Undo.RecordObject(target, "Move point");
-            t.lookAtPoint = pos;
-            t.Update();
+            //_keyList.Add(new MovingPlatformKey(_platform.transform.position, _platform.transform.rotation, 0, 1));
+            //_keyList.InsertArrayElementAtIndex(_keyList.arraySize);
+            //_keyList.GetArrayElementAtIndex(_keyList.arraySize - 1). = new MovingPlatformKey(_platform.transform.position, _platform.transform.rotation, 0, 1);
         }
-    }*/
+
+        for (int i = 0; i < _tempKeyList.Count; i++)
+        {
+            
+        }
+
+        EditorGUI.EndChangeCheck();
+        serializedObject.ApplyModifiedProperties();
+    }
 }
