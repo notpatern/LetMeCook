@@ -11,14 +11,18 @@ namespace ControlOptions
         BoolTable canMove;
         float mouseSensitivity = 1.0f;
 
+        public ControlOptionsManagement()
+        {
+            canMove = new BoolTable();
+            mouseSensitivity = PlayerPrefs.GetFloat("control_options_mouse_sensitivity", 1.0f);
+        }
+
         public static void LoadControlOptionsManagement()
         {
             if(s_Instance == null)
             {
                 s_Instance = new ControlOptionsManagement();
                 ControlsRemapping.LoadMap();
-
-                s_Instance.mouseSensitivity = PlayerPrefs.GetFloat("control_options_mouse_sensitivity", 1.0f);
             }
         }
 
@@ -33,16 +37,40 @@ namespace ControlOptions
             return mouseSensitivity;
         }
 
-        public void UpdateIsControlsActivated(bool value)
+        public void UpdateIsMainControlsActivated(bool value)
         {
             canMove.Value = value;
 
-            if(canMove == true)
-                InputManager.s_PlayerInput.Disable();
+            if(canMove.Value == false)
+            {
+                DisableMainPlayerInputs();
+            }
             else
             {
-                InputManager.s_PlayerInput.Enable();
+                EnableMainPlayerInputs();
             }
+        }
+
+        public void EnableMainPlayerInputs()
+        {
+            PlayerInput.PlayerActions playerInput = InputManager.s_PlayerInput.Player;
+            playerInput.WASD.Enable();
+            playerInput.Jump.Enable();
+            playerInput.Dash.Enable();
+            playerInput.Interact.Enable();
+            playerInput.LeftHand.Enable();
+            playerInput.RightHand.Enable();
+        }
+
+        public void DisableMainPlayerInputs()
+        {
+            PlayerInput.PlayerActions playerInput = InputManager.s_PlayerInput.Player;
+            playerInput.WASD.Disable();
+            playerInput.Jump.Disable();
+            playerInput.Dash.Disable();
+            playerInput.Interact.Disable();
+            playerInput.LeftHand.Disable();
+            playerInput.RightHand.Disable();
         }
 
     }

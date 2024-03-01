@@ -41,6 +41,15 @@ namespace PlayerSystems.Input
         private void OnDisable()
         {
             s_PlayerInput.Disable();
+
+            s_PlayerInput.Player.WASD.performed -= WasdMovement;
+            s_PlayerInput.Player.WASD.canceled -= WasdMovement;
+            s_PlayerInput.Player.Jump.performed -= Jump;
+            s_PlayerInput.Player.Dash.performed -= Dash;
+            s_PlayerInput.Player.Interact.performed -= Interact;
+            s_PlayerInput.Player.LeftHand.performed -= LeftHand;
+            s_PlayerInput.Player.RightHand.performed -= RightHand;
+            s_PlayerInput.Player.TogglePauseMenu.performed -= TogglePauseMenu;
         }
 
         private void WasdMovement(InputAction.CallbackContext context)

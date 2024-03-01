@@ -14,6 +14,7 @@ namespace Manager
 
             GraphicsOption.GraphicsOptionManagement.LoadGraphicsOptionManagement();
             ControlOptions.ControlOptionsManagement.LoadControlOptionsManagement();
+            TimeOption.TimeOptionManagement.LoadTimeOptionsManagement();
         }
     }
 }

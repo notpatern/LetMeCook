@@ -1,13 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class BoolTable : MonoBehaviour
 {
     public bool Value {get{return m_finalValue;} set{UpdateBoolTable(value);}}
 
     bool m_finalValue;
-    List<bool> m_ValuesTable;
+    List<bool> m_ValuesTable = new List<bool>();
 
     void UpdateBoolTable(bool value)
     {
@@ -34,15 +33,5 @@ public class BoolTable : MonoBehaviour
         {
             m_finalValue = value;
         }
-    }
-
-    public static bool operator==(BoolTable a, bool b)
-    {
-        return a.Value == b;
-    }
-
-    public static bool operator!=(BoolTable a, bool b)
-    {
-        return a.Value != b;
     }
 }
