@@ -1,5 +1,6 @@
 ﻿
 using PlayerSystems.MovementFSMCore.DataClass;
+using UnityEngine;
 
 namespace PlayerSystems.MovementFSMCore.MovementContext
 {
@@ -9,11 +10,13 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         public float sideJumpForce;
         public float exitTime;
         public float wallGravity;
-        public float wallCheckDistance;
+        public float wallTime;
+        public RaycastHit wallInfo;
         
-        public WallRunContext(FsmWallRunData wallRunContext, bool canJump = true, bool canDash = false) : base(wallRunContext, canJump, canDash)
+        public WallRunContext(FsmWallRunData wallRunContext, RaycastHit wallInfo, bool canJump = true, bool canDash = false) : base(wallRunContext, canJump, canDash)
         {
             this._wallRunContext = wallRunContext;
+            this.wallInfo = wallInfo;
         }
 
         public override void Init()
@@ -22,7 +25,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
             sideJumpForce = _wallRunContext.sideJumpForce;
             exitTime = _wallRunContext.exitTime;
             wallGravity = _wallRunContext.wallGravity;
-            wallCheckDistance = _wallRunContext.wallCheckDistance;
+            wallTime = _wallRunContext.wallTime;
         }
     }
 }

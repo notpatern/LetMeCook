@@ -46,7 +46,7 @@ namespace PlayerSystems.PlayerInput
         }
 
         private void OnDisable()
-        {
+        { 
             s_PlayerInput.Disable();
         }
 

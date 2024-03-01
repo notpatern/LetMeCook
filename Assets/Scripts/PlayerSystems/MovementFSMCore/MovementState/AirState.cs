@@ -1,4 +1,5 @@
-﻿using PlayerSystems.MovementFSMCore.DataClass;
+﻿using System;
+using PlayerSystems.MovementFSMCore.DataClass;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using UnityEngine;
 
@@ -10,7 +11,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         
         [Header("Wall Run Check")] 
         private LayerMask _isWall;
-        private float _wallCheckDistance;
         private bool _wallRight;
         private bool _wallLeft;
         private RaycastHit _wallRightHit;
@@ -24,6 +24,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Init()
         {
             base.Init();
+            _context.Init();
             _isWall = LayerMask.GetMask("isWall");
         }
 
@@ -31,11 +32,21 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         {
             base.Update();
             CheckForWall();
-            if (!CanWallRun())
+            if (!CanWallRun() || !WallRunExited())
             {
                 return;
             }
-            fsmCore.SwitchState<WallRunState>(typeof(WallRunState), new WallRunContext(fsmCore.wallRunData));
+            fsmCore.SwitchState<WallRunState>(typeof(WallRunState), new WallRunContext(fsmCore.wallRunData, _wallHit, _context.canJump));
+        }
+
+        private bool WallRunExited()
+        {
+            if (_context.wallRunExitTime <= 0)
+            {
+                return true;
+            }
+            _context.wallRunExitTime -= Time.deltaTime;
+            return false;
         }
 
         public override void Jump()
@@ -49,32 +60,38 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         
         private bool CanWallRun()
         {
-            if (_wallLeft && movementDir == new Vector3(-1, 0, 1))
+            if (_wallLeft && fsmCore.Input is { x: < 0, y: > 0 })
             {
+                _wallHit = _wallLeftHit;
+                return true;
+            }
+            if (_wallRight && fsmCore.Input is { x: > 0, y: > 0})
+            {
+                _wallHit = _wallRightHit;
                 return true;
             }
 
-            return _wallRight && movementDir == new Vector3(1,0, 1);
+            return false;
         }
 
         private void CheckForWall()
         {
-            var position = fsmCore.transform.position;
+            var position = fsmCore.rb.position;
             var right = fsmCore.orientation.right;
             
             _wallLeft = Physics.Raycast(
                 position,
                 -right,
                 out _wallLeftHit,
-                _wallCheckDistance,
+                _context.wallCheckDistance,
                 _isWall
             );
             
             _wallRight = Physics.Raycast(
                 position,
-                -right,
+                right,
                 out _wallRightHit,
-                _wallCheckDistance,
+                _context.wallCheckDistance,
                 _isWall
             );
         }

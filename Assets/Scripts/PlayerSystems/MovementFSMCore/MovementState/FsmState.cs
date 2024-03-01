@@ -11,7 +11,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         protected FsmState(FsmContext context, MovementFsmCore fsmCore)
         {
-            Debug.Log(context);
             this.context = context;
             this.fsmCore = fsmCore;
         }
@@ -63,7 +62,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             movementDir = fsmCore.orientation.forward * newInput.y +
                           fsmCore.orientation.right * newInput.x;
 
-            fsmCore.rb.AddForce(movementDir * (context.movementSpeed * context.movementMultiplier), ForceMode.Force);
+            fsmCore.rb.AddForce(movementDir.normalized * (context.movementSpeed * context.movementMultiplier), ForceMode.Force);
         }
 
         public virtual void Jump()

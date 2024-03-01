@@ -8,6 +8,6 @@ namespace PlayerSystems.MovementFSMCore.DataClass
         public float sideJumpForce;
         public float exitTime;
         public float wallGravity;
-        public float wallCheckDistance;
+        public float wallTime;
     }
 }

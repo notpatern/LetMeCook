@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76432746fe1f4de58d555999ed8f6e84, type: 3}
   m_Name: WallRunData
   m_EditorClassIdentifier: 
-  movementSpeed: 0
+  movementSpeed: 85
   drag: 0
-  movementMultiplier: 0
-  jumpForce: 0
-  sideJumpForce: 0
+  movementMultiplier: 1
+  jumpForce: 8
+  maxMovementSpeed: 15
+  useGravity: 0
+  sideJumpForce: 10
   exitTime: 0
-  wallGravity: 0
-  wallCheckDistance: 0
+  wallGravity: 3
+  wallTime: 0.58
