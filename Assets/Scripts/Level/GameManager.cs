@@ -17,7 +17,7 @@ namespace Manager
             player.InitUIEvent(uiManager);
             
             LevelScoreDataTransmetor levelScoreDataTransmetor = Instantiate(new GameObject().AddComponent<LevelScoreDataTransmetor>());
-            DontDestroyOnLoad(levelScoreDataTransmetor);
+            DontDestroyOnLoad(levelScoreDataTransmetor.gameObject);
         }
     }
 }

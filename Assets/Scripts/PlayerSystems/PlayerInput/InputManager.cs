@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace PlayerSystems.PlayerInput
+namespace PlayerSystems.Input
 {
     public class InputManager : MonoBehaviour
     {
-        public static global::PlayerInput s_PlayerInput;
+        public static PlayerInput s_PlayerInput;
         [HideInInspector] public InputAction wasd;
         private InputAction _jump;
         private InputAction _dash;
@@ -21,7 +21,7 @@ namespace PlayerSystems.PlayerInput
 
         private void Awake()
         {
-            s_PlayerInput = new global::PlayerInput();
+            s_PlayerInput = new PlayerInput();
         }
 
         private void OnEnable()

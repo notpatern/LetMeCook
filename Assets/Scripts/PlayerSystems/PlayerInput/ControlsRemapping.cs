@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
-using PlayerSystems.PlayerInput;
+using PlayerSystems.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

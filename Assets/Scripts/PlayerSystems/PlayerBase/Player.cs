@@ -1,8 +1,7 @@
 using PlayerSystems.HandsSystem;
 using PlayerSystems.MovementFSMCore;
-using PlayerSystems.PlayerInput;
+using PlayerSystems.Input;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -20,6 +19,7 @@ namespace Player
             inputManager.BindHandAction(playerInteraction.ActiveInteraction);
 
             InitFsmCore();
+            handsManager.Init();
         }
 
         void Update()

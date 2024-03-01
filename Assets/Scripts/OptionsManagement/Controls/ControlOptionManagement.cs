@@ -1,4 +1,5 @@
 using Player.Input;
+using PlayerSystems.Input;
 using UnityEngine;
 
 namespace ControlOptions
@@ -7,7 +8,7 @@ namespace ControlOptions
     {
         public static ControlOptionsManagement s_Instance;
 
-        //Mouse
+        BoolTable canMove;
         float mouseSensitivity = 1.0f;
 
         public static void LoadControlOptionsManagement()
@@ -31,5 +32,18 @@ namespace ControlOptions
         {
             return mouseSensitivity;
         }
+
+        public void UpdateIsControlsActivated(bool value)
+        {
+            canMove.Value = value;
+
+            if(canMove == true)
+                InputManager.s_PlayerInput.Disable();
+            else
+            {
+                InputManager.s_PlayerInput.Enable();
+            }
+        }
+
     }
 }

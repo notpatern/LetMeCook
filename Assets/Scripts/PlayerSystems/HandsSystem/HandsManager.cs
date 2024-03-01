@@ -1,16 +1,22 @@
 using System;
 using Player.HandSystem;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.XR;
 
 namespace PlayerSystems.HandsSystem
 {
     [Serializable]
     public class HandsManager
     {
-        [SerializeField] private Hands LeftHand;
-        [SerializeField] private Hands RightHand;
+        
+        [SerializeField] private float throwForce;
+        [SerializeField] private Hands leftHand;
+        [SerializeField] private Hands rightHand;
+
+        public void Init()
+        {
+            leftHand.InitData(throwForce);
+            rightHand.InitData(throwForce);
+        }
         
         public void UseHand(GameObject food, HandsType handsType)
         {
@@ -20,10 +26,10 @@ namespace PlayerSystems.HandsSystem
                     Debug.LogError("This should not happen but does.");
                     break;
                 case HandsType.LEFT:
-                    PerformHandAction(food, LeftHand);
+                    PerformHandAction(food, leftHand);
                     break;
                 case HandsType.RIGHT:
-                    PerformHandAction(food, RightHand);
+                    PerformHandAction(food, rightHand);
                     break;
             }
         }

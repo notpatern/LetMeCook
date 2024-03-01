@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player.HandSystem
@@ -10,9 +9,14 @@ namespace Player.HandSystem
         [SerializeField] HandsType handsType;
         [SerializeField] private Transform foodPosition;
         [SerializeField] private Transform throwPoint;
-        [SerializeField] private float throwForce;
+        private float throwForce;
         private GameObject handledFood;
         public bool isFoodHandle { get; private set; } = false;
+
+        public void InitData(float throwForce)
+        {
+            this.throwForce = throwForce;
+        }
 
         public void PutItHand(GameObject food)
         {

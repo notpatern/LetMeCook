@@ -1,4 +1,4 @@
-using PlayerSystems.PlayerInput;
+using PlayerSystems.Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
