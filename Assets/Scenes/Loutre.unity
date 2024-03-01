@@ -233,7 +233,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc356d1f577144d958b9529ba1cdbf9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _platformKeys: []
+  platformKeys:
+  - position: {x: -20, y: 9, z: 19.41}
+    rotation: {x: -0, y: 0, z: 0}
+    scale: {x: 2, y: 2, z: 2}
+    pauseBeforeMoving: 0
+    travelTime: 1
+  - position: {x: -13.44, y: 1.77, z: 10.3}
+    rotation: {x: -0, y: 0, z: 0}
+    scale: {x: 2, y: 2, z: 2}
+    pauseBeforeMoving: 0
+    travelTime: 1
+  - position: {x: -9, y: 11.3, z: 3}
+    rotation: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    pauseBeforeMoving: 0
+    travelTime: 1
 --- !u!65 &649506199
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -314,7 +329,7 @@ Transform:
   m_GameObject: {fileID: 649506197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.11, y: -0.89, z: 5.65}
+  m_LocalPosition: {x: -20, y: 9, z: 19.41}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []

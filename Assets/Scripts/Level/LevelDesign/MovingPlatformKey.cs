@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Level.LevelDesign
@@ -6,14 +7,17 @@ namespace Level.LevelDesign
     public class MovingPlatformKey
     {
         public Vector3 position;
-        public Quaternion rotation;
+        public Vector3 rotation;
+        public Vector3 scale;
+        
         public float pauseBeforeMoving;
         public float travelTime;
 
-        public MovingPlatformKey(Vector3 position, Quaternion rotation, float pauseBeforeMoving, float travelTime)
+        public MovingPlatformKey(Transform newKeyTransform, float pauseBeforeMoving, float travelTime)
         {
-            this.position = position;
-            this.rotation = rotation;
+            this.position = newKeyTransform.position;
+            this.rotation = newKeyTransform.rotation.eulerAngles;
+            this.scale = newKeyTransform.localScale;
             this.pauseBeforeMoving = pauseBeforeMoving;
             this.travelTime = travelTime;
         }

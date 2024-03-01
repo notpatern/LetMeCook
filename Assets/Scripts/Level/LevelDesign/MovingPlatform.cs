@@ -1,13 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Level.LevelDesign
 {
-    [System.Serializable]
     public class MovingPlatform : MonoBehaviour
     {
-        [SerializeField] List<MovingPlatformKey> platformKeys = new();
+        public List<MovingPlatformKey> platformKeys = new();
         
         int _index;
 
@@ -24,7 +25,7 @@ namespace Level.LevelDesign
         IEnumerator MovePlatform()
         {
             yield return new WaitForSeconds(platformKeys[_index].pauseBeforeMoving);
-            MoveToKey(platformKeys[_index].position, platformKeys[_index].rotation, platformKeys[_index].travelTime);
+            MoveToKey(platformKeys[_index].position, Quaternion.Euler(platformKeys[_index].rotation), platformKeys[_index].travelTime);
             OnEndTravel();
         }
 
@@ -47,5 +48,20 @@ namespace Level.LevelDesign
             _index++;
             Start();
         }
+
+#if UNITY_EDITOR
+        public void OnDrawGizmos()
+        {
+            for (int i = 0; i < platformKeys.Count-1; i++)
+            {
+                Handles.DrawLine(platformKeys[i].position, platformKeys[i+1].position, 1);
+            }
+        }
+
+        void OnApplicationFocus(bool hasFocus)
+        {
+            Debug.Log("OK");
+        }
+#endif
     }
 }
