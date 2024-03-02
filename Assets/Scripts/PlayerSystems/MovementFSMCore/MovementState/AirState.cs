@@ -63,15 +63,18 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             if (_wallLeft && fsmCore.Input is { x: < 0, y: > 0 })
             {
                 _wallHit = _wallLeftHit;
-                return true;
             }
             if (_wallRight && fsmCore.Input is { x: > 0, y: > 0})
             {
                 _wallHit = _wallRightHit;
-                return true;
             }
 
-            return false;
+            if (_context.previousWallInfo.colliderInstanceID == _wallHit.colliderInstanceID && _context.previousWallInfo.point.y - _context.restartWallRunFalloffDistance <= _wallHit.point.y)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private void CheckForWall()

@@ -22,6 +22,9 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _context.maxMovementSpeed = fsmCore.rb.velocity.magnitude + _context.maxMovementSpeed;
             _context.canJump = true;
             GetWallDirection();
+            var velocity = fsmCore.rb.velocity;
+            velocity = new Vector3(velocity.x, 0f, velocity.z);
+            fsmCore.rb.velocity = velocity;
         }
 
         private void GetWallDirection()
@@ -80,7 +83,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void ExitState()
         {
-            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, _context.canJump));
+            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, _context.canJump, _context.canDash, _context.wallInfo));
         }
     }
 }
