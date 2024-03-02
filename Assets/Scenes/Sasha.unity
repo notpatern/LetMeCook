@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.17811546, g: 0.21678334, b: 0.26929563, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -766,7 +766,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.8104041, b: 0.5330188, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -825,13 +825,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713012454}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.9589139, y: -0.09217719, z: -0.22367597, w: 0.14817719}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 165.94, y: 28.059006, z: 14.511993}
 --- !u!114 &713012457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,6 +1961,16 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 32
   inputManager: {fileID: 1468575675}
+  handsManager:
+    throwForce: 0
+    leftHand:
+      handsType: 0
+      foodPosition: {fileID: 0}
+      throwPoint: {fileID: 0}
+    rightHand:
+      handsType: 0
+      foodPosition: {fileID: 0}
+      throwPoint: {fileID: 0}
   movementFsmCore: {fileID: 1613716941}
 --- !u!54 &1468575677
 Rigidbody:

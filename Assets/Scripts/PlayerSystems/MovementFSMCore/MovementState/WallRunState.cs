@@ -83,7 +83,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void ExitState()
         {
-            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, _context.canJump, _context.canDash, _context.wallInfo));
+            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, _context.canJump, true, _context.wallInfo));
         }
     }
 }
