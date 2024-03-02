@@ -1,4 +1,4 @@
-using PlayerSystems.PlayerInput;
+using PlayerSystems.Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,54 +8,50 @@ namespace Player.Input
 {
     public class InputActionDisplay : MonoBehaviour
     {
-        [SerializeField] private InputActionReference actionReference;
-        [SerializeField] private int bindingIndex;
+        KeybindsData m_keybindsData;
 
-        private InputAction action;
+        InputAction m_action;
 
-        private Button rebindButton;
+        Button m_rebindButton;
+        [SerializeField] TMP_Text nameText;
 
-        private void Awake()
+        public void LoadInput(KeybindsData keybindsData)
         {
-            rebindButton = GetComponentInChildren<Button>();
-            rebindButton.onClick.AddListener(RebindAction);
-        }
+            m_keybindsData = keybindsData;
 
-        private void OnEnable()
-        {
-            action = InputManager.s_PlayerInput.asset.FindAction(actionReference.action.id);
+            nameText.text = keybindsData.DisplayedKeyName;
+
+            m_rebindButton = GetComponentInChildren<Button>();
+            m_rebindButton.onClick.AddListener(RebindAction);
+
+            m_action = InputManager.s_PlayerInput.asset.FindAction(m_keybindsData.inputActionReference.action.id);
 
             SetButtonText();
         }
 
-        private void SetButtonText()
+        void SetButtonText()
         {
-            rebindButton.GetComponentInChildren<TextMeshProUGUI>().text = action.GetBindingDisplayString(bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+            m_rebindButton.GetComponentInChildren<TextMeshProUGUI>().text = m_action.GetBindingDisplayString(m_keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
         }
 
-        private void RebindAction()
+        void RebindAction()
         {
-            rebindButton.GetComponentInChildren<TextMeshProUGUI>().text = "...";
+            m_rebindButton.GetComponentInChildren<TextMeshProUGUI>().text = "...";
 
             ControlsRemapping.SuccessfulRebinding += OnSuccessfulRebinding;
 
-            bool isGamepad = action.bindings[bindingIndex].path.Contains("Gamepad");
-
-            if (isGamepad)
-                ControlsRemapping.RemapGamepadAction(action, bindingIndex);
-            else
-                ControlsRemapping.RemapKeyboardAction(action, bindingIndex);
+            ControlsRemapping.RemapKeyboardMouseAction(m_action, m_keybindsData.bindingIndex);
         }
 
-        private void OnSuccessfulRebinding(InputAction action)
+        void OnSuccessfulRebinding(InputAction action)
         {
             ControlsRemapping.SuccessfulRebinding -= OnSuccessfulRebinding;
             SetButtonText();
         }
 
-        private void OnDestroy()
+        void OnDestroy()
         {
-            rebindButton.onClick.RemoveAllListeners();
+            m_rebindButton.onClick.RemoveAllListeners();
         }
     }
 }

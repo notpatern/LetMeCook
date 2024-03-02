@@ -2,12 +2,13 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
-using PlayerSystems.PlayerInput;
+using PlayerSystems.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player.Input
 {
+
     public static class ControlsRemapping
     {
         public static Action<InputAction> SuccessfulRebinding;
@@ -22,42 +23,29 @@ namespace Player.Input
             }
         }
 
-        public static void RemapKeyboardAction(InputAction actionToRebind, int targetBinding)
+        public static void RemapKeyboardMouseAction(InputAction actionToRebind, int targetBinding)
         {
-            actionToRebind.Disable();
-            var rebindOperation = actionToRebind.PerformInteractiveRebinding(targetBinding)
-                .WithControlsHavingToMatchPath("<Keyboard>")
-                .WithBindingGroup("Keyboard")
-                .WithCancelingThrough("<Keyboard>/escape")
-                .OnCancel(operation => SuccessfulRebinding?.Invoke(null))
-                .OnComplete(operation => {
-                    operation.Dispose();
-                    AddOverrideToDictionary(actionToRebind.id, actionToRebind.bindings[targetBinding].effectivePath, targetBinding);
-                    SaveControlOverrides();
-                    SuccessfulRebinding?.Invoke(actionToRebind);
-                })
-                .Start();
-            
-            
-            actionToRebind.Enable();
+            RemapAction(actionToRebind, targetBinding, new string[] {"Keyboard", "Gamepad", "Mouse"});
         }
 
-        public static void RemapGamepadAction(InputAction actionToRebind, int targetBinding)
+        static void RemapAction(InputAction actionToRebind, int targetBinding, string[] groups)
         {
             actionToRebind.Disable();
-            var rebindOperation = actionToRebind.PerformInteractiveRebinding(targetBinding)
-                .WithControlsHavingToMatchPath("<Gamepad>")
-                .WithBindingGroup("Gamepad")
-                .WithCancelingThrough("<Keyboard>/escape")
-                .OnCancel(operation => SuccessfulRebinding?.Invoke(null))
-                .OnComplete(operation => {
-                    operation.Dispose();
-                    AddOverrideToDictionary(actionToRebind.id, actionToRebind.bindings[targetBinding].effectivePath, targetBinding);
-                    SaveControlOverrides();
-                    SuccessfulRebinding?.Invoke(actionToRebind);
-                })
-                .Start();
-
+            foreach(string group in groups )
+            {
+                var rebindOperation = actionToRebind.PerformInteractiveRebinding(targetBinding)
+                    .WithControlsHavingToMatchPath($"<{group}>")
+                    .WithBindingGroup(group)
+                    .WithCancelingThrough("<Keyboard>/escape")
+                    .OnCancel(operation => SuccessfulRebinding?.Invoke(null))
+                    .OnComplete(operation => {
+                        operation.Dispose();
+                        AddOverrideToDictionary(actionToRebind.id, actionToRebind.bindings[targetBinding].effectivePath, targetBinding);
+                        SaveControlOverrides();
+                        SuccessfulRebinding?.Invoke(actionToRebind);
+                    })
+                    .Start();
+            }
             actionToRebind.Enable();
         }
 

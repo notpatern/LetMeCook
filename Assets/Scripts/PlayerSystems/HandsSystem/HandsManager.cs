@@ -7,7 +7,18 @@ namespace PlayerSystems.HandsSystem
     [Serializable]
     public class HandsManager
     {
-        public void LoadHand(GameObject food, HandsType handsType)
+        
+        [SerializeField] private float throwForce;
+        [SerializeField] private Hands leftHand;
+        [SerializeField] private Hands rightHand;
+
+        public void Init()
+        {
+            leftHand.InitData(throwForce);
+            rightHand.InitData(throwForce);
+        }
+        
+        public void UseHand(GameObject food, HandsType handsType)
         {
             switch (handsType)
             {
@@ -15,11 +26,24 @@ namespace PlayerSystems.HandsSystem
                     Debug.LogError("This should not happen but does.");
                     break;
                 case HandsType.LEFT:
-                    Debug.Log("Left");
+                    PerformHandAction(food, leftHand);
                     break;
                 case HandsType.RIGHT:
-                    Debug.Log("Right");
+                    PerformHandAction(food, rightHand);
                     break;
+            }
+        }
+
+        public void PerformHandAction(GameObject food, Hands hand)
+        {
+            if (!hand.isFoodHandle)
+            {
+                if(food)
+                    hand.PutItHand(food);
+            }
+            else
+            {
+                hand.ReleaseFood();
             }
         }
     }

@@ -7,6 +7,6 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        levelSelectorBtn.onClick.AddListener(() => {LevelLoader.instance.LoadLevel("levelselector");});
+        levelSelectorBtn.onClick.AddListener(() => {LevelLoader.s_instance.LoadLevel("levelselector");});
     }
 }

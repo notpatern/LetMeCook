@@ -1,3 +1,4 @@
+using TimeOption;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,9 @@ namespace UI.MENUScripts
         public void ToggleActiveMenuState()
         {
             bool state = !gameObject.activeSelf;
+
+            TimeOptionManagement.s_Instance.SetActiveTime(!state);
+
             gameObject.SetActive(state);
             Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = state;
@@ -27,7 +31,7 @@ namespace UI.MENUScripts
 
         public void QuitButton(string sceneName)
         {
-            LevelLoader.instance.LoadLevel(sceneName);
+            LevelLoader.s_instance.LoadLevel(sceneName);
         }
 
         public void ToggleOptionMenu()
