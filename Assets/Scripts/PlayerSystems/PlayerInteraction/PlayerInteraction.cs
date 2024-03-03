@@ -31,7 +31,7 @@ namespace Player.Interaction
             m_OnEndInteraction.AddListener(endAction);
         }
 
-        public void Update(float dt)
+        public void Update()
         {
             UpdateInteraction();
         }

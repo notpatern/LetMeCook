@@ -1,4 +1,4 @@
-using System;
+
 using PlayerSystems.HandsSystem;
 using PlayerSystems.MovementFSMCore;
 using PlayerSystems.PlayerInput;
@@ -28,7 +28,7 @@ namespace PlayerSystems.PlayerBase
         void Update()
         {
             movementFsmCore.Update();
-            playerInteraction.Update(Time.deltaTime);
+            playerInteraction.Update();
             UpdateFsmJumpHeld();
         }
 
