@@ -39,6 +39,11 @@ namespace PlayerSystems.MovementFSMCore
         {
             _currentState.Update();
             HandleGroundedState();
+            if (_dashInput)
+            {
+                _currentState.Dash();
+                _dashInput = false;
+            }
         }
 
         public void FixedUpdate()
@@ -49,11 +54,6 @@ namespace PlayerSystems.MovementFSMCore
             {
                 _currentState.Jump();
                 _jumpInput = false;
-            }
-
-            if (_dashInput)
-            {
-                
             }
         }
 
@@ -69,7 +69,7 @@ namespace PlayerSystems.MovementFSMCore
 
         private void HandleGroundedState()
         {
-            if (Grounded() && _currentState.GetType() == typeof(AirState))
+            if (Grounded() && _currentState.GetType() != typeof(GroundState))
             {
                 SwitchState<GroundState>(typeof(GroundState), new GroundContext(groundData, true, true));
             }

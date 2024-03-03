@@ -69,9 +69,13 @@ namespace PlayerSystems.MovementFSMCore.MovementState
                 _wallHit = _wallRightHit;
             }
 
-            if (_context.previousWallInfo.colliderInstanceID == _wallHit.colliderInstanceID && _context.previousWallInfo.point.y - _context.restartWallRunFalloffDistance <= _wallHit.point.y)
+            if (_wallHit.point != new Vector3())
             {
-                return false;
+                if (_context.previousWallInfo.colliderInstanceID == _wallHit.colliderInstanceID &&
+                    _context.previousWallInfo.point.y - _context.restartWallRunFalloffDistance <= _wallHit.point.y)
+                {
+                    return false;
+                }
             }
 
             return true;

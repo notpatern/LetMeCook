@@ -39,7 +39,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void DashTimer()
         {
-            _context.dashDuration -= Time.fixedDeltaTime;
+            _context.dashDuration -= Time.deltaTime;
         }
 
         private void ExitDash()
