@@ -24,8 +24,8 @@ namespace PlayerSystems.Camera
 
         void Update()
         {
-            float mouseY = Mouse.current.delta.ReadValue().y * sensY * Time.deltaTime * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity();
-            float mouseX = Mouse.current.delta.ReadValue().x * sensX * Time.deltaTime * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity();
+            float mouseY = Mouse.current.delta.ReadValue().y * sensY * 0.001f * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity();
+            float mouseX = Mouse.current.delta.ReadValue().x * sensX * 0.001f * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity();
 
             _yRotation += mouseX;
             _xRotation -= mouseY;
