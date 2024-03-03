@@ -28,10 +28,10 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _isWall = LayerMask.GetMask("isWall");
         }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
-            base.Update();
-            CheckForWall();
+            base.FixedUpdate();
+            IsWallNear();
             if (!CanWallRun() || !WallRunExited())
             {
                 return;
@@ -41,7 +41,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private bool WallRunExited()
         {
-            if (_context.wallRunExitTime <= 0)
+            if (_context.wallRunExitTime <= 0f)
             {
                 return true;
             }
@@ -61,6 +61,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         private bool CanWallRun()
         {
             bool canWallRun = false;
+            
             if (_wallLeft && fsmCore.Input is { x: < 0, y: > 0 })
             {
                 _wallHit = _wallLeftHit;
@@ -72,19 +73,21 @@ namespace PlayerSystems.MovementFSMCore.MovementState
                 canWallRun = true;
             }
 
-            // if (_context.previousWallInfo.colliderInstanceID != 0)
-            // {
-            //     if (_context.previousWallInfo.colliderInstanceID == _wallHit.colliderInstanceID &&
-            //         _context.previousWallInfo.point.y - _context.restartWallRunFalloffDistance >= _wallHit.point.y)
-            //     {
-            //         canWallRun = true;
-            //     }
-            // }
+            if (_context.previousWallInfo.colliderInstanceID == 0)
+            {
+                return canWallRun;
+            }
             
+            if (_context.previousWallInfo.colliderInstanceID == _wallHit.colliderInstanceID &&
+                _context.previousWallInfo.point.y - _context.restartWallRunFalloffDistance <= _wallHit.point.y)
+            {
+                canWallRun = false;
+            }
+
             return canWallRun;
         }
 
-        private void CheckForWall()
+        private void IsWallNear()
         {
             var position = fsmCore.rb.position;
             var right = fsmCore.orientation.right;

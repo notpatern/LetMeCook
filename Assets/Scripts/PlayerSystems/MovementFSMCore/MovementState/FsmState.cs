@@ -71,7 +71,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
 
             fsmCore.rb.AddForce(Vector3.up * context.jumpForce, ForceMode.Impulse);
-            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, 1, context.canJump ,context.canDash));
         }
 
         public virtual void Dash()

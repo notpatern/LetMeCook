@@ -29,6 +29,7 @@ namespace PlayerSystems.PlayerBase
         {
             movementFsmCore.Update();
             playerInteraction.Update(Time.deltaTime);
+            UpdateFsmJumpHeld();
         }
 
         private void FixedUpdate()
@@ -43,6 +44,11 @@ namespace PlayerSystems.PlayerBase
 
             //Interaction-----
             playerInteraction.BindOnInteractionUI(uIManager.playerHUD.playerInteractionUI.StartInteraction, uIManager.playerHUD.playerInteractionUI.SetActiveInteractionText);
+        }
+
+        private void UpdateFsmJumpHeld()
+        {
+            movementFsmCore.jumpHeld = inputManager.GetJumpHeld();
         }
 
         public void InitFsmCore()

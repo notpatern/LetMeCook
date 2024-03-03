@@ -13,7 +13,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public WallRunState(WallRunContext wallRunContext, MovementFsmCore fsmCore) : base(wallRunContext, fsmCore)
         {
             this._context = wallRunContext;
-            Debug.Log("Entered WallRun");
         }
 
         public override void Init()
