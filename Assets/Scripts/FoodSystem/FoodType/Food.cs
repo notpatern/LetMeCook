@@ -1,5 +1,6 @@
 using Player.Interaction;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace FoodSystem.FoodType
 {
@@ -12,5 +13,9 @@ namespace FoodSystem.FoodType
         }
 
         public abstract string GetContext();
+
+        public abstract void AddFood(SimpleFood newFood);
+        public abstract void AddFood(MergedFood mergedFood);
+        public abstract List<FoodData> GetFoodDatas();
     }
 }

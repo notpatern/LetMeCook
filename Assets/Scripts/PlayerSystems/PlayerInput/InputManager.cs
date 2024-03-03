@@ -17,6 +17,7 @@ namespace PlayerSystems.PlayerInput
         UnityEvent m_OnInteractInput = new UnityEvent();
         UnityEvent<Player.HandSystem.HandsType> m_OnLeftHandInput = new UnityEvent<Player.HandSystem.HandsType>();
         UnityEvent<Player.HandSystem.HandsType> m_OnRightHandInput = new UnityEvent<Player.HandSystem.HandsType>();
+        UnityEvent m_MergeHandInput = new UnityEvent();
         UnityEvent m_TogglePauseMenu = new UnityEvent();
 
         private bool _jumpHeld;
@@ -38,11 +39,12 @@ namespace PlayerSystems.PlayerInput
             s_PlayerInput.Player.Interact.performed += Interact;
             s_PlayerInput.Player.LeftHand.performed += LeftHand;
             s_PlayerInput.Player.RightHand.performed += RightHand;
+            s_PlayerInput.Player.MergeHand.performed += MergeHandInput;
             s_PlayerInput.Player.TogglePauseMenu.performed += TogglePauseMenu;
         }
 
         private void OnDisable()
-        { 
+        {
             s_PlayerInput.Disable();
 
             s_PlayerInput.Player.WASD.performed -= WasdMovement;
@@ -53,6 +55,7 @@ namespace PlayerSystems.PlayerInput
             s_PlayerInput.Player.Interact.performed -= Interact;
             s_PlayerInput.Player.LeftHand.performed -= LeftHand;
             s_PlayerInput.Player.RightHand.performed -= RightHand;
+            s_PlayerInput.Player.MergeHand.performed -= MergeHandInput;
             s_PlayerInput.Player.TogglePauseMenu.performed -= TogglePauseMenu;
         }
 
@@ -97,6 +100,11 @@ namespace PlayerSystems.PlayerInput
             m_OnRightHandInput.Invoke(Player.HandSystem.HandsType.RIGHT);
         }
 
+        private void MergeHandInput(InputAction.CallbackContext context)
+        {
+            m_MergeHandInput.Invoke();
+        }
+
         private void TogglePauseMenu(InputAction.CallbackContext context)
         {
             m_TogglePauseMenu.Invoke();
@@ -128,6 +136,11 @@ namespace PlayerSystems.PlayerInput
         {
             m_OnLeftHandInput.AddListener(action);
             m_OnRightHandInput.AddListener(action);
+        }
+
+        public void BindMergeHandInput(UnityAction action)
+        {
+            m_MergeHandInput.AddListener(action);
         }
 
         public void BindTogglePauseMenu(UnityAction action)
