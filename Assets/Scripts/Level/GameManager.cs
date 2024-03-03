@@ -6,7 +6,7 @@ namespace Manager
     public class GameManager : LevelManager
     {
         [SerializeField] LevelData levelData;
-        [SerializeField] Player.Player player;
+        [SerializeField] PlayerSystems.PlayerBase.Player player;
         UIManager uiManager;
 
         override protected void Awake()

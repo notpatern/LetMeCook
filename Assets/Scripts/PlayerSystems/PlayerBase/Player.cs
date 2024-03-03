@@ -1,30 +1,44 @@
+using System;
 using PlayerSystems.HandsSystem;
 using PlayerSystems.MovementFSMCore;
-using PlayerSystems.Input;
+using PlayerSystems.PlayerInput;
 using UnityEngine;
 
-namespace Player
+namespace PlayerSystems.PlayerBase
 {
 
     public class Player : MonoBehaviour
     {
-        [SerializeField] Interaction.PlayerInteraction playerInteraction;
+        [SerializeField] global::Player.Interaction.PlayerInteraction playerInteraction;
         [SerializeField] InputManager inputManager;
         [SerializeField] HandsManager handsManager;
         public MovementFsmCore movementFsmCore;
 
         void Start()
         {
+            movementFsmCore.Init();
             playerInteraction.BindPerformInteraction(handsManager.UseHand);
             inputManager.BindHandAction(playerInteraction.ActiveInteraction);
-
+            
             InitFsmCore();
             handsManager.Init();
         }
 
         void Update()
         {
+            UpdateFsmJumpHeldInput();
+            movementFsmCore.Update();
             playerInteraction.Update(Time.deltaTime);
+        }
+
+        private void FixedUpdate()
+        {
+            movementFsmCore.FixedUpdate();
+        }
+
+        private void UpdateFsmJumpHeldInput()
+        {
+            movementFsmCore.jumpHeld = inputManager.GetJumpHeld();
         }
 
         public void InitUIEvent(UI.UIManager uIManager)

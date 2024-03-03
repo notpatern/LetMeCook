@@ -1,5 +1,5 @@
 using Player.Input;
-using PlayerSystems.Input;
+using PlayerSystems.PlayerInput;
 using UnityEngine;
 
 namespace ControlOptions

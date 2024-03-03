@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace PlayerSystems.Input
+namespace PlayerSystems.PlayerInput
 {
     public class InputManager : MonoBehaviour
     {
-        public static PlayerInput s_PlayerInput;
+        public static global::PlayerInput s_PlayerInput;
         [HideInInspector] public InputAction wasd;
         private InputAction _jump;
         private InputAction _dash;
@@ -19,9 +19,11 @@ namespace PlayerSystems.Input
         UnityEvent<Player.HandSystem.HandsType> m_OnRightHandInput = new UnityEvent<Player.HandSystem.HandsType>();
         UnityEvent m_TogglePauseMenu = new UnityEvent();
 
+        private bool _jumpHeld;
+
         private void Awake()
         {
-            s_PlayerInput = new PlayerInput();
+            s_PlayerInput = new global::PlayerInput();
         }
 
         private void OnEnable()
@@ -31,6 +33,7 @@ namespace PlayerSystems.Input
             s_PlayerInput.Player.WASD.performed += WasdMovement;
             s_PlayerInput.Player.WASD.canceled += WasdMovement;
             s_PlayerInput.Player.Jump.performed += Jump;
+            s_PlayerInput.Player.Jump.canceled += JumpReleased;
             s_PlayerInput.Player.Dash.performed += Dash;
             s_PlayerInput.Player.Interact.performed += Interact;
             s_PlayerInput.Player.LeftHand.performed += LeftHand;
@@ -45,6 +48,7 @@ namespace PlayerSystems.Input
             s_PlayerInput.Player.WASD.performed -= WasdMovement;
             s_PlayerInput.Player.WASD.canceled -= WasdMovement;
             s_PlayerInput.Player.Jump.performed -= Jump;
+            s_PlayerInput.Player.Jump.canceled -= JumpReleased;
             s_PlayerInput.Player.Dash.performed -= Dash;
             s_PlayerInput.Player.Interact.performed -= Interact;
             s_PlayerInput.Player.LeftHand.performed -= LeftHand;
@@ -59,7 +63,18 @@ namespace PlayerSystems.Input
 
         private void Jump(InputAction.CallbackContext context)
         {
+            _jumpHeld = true;
             m_OnJumpInput.Invoke();
+        }
+
+        private void JumpReleased(InputAction.CallbackContext context)
+        {
+            _jumpHeld = false;
+        }
+
+        public bool GetJumpHeld()
+        {
+            return _jumpHeld;
         }
 
         private void Dash(InputAction.CallbackContext context)

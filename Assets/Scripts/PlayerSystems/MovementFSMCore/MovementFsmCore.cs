@@ -1,16 +1,14 @@
 using System;
-using Player.Input;
 using PlayerSystems.MovementFSMCore.DataClass;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using PlayerSystems.MovementFSMCore.MovementState;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UIElements;
 
 
 namespace PlayerSystems.MovementFSMCore
 {
-    public class MovementFsmCore : MonoBehaviour
+    [Serializable]
+    public class MovementFsmCore
     {
         [Header("References")] [SerializeField]
         private LayerMask isGround;
@@ -21,28 +19,42 @@ namespace PlayerSystems.MovementFSMCore
         public FsmGroundData groundData;
         public FsmDashData dashData;
 
-        public new Transform camera;
+        public Transform camera;
 
         [Header("Player")] public Rigidbody rb;
         public Transform orientation;
-
+        public bool jumpHeld;
+        private bool _jumpInput;
+        private bool _dashInput;
+    
         public Vector2 Input { private set; get; }
 
-        private void Start()
+        public void Init()
         {
             _currentState = new GroundState(new GroundContext(groundData), this);
             _currentState.Init();
         }
     
-        private void Update()
+        public void Update()
         {
             _currentState.Update();
             HandleGroundedState();
         }
 
-        private void FixedUpdate()
+        public void FixedUpdate()
         {
             _currentState.FixedUpdate();
+            
+            if (jumpHeld && _currentState.GetType() == typeof(GroundState) || _jumpInput)
+            {
+                _currentState.Jump();
+                _jumpInput = false;
+            }
+
+            if (_dashInput)
+            {
+                
+            }
         }
 
         public void SwitchState<TState>(Type state, FsmContext context) where TState : FsmState
@@ -67,7 +79,7 @@ namespace PlayerSystems.MovementFSMCore
             }
         }
 
-        private bool Grounded()
+        private bool Grounded() 
         {
             return Physics.Raycast(
                 rb.position,
@@ -84,12 +96,12 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
-            if (!_currentState.context.canJump)
-            {
-                return;
-            }
-            
-            _currentState.Jump();
+             if (!_currentState.context.canJump)
+             {
+                 return;
+             }
+
+             _jumpInput = true;
         }
 
         public void OnDashInputEvent()
@@ -98,8 +110,8 @@ namespace PlayerSystems.MovementFSMCore
             {
                 return;
             }
-            
-            _currentState.Dash();
+
+            _dashInput = true;
         }
     }
 }

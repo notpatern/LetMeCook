@@ -1893,8 +1893,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1468575674}
   - component: {fileID: 1468575676}
-  - component: {fileID: 1468575675}
   - component: {fileID: 1468575677}
+  - component: {fileID: 1468575678}
   m_Layer: 0
   m_Name: PlayerMain
   m_TagString: Untagged
@@ -1921,27 +1921,6 @@ Transform:
   - {fileID: 1216565519}
   m_Father: {fileID: 839260766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1468575675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1468575673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05fc6ddfe67fc0a4a91ba44d3adc6106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wasd:
-    m_Name: 
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5c8d4bc3-0ab8-4987-bf33-9d5b634d2bb9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!114 &1468575676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,7 +1939,7 @@ MonoBehaviour:
     m_LayerMask:
       serializedVersion: 2
       m_Bits: 32
-  inputManager: {fileID: 1468575675}
+  inputManager: {fileID: 1468575678}
   handsManager:
     throwForce: 0
     leftHand:
@@ -1971,7 +1950,18 @@ MonoBehaviour:
       handsType: 0
       foodPosition: {fileID: 0}
       throwPoint: {fileID: 0}
-  movementFsmCore: {fileID: 1613716941}
+  movementFsmCore:
+    isGround:
+      serializedVersion: 2
+      m_Bits: 64
+    wallRunData: {fileID: 11400000, guid: 64e029d2ea5c1dd46b874028adb3abcd, type: 2}
+    airData: {fileID: 11400000, guid: d754bfb4441e41a48abc059f0612ca1d, type: 2}
+    groundData: {fileID: 11400000, guid: 6f7e20aa25b509348a569744c37fe3b5, type: 2}
+    dashData: {fileID: 11400000, guid: 6ac2759cd37b9754e89f5d211bb2d35b, type: 2}
+    camera: {fileID: 533111500}
+    rb: {fileID: 1468575677}
+    orientation: {fileID: 1216565519}
+    jumpHeld: 0
 --- !u!54 &1468575677
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1999,6 +1989,27 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!114 &1468575678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468575673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05fc6ddfe67fc0a4a91ba44d3adc6106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wasd:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c47fb0d3-02e9-4423-b462-839706abc064
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!43 &1564759608
 Mesh:
   m_ObjectHideFlags: 0
@@ -2173,7 +2184,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1613716939}
-  - component: {fileID: 1613716941}
   m_Layer: 0
   m_Name: PlayerMotor
   m_TagString: Untagged
@@ -2196,28 +2206,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1468575674}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1613716941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1613716938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 803891becd717ed429bd1512f97fc842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGround:
-    serializedVersion: 2
-    m_Bits: 64
-  wallRunData: {fileID: 11400000, guid: 64e029d2ea5c1dd46b874028adb3abcd, type: 2}
-  airData: {fileID: 11400000, guid: d754bfb4441e41a48abc059f0612ca1d, type: 2}
-  groundData: {fileID: 11400000, guid: 6f7e20aa25b509348a569744c37fe3b5, type: 2}
-  dashData: {fileID: 11400000, guid: 6ac2759cd37b9754e89f5d211bb2d35b, type: 2}
-  camera: {fileID: 533111500}
-  rb: {fileID: 1468575677}
-  orientation: {fileID: 1216565519}
 --- !u!850595691 &1953596424
 LightingSettings:
   m_ObjectHideFlags: 0
