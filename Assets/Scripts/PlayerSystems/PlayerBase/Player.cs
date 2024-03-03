@@ -1,18 +1,19 @@
+using System;
 using PlayerSystems.HandsSystem;
 using PlayerSystems.MovementFSMCore;
-using PlayerSystems.Input;
+using PlayerSystems.PlayerInput;
 using UnityEngine;
 
-namespace Player
+namespace PlayerSystems.PlayerBase
 {
 
     public class Player : MonoBehaviour
     {
-        [SerializeField] Interaction.PlayerInteraction playerInteraction;
+        [SerializeField] global::Player.Interaction.PlayerInteraction playerInteraction;
         [SerializeField] InputManager inputManager;
         [SerializeField] HandsManager handsManager;
-        public MovementFsmCore movementFsmCore;
         [SerializeField] Rigidbody playerRb;
+        public MovementFsmCore movementFsmCore;
 
         void Start()
         {
@@ -26,7 +27,13 @@ namespace Player
 
         void Update()
         {
+            movementFsmCore.Update();
             playerInteraction.Update(Time.deltaTime);
+        }
+
+        private void FixedUpdate()
+        {
+            movementFsmCore.FixedUpdate();
         }
 
         public void InitUIEvent(UI.UIManager uIManager)
@@ -40,6 +47,7 @@ namespace Player
 
         public void InitFsmCore()
         {
+            movementFsmCore.Init(playerRb);
             inputManager.BindWasdMovement(movementFsmCore.OnMovementInputEvent);
             inputManager.BindJump(movementFsmCore.OnJumpInputEvent);
             inputManager.BindDash(movementFsmCore.OnDashInputEvent);

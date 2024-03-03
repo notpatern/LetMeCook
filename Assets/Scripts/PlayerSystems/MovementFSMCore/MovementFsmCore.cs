@@ -21,7 +21,8 @@ namespace PlayerSystems.MovementFSMCore
 
         public Transform camera;
 
-        [Header("Player")] public Rigidbody rb;
+        [Header("Player")] 
+        [HideInInspector] public Rigidbody rb;
         public Transform orientation;
         public bool jumpHeld;
         private bool _jumpInput;
@@ -29,21 +30,17 @@ namespace PlayerSystems.MovementFSMCore
     
         public Vector2 Input { private set; get; }
 
-        public void Init()
+        public void Init(Rigidbody rb)
         {
+            this.rb = rb;
             _currentState = new GroundState(new GroundContext(groundData), this);
             _currentState.Init();
         }
     
         public void Update()
         {
-            _currentState.Update();
             HandleGroundedState();
-            if (_dashInput)
-            {
-                _currentState.Dash();
-                _dashInput = false;
-            }
+            _currentState.Update();
         }
 
         public void FixedUpdate()
@@ -54,6 +51,11 @@ namespace PlayerSystems.MovementFSMCore
             {
                 _currentState.Jump();
                 _jumpInput = false;
+            }
+            if (_dashInput)
+            {
+                _currentState.Dash();
+                _dashInput = false;
             }
         }
 

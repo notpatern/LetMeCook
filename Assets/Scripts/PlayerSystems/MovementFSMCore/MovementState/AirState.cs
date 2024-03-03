@@ -60,25 +60,28 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         
         private bool CanWallRun()
         {
+            bool canWallRun = false;
             if (_wallLeft && fsmCore.Input is { x: < 0, y: > 0 })
             {
                 _wallHit = _wallLeftHit;
+                canWallRun = true;
             }
             if (_wallRight && fsmCore.Input is { x: > 0, y: > 0})
             {
                 _wallHit = _wallRightHit;
+                canWallRun = true;
             }
 
-            if (_wallHit.point != new Vector3())
-            {
-                if (_context.previousWallInfo.colliderInstanceID == _wallHit.colliderInstanceID &&
-                    _context.previousWallInfo.point.y - _context.restartWallRunFalloffDistance <= _wallHit.point.y)
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            // if (_context.previousWallInfo.colliderInstanceID != 0)
+            // {
+            //     if (_context.previousWallInfo.colliderInstanceID == _wallHit.colliderInstanceID &&
+            //         _context.previousWallInfo.point.y - _context.restartWallRunFalloffDistance >= _wallHit.point.y)
+            //     {
+            //         canWallRun = true;
+            //     }
+            // }
+            
+            return canWallRun;
         }
 
         private void CheckForWall()

@@ -23,7 +23,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             fsmCore.rb.AddForce(_dashDirection * _context.dashForce, ForceMode.Impulse);
         }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
             DashTimer();
             switch (_context.dashDuration)
@@ -39,7 +39,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void DashTimer()
         {
-            _context.dashDuration -= Time.deltaTime;
+            _context.dashDuration -= Time.fixedDeltaTime;
         }
 
         private void ExitDash()
