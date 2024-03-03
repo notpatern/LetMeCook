@@ -2,24 +2,28 @@ using System;
 using Player.HandSystem;
 using UnityEngine;
 using FoodSystem.FoodType;
-using Unity.VisualScripting;
 
 namespace PlayerSystems.HandsSystem
 {
     [Serializable]
     public class HandsManager
     {
-        
+        [Header("Throw Food")]
         [SerializeField] private float throwForce;
+        [SerializeField] Vector2 throwMomentumForwardDirection = new Vector2(1f, 2f);
+        [SerializeField] float throwMomentumPlayerRb = .2f;
+
+        [Header("Hands")]
         [SerializeField] private Hands leftHand;
         [SerializeField] private Hands rightHand;
 
+        [Header("Merged Food")]
         [SerializeField] private GameObject mergedFoodPrefab;
 
         public void Init(Rigidbody momentumRb)
         {
-            leftHand.InitData(throwForce, momentumRb);
-            rightHand.InitData(throwForce, momentumRb);
+            leftHand.InitData(throwForce, momentumRb, throwMomentumForwardDirection, throwMomentumPlayerRb);
+            rightHand.InitData(throwForce, momentumRb, throwMomentumForwardDirection, throwMomentumPlayerRb);
         }
         
         public void UseHand(GameObject food, HandsType handsType)
