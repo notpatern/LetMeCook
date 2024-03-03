@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6300218486211125689}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3041393543493900487}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 79585516526279688}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 1286084654830530662}
   - component: {fileID: 7805604470729213449}
   - component: {fileID: 6790612106997452826}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 1063085868956630390}
   - component: {fileID: 5701020419344109878}
   - component: {fileID: 3476250767671495387}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4604464782735597648}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 8200596601819509652}
   - component: {fileID: 1342482868074891331}
   - component: {fileID: 5121403018473917708}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,14 +463,14 @@ MonoBehaviour:
   inputManager: {fileID: 1342482868074891331}
   handsManager:
     throwForce: 5
+    throwMomentumForwardDirection: {x: 1, y: 1}
+    throwMomentumPlayerRb: 1
     leftHand:
-      handsType: 1
-      foodPosition: {fileID: 6300218486211125689}
-      throwPoint: {fileID: 6300218486211125689}
+      m_FoodPosition: {fileID: 6300218486211125689}
+      m_ThrowPoint: {fileID: 6300218486211125689}
     rightHand:
-      handsType: 2
-      foodPosition: {fileID: 1787968002601497254}
-      throwPoint: {fileID: 1787968002601497254}
+      m_FoodPosition: {fileID: 1787968002601497254}
+      m_ThrowPoint: {fileID: 1787968002601497254}
     mergedFoodPrefab: {fileID: 7354829722045014985, guid: a04b9f56709f78941815ea4072a5a32b,
       type: 3}
   playerRb: {fileID: 5121403018473917708}
@@ -543,7 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5251511447659649232}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerMotor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1787968002601497254}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9071357080299683282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

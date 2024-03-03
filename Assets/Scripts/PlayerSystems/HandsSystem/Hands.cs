@@ -7,45 +7,48 @@ namespace Player.HandSystem
     [Serializable]
     public class Hands
     {
-        [SerializeField] HandsType handsType;
-        [SerializeField] private Transform foodPosition;
-        [SerializeField] private Transform throwPoint;
-        private float throwForce;
-        private GameObject handledFood;
-        private Food currentFood;
-        Rigidbody momentumRb;
+        [SerializeField] private Transform m_FoodPosition;
+        [SerializeField] private Transform m_ThrowPoint;
+        private float m_ThrowForce;
+        private GameObject m_HhandledFood;
+        private Food m_CurrentFood;
+
+        Rigidbody m_MomentumRb;
+        Vector2 m_ThrowMomentumForwardDirection;
+        float m_ThrowMomentumPlayerRb;
         [SerializeField] public bool isFoodHandle { get; private set; } = false;
 
-        public void InitData(float throwForce, Rigidbody momentumRb)
+        public void InitData(float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection, float throwMomentumPlayerRb)
         {
-            this.throwForce = throwForce;
-            this.momentumRb = momentumRb;
+            m_ThrowForce = throwForce;
+            m_MomentumRb = momentumRb;
+            m_ThrowMomentumForwardDirection = throwMomentumForwardDirection;
+            m_ThrowMomentumPlayerRb = throwMomentumPlayerRb;
         }
 
         public void PutItHand(GameObject food)
         {
             if(food == null) return;
             
-            if(currentFood && currentFood.GetType() == typeof(MergedFood))
+            if(m_CurrentFood && m_CurrentFood.GetType() == typeof(MergedFood))
             {
                 SimpleFood newSimpleFood = food.GetComponent<SimpleFood>();
                 
                 if(newSimpleFood == null)
                 {
                     MergedFood newMergedFood = food.GetComponent<MergedFood>();
-                    currentFood.AddFood(newMergedFood);
+                    m_CurrentFood.AddFood(newMergedFood);
                 }
                 else
                 {
-                    currentFood.AddFood(newSimpleFood);
+                    m_CurrentFood.AddFood(newSimpleFood);
                 }
 
                 UnityEngine.Object.Destroy(food);
             }
-            else if(!currentFood)
+            else if(!m_CurrentFood)
             {
-                //Add a function in food to put and remove in hand
-                food.GetComponent<Food>().PutInHand(foodPosition);
+                food.GetComponent<Food>().PutInHand(m_FoodPosition);
                 SetFood(food);
 
             }
@@ -53,41 +56,43 @@ namespace Player.HandSystem
 
         public (GameObject, Food) GetHandInfos()
         {
-            return (handledFood, currentFood);
+            return (m_HhandledFood, m_CurrentFood);
         }
 
         public void ReleaseFood()
         {
-            Food food = handledFood.GetComponent<Food>();
+            Food food = m_HhandledFood.GetComponent<Food>();
             food.RemoveFromHand();
-            food.LaunchFood(momentumRb.velocity + throwPoint.forward * throwForce);
+
+            Vector3 momentum = m_ThrowPoint.forward * m_ThrowMomentumForwardDirection.x + m_ThrowPoint.up * m_ThrowMomentumForwardDirection.y;
+            food.LaunchFood(momentum * m_ThrowForce + m_MomentumRb.velocity * m_ThrowMomentumPlayerRb);
             SetFood(null);
         }
 
         public void DestroyFood()
         {
-            UnityEngine.Object.Destroy(handledFood);
+            UnityEngine.Object.Destroy(m_HhandledFood);
             SetFood(null);
         }
 
         void SetFood(GameObject foodGo)
         {
-            handledFood = foodGo;
+            m_HhandledFood = foodGo;
             
             if(foodGo)
             {
                 if(foodGo.GetComponent<Food>().GetType() == typeof(SimpleFood))
                 {
-                    currentFood = (SimpleFood)foodGo.GetComponent<Food>();
+                    m_CurrentFood = (SimpleFood)foodGo.GetComponent<Food>();
                 }
                 else
                 {
-                    currentFood = (MergedFood)foodGo.GetComponent<Food>();
+                    m_CurrentFood = (MergedFood)foodGo.GetComponent<Food>();
                 }
             }
             else
             {
-                currentFood = null;
+                m_CurrentFood = null;
             }
 
             isFoodHandle = foodGo == null ? false : true;
