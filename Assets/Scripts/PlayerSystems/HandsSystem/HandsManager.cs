@@ -16,10 +16,10 @@ namespace PlayerSystems.HandsSystem
 
         [SerializeField] private GameObject mergedFoodPrefab;
 
-        public void Init()
+        public void Init(Rigidbody momentumRb)
         {
-            leftHand.InitData(throwForce);
-            rightHand.InitData(throwForce);
+            leftHand.InitData(throwForce, momentumRb);
+            rightHand.InitData(throwForce, momentumRb);
         }
         
         public void UseHand(GameObject food, HandsType handsType)

@@ -1,5 +1,4 @@
 using System;
-using FoodSystem;
 using FoodSystem.FoodType;
 using UnityEngine;
 
@@ -14,11 +13,13 @@ namespace Player.HandSystem
         private float throwForce;
         private GameObject handledFood;
         private Food currentFood;
+        Rigidbody momentumRb;
         [SerializeField] public bool isFoodHandle { get; private set; } = false;
 
-        public void InitData(float throwForce)
+        public void InitData(float throwForce, Rigidbody momentumRb)
         {
             this.throwForce = throwForce;
+            this.momentumRb = momentumRb;
         }
 
         public void PutItHand(GameObject food)
@@ -65,7 +66,7 @@ namespace Player.HandSystem
             handledFood.GetComponent<Rigidbody>().isKinematic = false;
             handledFood.transform.SetParent(null);
             handledFood.GetComponent<BoxCollider>().enabled = true;
-            handledFood.GetComponent<Rigidbody>().AddForce(throwPoint.forward * throwForce, ForceMode.Impulse);
+            handledFood.GetComponent<Rigidbody>().AddForce(momentumRb.velocity + throwPoint.forward * throwForce, ForceMode.Impulse);
             SetFood(null);
         }
 

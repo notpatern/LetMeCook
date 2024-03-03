@@ -859,6 +859,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1444667444 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5121403018473917708, guid: 454dc75f7bd5fb94f845e816427da00a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4944216717105363304}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1927059508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,8 +1048,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8200596601819509652, guid: 454dc75f7bd5fb94f845e816427da00a,
         type: 3}
+      propertyPath: playerRb
+      value: 
+      objectReference: {fileID: 1444667444}
+    - target: {fileID: 8200596601819509652, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
       propertyPath: handsManager.throwForce
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8200596601819509652, guid: 454dc75f7bd5fb94f845e816427da00a,
         type: 3}

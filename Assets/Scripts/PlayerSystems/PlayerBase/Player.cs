@@ -12,6 +12,7 @@ namespace Player
         [SerializeField] InputManager inputManager;
         [SerializeField] HandsManager handsManager;
         public MovementFsmCore movementFsmCore;
+        [SerializeField] Rigidbody playerRb;
 
         void Start()
         {
@@ -20,7 +21,7 @@ namespace Player
             inputManager.BindMergeHandInput(handsManager.MergeFood);
 
             InitFsmCore();
-            handsManager.Init();
+            handsManager.Init(playerRb);
         }
 
         void Update()
