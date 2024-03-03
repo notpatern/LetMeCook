@@ -11,7 +11,6 @@ namespace FoodSystem.FoodType
 
         public GameObject StartInteraction()
         {
-            //TODO give food to the player's hand
             return gameObject;
         }
 
@@ -21,7 +20,7 @@ namespace FoodSystem.FoodType
         public abstract void AddFood(MergedFood mergedFood);
         public abstract List<FoodData> GetFoodDatas();
 
-        public void PutInHand(Transform hand)
+        public virtual void PutInHand(Transform hand)
         {
             rb.velocity = Vector3.zero;
             rb.isKinematic = true;
@@ -31,11 +30,16 @@ namespace FoodSystem.FoodType
             transform.localRotation = Quaternion.identity;
         }
 
-        public void RemoveFromHand()
+        public virtual void RemoveFromHand()
         {
             rb.isKinematic = false;
             transform.SetParent(null);
             col.enabled = true;
+        }
+
+        public void LaunchFood(Vector3 launchForce)
+        {
+            rb.AddForce(launchForce, ForceMode.Impulse);
         }
     }
 }
