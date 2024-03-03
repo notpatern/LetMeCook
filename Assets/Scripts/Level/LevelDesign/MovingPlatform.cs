@@ -25,11 +25,15 @@ namespace Level.LevelDesign
         IEnumerator MovePlatform()
         {
             yield return new WaitForSeconds(platformKeys[_index].pauseBeforeMoving);
-            MoveToKey(platformKeys[_index].position, Quaternion.Euler(platformKeys[_index].rotation), platformKeys[_index].travelTime);
+            MoveToKey(
+                platformKeys[_index].position, 
+                Quaternion.Euler(platformKeys[_index].rotation), 
+                platformKeys[_index].scale, 
+                platformKeys[_index].travelTime);
             OnEndTravel();
         }
 
-        void MoveToKey(Vector3 position, Quaternion rotation, float travelDuration)
+        public void MoveToKey(Vector3 position, Quaternion rotation, Vector3 scale, float travelDuration)
         {
             float t = 0f;
             float timer = 0f;
@@ -37,6 +41,7 @@ namespace Level.LevelDesign
             {
                 Vector3.Lerp(transform.position, position, t);
                 Quaternion.Lerp(transform.rotation, rotation, t);
+                Vector3.Lerp(transform.localScale, scale, t);
 
                 timer += Time.deltaTime;
                 t = timer / travelDuration;
@@ -56,11 +61,6 @@ namespace Level.LevelDesign
             {
                 Handles.DrawLine(platformKeys[i].position, platformKeys[i+1].position, 1);
             }
-        }
-
-        void OnApplicationFocus(bool hasFocus)
-        {
-            Debug.Log("OK");
         }
 #endif
     }

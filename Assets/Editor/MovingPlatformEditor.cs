@@ -8,7 +8,7 @@ public class LookAtPointEditor : Editor
     MovingPlatform _platform;
 
     int _selectedIndex = 0;
-    bool _lockAutoPosition;
+    float _previewT = 0;
 
     #region GUI BUTTON ENABLER
 
@@ -16,6 +16,7 @@ public class LookAtPointEditor : Editor
     bool _nextKeyEnabled;
     bool _clearEnabled;
     bool _removeEnabled;
+    bool _startPreview;
 
     #endregion
     
@@ -93,7 +94,19 @@ public class LookAtPointEditor : Editor
                 EditorGUILayout.Vector3Field("Rotation", _platform.platformKeys[_selectedIndex-1].rotation);
             _platform.platformKeys[_selectedIndex-1].scale = 
                 EditorGUILayout.Vector3Field("Scale", _platform.platformKeys[_selectedIndex-1].scale);
+            _platform.platformKeys[_selectedIndex - 1].pauseBeforeMoving =
+                EditorGUILayout.FloatField("Pause (seconds)",
+                    _platform.platformKeys[_selectedIndex - 1].pauseBeforeMoving);
+            _platform.platformKeys[_selectedIndex - 1].travelTime =
+                EditorGUILayout.FloatField("Time To Travel", _platform.platformKeys[_selectedIndex - 1].travelTime);
         }
+
+        #endregion
+
+        #region Preview
+
+        _previewT = GUILayout.HorizontalSlider(_previewT, 0, 1);
+        if (GUILayout.Button("Preview Key")) { PreviewKey(_selectedIndex-1); }
 
         #endregion
         
@@ -164,6 +177,16 @@ public class LookAtPointEditor : Editor
         _selectedIndex++;
         SetPlatformPositionToKey(_selectedIndex-1);
         UpdateButtonEnabling();
+    }
+
+    void PreviewKey(int keyIndex)
+    {
+        _platform.MoveToKey(
+            _platform.platformKeys[keyIndex].position,
+            Quaternion.Euler(_platform.platformKeys[keyIndex].rotation),
+            _platform.platformKeys[keyIndex].scale,
+            _platform.platformKeys[keyIndex].travelTime
+            );
     }
 
     void SetPlatformPositionToKey(int i)
