@@ -8,8 +8,8 @@ namespace FoodSystem.FoodType
         List<FoodData> data = new List<FoodData>();
         [SerializeField] GameObject infosCanvas;
         [SerializeField] Transform canvasContent;
-        [SerializeField] GameObject contentItemPrefab; 
-    
+        [SerializeField] GameObject contentItemPrefab;
+
         public override string GetContext() => "food bag";
 
         public override void AddFood(SimpleFood newFood)

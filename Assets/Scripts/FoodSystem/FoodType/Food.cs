@@ -8,6 +8,7 @@ namespace FoodSystem.FoodType
     {
         [SerializeField] BoxCollider col;
         [SerializeField] Rigidbody rb;
+        [SerializeField] TrailRenderer trailRenderer;
 
         public GameObject StartInteraction()
         {
@@ -28,6 +29,9 @@ namespace FoodSystem.FoodType
             transform.SetParent(hand);
             transform.position = hand.position;
             transform.localRotation = Quaternion.identity;
+
+
+            trailRenderer.enabled = false;
         }
 
         public virtual void RemoveFromHand()
@@ -35,6 +39,9 @@ namespace FoodSystem.FoodType
             rb.isKinematic = false;
             transform.SetParent(null);
             col.enabled = true;
+
+
+            trailRenderer.enabled = true;
         }
 
         public void LaunchFood(Vector3 launchForce)
