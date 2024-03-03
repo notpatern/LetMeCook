@@ -1,6 +1,7 @@
 using Player.Input;
 using PlayerSystems.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace ControlOptions
 {
@@ -54,25 +55,18 @@ namespace ControlOptions
         public void EnableMainPlayerInputs()
         {
             PlayerInput.PlayerActions playerInput = InputManager.s_PlayerInput.Player;
-            playerInput.WASD.Enable();
-            playerInput.Jump.Enable();
-            playerInput.Dash.Enable();
-            playerInput.Interact.Enable();
-            playerInput.LeftHand.Enable();
-            playerInput.RightHand.Enable();
-            playerInput.MergeHand.Enable();
+            playerInput.Enable();
         }
 
         public void DisableMainPlayerInputs()
         {
             PlayerInput.PlayerActions playerInput = InputManager.s_PlayerInput.Player;
-            playerInput.WASD.Disable();
-            playerInput.Jump.Disable();
-            playerInput.Dash.Disable();
-            playerInput.Interact.Disable();
-            playerInput.LeftHand.Disable();
-            playerInput.RightHand.Disable();
-            playerInput.MergeHand.Disable();
+            playerInput.Disable();
+            foreach(InputAction action in playerInput.Get())
+            {
+                action.Disable();
+            }
+            playerInput.TogglePauseMenu.Enable();
         }
 
     }
