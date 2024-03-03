@@ -15,22 +15,21 @@ namespace FoodSystem.FoodType
         public override void AddFood(SimpleFood newFood)
         {
             data.Add(newFood.data);
+            Instantiate(contentItemPrefab, canvasContent).GetComponent<MergedFoodUIItem>().SetText(newFood.data.foodName);
         }
 
         public override void AddFood(MergedFood mergedFood)
         {
-            foreach(FoodData foodData in mergedFood.data)
+            foreach(FoodData foodData in mergedFood.GetFoodDatas())
             {
                 data.Add(foodData);
-                //TODO : spawn item in infos parent
+                Instantiate(contentItemPrefab, canvasContent).GetComponent<MergedFoodUIItem>().SetText(foodData.foodName);
             }
         }
 
         public override List<FoodData> GetFoodDatas()
         {
             return data;
-            
-                //TODO : spawn item in infos parent
         }
 
         public override void PutInHand(Transform hand)
