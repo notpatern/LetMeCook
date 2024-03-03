@@ -11,7 +11,6 @@ namespace FoodSystem.FoodType
 
         public GameObject StartInteraction()
         {
-            //TODO give food to the player's hand
             return gameObject;
         }
 
@@ -36,6 +35,11 @@ namespace FoodSystem.FoodType
             rb.isKinematic = false;
             transform.SetParent(null);
             col.enabled = true;
+        }
+
+        public void LaunchFood(Vector3 launchForce)
+        {
+            rb.AddForce(launchForce, ForceMode.Impulse);
         }
     }
 }

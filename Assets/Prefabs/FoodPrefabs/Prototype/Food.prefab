@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6458256001630246702}
   - component: {fileID: 8478641122488135801}
   - component: {fileID: 6640363004773618717}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de0afd1c0027430299dc94b4a137f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: {fileID: 5133486324683220652}
+  rb: {fileID: 6458256001630246702}
   data: {fileID: 11400000, guid: 8375f5230c78a49f3b4601e4f43d7787, type: 2}
 --- !u!114 &6640363004773618717
 MonoBehaviour:
