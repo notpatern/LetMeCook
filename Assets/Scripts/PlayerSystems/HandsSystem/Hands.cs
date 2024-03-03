@@ -45,12 +45,7 @@ namespace Player.HandSystem
             else if(!currentFood)
             {
                 //Add a function in food to put and remove in hand
-                food.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                food.GetComponent<Rigidbody>().isKinematic = true;
-                food.GetComponent<BoxCollider>().enabled = false;
-                food.transform.SetParent(foodPosition);
-                food.transform.position = foodPosition.position;
-                food.transform.localRotation = Quaternion.identity;
+                food.GetComponent<Food>().PutInHand(foodPosition);
                 SetFood(food);
 
             }
@@ -63,10 +58,9 @@ namespace Player.HandSystem
 
         public void ReleaseFood()
         {
-            handledFood.GetComponent<Rigidbody>().isKinematic = false;
-            handledFood.transform.SetParent(null);
-            handledFood.GetComponent<BoxCollider>().enabled = true;
-            handledFood.GetComponent<Rigidbody>().AddForce(momentumRb.velocity + throwPoint.forward * throwForce, ForceMode.Impulse);
+            Food food = handledFood.GetComponent<Food>();
+            food.RemoveFromHand();
+            food.LaunchFood(momentumRb.velocity + throwPoint.forward * throwForce);
             SetFood(null);
         }
 
