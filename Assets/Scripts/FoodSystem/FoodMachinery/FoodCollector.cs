@@ -22,7 +22,7 @@ namespace FoodSystem.FoodMachinery
             if (tempMergedFood != null && collectMergedFood)
             {
                 collectedFood = tempMergedFood;
-                FoodData[] tempDataArray = tempMergedFood.data.ToArray();
+                FoodData[] tempDataArray = tempMergedFood.GetFoodDatas().ToArray();
                 collectedFoodData = tempDataArray;
             }
             else if (tempSimpleFood != null)
