@@ -1,4 +1,6 @@
 using System;
+using FoodSystem;
+using FoodSystem.FoodType;
 using UnityEngine;
 
 namespace Player.HandSystem
@@ -11,7 +13,8 @@ namespace Player.HandSystem
         [SerializeField] private Transform throwPoint;
         private float throwForce;
         private GameObject handledFood;
-        public bool isFoodHandle { get; private set; } = false;
+        private Food currentFood;
+        [SerializeField] public bool isFoodHandle { get; private set; } = false;
 
         public void InitData(float throwForce)
         {
@@ -20,26 +23,79 @@ namespace Player.HandSystem
 
         public void PutItHand(GameObject food)
         {
-            //Add a function in food to put and remove in hand
-            food.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            food.GetComponent<Rigidbody>().isKinematic = true;
-            food.GetComponent<BoxCollider>().enabled = false;
-            food.transform.position = foodPosition.position;
-            food.transform.rotation = Quaternion.identity;
-            food.transform.SetParent(foodPosition);
-            handledFood = food;
-            isFoodHandle = true;
+            if(food == null) return;
+            
+            if(currentFood && currentFood.GetType() == typeof(MergedFood))
+            {
+                SimpleFood newSimpleFood = food.GetComponent<SimpleFood>();
+                
+                if(newSimpleFood == null)
+                {
+                    MergedFood newMergedFood = food.GetComponent<MergedFood>();
+                    currentFood.AddFood(newMergedFood);
+                }
+                else
+                {
+                    currentFood.AddFood(newSimpleFood);
+                }
+
+                UnityEngine.Object.Destroy(food);
+            }
+            else if(!currentFood)
+            {
+                //Add a function in food to put and remove in hand
+                food.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                food.GetComponent<Rigidbody>().isKinematic = true;
+                food.GetComponent<BoxCollider>().enabled = false;
+                food.transform.SetParent(foodPosition);
+                food.transform.position = foodPosition.position;
+                food.transform.localRotation = Quaternion.identity;
+                SetFood(food);
+
+            }
+        }
+
+        public (GameObject, Food) GetHandInfos()
+        {
+            return (handledFood, currentFood);
         }
 
         public void ReleaseFood()
         {
             handledFood.GetComponent<Rigidbody>().isKinematic = false;
             handledFood.transform.SetParent(null);
-            handledFood.transform.position = throwPoint.position;
             handledFood.GetComponent<BoxCollider>().enabled = true;
-            handledFood.GetComponent<Rigidbody>().AddForce(throwPoint.forward * throwForce);
-            handledFood = null;
-            isFoodHandle = false;
+            handledFood.GetComponent<Rigidbody>().AddForce(throwPoint.forward * throwForce, ForceMode.Impulse);
+            SetFood(null);
+        }
+
+        public void DestroyFood()
+        {
+            UnityEngine.Object.Destroy(handledFood);
+            SetFood(null);
+        }
+
+        void SetFood(GameObject foodGo)
+        {
+            handledFood = foodGo;
+            
+            if(foodGo)
+            {
+                if(foodGo.GetComponent<Food>().GetType() == typeof(SimpleFood))
+                {
+                    currentFood = (SimpleFood)foodGo.GetComponent<Food>();
+                }
+                else
+                {
+                    currentFood = (MergedFood)foodGo.GetComponent<Food>();
+                }
+            }
+            else
+            {
+                currentFood = null;
+            }
+
+            isFoodHandle = foodGo == null ? false : true;
         }
     }
 

@@ -67,11 +67,6 @@ namespace Player.Interaction
             m_CurrentInteraction = null;
         }
 
-        public void PlayerInteractionUIActiveText(string context)
-        {
-            
-        }
-
         public void ActiveInteraction(HandSystem.HandsType handType)
         {
             if (m_CurrentInteraction != null)

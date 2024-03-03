@@ -60,6 +60,7 @@ namespace ControlOptions
             playerInput.Interact.Enable();
             playerInput.LeftHand.Enable();
             playerInput.RightHand.Enable();
+            playerInput.MergeHand.Enable();
         }
 
         public void DisableMainPlayerInputs()
@@ -71,6 +72,7 @@ namespace ControlOptions
             playerInput.Interact.Disable();
             playerInput.LeftHand.Disable();
             playerInput.RightHand.Disable();
+            playerInput.MergeHand.Disable();
         }
 
     }

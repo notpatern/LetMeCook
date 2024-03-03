@@ -17,6 +17,7 @@ namespace Player
         {
             playerInteraction.BindPerformInteraction(handsManager.UseHand);
             inputManager.BindHandAction(playerInteraction.ActiveInteraction);
+            inputManager.BindMergeHandInput(handsManager.MergeFood);
 
             InitFsmCore();
             handsManager.Init();

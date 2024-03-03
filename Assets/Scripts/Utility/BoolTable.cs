@@ -1,7 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
 
-public class BoolTable : MonoBehaviour
+public class BoolTable
 {
     public bool Value {get{return m_finalValue;} set{UpdateBoolTable(value);}}
 
