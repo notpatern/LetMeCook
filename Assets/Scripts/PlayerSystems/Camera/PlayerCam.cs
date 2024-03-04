@@ -6,10 +6,6 @@ namespace PlayerSystems.Camera
 {
     public class PlayerCam : MonoBehaviour
     {
-
-        public float sensX;
-        public float sensY;
-
         public Transform orientation;
         public new Transform camera;
 
@@ -24,8 +20,8 @@ namespace PlayerSystems.Camera
 
         void Update()
         {
-            float mouseY = Mouse.current.delta.ReadValue().y * sensY * 0.001f * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity();
-            float mouseX = Mouse.current.delta.ReadValue().x * sensX * 0.001f * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity();
+            float mouseY = Mouse.current.delta.ReadValue().y * 0.01f * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity() * Time.timeScale;
+            float mouseX = Mouse.current.delta.ReadValue().x * 0.01f * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity() * Time.timeScale;
 
             _yRotation += mouseX;
             _xRotation -= mouseY;
