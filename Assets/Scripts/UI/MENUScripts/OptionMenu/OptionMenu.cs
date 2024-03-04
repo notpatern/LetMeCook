@@ -32,6 +32,29 @@ namespace UI.MENUScripts
             SetActiveOptionMenu(!gameObject.activeSelf);
         }
 
+        public bool HandleMenuLayer()
+        {
+            if(m_ControlsPanel.activeSelf)
+            {
+                ToggleControlsParameter();
+                return true;
+            }
+            
+            if(m_GraphicsPanel.activeSelf)
+            {
+                ToggleGraphicsParameter();
+                return true;
+            }
+
+            if(gameObject.activeSelf)
+            {
+                ToggleOptionMenu();
+                return true;
+            }
+
+            return false;
+        }
+
         public void SetActiveOptionMenu(bool state)
         {
             gameObject.SetActive(state);
@@ -50,13 +73,13 @@ namespace UI.MENUScripts
             }
         }
 
-        void ToggleGraphicsParameter()
+        public void ToggleGraphicsParameter()
         {
             TogglePanel(m_GraphicsPanel);
             resolutionUIMenu.ResetUIToCurrentAppliedInfos();
         }
 
-        void ToggleControlsParameter()
+        public void ToggleControlsParameter()
         {
             TogglePanel(m_ControlsPanel);
             
