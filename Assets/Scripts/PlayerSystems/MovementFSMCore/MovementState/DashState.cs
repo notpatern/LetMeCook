@@ -20,7 +20,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             fsmCore.rb.drag = 0;
             fsmCore.rb.useGravity = context.useGravity;
             _dashDirection = fsmCore.camera.forward;
-            fsmCore.rb.AddForce(_dashDirection * _context.dashForce, ForceMode.Impulse);
+            fsmCore.rb.AddForce(_dashDirection * (fsmCore.rb.velocity.magnitude + _context.dashForce), ForceMode.Impulse);
         }
 
         public override void FixedUpdate()
