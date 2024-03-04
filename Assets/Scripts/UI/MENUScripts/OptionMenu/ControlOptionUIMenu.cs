@@ -7,13 +7,19 @@ namespace UI.MENUScripts.Options
 {
     public class ControlOptionsUIMenu : MonoBehaviour
     {
+        [Header("Sensitivity")]
         [SerializeField] Slider mouseSensitivitySlider;
+
+        [Header("Keybinds")]
         [SerializeField] KeybindsDataBase keybindsDataBase;
         [SerializeField] GameObject keybindsPrefab;
         [SerializeField] Transform keybindsTransform;
 
         void Start()
         {
+            mouseSensitivitySlider.minValue = ControlOptionsManagement.s_Instance.GetSensitivityBounds().x;
+            mouseSensitivitySlider.maxValue = ControlOptionsManagement.s_Instance.GetSensitivityBounds().y;
+
             mouseSensitivitySlider.value = ControlOptionsManagement.s_Instance.GetMouseSensitivity();
             mouseSensitivitySlider.onValueChanged.AddListener(OnSliderValueChange);
 

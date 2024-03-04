@@ -11,6 +11,7 @@ namespace ControlOptions
 
         BoolTable canMove;
         float mouseSensitivity = 1.0f;
+        Vector2 mouseRangeSensitivity = new Vector2(0.1f, 5f);
 
         public ControlOptionsManagement()
         {
@@ -36,6 +37,11 @@ namespace ControlOptions
         public float GetMouseSensitivity()
         {
             return mouseSensitivity;
+        }
+
+        public ref Vector2 GetSensitivityBounds()
+        {
+            return ref mouseRangeSensitivity;
         }
 
         public void UpdateIsMainControlsActivated(bool value)
