@@ -1612,13 +1612,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303784189}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.23359005, z: -0, w: 0.9723352}
-  m_LocalPosition: {x: 66.9, y: 0.0000038146973, z: 11.4}
+  m_LocalRotation: {x: -0, y: 0.35577792, z: -0, w: 0.9345706}
+  m_LocalPosition: {x: 68.62, y: 0.0000038146973, z: 23.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -27.017, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 41.682, z: 0}
 --- !u!1 &319274629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,13 +1965,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319274629}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.23359005, z: -0, w: 0.9723352}
-  m_LocalPosition: {x: 52.70237, y: 0.0000038146973, z: -4.695957}
+  m_LocalRotation: {x: -0, y: 0.35577792, z: -0, w: 0.9345706}
+  m_LocalPosition: {x: 48.83, y: 0.0000038146973, z: 28.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -27.017, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 41.682, z: 0}
 --- !u!43 &346541377
 Mesh:
   m_ObjectHideFlags: 0
@@ -6615,14 +6615,14 @@ MonoBehaviour:
   inputManager: {fileID: 1468575678}
   handsManager:
     throwForce: 0
+    throwMomentumForwardDirection: {x: 1, y: 2}
+    throwMomentumPlayerRb: 0.2
     leftHand:
-      handsType: 0
-      foodPosition: {fileID: 0}
-      throwPoint: {fileID: 0}
+      m_FoodPosition: {fileID: 0}
+      m_ThrowPoint: {fileID: 0}
     rightHand:
-      handsType: 0
-      foodPosition: {fileID: 0}
-      throwPoint: {fileID: 0}
+      m_FoodPosition: {fileID: 0}
+      m_ThrowPoint: {fileID: 0}
     mergedFoodPrefab: {fileID: 0}
   playerRb: {fileID: 1468575677}
   movementFsmCore:

@@ -19,7 +19,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         {
             base.Init();
             _context.Init();
-            _context.maxMovementSpeed = fsmCore.rb.velocity.magnitude + _context.maxMovementSpeed;
+            _context.maxMovementSpeed = fsmCore.rb.velocity.magnitude;
             _context.canJump = true;
             GetWallDirection();
             var velocity = fsmCore.rb.velocity;
@@ -60,9 +60,11 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void WallRunMovement()
         {
+            
+            
             if (fsmCore.rb.velocity.magnitude > _context.maxMovementSpeed)
             {
-                var velocity = fsmCore.rb.velocity.normalized * (context.maxMovementSpeed * context.movementMultiplier);
+                var velocity = fsmCore.rb.velocity.normalized * _context.maxMovementSpeed;
                 fsmCore.rb.velocity = velocity;
             }
             fsmCore.rb.AddForce(_wallDirection * (context.movementSpeed * context.movementMultiplier), ForceMode.Force);
