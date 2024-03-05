@@ -1,5 +1,4 @@
 using FoodSystem;
-using System.Diagnostics;
 using UnityEngine.Events;
 
 namespace PlayerSystems.HandsSystem
