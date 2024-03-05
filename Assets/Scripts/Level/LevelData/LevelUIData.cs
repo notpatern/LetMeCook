@@ -10,4 +10,7 @@ public class LevelUIData : ScriptableObject
     [Header("Options Menu")]
     public bool isPauseMenuChild;
     public GameObject optionMenu;
+
+    [Header("Dialog Menu")]
+    public GameObject dialogMenu;
 }

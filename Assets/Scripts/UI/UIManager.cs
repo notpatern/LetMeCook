@@ -1,4 +1,4 @@
-using System.Data;
+using Dialog;
 using UnityEngine;
 
 namespace UI
@@ -11,14 +11,25 @@ namespace UI
         public PlayerHUD playerHUD;
         public WinMenuUI winMenu;
         public LoseMenuUI loseMenu;
+        public DialogUIManagement dialogUiManagement;
 
-        public void LoadUI(LevelUIData levelUIData)
+        public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData)
         {
             LoadBaseCanvas(levelUIData.canvasPrefab);
-            LoadPlayerHUDCanvas(levelUIData.playerHUBPrefab);
 
-            LoadPauseMenu(levelUIData.pauseMenuPrefab);
+            if (levelUIData.playerHUBPrefab)
+            {
+                LoadPlayerHUDCanvas(levelUIData.playerHUBPrefab);
+            }
+
+            if (levelUIData.pauseMenuPrefab)
+            {
+                LoadPauseMenu(levelUIData.pauseMenuPrefab);
+            }
+
             LoadOptionsMenu(levelUIData.optionMenu, levelUIData.isPauseMenuChild);
+
+            LoadDialogsPanel(levelUIData.dialogMenu, dialogLevelData);
         }
 
         void LoadBaseCanvas(GameObject canvasPrefab) //Load canvas for all the menus
@@ -40,11 +51,19 @@ namespace UI
 
         void LoadOptionsMenu(GameObject prefab, bool isPauseMenuChild)
         {
-            GameObject go = isPauseMenuChild ? Object.Instantiate(prefab, pauseMenu.transform) : Object.Instantiate(prefab);
+            GameObject go = isPauseMenuChild ? Object.Instantiate(prefab, pauseMenu.transform) : Object.Instantiate(prefab, menuCanvas.transform);
             go.SetActive(false);
 
             optionMenu = go.GetComponent<MENUScripts.OptionMenu>();
             pauseMenu.Init(this);
+        }
+
+        void LoadDialogsPanel(GameObject prefab, DialogLevelData dialogLevelData)
+        {
+            GameObject go = Object.Instantiate(prefab, menuCanvas.transform);
+
+            dialogUiManagement = go.GetComponent<DialogUIManagement>();
+            dialogUiManagement.Init(dialogLevelData);
         }
     }
 }

@@ -9,11 +9,12 @@ namespace Manager
         [SerializeField] PlayerSystems.PlayerBase.Player player;
         UIManager uiManager;
 
+
         override protected void Awake()
         { 
             base.Awake();
             uiManager = new UIManager();
-            uiManager.LoadUI(levelData.levelUIData);
+            uiManager.LoadUI(levelData.levelUIData, levelData.dialogLevelData);
 
             player.InitUIEvent(uiManager);
             

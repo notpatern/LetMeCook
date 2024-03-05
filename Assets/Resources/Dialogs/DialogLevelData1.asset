@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb12d5f9764f70246ac242d7c0f963af, type: 3}
+  m_Name: DialogLevelData1
+  m_EditorClassIdentifier: 
+  sentenceDelay: 1
+  sentenceMaxLength: 30
+  sentenceMinLength: 5
+  startLevel:
+    pnjName: Boby
+    content: "bonjour je suis boby un pnj de test qui est l\xE0 pour voir si le syst\xE8me
+      de dialogue fonctionne correctement ou pas hihi ^^ mur de lul :3:3"
+    isLoaded: 0
+    loadedContent: []
+  endLevelDialog:
+    pnjName: 
+    content: 
+    isLoaded: 0
+    loadedContent: []
+  startRecepieDialogs: []
+  endRecepieDialogs: []
