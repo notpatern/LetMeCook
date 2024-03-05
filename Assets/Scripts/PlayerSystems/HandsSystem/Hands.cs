@@ -59,6 +59,11 @@ namespace Player.HandSystem
             return (m_HhandledFood, m_CurrentFood);
         }
 
+        public Food GetHandFood()
+        {
+            return m_CurrentFood;
+        }
+
         public void ReleaseFood()
         {
             Food food = m_HhandledFood.GetComponent<Food>();
@@ -75,7 +80,7 @@ namespace Player.HandSystem
             SetFood(null);
         }
 
-        void SetFood(GameObject foodGo)
+        public void SetFood(GameObject foodGo)
         {
             m_HhandledFood = foodGo;
             

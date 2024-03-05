@@ -4,7 +4,7 @@ public class BoolTable
 {
     public bool Value {get{return m_finalValue;} set{UpdateBoolTable(value);}}
 
-    bool m_finalValue;
+    bool m_finalValue = false;
     List<bool> m_ValuesTable = new List<bool>();
 
     void UpdateBoolTable(bool value)
@@ -25,12 +25,14 @@ public class BoolTable
             if(i+1 == m_ValuesTable.Count)
             {        
                 m_ValuesTable.Add(value);
+                return;
             }
         }
 
         if(m_ValuesTable.Count == 0)
         {
             m_finalValue = value;
+            m_ValuesTable.Add(value);
         }
     }
 }

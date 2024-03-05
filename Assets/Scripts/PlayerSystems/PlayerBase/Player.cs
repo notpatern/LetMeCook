@@ -21,8 +21,8 @@ namespace PlayerSystems.PlayerBase
             inputManager.BindHandAction(playerInteraction.ActiveInteraction);
             inputManager.BindMergeHandInput(handsManager.MergeFood);
 
-            InitFsmCore();
             handsManager.Init(playerRb);
+            InitFsmCore();
         }
 
         void Update()
@@ -57,6 +57,19 @@ namespace PlayerSystems.PlayerBase
             inputManager.BindWasdMovement(movementFsmCore.OnMovementInputEvent);
             inputManager.BindJump(movementFsmCore.OnJumpInputEvent);
             inputManager.BindDash(movementFsmCore.OnDashInputEvent);
+
+            handsManager.BindUpdateDashState(UpdateTest);
+            handsManager.BindUpdateDoubleJumpState(UpdateTest2);
+        }
+
+        public void UpdateTest(bool state)
+        {
+            Debug.Log("dash : " + state);
+        }
+
+        public void UpdateTest2(bool state)
+        {
+            Debug.Log("DoubleJump : " + state);
         }
     }
 }

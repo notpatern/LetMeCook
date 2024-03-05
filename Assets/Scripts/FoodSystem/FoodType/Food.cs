@@ -23,7 +23,6 @@ namespace FoodSystem.FoodType
 
         public virtual void PutInHand(Transform hand)
         {
-            rb.velocity = Vector3.zero;
             rb.isKinematic = true;
             col.enabled = false;
             transform.SetParent(hand);
@@ -37,6 +36,7 @@ namespace FoodSystem.FoodType
         public virtual void RemoveFromHand()
         {
             rb.isKinematic = false;
+            rb.velocity = Vector3.zero;
             transform.SetParent(null);
             col.enabled = true;
 

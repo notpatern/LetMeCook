@@ -369,8 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd6faf61cb9432990a5498a67083199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 50
-  sensY: 50
   orientation: {fileID: 4604464782735597648}
   camera: {fileID: 7932818568912763235}
 --- !u!1 &4665153442948230820
@@ -462,16 +460,16 @@ MonoBehaviour:
       m_Bits: 256
   inputManager: {fileID: 1342482868074891331}
   handsManager:
-    throwForce: 5
-    throwMomentumForwardDirection: {x: 1, y: 1}
-    throwMomentumPlayerRb: 1
-    leftHand:
+    m_ThrowForce: 0
+    m_ThrowMomentumForwardDirection: {x: 1, y: 2}
+    m_ThrowMomentumPlayerRb: 0.2
+    m_LeftHand:
       m_FoodPosition: {fileID: 6300218486211125689}
-      m_ThrowPoint: {fileID: 6300218486211125689}
-    rightHand:
+      m_ThrowPoint: {fileID: 1787968002601497254}
+    m_RightHand:
       m_FoodPosition: {fileID: 1787968002601497254}
       m_ThrowPoint: {fileID: 1787968002601497254}
-    mergedFoodPrefab: {fileID: 7354829722045014985, guid: a04b9f56709f78941815ea4072a5a32b,
+    m_MergedFoodPrefab: {fileID: 7354829722045014985, guid: a04b9f56709f78941815ea4072a5a32b,
       type: 3}
   playerRb: {fileID: 5121403018473917708}
   movementFsmCore:
