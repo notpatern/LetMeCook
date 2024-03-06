@@ -24,8 +24,7 @@ namespace Dialog
     {
         public string pnjName;
         public string content;
-        [Header("Loaded data")]
-        public bool isLoaded = false;
+        [Header("Data loaded in DialogDataLoader Window Editor")]
         public string[] loadedContent;
     }
 }

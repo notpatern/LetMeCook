@@ -17,14 +17,16 @@ MonoBehaviour:
   sentenceMinLength: 5
   startLevel:
     pnjName: Boby
-    content: "bonjour je suis boby un pnj de test qui est l\xE0 pour voir si le syst\xE8me
-      de dialogue fonctionne correctement ou pas hihi ^^ mur de lul :3:3"
-    isLoaded: 0
+    content: 
     loadedContent: []
   endLevelDialog:
     pnjName: 
-    content: 
-    isLoaded: 0
-    loadedContent: []
+    content: "Ceci est un dialogue de teste pour tesdter si le syst\xE8me de dialogue
+      et d'editor fonctionne correctement"
+    loadedContent:
+    - Ceci est un dialogue de teste
+    - " pour tesdter si le syst\xE8me de"
+    - ' dialogue et d''editor'
+    - ' fonctionne correctement'
   startRecepieDialogs: []
   endRecepieDialogs: []

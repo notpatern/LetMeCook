@@ -2,8 +2,6 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
-using System;
-using System.Text.RegularExpressions;
 
 namespace Dialog
 {
@@ -36,14 +34,11 @@ namespace Dialog
             return true;
         }
 
+
+
         IEnumerator StartDialog()
         {
             DialogInfos dialogInfos = m_DialogInfosQueue.Dequeue();
-
-            if (!dialogInfos.isLoaded)
-            {
-                LoadDialogInfos(dialogInfos, ref dialogInfos.loadedContent);
-            }
 
             //Start dialog
             if (!isInDialog)
@@ -76,53 +71,6 @@ namespace Dialog
         {
             dialogPanel.SetActive(state);
             isInDialog = state;
-        }
-
-        void LoadDialogInfos(DialogInfos dialogInfos, ref string[] result)
-        {
-            result = new string[Mathf.CeilToInt(dialogInfos.content.Length / m_DialogLevelData.sentenceMaxLength)+1];
-            //Split content in result
-            int id = 0;
-            foreach (string data in ChunksUpto(dialogInfos.content, m_DialogLevelData.sentenceMaxLength))
-            {
-                result[id] = data;
-
-                id++;
-            }
-
-            //Check if sentences are fiting with the min length then resize
-            if(result.Length > 1 && result[result.Length-1].Length < m_DialogLevelData.sentenceMinLength)
-            {
-                result[result.Length - 2] += result[result.Length - 1];
-                Array.Resize(ref result, result.Length - 1);
-            }
-
-            dialogInfos.isLoaded = true;
-        }
-
-        //Get sentences split by size and char ' ' for space and complete senteces 
-        IEnumerable<string> ChunksUpto(string str, int maxChunkSize)
-        {
-            int currentChunckSize = 0;
-            int maxChunkSizeOffset = maxChunkSize;
-            for (int i = 0; i < str.Length; i += maxChunkSizeOffset)
-            {
-                maxChunkSizeOffset = maxChunkSize;
-                currentChunckSize = Mathf.Min(currentChunckSize + maxChunkSizeOffset, str.Length - 1);
-
-                while (i>0 && str[i] != ' ') 
-                {
-                    i--;
-                }
-
-                while (currentChunckSize > 0 && currentChunckSize != str.Length - 1 && str[currentChunckSize] != ' ')
-                {
-                    currentChunckSize--;
-                    maxChunkSizeOffset--;
-                }
-
-                yield return str.Substring(i, Mathf.Min(maxChunkSizeOffset, str.Length - i));
-            }
         }
     }
 }
