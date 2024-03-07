@@ -4,12 +4,16 @@ using Dialog;
 using System.Collections.Generic;
 using System;
 using System.Reflection;
+using UnityEngine.UIElements;
 
 public class DialogDataLoaderWindowEditor : EditorWindow
 {
     DialogLevelData m_DialogLevelData;
     int index = 0;
     DialogInfos[] loadedDialogInfos; 
+
+    DialogInfos[][] loadedRandomDialogInfos;
+    FieldInfo[] loadedRandomFieldInfos;
 
     [MenuItem("Window/Dialog Loader")]
     public static void ShowWindow()
@@ -24,11 +28,17 @@ public class DialogDataLoaderWindowEditor : EditorWindow
         if (!m_DialogLevelData) return;
 
         index = EditorGUILayout.Popup(
-                "Component:",
+                "DialogInfos:",
                 index,
                 LoadDialogInfosOptions()
             );
 
+        GUI.enabled = false;
+        for (int i=0; i<loadedRandomDialogInfos.Length; i++)
+        {
+            EditorGUILayout.IntField($"{loadedRandomFieldInfos[i].Name} Number", loadedRandomDialogInfos[i].Length);
+        }
+        GUI.enabled = true;
 
         EditorGUILayout.LabelField("DialogContent : ");
 
@@ -44,20 +54,55 @@ public class DialogDataLoaderWindowEditor : EditorWindow
 
     string[] LoadDialogInfosOptions()
     {
-        FieldInfo[] fieldInfos = typeof(DialogLevelData).GetFields(BindingFlags.Instance | BindingFlags.Public);
+        FieldInfo[] fieldInfos = typeof(DialogLevelData).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.CreateInstance);
         loadedDialogInfos = new DialogInfos[fieldInfos.Length];
-        List<string> options = new List<string>();
-        foreach(FieldInfo fieldInfo in fieldInfos)
-        {
-            if(fieldInfo.FieldType == typeof(DialogInfos))
-            {
-                options.Add(fieldInfo.Name);
 
-                loadedDialogInfos[options.Count - 1] = fieldInfo.GetValue(m_DialogLevelData) as DialogInfos;
+        List<string> options = new List<string>();
+        int fieldInfosId = -1;
+        int filedsInfosId = -1;
+        int id = 0;
+        foreach (FieldInfo fieldInfo in fieldInfos)
+        {
+
+            if (fieldInfo.FieldType == typeof(DialogInfos))
+            {
+                fieldInfosId++;
+                CheckResizeLoadedDialogInfos(fieldInfosId);
+                loadedDialogInfos[fieldInfosId] = fieldInfo.GetValue(m_DialogLevelData) as DialogInfos;
+
+                options.Add(fieldInfo.Name);
             }
+            else if(fieldInfo.FieldType == typeof(DialogInfos[]))
+            {
+                filedsInfosId++;
+                Array.Resize(ref loadedRandomDialogInfos, filedsInfosId+1);
+                Array.Resize(ref loadedRandomFieldInfos, filedsInfosId+1);
+                loadedRandomDialogInfos[filedsInfosId] = fieldInfo.GetValue(m_DialogLevelData) as DialogInfos[];
+                loadedRandomFieldInfos[filedsInfosId] = fieldInfo;
+
+                if (loadedRandomDialogInfos[filedsInfosId].Length == 0) continue;
+
+                foreach (DialogInfos dialogInfo in loadedRandomDialogInfos[filedsInfosId])
+                {
+                    options.Add(fieldInfo.Name + " | " + ++id);
+
+                    fieldInfosId++;
+                    CheckResizeLoadedDialogInfos(fieldInfosId);
+                    loadedDialogInfos[fieldInfosId] = dialogInfo;
+                }
+            }
+
         }
 
         return options.ToArray();
+    }
+
+    void CheckResizeLoadedDialogInfos(int size)
+    {
+        if (size >= loadedDialogInfos.Length)
+        {
+            Array.Resize(ref loadedDialogInfos, size+1);
+        }
     }
 
 
