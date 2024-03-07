@@ -40,10 +40,17 @@ public class DialogDataLoaderWindowEditor : EditorWindow
         }
         GUI.enabled = true;
 
-        EditorGUILayout.LabelField("DialogContent : ");
+        if(index >= loadedDialogInfos.Length)
+        {
+            index = 0;
+        }
 
         GUIStyle style = new GUIStyle(EditorStyles.textArea);
         style.wordWrap = true;
+
+        EditorGUILayout.LabelField("PNJ Name : ");
+        loadedDialogInfos[index].pnjName = EditorGUILayout.TextArea(loadedDialogInfos[index].pnjName);
+        EditorGUILayout.LabelField("DialogContent : ");
         loadedDialogInfos[index].content = EditorGUILayout.TextArea(loadedDialogInfos[index].content);
 
         if (GUILayout.Button("LoadDialog"))
