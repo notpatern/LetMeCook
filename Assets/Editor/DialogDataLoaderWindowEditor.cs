@@ -60,7 +60,7 @@ public class DialogDataLoaderWindowEditor : EditorWindow
         List<string> options = new List<string>();
         int fieldInfosId = -1;
         int filedsInfosId = -1;
-        int id = 0;
+        int dialogArrayId = 0;
         foreach (FieldInfo fieldInfo in fieldInfos)
         {
 
@@ -81,10 +81,10 @@ public class DialogDataLoaderWindowEditor : EditorWindow
                 loadedRandomFieldInfos[filedsInfosId] = fieldInfo;
 
                 if (loadedRandomDialogInfos[filedsInfosId].Length == 0) continue;
-
+                dialogArrayId = 0;
                 foreach (DialogInfos dialogInfo in loadedRandomDialogInfos[filedsInfosId])
                 {
-                    options.Add(fieldInfo.Name + " | " + ++id);
+                    options.Add(fieldInfo.Name + " | " + ++dialogArrayId);
 
                     fieldInfosId++;
                     CheckResizeLoadedDialogInfos(fieldInfosId);
