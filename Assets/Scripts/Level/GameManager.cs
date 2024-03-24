@@ -1,22 +1,16 @@
-using UI;
 using UnityEngine;
 
 namespace Manager
 {
     public class GameManager : LevelManager
     {
-        [SerializeField] LevelData levelData;
-        [SerializeField] PlayerSystems.PlayerBase.Player player;
-        UIManager uiManager;
+        [SerializeField] PlayerSystems.PlayerBase.Player m_Player;
 
 
         override protected void Awake()
         { 
             base.Awake();
-            uiManager = new UIManager();
-            uiManager.LoadUI(levelData.levelUIData, levelData.dialogLevelData);
-
-            player.InitUIEvent(uiManager);
+            m_Player.InitUIEvent(m_UiManager);
             
             LevelScoreDataTransmetor levelScoreDataTransmetor = Instantiate(new GameObject().AddComponent<LevelScoreDataTransmetor>());
             DontDestroyOnLoad(levelScoreDataTransmetor.gameObject);

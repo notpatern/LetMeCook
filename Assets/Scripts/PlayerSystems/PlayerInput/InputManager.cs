@@ -8,9 +8,6 @@ namespace PlayerSystems.PlayerInput
     {
         public static global::PlayerInput s_PlayerInput;
         [HideInInspector] public InputAction wasd;
-        private InputAction _jump;
-        private InputAction _dash;
-        private InputAction _interact;
         UnityEvent<Vector2> m_OnWASDInput = new UnityEvent<Vector2>();
         UnityEvent m_OnJumpInput = new UnityEvent();
         UnityEvent m_OnDashinput = new UnityEvent();

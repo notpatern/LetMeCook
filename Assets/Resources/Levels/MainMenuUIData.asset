@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: LevelUIData
-  m_EditorClassIdentifier: Assembly-CSharp::LevelUIData
+  m_Script: {fileID: 11500000, guid: 1c8bbac614c59ca41a9cf76d91b61cfa, type: 3}
+  m_Name: MainMenuUIData
+  m_EditorClassIdentifier: 
   canvasPrefab: {fileID: 8007305167612998370, guid: f117ab7a48db41f4cac211b1837d8601,
     type: 3}
-  playerHUBPrefab: {fileID: 1640005955265663683, guid: e39c879716c34054e96852b85fdb9e27,
-    type: 3}
-  pauseMenuPrefab: {fileID: 6077366848238246762, guid: 95285ee829a561a4d923aee4a014ab49,
-    type: 3}
-  isPauseMenuChild: 1
+  playerHUBPrefab: {fileID: 0}
+  pauseMenuPrefab: {fileID: 0}
+  isPauseMenuChild: 0
   optionMenu: {fileID: 3052131270952298636, guid: 91e4da9e94b77da4a81b84a4f9a44391,
     type: 3}
+  dialogMenu: {fileID: 0}

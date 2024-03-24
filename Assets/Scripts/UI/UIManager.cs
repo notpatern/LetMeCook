@@ -29,7 +29,10 @@ namespace UI
 
             LoadOptionsMenu(levelUIData.optionMenu, levelUIData.isPauseMenuChild);
 
-            LoadDialogsPanel(levelUIData.dialogMenu, dialogLevelData);
+            if (levelUIData.dialogMenu)
+            {
+                LoadDialogsPanel(levelUIData.dialogMenu, dialogLevelData);
+            }
         }
 
         void LoadBaseCanvas(GameObject canvasPrefab) //Load canvas for all the menus
@@ -55,7 +58,11 @@ namespace UI
             go.SetActive(false);
 
             optionMenu = go.GetComponent<MENUScripts.OptionMenu>();
-            pauseMenu.Init(this);
+
+            if (pauseMenu)
+            {
+                pauseMenu.Init(this);
+            }
         }
 
         void LoadDialogsPanel(GameObject prefab, DialogLevelData dialogLevelData)
