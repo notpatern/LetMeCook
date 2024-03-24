@@ -1,8 +1,11 @@
 using FoodSystem;
+using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace PlayerSystems.HandsSystem
 {
+    [Serializable]
     public class HandsEnableMoveTech
     {
         BoolTable m_IsDashActivated = new BoolTable();
@@ -16,6 +19,8 @@ namespace PlayerSystems.HandsSystem
         UnityEvent<bool> m_OnDashChangeState = new UnityEvent<bool>();
         UnityEvent<bool> m_OnDoubleJumpChangeState = new UnityEvent<bool>();
         UnityEvent<bool> m_OnWallRunChangeState = new UnityEvent<bool>();
+
+        [SerializeField] GameEventScriptableObject m_WallunGameEventScriptableObject;
 
         public void LoadMoveTech(FoodData[] foodDatas)
         {
@@ -58,6 +63,7 @@ namespace PlayerSystems.HandsSystem
             if(m_IsWallRunActivated.Value != m_WallRunDirtyState)
             {
                 m_OnWallRunChangeState.Invoke(m_IsWallRunActivated.Value);
+                m_WallunGameEventScriptableObject.TriggerEvent(m_IsWallRunActivated.Value);//there are 2 types of event right there look for combine them
                 m_WallRunDirtyState = m_IsWallRunActivated.Value;
             }
             if(m_IsDoubleJumpActivated.Value != m_DoubleJumpDirtyState)

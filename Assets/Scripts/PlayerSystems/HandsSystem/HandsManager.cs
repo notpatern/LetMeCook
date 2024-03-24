@@ -20,11 +20,10 @@ namespace PlayerSystems.HandsSystem
 
         [Header("Merged Food")]
         [SerializeField] private GameObject m_MergedFoodPrefab;
-        HandsEnableMoveTech m_HandsEnableMoveTech;
+        [SerializeField] HandsEnableMoveTech m_HandsEnableMoveTech;
 
         public void Init(Rigidbody momentumRb)
         {
-            m_HandsEnableMoveTech = new HandsEnableMoveTech();
             m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb);
             m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb);
         }

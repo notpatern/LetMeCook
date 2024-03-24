@@ -3,13 +3,14 @@ using PlayerSystems.HandsSystem;
 using PlayerSystems.MovementFSMCore;
 using PlayerSystems.PlayerInput;
 using UnityEngine;
+using Player.Interaction;
 
 namespace PlayerSystems.PlayerBase
 {
 
     public class Player : MonoBehaviour
     {
-        [SerializeField] global::Player.Interaction.PlayerInteraction playerInteraction;
+        [SerializeField] PlayerInteraction playerInteraction;
         [SerializeField] InputManager inputManager;
         [SerializeField] HandsManager handsManager;
         [SerializeField] Rigidbody playerRb;
