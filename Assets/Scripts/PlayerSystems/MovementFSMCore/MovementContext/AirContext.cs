@@ -11,7 +11,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         public RaycastHit previousWallInfo;
         public float restartWallRunFalloffDistance;
         
-        public AirContext(FsmAirData airDataContext, float wallRunExitTime = 0, bool canJump = true, bool canDash = true, RaycastHit previousWallInfo = new RaycastHit()) : base(airDataContext, canJump, canDash)
+        public AirContext(FsmAirData airDataContext, float wallRunExitTime = 0, bool canJump = true, bool canDash = true, bool canWallRun = true, RaycastHit previousWallInfo = new RaycastHit()) : base(airDataContext, canJump, canDash, canWallRun)
         {
             this._airDataContext = airDataContext;
             this.wallRunExitTime = wallRunExitTime;

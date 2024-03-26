@@ -59,9 +59,9 @@ namespace PlayerSystems.PlayerBase
             inputManager.BindJump(movementFsmCore.OnJumpInputEvent);
             inputManager.BindDash(movementFsmCore.OnDashInputEvent);
 
-            //handsManager.BindUpdateDashState(movementFsmCore.UpdateDashState);
-            //handsManager.BindUpdateDoubleJumpState(movementFsmCore.UpdateDoubleJumpState);
-            //handsManager.BindUpdateWallRunState(movementFsmCore.UpdateWallRunState);
+            handsManager.BindUpdateDashState(movementFsmCore.UpdateDashState);
+            handsManager.BindUpdateDoubleJumpState(movementFsmCore.UpdateDoubleJumpState);
+            handsManager.BindUpdateWallRunState(movementFsmCore.UpdateWallRunState);
         }
     }
 }

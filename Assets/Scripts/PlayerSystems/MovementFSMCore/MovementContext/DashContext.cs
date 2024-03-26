@@ -1,5 +1,4 @@
 ﻿using PlayerSystems.MovementFSMCore.DataClass;
-using Unity.VisualScripting;
 
 namespace PlayerSystems.MovementFSMCore.MovementContext
 {
@@ -9,7 +8,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         public float dashForce;
         public float dashDuration;
         
-        public DashContext(FsmDashData dashContext, bool canJump = true, bool canDash = false) : base(dashContext, canJump, canDash)
+        public DashContext(FsmDashData dashContext, bool canJump = true, bool canDash = false, bool canWallRun = true) : base(dashContext, canJump, canDash, canWallRun)
         {
             this._dashContext = dashContext;
         }

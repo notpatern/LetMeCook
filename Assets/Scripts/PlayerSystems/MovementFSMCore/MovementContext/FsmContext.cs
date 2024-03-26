@@ -14,12 +14,14 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         public bool useGravity;
         public bool canJump;
         public bool canDash;
+        public bool canWallRun;
 
-        protected FsmContext(FsmData fsmData, bool canJump, bool canDash)
+        protected FsmContext(FsmData fsmData, bool canJump, bool canDash, bool canWallRun)
         {
             this._fsmData = fsmData;
             this.canJump = canJump;
             this.canDash = canDash;
+            this.canWallRun = canWallRun;
         }
 
         public virtual void Init()

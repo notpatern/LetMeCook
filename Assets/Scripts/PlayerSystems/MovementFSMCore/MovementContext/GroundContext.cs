@@ -6,7 +6,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
     {
         private readonly FsmGroundData _groundDataContext;
         
-        public GroundContext(FsmGroundData groundDataContext, bool canJump = true, bool canDash = false) : base(groundDataContext, canJump, canDash)
+        public GroundContext(FsmGroundData groundDataContext, bool canJump = true, bool canDash = false, bool canWallRun = true) : base(groundDataContext, canJump, canDash, canWallRun)
         {
         }
     }

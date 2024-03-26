@@ -27,12 +27,18 @@ namespace PlayerSystems.MovementFSMCore
         public bool jumpHeld;
         private bool _jumpInput;
         private bool _dashInput;
+        public bool canJump;
+        public bool canDash;
+        public bool canWallRun;
     
         public Vector2 Input { private set; get; }
 
         public void Init(Rigidbody rb)
         {
             this.rb = rb;
+            canJump = false;
+            canDash = false;
+            canWallRun = false;
             _currentState = new GroundState(new GroundContext(groundData), this);
             _currentState.Init();
         }
@@ -41,6 +47,21 @@ namespace PlayerSystems.MovementFSMCore
         {
             HandleGroundedState();
             _currentState.Update();
+        }
+
+        public void UpdateWallRunState(bool state)
+        {
+            canWallRun = state;
+        }
+
+        public void UpdateDashState(bool state)
+        {
+            canDash = state;
+        }
+
+        public void UpdateDoubleJumpState(bool state)
+        {
+            canJump = state;
         }
 
         public void FixedUpdate()
@@ -98,17 +119,17 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
-             if (!_currentState.context.canJump)
-             {
-                 return;
-             }
-
-             _jumpInput = true;
+            if (!_currentState.context.canJump || (!Grounded() && !canJump))
+            {
+                return;
+            }
+            
+            _jumpInput = true;
         }
 
         public void OnDashInputEvent()
         {
-            if (!_currentState.context.canDash)
+            if (!canDash || !_currentState.context.canDash)
             {
                 return;
             }
