@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using PlayerSystems.PlayerInput;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Progress;
 
 namespace Player.Input
 {
@@ -17,10 +18,7 @@ namespace Player.Input
 
         public static void LoadMap()
         {
-            if (File.Exists(Application.persistentDataPath + "/controlOverrides.qt"))
-            {
-                LoadControlOverrides();
-            }
+            LoadControlOverrides();
         }
 
         public static void RemapKeyboardMouseAction(InputAction actionToRebind, int targetBinding)
@@ -31,21 +29,18 @@ namespace Player.Input
         static void RemapAction(InputAction actionToRebind, int targetBinding, string[] groups)
         {
             actionToRebind.Disable();
-            foreach(string group in groups )
-            {
-                var rebindOperation = actionToRebind.PerformInteractiveRebinding(targetBinding)
-                    .WithControlsHavingToMatchPath($"<{group}>")
-                    .WithBindingGroup(group)
-                    .WithCancelingThrough("<Keyboard>/escape")
-                    .OnCancel(operation => SuccessfulRebinding?.Invoke(null))
-                    .OnComplete(operation => {
-                        operation.Dispose();
-                        AddOverrideToDictionary(actionToRebind.id, actionToRebind.bindings[targetBinding].effectivePath, targetBinding);
-                        SaveControlOverrides();
-                        SuccessfulRebinding?.Invoke(actionToRebind);
-                    })
-                    .Start();
-            }
+            var rebindOperation = actionToRebind.PerformInteractiveRebinding(targetBinding)
+                .WithCancelingThrough("<Keyboard>/escape")
+                .OnCancel(operation => SuccessfulRebinding?.Invoke(null))
+                .OnComplete(operation => {
+                    operation.Dispose();
+                    AddOverrideToDictionary(actionToRebind.id, actionToRebind.bindings[targetBinding].effectivePath, targetBinding);
+                    SaveControlOverrides();
+                    SuccessfulRebinding?.Invoke(actionToRebind);
+
+                    //InputManager.s_PlayerInput.asset.FindAction(id).ApplyBindingOverride(index, item.Value);
+                })
+                .Start();
             actionToRebind.Enable();
         }
 
