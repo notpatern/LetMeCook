@@ -15,7 +15,8 @@ namespace UI.MENUScripts
         [SerializeField] GameObject m_ControlsPanel;
 
         [Header("Menu References")]
-        [SerializeField] ResolutionUIMenu resolutionUIMenu;
+        [SerializeField] ResolutionUIMenu m_ResolutionUIMenu;
+        [SerializeField] ControlOptionsUIMenu m_ControlOptionUIMenu;
 
         void Awake()
         {
@@ -76,7 +77,7 @@ namespace UI.MENUScripts
         public void ToggleGraphicsParameter()
         {
             TogglePanel(m_GraphicsPanel);
-            resolutionUIMenu.ResetUIToCurrentAppliedInfos();
+            m_ResolutionUIMenu.ResetUIToCurrentAppliedInfos();
         }
 
         public void ToggleControlsParameter()

@@ -28,7 +28,7 @@ namespace UI.MENUScripts.Options
 
         void LoadKeybinds()
         {
-            for(int i=0; i<keybindsDataBase.keybinds.Length; i++)
+            for (int i = 0; i < keybindsDataBase.keybinds.Length; i++)
             {
                 GameObject keybindsGo = Instantiate(keybindsPrefab, keybindsTransform);
                 keybindsGo.GetComponent<InputActionDisplay>().LoadInput(keybindsDataBase.keybinds[i]);
