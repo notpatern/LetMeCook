@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using PlayerSystems.PlayerInput;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Progress;
 
 namespace Player.Input
 {

@@ -25,8 +25,10 @@ namespace ControlOptions
             if(s_Instance == null)
             {
                 s_Instance = new ControlOptionsManagement();
-                ControlsRemapping.LoadMap();
             }
+
+
+            ControlsRemapping.LoadMap();
         }
 
         public void SetMouseSensitivity(float newValue)
