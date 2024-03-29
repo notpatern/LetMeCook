@@ -9,6 +9,8 @@ namespace Player.HandSystem
     {
         [SerializeField] private Transform m_FoodPosition;
         [SerializeField] private Transform m_ThrowPoint;
+        [SerializeField] private Animator m_Animator;
+        [SerializeField] private HandAnimatorManagement m_HandAnimatorManagement;
         private float m_ThrowForce;
         private GameObject m_HhandledFood;
         private Food m_CurrentFood;
@@ -17,13 +19,25 @@ namespace Player.HandSystem
         Vector2 m_ThrowMomentumForwardDirection;
         float m_ThrowMomentumPlayerRb;
         [SerializeField] public bool isFoodHandle { get; private set; } = false;
+        Animator m_PlayerPrefabAnimator;
+        float m_IdleHandAnimSpeed;
+        int m_IdleHashFullPathPlayerPrefabForSync;
+        GameObject m_GrabbedFoodParticlePrefab;
+        GameObject m_GrabbedFoodParticle;
 
-        public void InitData(float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection, float throwMomentumPlayerRb)
+        public void InitData(float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection, float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle)
         {
             m_ThrowForce = throwForce;
             m_MomentumRb = momentumRb;
             m_ThrowMomentumForwardDirection = throwMomentumForwardDirection;
             m_ThrowMomentumPlayerRb = throwMomentumPlayerRb;
+
+            m_GrabbedFoodParticlePrefab = grabbedFoodParticle;
+
+            m_PlayerPrefabAnimator = playerPrefabAnimator;
+            m_IdleHandAnimSpeed = m_Animator.GetCurrentAnimatorStateInfo(0).speed;
+            m_IdleHashFullPathPlayerPrefabForSync = m_Animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
+            m_HandAnimatorManagement.BindResincronyzationOnMainIdle(ResincronyzationOnMainIdleAnimation);
         }
 
         public void PutItHand(GameObject food)
@@ -66,6 +80,8 @@ namespace Player.HandSystem
 
         public void ReleaseFood()
         {
+            ThrowFoodVisualEffect();
+
             Food food = m_HhandledFood.GetComponent<Food>();
             food.RemoveFromHand();
 
@@ -86,6 +102,7 @@ namespace Player.HandSystem
             
             if(foodGo)
             {
+                GrabFoodVisualEffect();
                 if(foodGo.GetComponent<Food>().GetType() == typeof(SimpleFood))
                 {
                     m_CurrentFood = (SimpleFood)foodGo.GetComponent<Food>();
@@ -97,10 +114,41 @@ namespace Player.HandSystem
             }
             else
             {
+                RemoveFoodEffect();
                 m_CurrentFood = null;
             }
 
             isFoodHandle = foodGo == null ? false : true;
+        }
+
+        void GrabFoodVisualEffect()
+        {
+            m_Animator.SetTrigger("GrabFood");
+
+            if (!m_GrabbedFoodParticle)
+            {
+                m_GrabbedFoodParticle = UnityEngine.Object.Instantiate(m_GrabbedFoodParticlePrefab, m_FoodPosition);
+            }
+        }
+
+        void ThrowFoodVisualEffect()
+        {
+            m_Animator.SetTrigger("Throw");
+
+            RemoveFoodEffect();
+        }
+
+        void RemoveFoodEffect()
+        {
+            if (m_GrabbedFoodParticle)
+            {
+                UnityEngine.Object.Destroy(m_GrabbedFoodParticle);
+            }
+        }
+
+        void ResincronyzationOnMainIdleAnimation()
+        {
+            m_Animator.Play(m_IdleHashFullPathPlayerPrefabForSync, 0, m_PlayerPrefabAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime * m_IdleHandAnimSpeed);
         }
     }
 

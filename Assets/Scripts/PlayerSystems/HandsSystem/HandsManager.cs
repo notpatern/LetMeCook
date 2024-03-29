@@ -15,6 +15,7 @@ namespace PlayerSystems.HandsSystem
         [SerializeField] float m_ThrowMomentumPlayerRb = .2f;
 
         [Header("Hands")]
+        [SerializeField] GameObject m_GrabbedFoodParticlePrefab;
         [SerializeField] private Hands m_LeftHand;
         [SerializeField] private Hands m_RightHand;
 
@@ -22,10 +23,10 @@ namespace PlayerSystems.HandsSystem
         [SerializeField] private GameObject m_MergedFoodPrefab;
         [SerializeField] HandsEnableMoveTech m_HandsEnableMoveTech;
 
-        public void Init(Rigidbody momentumRb)
+        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator)
         {
-            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb);
-            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb);
+            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
+            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
         }
         
         public void UseHand(GameObject food, HandsType handsType)

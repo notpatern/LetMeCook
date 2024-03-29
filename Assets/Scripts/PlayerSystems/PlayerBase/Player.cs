@@ -10,58 +10,59 @@ namespace PlayerSystems.PlayerBase
 
     public class Player : MonoBehaviour
     {
-        [SerializeField] PlayerInteraction playerInteraction;
-        [SerializeField] InputManager inputManager;
-        [SerializeField] HandsManager handsManager;
-        [SerializeField] Rigidbody playerRb;
-        public MovementFsmCore movementFsmCore;
+        [SerializeField] PlayerInteraction m_PlayerInteraction;
+        [SerializeField] InputManager m_InputManager;
+        [SerializeField] HandsManager m_HandsManager;
+        [SerializeField] Rigidbody m_PlayerRb;
+        [SerializeField] Animator m_PlayerPrefabAnimator;
+        public MovementFsmCore m_MovementFsmCore;
 
         void Start()
         {
-            playerInteraction.BindPerformInteraction(handsManager.UseHand);
-            inputManager.BindHandAction(playerInteraction.ActiveInteraction);
-            inputManager.BindMergeHandInput(handsManager.MergeFood);
+            m_PlayerInteraction.BindPerformInteraction(m_HandsManager.UseHand);
+            m_InputManager.BindHandAction(m_PlayerInteraction.ActiveInteraction);
+            m_InputManager.BindMergeHandInput(m_HandsManager.MergeFood);
 
-            handsManager.Init(playerRb);
+            m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator);
             InitFsmCore();
         }
 
         void Update()
         {
-            movementFsmCore.Update();
-            playerInteraction.Update();
+            m_MovementFsmCore.Update();
+            m_PlayerInteraction.Update();
             UpdateFsmJumpHeld();
         }
 
         private void FixedUpdate()
         {
-            movementFsmCore.FixedUpdate();
+            m_MovementFsmCore.FixedUpdate();
         }
 
         public void InitUIEvent(UI.UIManager uIManager)
         {
             //Inputs----------
-            inputManager.BindTogglePauseMenu(uIManager.pauseMenu.ToggleActiveMenuState);
+            m_InputManager.BindTogglePauseMenu(uIManager.pauseMenu.ToggleActiveMenuState);
 
             //Interaction-----
-            playerInteraction.BindOnInteractionUI(uIManager.playerHUD.playerInteractionUI.StartInteraction, uIManager.playerHUD.playerInteractionUI.SetActiveInteractionText);
+            m_PlayerInteraction.BindOnInteractionUI(uIManager.playerHUD.playerInteractionUI.StartInteraction, uIManager.playerHUD.playerInteractionUI.SetActiveInteractionText);
         }
 
         private void UpdateFsmJumpHeld()
         {
-            movementFsmCore.jumpHeld = inputManager.GetJumpHeld();
+            m_MovementFsmCore.jumpHeld = m_InputManager.GetJumpHeld();
         }
 
         public void InitFsmCore()
         {
-            movementFsmCore.Init(playerRb);
-            inputManager.BindWasdMovement(movementFsmCore.OnMovementInputEvent);
-            inputManager.BindJump(movementFsmCore.OnJumpInputEvent);
-            inputManager.BindDash(movementFsmCore.OnDashInputEvent);
+            m_MovementFsmCore.Init(m_PlayerRb);
+            m_InputManager.BindWasdMovement(m_MovementFsmCore.OnMovementInputEvent);
+            m_InputManager.BindJump(m_MovementFsmCore.OnJumpInputEvent);
+            m_InputManager.BindDash(m_MovementFsmCore.OnDashInputEvent);
 
-            handsManager.BindUpdateDashState(movementFsmCore.UpdateDashState);
-            handsManager.BindUpdateDoubleJumpState(movementFsmCore.UpdateDoubleJumpState);
-            handsManager.BindUpdateWallRunState(movementFsmCore.UpdateWallRunState);
+            m_HandsManager.BindUpdateDashState(m_MovementFsmCore.UpdateDashState);
+            m_HandsManager.BindUpdateDoubleJumpState(m_MovementFsmCore.UpdateDoubleJumpState);
+            m_HandsManager.BindUpdateWallRunState(m_MovementFsmCore.UpdateWallRunState);
         }
     }
 }
