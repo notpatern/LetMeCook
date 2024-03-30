@@ -226,9 +226,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1167decd645ac4f9d26b78474cfc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MagicalCircleParticlePrefab: {fileID: 1921253003775114923, guid: 5e912c167c0df974eb6c6bbc4093886a,
+  m_MagicalCircleParticlePrefab: {fileID: 1921253003775114923, guid: 2bc392123e437504da2c9d2eacd009a2,
     type: 3}
-  m_HandTransform: {fileID: 558095440204295561}
+  m_HandTransform: {fileID: 570011751970811531}
 --- !u!1 &548497696610848619
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +399,7 @@ Transform:
   - {fileID: 2862548808963840293}
   - {fileID: 2792263556602656813}
   - {fileID: 558095440204295561}
+  - {fileID: 570011751970811531}
   m_Father: {fileID: 4996977432592798398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1302551200048751892
@@ -1488,16 +1489,18 @@ MonoBehaviour:
     m_ThrowForce: 5
     m_ThrowMomentumForwardDirection: {x: 1, y: 2}
     m_ThrowMomentumPlayerRb: 0.2
-    m_GrabbedFoodParticlePrefab: {fileID: 1921253003775114923, guid: 5e912c167c0df974eb6c6bbc4093886a,
+    m_GrabbedFoodParticlePrefab: {fileID: 1921253003775114923, guid: 2bc392123e437504da2c9d2eacd009a2,
       type: 3}
     m_LeftHand:
       m_FoodPosition: {fileID: 558095440204295561}
       m_ThrowPoint: {fileID: 558095440204295561}
+      m_EffectSpawnPoint: {fileID: 570011751970811531}
       m_Animator: {fileID: 4782654478144548433}
       m_HandAnimatorManagement: {fileID: 4871591894362827141}
     m_RightHand:
       m_FoodPosition: {fileID: 6287754216700759419}
       m_ThrowPoint: {fileID: 6287754216700759419}
+      m_EffectSpawnPoint: {fileID: 115420639327000635}
       m_Animator: {fileID: 942321250605974333}
       m_HandAnimatorManagement: {fileID: 2316508184197310299}
     m_MergedFoodPrefab: {fileID: 7354829722045014985, guid: a04b9f56709f78941815ea4072a5a32b,
@@ -1729,6 +1732,37 @@ Transform:
   m_Children:
   - {fileID: 2782837491583299615}
   m_Father: {fileID: 3469684052593059383}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6387263562994443116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 570011751970811531}
+  m_Layer: 0
+  m_Name: EffectSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &570011751970811531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387263562994443116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0214, z: 0.0108}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8221537140322708263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6405598049889860500
 GameObject:
@@ -1994,6 +2028,7 @@ Transform:
   - {fileID: 2564783710235543226}
   - {fileID: 2188422173079794452}
   - {fileID: 6287754216700759419}
+  - {fileID: 115420639327000635}
   m_Father: {fileID: 4573624215137615813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6833933099552332776
@@ -2091,6 +2126,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 919762613557805360}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7073489784073164113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115420639327000635}
+  m_Layer: 0
+  m_Name: EffectSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &115420639327000635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7073489784073164113}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0214, z: 0.0108}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1494886343112047280}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &7444744215724388855
 GameObject:
   m_ObjectHideFlags: 0
@@ -2413,9 +2479,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1167decd645ac4f9d26b78474cfc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MagicalCircleParticlePrefab: {fileID: 1921253003775114923, guid: 5e912c167c0df974eb6c6bbc4093886a,
+  m_MagicalCircleParticlePrefab: {fileID: 1921253003775114923, guid: 2bc392123e437504da2c9d2eacd009a2,
     type: 3}
-  m_HandTransform: {fileID: 6287754216700759419}
+  m_HandTransform: {fileID: 115420639327000635}
 --- !u!1 &8396677778681063292
 GameObject:
   m_ObjectHideFlags: 0
