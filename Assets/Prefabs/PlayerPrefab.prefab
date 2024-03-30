@@ -228,7 +228,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MagicalCircleParticlePrefab: {fileID: 1921253003775114923, guid: 5e912c167c0df974eb6c6bbc4093886a,
     type: 3}
-  m_HandTransform: {fileID: 8221537140322708263}
+  m_MagicalFogParticlePrefab: {fileID: 3401707488106937788, guid: 69f4277f8c493ab4687d3819f8179c18,
+    type: 3}
+  m_HandTransform: {fileID: 558095440204295561}
 --- !u!1 &548497696610848619
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +262,37 @@ Transform:
   m_Children:
   - {fileID: 9068123174956660023}
   m_Father: {fileID: 2883646093493045005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &715653980961100380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7525565658009889656}
+  m_Layer: 0
+  m_Name: EffectSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7525565658009889656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715653980961100380}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0213, z: 0.0116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8221537140322708263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &867577674325127235
 GameObject:
@@ -399,6 +432,7 @@ Transform:
   - {fileID: 2862548808963840293}
   - {fileID: 2792263556602656813}
   - {fileID: 558095440204295561}
+  - {fileID: 7525565658009889656}
   m_Father: {fileID: 4996977432592798398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1302551200048751892
@@ -1488,14 +1522,18 @@ MonoBehaviour:
     m_ThrowForce: 5
     m_ThrowMomentumForwardDirection: {x: 1, y: 2}
     m_ThrowMomentumPlayerRb: 0.2
+    m_GrabbedFoodParticlePrefab: {fileID: 1921253003775114923, guid: 5e912c167c0df974eb6c6bbc4093886a,
+      type: 3}
     m_LeftHand:
       m_FoodPosition: {fileID: 558095440204295561}
       m_ThrowPoint: {fileID: 558095440204295561}
+      m_EffectSpawnPoint: {fileID: 0}
       m_Animator: {fileID: 4782654478144548433}
       m_HandAnimatorManagement: {fileID: 4871591894362827141}
     m_RightHand:
       m_FoodPosition: {fileID: 6287754216700759419}
       m_ThrowPoint: {fileID: 6287754216700759419}
+      m_EffectSpawnPoint: {fileID: 0}
       m_Animator: {fileID: 942321250605974333}
       m_HandAnimatorManagement: {fileID: 2316508184197310299}
     m_MergedFoodPrefab: {fileID: 7354829722045014985, guid: a04b9f56709f78941815ea4072a5a32b,
@@ -1992,6 +2030,7 @@ Transform:
   - {fileID: 2564783710235543226}
   - {fileID: 2188422173079794452}
   - {fileID: 6287754216700759419}
+  - {fileID: 3172395502820357941}
   m_Father: {fileID: 4573624215137615813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6833933099552332776
@@ -2413,7 +2452,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MagicalCircleParticlePrefab: {fileID: 1921253003775114923, guid: 5e912c167c0df974eb6c6bbc4093886a,
     type: 3}
-  m_HandTransform: {fileID: 1494886343112047280}
+  m_MagicalFogParticlePrefab: {fileID: 3401707488106937788, guid: 69f4277f8c493ab4687d3819f8179c18,
+    type: 3}
+  m_HandTransform: {fileID: 6287754216700759419}
 --- !u!1 &8396677778681063292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,6 +2616,37 @@ Transform:
   - {fileID: 2599834291422199043}
   m_Father: {fileID: 8221537140322708263}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9079698866511510189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3172395502820357941}
+  m_Layer: 0
+  m_Name: EffectSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3172395502820357941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9079698866511510189}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0.0213, z: 0.0116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1494886343112047280}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &9173203214430549145
 GameObject:
   m_ObjectHideFlags: 0

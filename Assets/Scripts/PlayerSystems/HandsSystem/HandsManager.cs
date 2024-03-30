@@ -50,7 +50,7 @@ namespace PlayerSystems.HandsSystem
             if (!hand.isFoodHandle)
             {
                 if(food)
-                    PutInHand(food, hand, true);
+                    PutInHand(food, hand, true, true);
             }
             else
             {
@@ -80,9 +80,9 @@ namespace PlayerSystems.HandsSystem
         }
         //-----------------
 
-        void PutInHand(GameObject food, Hands hand, bool activeMoveTechChecker) 
+        void PutInHand(GameObject food, Hands hand, bool activeMoveTechChecker, bool grabAnim) 
         {
-            hand.PutItHand(food);
+            hand.PutItHand(food, grabAnim);
 
             if(activeMoveTechChecker)
             {
@@ -103,11 +103,14 @@ namespace PlayerSystems.HandsSystem
             (GameObject, Food) currentFinalPosHandData = finalMergeHand.GetHandInfos();
             (GameObject, Food) currentMovedPosHandData = movedHand.GetHandInfos();
 
-            if(!finalMergeHand.isFoodHandle)
+            movedHand.m_Animator.SetTrigger("StartMerge");
+            finalMergeHand.m_Animator.SetTrigger("FinalMerge");
+
+            if (!finalMergeHand.isFoodHandle)
             {
                 //PutInHand(UnityEngine.Object.Instantiate(m_MergedFoodPrefab), finalMergeHand);
-                PutInHand(currentMovedPosHandData.Item1, finalMergeHand, false);
-                movedHand.SetFood(null);
+                PutInHand(currentMovedPosHandData.Item1, finalMergeHand, false, true);
+                movedHand.SetFood(null, false);
             }
             else if(currentFinalPosHandData.Item2.GetType() == typeof(SimpleFood))
             {
@@ -115,7 +118,8 @@ namespace PlayerSystems.HandsSystem
             }
             else if(currentFinalPosHandData.Item2.GetType() == typeof(MergedFood))
             {
-                AddFoodInHand(currentFinalPosHandData.Item2, currentMovedPosHandData.Item2);
+                finalMergeHand.PutItHand(currentMovedPosHandData.Item1, true);
+                //AddFoodInHand(currentFinalPosHandData.Item2, currentMovedPosHandData.Item2);
                 movedHand.DestroyFood();
             }
             else
@@ -124,7 +128,7 @@ namespace PlayerSystems.HandsSystem
             }
         }
 
-        void AddFoodInHand(Food finalFood, Food foodToAdd)
+        /*void AddFoodInHand(Food finalFood, Food foodToAdd)
         {
             MergedFood food = (MergedFood)finalFood;
             SimpleFood foodSimpleChild = (SimpleFood)foodToAdd;
@@ -138,7 +142,7 @@ namespace PlayerSystems.HandsSystem
             {
                 food.AddFood(foodSimpleChild);
             }
-        }
+        }*/
 
         void ReplaceSimpleFoodHandWithMergedFood(Hands handToReplace, SimpleFood simpleToReplace, Hands otherHand, GameObject newGoFood)
         {
@@ -148,10 +152,10 @@ namespace PlayerSystems.HandsSystem
             mergedFood.AddFood(simpleToReplace);
 
             handToReplace.DestroyFood();
-            PutInHand(handMergedGo, handToReplace, false);
+            PutInHand(handMergedGo, handToReplace, false, false);
 
             //Add right hand in merged left hand
-            PutInHand(newGoFood, handToReplace, false);
+            PutInHand(newGoFood, handToReplace, false, false);
             otherHand.DestroyFood();
         }
     }
