@@ -9,8 +9,11 @@ namespace Player.HandSystem
     {
         [SerializeField] private Transform m_FoodPosition;
         [SerializeField] private Transform m_ThrowPoint;
+        [SerializeField] private Transform m_EffectSpawnPoint; 
         [SerializeField] private Animator m_Animator;
         [SerializeField] private HandAnimatorManagement m_HandAnimatorManagement;
+        ParticleInstanceManager m_ParticleInstanceManager;
+
         private float m_ThrowForce;
         private GameObject m_HhandledFood;
         private Food m_CurrentFood;
@@ -23,7 +26,6 @@ namespace Player.HandSystem
         float m_IdleHandAnimSpeed;
         int m_IdleHashFullPathPlayerPrefabForSync;
         GameObject m_GrabbedFoodParticlePrefab;
-        GameObject m_GrabbedFoodParticle;
 
         public void InitData(float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection, float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle)
         {
@@ -125,10 +127,12 @@ namespace Player.HandSystem
         {
             m_Animator.SetTrigger("GrabFood");
 
-            if (!m_GrabbedFoodParticle)
+            if (!m_ParticleInstanceManager)
             {
-                m_GrabbedFoodParticle = UnityEngine.Object.Instantiate(m_GrabbedFoodParticlePrefab, m_FoodPosition);
+                m_ParticleInstanceManager = UnityEngine.Object.Instantiate(m_GrabbedFoodParticlePrefab, m_EffectSpawnPoint).GetComponent<ParticleInstanceManager>();
             }
+
+            m_ParticleInstanceManager.Emit(1);
         }
 
         void ThrowFoodVisualEffect()
@@ -140,9 +144,9 @@ namespace Player.HandSystem
 
         void RemoveFoodEffect()
         {
-            if (m_GrabbedFoodParticle)
+            if (m_ParticleInstanceManager)
             {
-                UnityEngine.Object.Destroy(m_GrabbedFoodParticle);
+                m_ParticleInstanceManager.Stop();
             }
         }
 
