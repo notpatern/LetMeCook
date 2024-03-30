@@ -9,10 +9,12 @@ namespace Player.HandSystem
     {
         [SerializeField] private Transform m_FoodPosition;
         [SerializeField] private Transform m_ThrowPoint;
+
+
         [SerializeField] private Transform m_EffectSpawnPoint; 
-        [SerializeField] private Animator m_Animator;
+        public Animator m_Animator;
         [SerializeField] private HandAnimatorManagement m_HandAnimatorManagement;
-        ParticleInstanceManager m_ParticleInstanceManager;
+        ParticleSystemUtility.ParticleInstanceManager m_ParticleInstanceManager;
 
         private float m_ThrowForce;
         private GameObject m_HhandledFood;
@@ -21,7 +23,7 @@ namespace Player.HandSystem
         Rigidbody m_MomentumRb;
         Vector2 m_ThrowMomentumForwardDirection;
         float m_ThrowMomentumPlayerRb;
-        [SerializeField] public bool isFoodHandle { get; private set; } = false;
+        public bool isFoodHandle { get; private set; } = false;
         Animator m_PlayerPrefabAnimator;
         float m_IdleHandAnimSpeed;
         int m_IdleHashFullPathPlayerPrefabForSync;
@@ -40,9 +42,10 @@ namespace Player.HandSystem
             m_IdleHandAnimSpeed = m_Animator.GetCurrentAnimatorStateInfo(0).speed;
             m_IdleHashFullPathPlayerPrefabForSync = m_Animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
             m_HandAnimatorManagement.BindResincronyzationOnMainIdle(ResincronyzationOnMainIdleAnimation);
+            m_HandAnimatorManagement.BindStopGrabParticle(RemoveFoodEffect);
         }
 
-        public void PutItHand(GameObject food)
+        public void PutItHand(GameObject food, bool grabAnim)
         {
             if(food == null) return;
             
@@ -65,7 +68,7 @@ namespace Player.HandSystem
             else if(!m_CurrentFood)
             {
                 food.GetComponent<Food>().PutInHand(m_FoodPosition);
-                SetFood(food);
+                SetFood(food, grabAnim);
 
             }
         }
@@ -89,23 +92,27 @@ namespace Player.HandSystem
 
             Vector3 momentum = m_ThrowPoint.forward * m_ThrowMomentumForwardDirection.x + m_ThrowPoint.up * m_ThrowMomentumForwardDirection.y;
             food.LaunchFood(momentum * m_ThrowForce + m_MomentumRb.velocity * m_ThrowMomentumPlayerRb);
-            SetFood(null);
+            SetFood(null, false);
         }
 
         public void DestroyFood()
         {
             UnityEngine.Object.Destroy(m_HhandledFood);
-            SetFood(null);
+            SetFood(null, false);
         }
 
-        public void SetFood(GameObject foodGo)
+        public void SetFood(GameObject foodGo, bool grabAnim)
         {
             m_HhandledFood = foodGo;
-            
-            if(foodGo)
+
+            if (foodGo)
             {
-                GrabFoodVisualEffect();
-                if(foodGo.GetComponent<Food>().GetType() == typeof(SimpleFood))
+                if (grabAnim)
+                {
+                    GrabFoodVisualEffect();
+                }
+
+                if (foodGo.GetComponent<Food>().GetType() == typeof(SimpleFood))
                 {
                     m_CurrentFood = (SimpleFood)foodGo.GetComponent<Food>();
                 }
@@ -116,7 +123,6 @@ namespace Player.HandSystem
             }
             else
             {
-                RemoveFoodEffect();
                 m_CurrentFood = null;
             }
 
@@ -129,7 +135,7 @@ namespace Player.HandSystem
 
             if (!m_ParticleInstanceManager)
             {
-                m_ParticleInstanceManager = UnityEngine.Object.Instantiate(m_GrabbedFoodParticlePrefab, m_EffectSpawnPoint).GetComponent<ParticleInstanceManager>();
+                m_ParticleInstanceManager = UnityEngine.Object.Instantiate(m_GrabbedFoodParticlePrefab, m_EffectSpawnPoint).GetComponent<ParticleSystemUtility.ParticleInstanceManager>();
             }
 
             m_ParticleInstanceManager.Emit(1);
@@ -138,15 +144,13 @@ namespace Player.HandSystem
         void ThrowFoodVisualEffect()
         {
             m_Animator.SetTrigger("Throw");
-
-            RemoveFoodEffect();
         }
 
         void RemoveFoodEffect()
         {
             if (m_ParticleInstanceManager)
             {
-                m_ParticleInstanceManager.Stop();
+                m_ParticleInstanceManager.Stop(true);
             }
         }
 

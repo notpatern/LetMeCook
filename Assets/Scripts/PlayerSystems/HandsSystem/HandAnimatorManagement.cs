@@ -3,39 +3,74 @@ using UnityEngine.Events;
 
 namespace Player.HandSystem
 {
-
     public class HandAnimatorManagement : MonoBehaviour
     {
-        UnityEvent m_ResincronyzeIdleAction = new UnityEvent();
+        UnityEvent m_ResincronyzeIdle = new UnityEvent();
+        UnityEvent m_StopGrabParticle = new UnityEvent();
         [SerializeField] GameObject m_MagicalCircleParticlePrefab;
-        GameObject m_ParticleInstance;
+        [SerializeField] GameObject m_MagicalFogParticlePrefab;
+        GameObject m_ParticleCircleInstance;
+        GameObject m_ParticleFogInstance;
         [SerializeField] Transform m_HandTransform;
 
         public void BindResincronyzationOnMainIdle(UnityAction action)
         {
-            m_ResincronyzeIdleAction.AddListener(action);
+            m_ResincronyzeIdle.AddListener(action);
+        }
+
+        public void BindStopGrabParticle(UnityAction action)
+        {
+            m_StopGrabParticle.AddListener(action);
         }
 
         public void AskResincronyzeAnimatorIdle()
         {
-            m_ResincronyzeIdleAction.Invoke();
+            m_ResincronyzeIdle.Invoke();
         }
 
-        public void SpawnMagicalParticle()
+        public void AskStopGrabParticle()
         {
-            m_ParticleInstance = Instantiate(m_MagicalCircleParticlePrefab, m_HandTransform);
-            m_ParticleInstance.transform.SetParent(null);
-            m_ParticleInstance.transform.localScale = Vector3.one;
+            m_StopGrabParticle.Invoke();
         }
 
-        public void StopMagicalParticle()
+        public void SpawnMagicalCircleParticle()
         {
-            if (m_ParticleInstance)
+            SpawnPartcile(true, out m_ParticleCircleInstance, m_MagicalCircleParticlePrefab);
+        }
+
+        public void SpawnFogParticle()
+        {
+            SpawnPartcile(true, out m_ParticleFogInstance, m_MagicalFogParticlePrefab);
+        }
+
+        void SpawnPartcile(bool parentToHand, out GameObject savedInstance, GameObject particlePrefab)
+        {
+            savedInstance = Instantiate(particlePrefab, m_HandTransform);
+
+            if (parentToHand)
             {
-                Destroy(m_ParticleInstance);
+                savedInstance.transform.SetParent(null);
+                savedInstance.transform.localScale = Vector3.one;
             }
+        }
 
+        public void StopMagicalCircleParticle()
+        {
+            StopParticle(m_ParticleCircleInstance);
+
+        }
+
+        public void StopMagicalFogParticle()
+        {
+            StopParticle(m_ParticleFogInstance);
+        }
+
+        void StopParticle(GameObject particleInstance)
+        {
+            if (particleInstance)
+            {
+                Destroy(particleInstance);
+            }
         }
     }
-
 }
