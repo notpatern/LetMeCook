@@ -15,7 +15,7 @@ namespace PlayerSystems.PlayerBase
         [SerializeField] HandsManager m_HandsManager;
         [SerializeField] Rigidbody m_PlayerRb;
         [SerializeField] Animator m_PlayerPrefabAnimator;
-        public MovementFsmCore m_MovementFsmCore;
+        [SerializeField] MovementFsmCore m_MovementFsmCore;
 
         void Start()
         {

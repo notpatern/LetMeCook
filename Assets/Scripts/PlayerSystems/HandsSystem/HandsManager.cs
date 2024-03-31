@@ -15,6 +15,7 @@ namespace PlayerSystems.HandsSystem
         [SerializeField] float m_ThrowMomentumPlayerRb = .2f;
 
         [Header("Hands")]
+        [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
         [SerializeField] GameObject m_GrabbedFoodParticlePrefab;
         [SerializeField] private Hands m_LeftHand;
         [SerializeField] private Hands m_RightHand;
@@ -103,14 +104,14 @@ namespace PlayerSystems.HandsSystem
             (GameObject, Food) currentFinalPosHandData = finalMergeHand.GetHandInfos();
             (GameObject, Food) currentMovedPosHandData = movedHand.GetHandInfos();
 
-            movedHand.m_Animator.SetTrigger("StartMerge");
-            finalMergeHand.m_Animator.SetTrigger("FinalMerge");
-
+            m_GameEventCanSpawnMagicalFogForMerge.TriggerEvent(true);
             if (!finalMergeHand.isFoodHandle)
             {
                 //PutInHand(UnityEngine.Object.Instantiate(m_MergedFoodPrefab), finalMergeHand);
                 PutInHand(currentMovedPosHandData.Item1, finalMergeHand, false, true);
                 movedHand.SetFood(null, false);
+
+                m_GameEventCanSpawnMagicalFogForMerge.TriggerEvent(false);
             }
             else if(currentFinalPosHandData.Item2.GetType() == typeof(SimpleFood))
             {
@@ -126,6 +127,9 @@ namespace PlayerSystems.HandsSystem
             {
                 Debug.LogError("MergeFood possibility not handled");
             }
+
+            movedHand.m_Animator.SetTrigger("StartMerge");
+            finalMergeHand.m_Animator.SetTrigger("FinalMerge");
         }
 
         /*void AddFoodInHand(Food finalFood, Food foodToAdd)

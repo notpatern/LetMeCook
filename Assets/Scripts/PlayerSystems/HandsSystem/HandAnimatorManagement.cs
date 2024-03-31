@@ -9,9 +9,16 @@ namespace Player.HandSystem
         UnityEvent m_StopGrabParticle = new UnityEvent();
         [SerializeField] GameObject m_MagicalCircleParticlePrefab;
         [SerializeField] GameObject m_MagicalFogParticlePrefab;
+        bool canSpawnFogParticle = true;
+        [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
         GameObject m_ParticleCircleInstance;
         GameObject m_ParticleFogInstance;
         [SerializeField] Transform m_HandTransform;
+
+        void Awake()
+        {
+            m_GameEventCanSpawnMagicalFogForMerge.BindEventAction(CanSpawnFogParticle);
+        }
 
         public void BindResincronyzationOnMainIdle(UnityAction action)
         {
@@ -40,7 +47,15 @@ namespace Player.HandSystem
 
         public void SpawnFogParticle()
         {
-            SpawnPartcile(true, out m_ParticleFogInstance, m_MagicalFogParticlePrefab);
+            if (canSpawnFogParticle)
+            {
+                SpawnPartcile(true, out m_ParticleFogInstance, m_MagicalFogParticlePrefab);
+            }
+        }
+
+        void CanSpawnFogParticle(object isPossible)
+        {
+            canSpawnFogParticle = (bool)isPossible;
         }
 
         void SpawnPartcile(bool parentToHand, out GameObject savedInstance, GameObject particlePrefab)
