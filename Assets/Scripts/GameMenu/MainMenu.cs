@@ -1,29 +1,37 @@
 using Manager;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : LevelManager
 {
-    [SerializeField] Button m_StoryModeBtn;
-    [SerializeField] TMP_Text m_StoryModeBtnText;
     [SerializeField] Button m_LevelSelectorBtn;
     [SerializeField] Button m_OptionBtn;
 
+    [Header("Level Selector")]
+    [SerializeField] GameObject m_LevelSelectorPanel;
+    [SerializeField] Button[] m_Levels;
+    [SerializeField] int m_FirstLevelBuildIndex;
+
     void Start()
     {
-        LoadStoryModeBtn();
-        m_LevelSelectorBtn.onClick.AddListener(() => {LevelLoader.s_instance.LoadLevel("levelselector");});
+        LoadLevelSelectorBtn();
         m_OptionBtn.onClick.AddListener(() => { m_UiManager.optionMenu.ToggleOptionMenu(); });
     }
 
-    void LoadStoryModeBtn()
+    void LoadLevelSelectorBtn()
     {
-        int currentLevel = PlayerPrefs.GetInt("LEVEL_REACHED", 0);
+        SaveData data = SaveSystem.Load();
+        int levelReached = data.m_LevelReached;
 
-        m_StoryModeBtnText.text = currentLevel == 0 ? "New Game" : "Contiue" ;
+        m_LevelSelectorPanel.SetActive(false);
+        m_LevelSelectorBtn.onClick.AddListener(() => { m_LevelSelectorPanel.SetActive(!m_LevelSelectorPanel.activeSelf); });
 
-        m_StoryModeBtn.onClick.AddListener(() => { LevelLoader.s_instance.LoadLevel(SceneManager.GetSceneByName("TestLevel0").buildIndex + currentLevel); });
+        for (int i=0; i< m_Levels.Length; i++)
+        {
+            int iCopy = i;
+            m_Levels[i].onClick.AddListener(() => { LevelLoader.s_instance.LoadLevel(m_FirstLevelBuildIndex+iCopy); });
+
+            m_Levels[i].interactable = i > levelReached ? false : true;
+        }
     }
 }

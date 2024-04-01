@@ -3,6 +3,8 @@ using Player.HandSystem;
 using UnityEngine;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
+using System.Linq;
+using Unity.VisualScripting;
 
 namespace PlayerSystems.HandsSystem
 {
@@ -24,9 +26,8 @@ namespace PlayerSystems.HandsSystem
         [SerializeField] private GameObject m_MergedFoodPrefab;
         [SerializeField] HandsEnableMoveTech m_HandsEnableMoveTech;
 
-        [SerializeField] GameObject m_JumpMoveTechBracelet;
-        [SerializeField] GameObject m_WallRunMoveTechBracelet;
-        [SerializeField] GameObject m_DashMoveTechBracelet;
+        [SerializeField] Material m_DefaultGemBraceletVisualMaterial;
+        [SerializeField] GemBraceletVisual[] m_GemBraceletMoveTechVisual;
 
         public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator)
         {
@@ -38,13 +39,42 @@ namespace PlayerSystems.HandsSystem
 
         void BindMoveTechVisualEffect()
         {
-            m_JumpMoveTechBracelet.SetActive(false);
-            m_WallRunMoveTechBracelet.SetActive(false);
-            m_DashMoveTechBracelet.SetActive(false);
+            if(m_GemBraceletMoveTechVisual.Length != 3)
+            {
+                Debug.LogError("MoveTech Bracelet visual not handle withour 3 visuals");
+            }
 
-            BindUpdateDashState(action => { m_JumpMoveTechBracelet.SetActive(action); });
-            BindUpdateWallRunState(action => { m_WallRunMoveTechBracelet.SetActive(action); });
-            BindUpdateDoubleJumpState(action => { m_DashMoveTechBracelet.SetActive(action); });
+            for (int i = 0; i < m_GemBraceletMoveTechVisual.Length; i++)
+            {
+                m_GemBraceletMoveTechVisual[i].ChangeGemsMat(m_DefaultGemBraceletVisualMaterial);
+            }
+
+            BindUpdateDashState(action => 
+            {
+                UpdateGemBraceletVisual(action, 0);
+            });
+
+            BindUpdateWallRunState(action => 
+            {
+                UpdateGemBraceletVisual(action, 1);
+            });
+
+            BindUpdateDoubleJumpState(action => 
+            {
+                UpdateGemBraceletVisual(action, 2);
+            });
+        }
+
+        void UpdateGemBraceletVisual(bool isActive, int gemBraceletId)
+        {
+            if (isActive)
+            {
+                m_GemBraceletMoveTechVisual[gemBraceletId].ChangeGemsMat();
+            }
+            else
+            {
+                m_GemBraceletMoveTechVisual[gemBraceletId].ChangeGemsMat(m_DefaultGemBraceletVisualMaterial);
+            }
         }
         
         public void UseHand(GameObject food, HandsType handsType)
@@ -178,6 +208,26 @@ namespace PlayerSystems.HandsSystem
             //Add right hand in merged left hand
             PutInHand(newGoFood, handToReplace, false, false);
             otherHand.DestroyFood();
+        }
+    }
+
+    [Serializable]
+    public class GemBraceletVisual
+    {
+        [SerializeField] MeshRenderer[] m_Gems;
+        [SerializeField] Material m_DefaultActiveGemMat;
+
+        public void ChangeGemsMat(Material newMat = null)
+        {
+            if(!newMat)
+            {
+                newMat = m_DefaultActiveGemMat;
+            }
+
+            foreach (MeshRenderer gem in m_Gems)
+            {
+                gem.material = newMat;
+            }
         }
     }
 
