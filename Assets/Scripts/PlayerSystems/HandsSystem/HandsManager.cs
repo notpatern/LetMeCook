@@ -24,10 +24,27 @@ namespace PlayerSystems.HandsSystem
         [SerializeField] private GameObject m_MergedFoodPrefab;
         [SerializeField] HandsEnableMoveTech m_HandsEnableMoveTech;
 
+        [SerializeField] GameObject m_JumpMoveTechBracelet;
+        [SerializeField] GameObject m_WallRunMoveTechBracelet;
+        [SerializeField] GameObject m_DashMoveTechBracelet;
+
         public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator)
         {
             m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
             m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
+
+            BindMoveTechVisualEffect();
+        }
+
+        void BindMoveTechVisualEffect()
+        {
+            m_JumpMoveTechBracelet.SetActive(false);
+            m_WallRunMoveTechBracelet.SetActive(false);
+            m_DashMoveTechBracelet.SetActive(false);
+
+            BindUpdateDashState(action => { m_JumpMoveTechBracelet.SetActive(action); });
+            BindUpdateWallRunState(action => { m_WallRunMoveTechBracelet.SetActive(action); });
+            BindUpdateDoubleJumpState(action => { m_DashMoveTechBracelet.SetActive(action); });
         }
         
         public void UseHand(GameObject food, HandsType handsType)
