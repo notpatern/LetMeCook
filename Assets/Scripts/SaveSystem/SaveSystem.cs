@@ -6,21 +6,21 @@ public class SaveSystem : MonoBehaviour
 {
     public static void Save(int levelReached)
     {
-        string path = Application.persistentDataPath + "/Player.save";
+        string path = Application.persistentDataPath + "/Save.exe";
 
-        SaveData saveData = new SaveData(levelReached); //appelle la méthode
+        SaveData saveData = new SaveData(levelReached);
 
-        string data = JsonUtility.ToJson(saveData);//transform les données
+        string data = JsonUtility.ToJson(saveData);
         string dataString = SecureHelper.DecryptAndCrypt(data);
 
-        FileStream jsonFile = new FileStream(path, FileMode.Create);//créé le fichier json
-        jsonFile.Close();//ferme le fichier
-        File.WriteAllText(path, dataString); //écrit data avec le streamWriter json 
+        FileStream jsonFile = new FileStream(path, FileMode.Create);
+        jsonFile.Close();
+        File.WriteAllText(path, dataString);
     }
 
     public static SaveData Load()
     {
-        string path = Application.persistentDataPath + "/Player.save";
+        string path = Application.persistentDataPath + "/Save.exe";
 
         if (!File.Exists(path))
         {
@@ -36,7 +36,7 @@ public class SaveSystem : MonoBehaviour
 
     public static void DeleteSave()
     {
-        string path = Application.persistentDataPath + "/Player.save";
+        string path = Application.persistentDataPath + "/Save.exe";
 
         if (!File.Exists(path))
         {
