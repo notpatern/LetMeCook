@@ -4,7 +4,7 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "GameEvent", menuName = "LetMeCook/GameEvent")]
 public class GameEventScriptableObject : ScriptableObject
 {
-    UnityEvent<object> m_GameEvent;
+    UnityEvent<object> m_GameEvent = new UnityEvent<object>();
 
     public void TriggerEvent(object args = null)
     {
