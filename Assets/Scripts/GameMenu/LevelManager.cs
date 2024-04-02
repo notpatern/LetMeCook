@@ -7,7 +7,8 @@ namespace Manager
     {
         [SerializeField] DefaultLevelData m_DefaultLevelData;
         protected UIManager m_UiManager;
-        [SerializeField] LevelData m_LevelData;
+        [SerializeField] protected LevelData m_LevelData;
+        [SerializeField, Tooltip("can be null")] Transform m_EndconditionParentUI;
 
         protected virtual void Awake()
         {
@@ -21,7 +22,7 @@ namespace Manager
             TimeOption.TimeOptionManagement.LoadTimeOptionsManagement();
 
             m_UiManager = new UIManager();
-            m_UiManager.LoadUI(m_LevelData.levelUIData, m_LevelData.dialogLevelData);
+            m_UiManager.LoadUI(m_LevelData.levelUIData, m_LevelData.dialogLevelData, m_EndconditionParentUI);
         }
     }
 }

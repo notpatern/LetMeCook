@@ -13,4 +13,7 @@ public class LevelUIData : ScriptableObject
 
     [Header("Dialog Menu")]
     public GameObject dialogMenu;
+
+    [Header("GameMode")]
+    public GameObject endConditionPrefab;
 }

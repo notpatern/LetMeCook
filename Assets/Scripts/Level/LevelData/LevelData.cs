@@ -6,4 +6,5 @@ public class LevelData : ScriptableObject
 {
     public LevelUIData levelUIData;
     public DialogLevelData dialogLevelData;
+    public float levelDuration = 120f;
 }

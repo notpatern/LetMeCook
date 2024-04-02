@@ -9,11 +9,10 @@ namespace UI
         public MENUScripts.PauseMenuUI pauseMenu;
         public MENUScripts.OptionMenu optionMenu;
         public PlayerHUD playerHUD;
-        public WinMenuUI winMenu;
-        public LoseMenuUI loseMenu;
+        public EndConditionUI endConditionUI;
         public DialogUIManagement dialogUiManagement;
 
-        public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData)
+        public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData, Transform endConditionParent)
         {
             LoadBaseCanvas(levelUIData.canvasPrefab);
 
@@ -33,6 +32,16 @@ namespace UI
             {
                 LoadDialogsPanel(levelUIData.dialogMenu, dialogLevelData);
             }
+
+            if(levelUIData.endConditionPrefab && endConditionParent)
+            {
+                LoadEndConditionUI(levelUIData.endConditionPrefab, endConditionParent);
+            }
+        }
+
+        void LoadEndConditionUI(GameObject endConditionPrefab, Transform parent)
+        {
+            endConditionUI = Object.Instantiate(endConditionPrefab, parent).GetComponent<EndConditionUI>();
         }
 
         void LoadBaseCanvas(GameObject canvasPrefab) //Load canvas for all the menus
