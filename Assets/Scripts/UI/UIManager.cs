@@ -10,6 +10,7 @@ namespace UI
         public MENUScripts.OptionMenu optionMenu;
         public PlayerHUD playerHUD;
         public EndConditionUI endConditionUI;
+        public EndScreenUI endScreen;
         public DialogUIManagement dialogUiManagement;
 
         public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData, Transform endConditionParent)
@@ -37,6 +38,16 @@ namespace UI
             {
                 LoadEndConditionUI(levelUIData.endConditionPrefab, endConditionParent);
             }
+
+            if(levelUIData.endScreenMenuPrefab)
+            {
+                LoadEndScreen(levelUIData.endScreenMenuPrefab);
+            }
+        }
+
+        void LoadEndScreen(GameObject endScreenPrefab)
+        {
+            endScreen = Object.Instantiate(endScreenPrefab, menuCanvas.transform).GetComponent<EndScreenUI>();
         }
 
         void LoadEndConditionUI(GameObject endConditionPrefab, Transform parent)

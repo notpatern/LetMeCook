@@ -11,15 +11,13 @@ namespace Manager
         { 
             base.Awake();
             m_Player.InitUIEvent(m_UiManager);
-            
-            LevelScoreDataTransmetor levelScoreDataTransmetor = Instantiate(new GameObject().AddComponent<LevelScoreDataTransmetor>());
-            DontDestroyOnLoad(levelScoreDataTransmetor.gameObject);
 
             m_GameEndCondition = new DefaultGameEndCondition();
             m_GameEndCondition.InitGameEndCondition(m_LevelData.levelDuration);
             m_GameEndCondition.BindOnEndCondition(() =>
             {
-                LevelLoader.s_instance.LoadLevel(1);//endScene buildIndex
+                m_UiManager.endScreen.InitEndScreen();
+                m_UiManager.endScreen.SetActive(true);
             });
         }
 
