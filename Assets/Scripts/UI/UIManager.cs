@@ -48,6 +48,7 @@ namespace UI
         void LoadEndScreen(GameObject endScreenPrefab)
         {
             endScreen = Object.Instantiate(endScreenPrefab, menuCanvas.transform).GetComponent<EndScreenUI>();
+            endScreen.SetActive(false);
         }
 
         void LoadEndConditionUI(GameObject endConditionPrefab, Transform parent)
