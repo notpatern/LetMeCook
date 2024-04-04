@@ -1,3 +1,4 @@
+using PlayerSystems.PlayerBase;
 using UnityEngine;
 
 namespace Manager
@@ -6,6 +7,9 @@ namespace Manager
     {
         [SerializeField] PlayerSystems.PlayerBase.Player m_Player;
         [SerializeField] GameEndCondition m_GameEndCondition;
+        int score = 0;
+        int recipesNb = 10;
+        int completedRecipes = 3;
 
         override protected void Awake()
         { 
@@ -16,7 +20,8 @@ namespace Manager
             m_GameEndCondition.InitGameEndCondition(m_LevelData.levelDuration);
             m_GameEndCondition.BindOnEndCondition(() =>
             {
-                m_UiManager.endScreen.InitEndScreen();
+                m_Player.gameObject.SetActive(false);
+                m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes));
                 m_UiManager.endScreen.SetActive(true);
             });
         }
@@ -24,7 +29,7 @@ namespace Manager
         private void Update()
         {
             m_GameEndCondition.Update(Time.deltaTime);
-            m_UiManager.endConditionUI.UpdateText((m_GameEndCondition.m_Timer/60f).ToString("00.00") + "s");
+            m_UiManager.endConditionUI.UpdateText((m_GameEndCondition.m_Timer).ToString("0:00") + "s");
         }
     }
 }

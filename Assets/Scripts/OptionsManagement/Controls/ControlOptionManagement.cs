@@ -78,5 +78,11 @@ namespace ControlOptions
             playerInput.TogglePauseMenu.Enable();
         }
 
+        public static void SetCursorIsPlayMode(bool playMode)
+        {
+            Cursor.lockState = playMode ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !playMode;
+        }
+
     }
 }
