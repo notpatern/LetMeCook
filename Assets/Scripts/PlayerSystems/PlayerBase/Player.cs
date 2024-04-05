@@ -42,7 +42,7 @@ namespace PlayerSystems.PlayerBase
         public void InitUI(UI.UIManager uIManager)
         {
             //Stamina---------
-            m_MovementFsmCore.BindStaminaregeneration(uIManager.playerHUD.UpdateStaminaFill);
+            m_MovementFsmCore.BindStaminaRegeneration(uIManager.playerHUD.UpdateStaminaFill);
 
             //Inputs----------
             m_InputManager.BindTogglePauseMenu(uIManager.pauseMenu.ToggleActiveMenuState);
