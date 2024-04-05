@@ -51,11 +51,12 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Update()
         {
             WallTimer();
+            fsmCore.ConsumeStamina(fsmCore.staminaData.wallRunStamina * Time.deltaTime);
         }
 
         public override void FixedUpdate()
         {
-            if (CanStillWallRun())
+            if (CanStillWallRun() && fsmCore.Stamina > 0)
             {
                 WallRunMovement();
                 return;
@@ -97,7 +98,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         {
             fsmCore.onFovChange.TriggerEvent(fsmCore.cameraData.defaultFov);
             fsmCore.onTiltChange.TriggerEvent(fsmCore.cameraData.defaultTilt);
-            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, _context.canJump, true, fsmCore.canWallRun, _context.wallInfo));
+            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, fsmCore.canJump, true, fsmCore.canWallRun, _context.wallInfo));
         }
     }
 }

@@ -61,6 +61,11 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         
         private bool CanWallRun()
         {
+            if (fsmCore.Stamina <= 0)
+            {
+                return false;
+            }
+            
             bool canWallRun = false;
             
             if (_wallLeft && fsmCore.Input is { x: < 0, y: > 0 })
