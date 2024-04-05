@@ -17,7 +17,7 @@ namespace PlayerSystems.PlayerBase
         [SerializeField] Animator m_PlayerPrefabAnimator;
         [SerializeField] MovementFsmCore m_MovementFsmCore;
 
-        void Start()
+        public void Init()
         {
             m_PlayerInteraction.BindPerformInteraction(m_HandsManager.UseHand);
             m_InputManager.BindHandAction(m_PlayerInteraction.ActiveInteraction);
@@ -39,8 +39,11 @@ namespace PlayerSystems.PlayerBase
             m_MovementFsmCore.FixedUpdate();
         }
 
-        public void InitUIEvent(UI.UIManager uIManager)
+        public void InitUI(UI.UIManager uIManager)
         {
+            //Stamina---------
+            m_MovementFsmCore.BindStaminaregeneration(uIManager.playerHUD.UpdateStaminaFill);
+
             //Inputs----------
             m_InputManager.BindTogglePauseMenu(uIManager.pauseMenu.ToggleActiveMenuState);
 
