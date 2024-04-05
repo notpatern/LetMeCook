@@ -1,12 +1,16 @@
 using ControlOptions;
-using TimeOption;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class EndScreenUI : MonoBehaviour
 {
     [SerializeField] GameObject m_PanelContent;
-    [SerializeField] GameObject[] m_StarsGo;
+    [Header("Stars")]
+    [SerializeField] GameObject[] m_ActiveStarsGo;
+    [SerializeField] float m_StarActivationTransitionTime = 0.5f;
+
+    [Header("Score Texts")]
     [SerializeField] TMP_Text m_ScoreText;
     [SerializeField] TMP_Text m_CompletedRecipesRateText;
     public void SetActive(bool state)
@@ -21,6 +25,38 @@ public class EndScreenUI : MonoBehaviour
 
         m_ScoreText.text = "Score : " + playerScore.m_Score;
         m_CompletedRecipesRateText.text = "Completed Recipes Rate : " + (playerScore.m_CompletedRecipes/(float)playerScore.m_TotalRecipes * 100) + "%";
+
+        int minimumRequiredScoreOverflow = playerScore.m_Score - playerScore.m_RequiredScore;
+
+        foreach(GameObject star in m_ActiveStarsGo)
+        {
+            star.SetActive(false);
+        }
+
+        if(minimumRequiredScoreOverflow < 0) 
+        {
+            return;
+        }
+
+        //stars are generated based on *2 minimum required score is the max for now
+        float scoreStep = playerScore.m_RequiredScore / (float)m_ActiveStarsGo.Length;
+        StartCoroutine(ActiveStarWithOffsetTransition(minimumRequiredScoreOverflow, scoreStep));
+    }
+
+    IEnumerator ActiveStarWithOffsetTransition(int minimumRequiredScoreOverflow, float scoreStep)
+    {
+        for (int i = 0; i < m_ActiveStarsGo.Length; i++)
+        {
+            if (i == 0 || minimumRequiredScoreOverflow >= scoreStep * i)
+            {
+                m_ActiveStarsGo[i].SetActive(true);
+                yield return new WaitForSeconds(m_StarActivationTransitionTime);
+            }
+            else
+            {
+                break;
+            }
+        }
     }
 }
 

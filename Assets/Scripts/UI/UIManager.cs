@@ -13,6 +13,7 @@ namespace UI
         public EndScreenUI endScreen;
         public DialogUIManagement dialogUiManagement;
 
+        //if there are problems with multiple layers then do a layer system with an UIContent parent or something and add a layer parameter
         public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData, Transform endConditionParent)
         {
             LoadBaseCanvas(levelUIData.canvasPrefab);
