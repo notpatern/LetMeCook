@@ -33,7 +33,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         {
             base.FixedUpdate();
             IsWallNear();
-            if (!CanWallRun() || !WallRunExited())
+            if (!CanWallRun() || !WallRunExited() || !fsmCore.canWallRun)
             {
                 return;
             }
