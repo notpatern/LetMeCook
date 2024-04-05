@@ -16,7 +16,8 @@ namespace Manager
         override protected void Awake()
         { 
             base.Awake();
-            m_Player.InitUIEvent(m_UiManager);
+            m_Player.Init();
+            m_Player.InitUI(m_UiManager);
 
             m_GameEndCondition = new DefaultGameEndCondition();
             m_GameEndCondition.InitGameEndCondition(m_LevelData.levelDuration, m_UiManager.endConditionUI);

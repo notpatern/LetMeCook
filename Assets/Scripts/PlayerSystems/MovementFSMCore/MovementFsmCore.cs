@@ -3,6 +3,7 @@ using PlayerSystems.MovementFSMCore.DataClass;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using PlayerSystems.MovementFSMCore.MovementState;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace PlayerSystems.MovementFSMCore
@@ -26,6 +27,7 @@ namespace PlayerSystems.MovementFSMCore
         [HideInInspector] public Rigidbody rb;
         public Transform orientation;
         private float Stamina { get; set; }
+        UnityEvent<float> _onStaminaUpdate = new UnityEvent<float>();
 
         float IStamina.Stamina
         {
@@ -159,12 +161,25 @@ namespace PlayerSystems.MovementFSMCore
             }
 
             Stamina -= staminaToConsume;
+            _onStaminaUpdate.Invoke(Stamina / staminaData.maxStamina);
             return true;
+        }
+
+        public void BindStaminaregeneration(UnityAction<float> action)
+        {
+            _onStaminaUpdate.AddListener(action);
         }
 
         public void RegenerateStamina(float staminaToRegenerate)
         {
+            if(Stamina > staminaData.maxStamina)
+            {
+                return;
+            }
+
             Stamina += staminaToRegenerate * Time.deltaTime;
+
+            _onStaminaUpdate.Invoke(Stamina / staminaData.maxStamina);
         }
     }
 }
