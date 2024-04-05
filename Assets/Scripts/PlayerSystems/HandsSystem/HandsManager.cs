@@ -3,8 +3,6 @@ using Player.HandSystem;
 using UnityEngine;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
-using System.Linq;
-using Unity.VisualScripting;
 
 namespace PlayerSystems.HandsSystem
 {
@@ -29,10 +27,10 @@ namespace PlayerSystems.HandsSystem
         [SerializeField] Material m_DefaultGemBraceletVisualMaterial;
         [SerializeField] GemBraceletVisual[] m_GemBraceletMoveTechVisual;
 
-        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator)
+        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator, Transform cameraTr, LayerMask interactionLayerMask)
         {
-            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
-            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
+            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, interactionLayerMask);
+            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, interactionLayerMask);
 
             BindMoveTechVisualEffect();
         }

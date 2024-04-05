@@ -9,7 +9,7 @@ namespace Player.HandSystem
     {
         [SerializeField] private Transform m_FoodPosition;
         [SerializeField] private Transform m_ThrowPoint;
-
+        Transform m_CameraTr;
 
         [SerializeField] private Transform m_EffectSpawnPoint; 
         public Animator m_Animator;
@@ -28,13 +28,16 @@ namespace Player.HandSystem
         float m_IdleHandAnimSpeed;
         int m_IdleHashFullPathPlayerPrefabForSync;
         GameObject m_GrabbedFoodParticlePrefab;
+        LayerMask m_InteractionLayerMask;
 
-        public void InitData(float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection, float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle)
+        public void InitData(float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection, float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle, Transform cameraTr, LayerMask interactionLayerMask)
         {
             m_ThrowForce = throwForce;
             m_MomentumRb = momentumRb;
+            m_CameraTr = cameraTr;
             m_ThrowMomentumForwardDirection = throwMomentumForwardDirection;
             m_ThrowMomentumPlayerRb = throwMomentumPlayerRb;
+            m_InteractionLayerMask = interactionLayerMask;
 
             m_GrabbedFoodParticlePrefab = grabbedFoodParticle;
 
@@ -85,6 +88,15 @@ namespace Player.HandSystem
 
         public void ReleaseFood()
         {
+            RaycastHit hit;
+            Vector3 dist = m_ThrowPoint.position - m_CameraTr.position;
+            Debug.DrawLine(m_CameraTr.position, m_ThrowPoint.position, Color.red, 15f);
+            if (Physics.Raycast(m_CameraTr.position, dist.normalized, out hit, dist.magnitude))//m_InteractionLayerMask
+            {
+                m_HhandledFood.transform.position = hit.point;
+                Debug.Log("rrrr");
+            }
+
             ThrowFoodVisualEffect();
 
             Food food = m_HhandledFood.GetComponent<Food>();

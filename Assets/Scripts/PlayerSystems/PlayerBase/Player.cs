@@ -23,7 +23,7 @@ namespace PlayerSystems.PlayerBase
             m_InputManager.BindHandAction(m_PlayerInteraction.ActiveInteraction);
             m_InputManager.BindMergeHandInput(m_HandsManager.MergeFood);
 
-            m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator);
+            m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator, m_MovementFsmCore.camera, m_PlayerInteraction.m_LayerMask);
             InitFsmCore();
         }
 

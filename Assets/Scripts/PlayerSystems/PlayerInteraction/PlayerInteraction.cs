@@ -12,7 +12,7 @@ namespace Player.Interaction
         [SerializeField] Transform m_Origin;
 
         [SerializeField] float m_InteractionMaxDistance;
-        [SerializeField] LayerMask m_LayerMask;
+        public LayerMask m_LayerMask;
 
         bool m_IsInteractionStopped;
 
