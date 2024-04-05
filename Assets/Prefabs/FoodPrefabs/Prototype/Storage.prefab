@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 28756636951979423}
+  - component: {fileID: 8807356017705713113}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -31,6 +32,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 372990560227329985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8807356017705713113
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034470943817277195}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.2488403, z: 1}
+  m_Center: {x: 0, y: -0.83501697, z: 0}
 --- !u!1 &6328354660843397327
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +66,8 @@ GameObject:
   - component: {fileID: 9129048173454603882}
   - component: {fileID: 6944539680779003760}
   - component: {fileID: 4035538470459637335}
-  m_Layer: 0
+  - component: {fileID: 3413463533341010610}
+  m_Layer: 10
   m_Name: Storage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,3 +175,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectMergedFood: 1
   foodSpawn: {fileID: 28756636951979423}
+  collisionToEnableOnFoodStocked: {fileID: 8807356017705713113}
+--- !u!65 &3413463533341010610
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328354660843397327}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.7839403, z: 1}
+  m_Center: {x: 0, y: 0.8919704, z: 0}

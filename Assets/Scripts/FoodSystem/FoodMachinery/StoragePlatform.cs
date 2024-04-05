@@ -6,22 +6,40 @@ namespace FoodSystem.FoodMachinery
     public class StoragePlatform : FoodCollector, IInteractable
     {
         [SerializeField] Transform foodSpawn;
-        IInteractable _interactableImplementation;
+        [SerializeField] Collider collisionToEnableOnFoodStocked;
+
+        void Awake()
+        {
+            collisionToEnableOnFoodStocked.enabled = false;
+        }
 
         public GameObject StartInteraction()
         {
-            //TODO Give food to the player's hand
+            if(!collectedFoodGo)
+            {
+                return null;
+            }
+
+            collisionToEnableOnFoodStocked.enabled = false;
+            GameObject foodToGive = collectedFoodGo;
+            foodToGive.GetComponent<Collider>().enabled = true;
+            ResetCollector();
             canCollect = true;
-            return collectedFoodGo;
+            return foodToGive;
         }
 
-        public string GetContext() => collectedFood.GetContext();
+        public string GetContext() 
+        {
+            return collectedFood ? collectedFood.GetContext() : "Nothing on the platform";
+        }
 
         protected override void OnFoodCollected()
         {
+            collisionToEnableOnFoodStocked.enabled = true;
             Rigidbody rb = collectedFoodGo.GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        
+            collectedFoodGo.GetComponent<Collider>().enabled = false;
+            rb.isKinematic = true;
+
             collectedFoodGo.transform.position = foodSpawn.position;
             collectedFoodGo.transform.rotation = foodSpawn.rotation;
 
