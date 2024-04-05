@@ -49,7 +49,7 @@ namespace Manager
         {
             int minutes = (int)(m_Timer / 60f);
             int seconds = (int)(m_Timer % 60f);
-            m_EndConditionUI.UpdateText(minutes.ToString("0") + ":" + seconds.ToString("00") + "s");
+            m_EndConditionUI.UpdateText(minutes.ToString("0") + ":" + seconds.ToString("00"));
         }
 
         public void BindOnEndCondition(UnityAction action)

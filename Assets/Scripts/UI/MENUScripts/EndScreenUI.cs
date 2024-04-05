@@ -6,6 +6,7 @@ using UnityEngine;
 public class EndScreenUI : MonoBehaviour
 {
     [SerializeField] GameObject m_PanelContent;
+    [SerializeField] Animator m_EndScreenAnimator;
     [Header("Stars")]
     [SerializeField] GameObject[] m_ActiveStarsGo;
     [SerializeField] float m_StarActivationTransitionTime = 0.5f;
@@ -13,6 +14,9 @@ public class EndScreenUI : MonoBehaviour
     [Header("Score Texts")]
     [SerializeField] TMP_Text m_ScoreText;
     [SerializeField] TMP_Text m_CompletedRecipesRateText;
+    [SerializeField] TMP_Text m_CompletedRecipes;
+    [SerializeField] TMP_Text m_MissedRecipes;
+    [SerializeField] TMP_Text m_GroundedTime;
     public void SetActive(bool state)
     {
         m_PanelContent.SetActive(state);
@@ -20,11 +24,16 @@ public class EndScreenUI : MonoBehaviour
 
     public void InitEndScreen(TempScoreContainer playerScore)
     {
+        m_EndScreenAnimator.SetTrigger("Start");
+
         ControlOptionsManagement.SetCursorIsPlayMode(false);
         ControlOptionsManagement.s_Instance.DisableMainPlayerInputs();
 
         m_ScoreText.text = "Score : " + playerScore.m_Score;
         m_CompletedRecipesRateText.text = "Completed Recipes Rate : " + (playerScore.m_CompletedRecipes/(float)playerScore.m_TotalRecipes * 100) + "%";
+        m_CompletedRecipes.text = "Completed Reciped : " + playerScore.m_CompletedRecipes;
+        m_MissedRecipes.text = "Missed Reciped : " + playerScore.m_TotalRecipes;
+        m_GroundedTime.text = "Time On Ground : 15s";//TODO link the grounded time
 
         int minimumRequiredScoreOverflow = playerScore.m_Score - playerScore.m_RequiredScore;
 
