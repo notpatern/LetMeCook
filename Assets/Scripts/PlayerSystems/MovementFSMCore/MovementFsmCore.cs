@@ -8,7 +8,7 @@ using UnityEngine;
 namespace PlayerSystems.MovementFSMCore
 {
     [Serializable]
-    public class MovementFsmCore
+    public class MovementFsmCore : IStamina
     {
         [Header("References")] [SerializeField]
         private LayerMask isGround;
@@ -18,24 +18,34 @@ namespace PlayerSystems.MovementFSMCore
         public FsmAirData airData;
         public FsmGroundData groundData;
         public FsmDashData dashData;
+        public StaminaData staminaData;
 
         public Transform camera;
 
         [Header("Player")] 
         [HideInInspector] public Rigidbody rb;
         public Transform orientation;
-        public bool jumpHeld;
+        private float Stamina { get; set; }
+
+        float IStamina.Stamina
+        {
+            get => Stamina;
+            set => Stamina = value;
+        }
+
+        [HideInInspector] public bool jumpHeld;
+        [HideInInspector] public bool canJump;
+        [HideInInspector] public bool canDash;
+        [HideInInspector] public bool canWallRun;
         private bool _jumpInput;
         private bool _dashInput;
-        public bool canJump;
-        public bool canDash;
-        public bool canWallRun;
     
         public Vector2 Input { private set; get; }
 
         public void Init(Rigidbody rb)
         {
             this.rb = rb;
+            Stamina = staminaData.maxStamina;
             canJump = false;
             canDash = false;
             canWallRun = false;
@@ -47,6 +57,7 @@ namespace PlayerSystems.MovementFSMCore
         {
             HandleGroundedState();
             _currentState.Update();
+            RegenerateStamina(staminaData.staminaToRegenerate);
         }
 
         public void UpdateWallRunState(bool state)
@@ -119,7 +130,7 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
-            if (!_currentState.context.canJump || (!Grounded() && !canJump))
+            if (!_currentState.context.canJump || (!Grounded() && !canJump) || (!Grounded() && !ConsumeStamina(staminaData.doubleJumpStamina)))
             {
                 return;
             }
@@ -129,12 +140,28 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnDashInputEvent()
         {
-            if (!canDash || !_currentState.context.canDash)
+            if (!canDash || !_currentState.context.canDash || !ConsumeStamina(staminaData.dashStamina))
             {
                 return;
             }
 
             _dashInput = true;
+        }
+
+        public bool ConsumeStamina(float staminaToConsume)
+        {
+            if (Stamina - staminaToConsume < 0)
+            {
+                return false;
+            }
+
+            Stamina -= staminaToConsume;
+            return true;
+        }
+
+        public void RegenerateStamina(float staminaToRegenerate)
+        {
+            Stamina += staminaToRegenerate * Time.deltaTime;
         }
     }
 }
