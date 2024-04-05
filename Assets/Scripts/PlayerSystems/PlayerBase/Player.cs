@@ -19,6 +19,7 @@ namespace PlayerSystems.PlayerBase
 
         public void Init()
         {
+            m_PlayerInteraction.InitPlayerInteraction(m_HandsManager);
             m_PlayerInteraction.BindPerformInteraction(m_HandsManager.UseHand);
             m_InputManager.BindHandAction(m_PlayerInteraction.ActiveInteraction);
             m_InputManager.BindMergeHandInput(m_HandsManager.MergeFood);
