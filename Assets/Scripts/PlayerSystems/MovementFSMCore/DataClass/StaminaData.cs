@@ -9,5 +9,6 @@ namespace PlayerSystems.MovementFSMCore.DataClass
         public float staminaToRegenerate;
         public float dashStamina;
         public float doubleJumpStamina;
+        public float wallRunStamina;
     }
 }
