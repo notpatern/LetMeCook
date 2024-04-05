@@ -7,7 +7,7 @@ namespace RecipeSystem.Core
     {
         public Recipe recipe;
 
-        float timeRemaining;
+        [HideInInspector] public float timeRemaining;
         bool failed;
         bool completed;
 

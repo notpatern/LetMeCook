@@ -15,17 +15,6 @@ namespace RecipeSystem
             Instance = this;
         }
 
-        void Update()
-        {
-            // Debug add random recipe
-            if (Input.GetKeyDown(KeyCode.F1))
-                AddNewRecipe(dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count - 1)]);
-
-            // Debug complete first recipe in list
-            if (Input.GetKeyDown(KeyCode.F2))
-                CompleteRecipe(activeRecipes[0].recipe);
-        }
-
         /// <summary>
         /// Append a new recipe to the game.
         /// Return the instantiated GameRecipe.

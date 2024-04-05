@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RecipeSystem.Core
@@ -7,6 +6,7 @@ namespace RecipeSystem.Core
     public class RecipeUI : MonoBehaviour
     {
         [SerializeField] GameObject UIList;
+        [SerializeField] GameObject recipeCard;
         public static RecipeUI Instance { get; private set; }
 
         void Awake()
