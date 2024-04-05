@@ -1180,7 +1180,7 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 1
+  m_FOVAxisMode: 0
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
@@ -1198,9 +1198,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
-  field of view: 94
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1282,8 +1282,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd6faf61cb9432990a5498a67083199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onFovChange: {fileID: 11400000, guid: 730093bf5e7e26f4587a6e9f7bc31e38, type: 2}
+  onTiltChange: {fileID: 11400000, guid: 422f8c111f492344aa9f6147565f547c, type: 2}
   orientation: {fileID: 4604464782735597648}
   camera: {fileID: 7932818568912763235}
+  camHolder: {fileID: 79585516526279688}
 --- !u!1 &3312842294856815700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,10 +1678,14 @@ MonoBehaviour:
     isGround:
       serializedVersion: 2
       m_Bits: 64
+    onFovChange: {fileID: 11400000, guid: 730093bf5e7e26f4587a6e9f7bc31e38, type: 2}
+    onTiltChange: {fileID: 11400000, guid: 422f8c111f492344aa9f6147565f547c, type: 2}
+    cameraData: {fileID: 11400000, guid: 84ebebe1671790541b522567e71a2f08, type: 2}
     wallRunData: {fileID: 11400000, guid: 64e029d2ea5c1dd46b874028adb3abcd, type: 2}
     airData: {fileID: 11400000, guid: d754bfb4441e41a48abc059f0612ca1d, type: 2}
     groundData: {fileID: 11400000, guid: 6f7e20aa25b509348a569744c37fe3b5, type: 2}
     dashData: {fileID: 11400000, guid: 6ac2759cd37b9754e89f5d211bb2d35b, type: 2}
+    staminaData: {fileID: 11400000, guid: f49ab94ec0ec7aa4eb8cb7ee389d1e95, type: 2}
     camera: {fileID: 7932818568912763235}
     rb: {fileID: 0}
     orientation: {fileID: 4604464782735597648}
