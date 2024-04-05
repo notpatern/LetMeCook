@@ -30,14 +30,8 @@ namespace PlayerSystems.MovementFSMCore
         [Header("Player")] 
         [HideInInspector] public Rigidbody rb;
         public Transform orientation;
-        private float Stamina { get; set; }
-        UnityEvent<float> _onStaminaUpdate = new UnityEvent<float>();
-
-        float IStamina.Stamina
-        {
-            get => Stamina;
-            set => Stamina = value;
-        }
+        public float Stamina { get; set; }
+        private UnityEvent<float> _onStaminaUpdate = new UnityEvent<float>();
 
         [HideInInspector] public bool jumpHeld;
         [HideInInspector] public bool canJump;
@@ -139,9 +133,15 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
-            if (!_currentState.context.canJump || (!Grounded() && !canJump) || (!Grounded() && !ConsumeStamina(staminaData.doubleJumpStamina)))
+            if (!_currentState.context.canJump || (!Grounded() && !canJump))
             {
                 return;
+            }
+
+            if (!Grounded() && _currentState.GetType() != typeof(WallRunState) &&
+                CanConsumeStamina(staminaData.doubleJumpStamina))
+            {
+                ConsumeStamina(staminaData.doubleJumpStamina);
             }
             
             _jumpInput = true;
@@ -149,24 +149,30 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnDashInputEvent()
         {
-            if (!canDash || !_currentState.context.canDash || !ConsumeStamina(staminaData.dashStamina))
+            if (!canDash || !_currentState.context.canDash || !CanConsumeStamina(staminaData.dashStamina))
             {
                 return;
             }
 
+            ConsumeStamina(staminaData.dashStamina);
+
             _dashInput = true;
         }
 
-        public bool ConsumeStamina(float staminaToConsume)
+        public bool CanConsumeStamina(float staminaToConsume)
         {
-            if (Stamina - staminaToConsume < 0)
+            return !(Stamina - staminaToConsume < 0);
+        }
+
+        public void ConsumeStamina(float staminaToConsume)
+        {
+            if (Stamina - staminaToConsume <= 0)
             {
-                return false;
+                Stamina = 0;
             }
 
             Stamina -= staminaToConsume;
             _onStaminaUpdate.Invoke(Stamina / staminaData.maxStamina);
-            return true;
         }
 
         public void BindStaminaRegeneration(UnityAction<float> action)
