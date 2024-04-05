@@ -1,4 +1,5 @@
-﻿using PlayerSystems.MovementFSMCore.MovementContext;
+﻿using System;
+using PlayerSystems.MovementFSMCore.MovementContext;
 using UnityEngine;
 using System.Collections;
 
@@ -19,6 +20,10 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             base.Init();
             fsmCore.rb.drag = 0;
             fsmCore.rb.useGravity = context.useGravity;
+            
+            float[] fovValues = { fsmCore.cameraData.dashFov, fsmCore.cameraData.dashFovTimeToSet };
+            fsmCore.onFovChange.TriggerEvent(fovValues);
+            
             _dashDirection = fsmCore.camera.forward;
             fsmCore.rb.AddForce(_dashDirection * (fsmCore.rb.velocity.magnitude + _context.dashForce), ForceMode.Impulse);
         }
@@ -44,6 +49,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void ExitDash()
         {
+            float[] fovValues = { fsmCore.cameraData.defaultFov, fsmCore.cameraData.defaultFovTimeToSet };
+            fsmCore.onFovChange.TriggerEvent(fovValues);
             fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, 0f, context.canJump, false));
         }
 
