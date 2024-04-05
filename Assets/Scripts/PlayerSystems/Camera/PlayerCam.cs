@@ -15,6 +15,7 @@ namespace PlayerSystems.Camera
         public Transform orientation;
         public new Transform camera;
         public new Transform camHolder;
+        [SerializeField] Transform _handCamera;
 
         float _xRotation;
         float _yRotation;
@@ -47,11 +48,13 @@ namespace PlayerSystems.Camera
         {
             var array = (float[])fovValue;
             GetComponent<UnityEngine.Camera>().DOFieldOfView(array[0], array[1]);
+            _handCamera.GetComponent<UnityEngine.Camera>().DOFieldOfView(array[0], array[1]);
         }
 
         void DoTilt(object zTiltValue)
         {
             transform.DOLocalRotate(new Vector3(0, 0, (float)zTiltValue), 0.25f);
+            _handCamera.DOLocalRotate(new Vector3(0, 0, (float)zTiltValue), 0.25f);
         }
     }
 }

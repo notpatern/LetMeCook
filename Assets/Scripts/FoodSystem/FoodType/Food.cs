@@ -1,6 +1,7 @@
 using Player.Interaction;
 using UnityEngine;
 using System.Collections.Generic;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace FoodSystem.FoodType
 {
@@ -28,7 +29,7 @@ namespace FoodSystem.FoodType
             transform.SetParent(hand);
             transform.position = hand.position;
             transform.localRotation = Quaternion.identity;
-
+            ChangeLayer("Player");
 
             trailRenderer.enabled = false;
         }
@@ -39,9 +40,19 @@ namespace FoodSystem.FoodType
             rb.velocity = Vector3.zero;
             transform.SetParent(null);
             col.enabled = true;
-
+            ChangeLayer("Food");
 
             trailRenderer.enabled = true;
+        }
+
+        void ChangeLayer(string layerName)
+        {
+            gameObject.layer = LayerMask.NameToLayer(layerName);
+            Transform[] children = GetComponentsInChildren<Transform>(includeInactive: true);
+            foreach (Transform child in children)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer(layerName);
+            }
         }
 
         public void LaunchFood(Vector3 launchForce)
