@@ -1,0 +1,234 @@
+using System;
+using Player.HandSystem;
+using UnityEngine;
+using FoodSystem.FoodType;
+using UnityEngine.Events;
+using System.Linq;
+using Unity.VisualScripting;
+
+namespace PlayerSystems.HandsSystem
+{
+    [Serializable]
+    public class HandsManager
+    {
+        [Header("Throw Food")]
+        [SerializeField] private float m_ThrowForce;
+        [SerializeField] Vector2 m_ThrowMomentumForwardDirection = new Vector2(1f, 2f);
+        [SerializeField] float m_ThrowMomentumPlayerRb = .2f;
+
+        [Header("Hands")]
+        [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
+        [SerializeField] GameObject m_GrabbedFoodParticlePrefab;
+        [SerializeField] private Hands m_LeftHand;
+        [SerializeField] private Hands m_RightHand;
+
+        [Header("Merged Food")]
+        [SerializeField] private GameObject m_MergedFoodPrefab;
+        [SerializeField] HandsEnableMoveTech m_HandsEnableMoveTech;
+
+        [SerializeField] Material m_DefaultGemBraceletVisualMaterial;
+        [SerializeField] GemBraceletVisual[] m_GemBraceletMoveTechVisual;
+
+        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator)
+        {
+            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
+            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
+
+            BindMoveTechVisualEffect();
+        }
+
+        void BindMoveTechVisualEffect()
+        {
+            if(m_GemBraceletMoveTechVisual.Length != 3)
+            {
+                Debug.LogError("MoveTech Bracelet visual not handle withour 3 visuals");
+            }
+
+            for (int i = 0; i < m_GemBraceletMoveTechVisual.Length; i++)
+            {
+                m_GemBraceletMoveTechVisual[i].ChangeGemsMat(m_DefaultGemBraceletVisualMaterial);
+            }
+
+            BindUpdateDashState(action => 
+            {
+                UpdateGemBraceletVisual(action, 0);
+            });
+
+            BindUpdateWallRunState(action => 
+            {
+                UpdateGemBraceletVisual(action, 1);
+            });
+
+            BindUpdateDoubleJumpState(action => 
+            {
+                UpdateGemBraceletVisual(action, 2);
+            });
+        }
+
+        void UpdateGemBraceletVisual(bool isActive, int gemBraceletId)
+        {
+            if (isActive)
+            {
+                m_GemBraceletMoveTechVisual[gemBraceletId].ChangeGemsMat();
+            }
+            else
+            {
+                m_GemBraceletMoveTechVisual[gemBraceletId].ChangeGemsMat(m_DefaultGemBraceletVisualMaterial);
+            }
+        }
+        
+        public void UseHand(GameObject food, HandsType handsType)
+        {
+            switch (handsType)
+            {
+                case HandsType.NONE:
+                    Debug.LogError("This should not happen but does.");
+                    break;
+                case HandsType.LEFT:
+                    PerformHandAction(food, m_LeftHand);
+                    break;
+                case HandsType.RIGHT:
+                    PerformHandAction(food, m_RightHand);
+                    break;
+            }
+        }
+
+        public void PerformHandAction(GameObject food, Hands hand)
+        {
+            if (!hand.isFoodHandle)
+            {
+                if(food)
+                    PutInHand(food, hand, true, true);
+            }
+            else
+            {
+                ReleaseFromHand(hand);
+            }
+        }
+
+        public void MergeFood()
+        {
+            MergeHandFood(m_LeftHand, m_RightHand);
+        }
+
+        //Bind Actions-----
+        public void BindUpdateDashState(UnityAction<bool> action)
+        {
+            m_HandsEnableMoveTech.BindUpdateDashState(action);
+        }
+
+        public void BindUpdateWallRunState(UnityAction<bool> action)
+        {
+            m_HandsEnableMoveTech.BindUpdateWallRunState(action);
+        }
+
+        public void BindUpdateDoubleJumpState(UnityAction<bool> action)
+        {
+            m_HandsEnableMoveTech.BindUpdateDoubleJumpState(action);
+        }
+        //-----------------
+
+        void PutInHand(GameObject food, Hands hand, bool activeMoveTechChecker, bool grabAnim) 
+        {
+            hand.PutItHand(food, grabAnim);
+
+            if(activeMoveTechChecker)
+            {
+                m_HandsEnableMoveTech.LoadMoveTech(hand.GetHandFood().GetFoodDatas().ToArray());
+            }
+        }
+
+        void ReleaseFromHand(Hands hand)
+        {
+            m_HandsEnableMoveTech.ClearMoveTech(hand.GetHandFood().GetFoodDatas().ToArray());
+            hand.ReleaseFood();
+        }
+
+        void MergeHandFood(Hands finalMergeHand, Hands movedHand)
+        {
+            if(!movedHand.isFoodHandle) return;
+
+            (GameObject, Food) currentFinalPosHandData = finalMergeHand.GetHandInfos();
+            (GameObject, Food) currentMovedPosHandData = movedHand.GetHandInfos();
+
+            m_GameEventCanSpawnMagicalFogForMerge.TriggerEvent(true);
+            if (!finalMergeHand.isFoodHandle)
+            {
+                //PutInHand(UnityEngine.Object.Instantiate(m_MergedFoodPrefab), finalMergeHand);
+                PutInHand(currentMovedPosHandData.Item1, finalMergeHand, false, true);
+                movedHand.SetFood(null, false);
+
+                m_GameEventCanSpawnMagicalFogForMerge.TriggerEvent(false);
+            }
+            else if(currentFinalPosHandData.Item2.GetType() == typeof(SimpleFood))
+            {
+                ReplaceSimpleFoodHandWithMergedFood(finalMergeHand, (SimpleFood)currentFinalPosHandData.Item2, movedHand, currentMovedPosHandData.Item1);   
+            }
+            else if(currentFinalPosHandData.Item2.GetType() == typeof(MergedFood))
+            {
+                finalMergeHand.PutItHand(currentMovedPosHandData.Item1, true);
+                //AddFoodInHand(currentFinalPosHandData.Item2, currentMovedPosHandData.Item2);
+                movedHand.DestroyFood();
+            }
+            else
+            {
+                Debug.LogError("MergeFood possibility not handled");
+            }
+
+            movedHand.m_Animator.SetTrigger("StartMerge");
+            finalMergeHand.m_Animator.SetTrigger("FinalMerge");
+        }
+
+        /*void AddFoodInHand(Food finalFood, Food foodToAdd)
+        {
+            MergedFood food = (MergedFood)finalFood;
+            SimpleFood foodSimpleChild = (SimpleFood)foodToAdd;
+
+            if(foodSimpleChild == null)
+            {
+                MergedFood foodMergeChild = (MergedFood)foodToAdd;
+                finalFood.AddFood(foodMergeChild);
+            }
+            else
+            {
+                food.AddFood(foodSimpleChild);
+            }
+        }*/
+
+        void ReplaceSimpleFoodHandWithMergedFood(Hands handToReplace, SimpleFood simpleToReplace, Hands otherHand, GameObject newGoFood)
+        {
+            //Replace simpleFood in hand with a Merged food
+            GameObject handMergedGo = UnityEngine.Object.Instantiate(m_MergedFoodPrefab);
+            MergedFood mergedFood = handMergedGo.GetComponent<MergedFood>();
+            mergedFood.AddFood(simpleToReplace);
+
+            handToReplace.DestroyFood();
+            PutInHand(handMergedGo, handToReplace, false, false);
+
+            //Add right hand in merged left hand
+            PutInHand(newGoFood, handToReplace, false, false);
+            otherHand.DestroyFood();
+        }
+    }
+
+    [Serializable]
+    public class GemBraceletVisual
+    {
+        [SerializeField] MeshRenderer[] m_Gems;
+        [SerializeField] Material m_DefaultActiveGemMat;
+
+        public void ChangeGemsMat(Material newMat = null)
+        {
+            if(!newMat)
+            {
+                newMat = m_DefaultActiveGemMat;
+            }
+
+            foreach (MeshRenderer gem in m_Gems)
+            {
+                gem.material = newMat;
+            }
+        }
+    }
+
+}
