@@ -1,4 +1,5 @@
 ﻿
+using ControlOptions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,8 +15,7 @@ namespace PlayerSystems.Camera
 
         void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            ControlOptionsManagement.SetCursorIsPlayMode(true);
         }
 
         void Update()

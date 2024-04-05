@@ -2,6 +2,7 @@ using TimeOption;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using ControlOptions;
 
 namespace UI.MENUScripts
 {
@@ -40,8 +41,7 @@ namespace UI.MENUScripts
                 TimeOptionManagement.s_Instance.SetActiveTime(!state);
 
                 gameObject.SetActive(state);
-                Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
-                Cursor.visible = state;
+                ControlOptionsManagement.SetCursorIsPlayMode(!state);
 
                 optionMenu.SetActiveOptionMenu(false);
             }
