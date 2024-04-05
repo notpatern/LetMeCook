@@ -1,4 +1,5 @@
 ﻿
+using System;
 using ControlOptions;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -44,7 +45,8 @@ namespace PlayerSystems.Camera
 
         void DoFov(object fovValue)
         {
-            GetComponent<UnityEngine.Camera>().DOFieldOfView((float)fovValue, 0.25f);
+            var array = (float[])fovValue;
+            GetComponent<UnityEngine.Camera>().DOFieldOfView(array[0], array[1]);
         }
 
         void DoTilt(object zTiltValue)
