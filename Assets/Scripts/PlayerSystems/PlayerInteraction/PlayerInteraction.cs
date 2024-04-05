@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using Player.HandSystem;
+using PlayerSystems.HandsSystem;
 
 namespace Player.Interaction
 {
     [Serializable]
     public class PlayerInteraction
     {
+        HandsManager m_HandManager;
         IInteractable m_CurrentInteraction;
 
         [SerializeField] Transform m_Origin;
@@ -16,11 +19,16 @@ namespace Player.Interaction
 
         bool m_IsInteractionStopped;
 
-        UnityEvent<GameObject, HandSystem.HandsType> m_OnActiveInteract = new UnityEvent<GameObject, HandSystem.HandsType>();
+        UnityEvent<GameObject, HandsType> m_OnActiveInteract = new UnityEvent<GameObject, HandsType>();
         UnityEvent<bool, string> m_OnStartInteraction = new UnityEvent<bool, string>();
         UnityEvent<bool> m_OnEndInteraction = new UnityEvent<bool>();
         
-        public void BindPerformInteraction(UnityAction<GameObject, HandSystem.HandsType> action)
+        public void InitPlayerInteraction(HandsManager handsManager)
+        {
+            m_HandManager = handsManager;
+        }
+
+        public void BindPerformInteraction(UnityAction<GameObject, HandsType> action)
         {
             m_OnActiveInteract.AddListener(action);
         }
@@ -67,9 +75,9 @@ namespace Player.Interaction
             m_CurrentInteraction = null;
         }
 
-        public void ActiveInteraction(HandSystem.HandsType handType)
+        public void ActiveInteraction(HandsType handType)
         {
-            if (m_CurrentInteraction != null)
+            if (m_CurrentInteraction != null && !m_HandManager.IsFoodHandle(handType))
             {
                 m_OnActiveInteract.Invoke(m_CurrentInteraction.StartInteraction(), handType);
 

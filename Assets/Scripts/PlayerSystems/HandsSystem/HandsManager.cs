@@ -91,6 +91,22 @@ namespace PlayerSystems.HandsSystem
             }
         }
 
+        public bool IsFoodHandle(HandsType handsType)
+        {
+            switch (handsType)
+            {
+                case HandsType.NONE:
+                    Debug.LogError("This should not happen but does.");
+                    return false;
+                case HandsType.LEFT:
+                    return m_LeftHand.isFoodHandle;
+                case HandsType.RIGHT:
+                    return m_RightHand.isFoodHandle;
+            }
+
+            return false;
+        }
+
         public void PerformHandAction(GameObject food, Hands hand)
         {
             if (!hand.isFoodHandle)
