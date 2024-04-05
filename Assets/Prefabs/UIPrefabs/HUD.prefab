@@ -36,7 +36,7 @@ RectTransform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInteractionUI: {fileID: 7041621024521873210}
+  staminaFill: {fileID: 0}
 --- !u!1 &2607310699936027388
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intereactionText: {fileID: 3887684128396719417}
+  m_keybindsData: {fileID: 11400000, guid: 8988e124c469bad4a87366761f489db9, type: 2}
 --- !u!1 &4776982077986740476
 GameObject:
   m_ObjectHideFlags: 0
