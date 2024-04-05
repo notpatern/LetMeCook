@@ -16,6 +16,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         private RaycastHit _wallRightHit;
         private RaycastHit _wallLeftHit;
         private RaycastHit _wallHit;
+        private bool _wallRightTilt;
         
         public AirState(AirContext airContext, MovementFsmCore fsmCore) : base(airContext, fsmCore)
         {
@@ -36,7 +37,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             {
                 return;
             }
-            fsmCore.SwitchState<WallRunState>(typeof(WallRunState), new WallRunContext(fsmCore.wallRunData, _wallHit, _context.canJump));
+            fsmCore.SwitchState<WallRunState>(typeof(WallRunState), new WallRunContext(fsmCore.wallRunData, _wallHit, _wallRightTilt, _context.canJump));
         }
 
         private bool WallRunExited()
@@ -65,11 +66,13 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             if (_wallLeft && fsmCore.Input is { x: < 0, y: > 0 })
             {
                 _wallHit = _wallLeftHit;
+                _wallRightTilt = false;
                 canWallRun = true;
             }
             if (_wallRight && fsmCore.Input is { x: > 0, y: > 0})
             {
                 _wallHit = _wallRightHit;
+                _wallRightTilt = true;
                 canWallRun = true;
             }
 

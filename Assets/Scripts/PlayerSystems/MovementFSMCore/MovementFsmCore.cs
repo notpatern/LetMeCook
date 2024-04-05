@@ -14,6 +14,10 @@ namespace PlayerSystems.MovementFSMCore
         [Header("References")] [SerializeField]
         private LayerMask isGround;
 
+        public GameEventScriptableObject onFovChange;
+        public GameEventScriptableObject onTiltChange;
+        public CameraData cameraData;
+
         private FsmState _currentState;
         public FsmWallRunData wallRunData;
         public FsmAirData airData;
@@ -165,7 +169,7 @@ namespace PlayerSystems.MovementFSMCore
             return true;
         }
 
-        public void BindStaminaregeneration(UnityAction<float> action)
+        public void BindStaminaRegeneration(UnityAction<float> action)
         {
             _onStaminaUpdate.AddListener(action);
         }

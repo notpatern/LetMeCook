@@ -22,6 +22,16 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _context.maxMovementSpeed = fsmCore.rb.velocity.magnitude;
             _context.canJump = true;
             GetWallDirection();
+            fsmCore.onFovChange.TriggerEvent(fsmCore.cameraData.wallRunFov);
+            if (_context.wallRight)
+            {
+                fsmCore.onTiltChange.TriggerEvent(fsmCore.cameraData.wallRunTilt);
+            }
+            else
+            {
+                
+                fsmCore.onTiltChange.TriggerEvent(-fsmCore.cameraData.wallRunTilt);
+            }
             var velocity = fsmCore.rb.velocity;
             velocity = new Vector3(velocity.x, 0f, velocity.z);
             fsmCore.rb.velocity = velocity;
@@ -85,6 +95,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void ExitState()
         {
+            fsmCore.onFovChange.TriggerEvent(fsmCore.cameraData.defaultFov);
+            fsmCore.onTiltChange.TriggerEvent(fsmCore.cameraData.defaultTilt);
             fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, _context.canJump, true, fsmCore.canWallRun, _context.wallInfo));
         }
     }
