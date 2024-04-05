@@ -169,7 +169,13 @@ namespace PlayerSystems.MovementFSMCore
 
         public void RegenerateStamina(float staminaToRegenerate)
         {
+            if(Stamina > staminaData.maxStamina)
+            {
+                return;
+            }
+
             Stamina += staminaToRegenerate * Time.deltaTime;
+
             _onStaminaUpdate.Invoke(Stamina / staminaData.maxStamina);
         }
     }

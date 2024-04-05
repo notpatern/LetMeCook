@@ -9,7 +9,6 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateStaminaFill(float percentageAmount)
     {
-        Debug.Log("rt : " + percentageAmount);
         staminaFill.fillAmount = percentageAmount;
     }
 }
