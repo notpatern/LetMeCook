@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Recipe : ScriptableObject
+namespace RecipeSystem
 {
-    public string nametag = "Undefined";
-    public float secondsToComplete = 10.0f;
-    public List<Food> ingredients = new List<Food>();
+    [CreateAssetMenu(menuName = "RecipeSystem/Recipe")]
+    public class Recipe : ScriptableObject
+    {
+        public string nametag = "Undefined";
+        public float secondsToComplete = 10.0f;
+        public List<FoodSystem.FoodData> ingredients = new List<FoodSystem.FoodData>();
+    }
 }
+

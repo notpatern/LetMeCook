@@ -2,25 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecipeGoal : MonoBehaviour
+namespace RecipeSystem.Core
 {
-    private void OnTriggerEnter(Collider other)
+    public class RecipeGoal : MonoBehaviour
     {
-        // CHANGEZ LE NOM DU TAG ICI SI SA MARCHE PAS
-        if (other.tag == "Food")
+        private void OnTriggerEnter(Collider other)
         {
-            var recipeManager = RecipesManager.Instance;
-            var food = other.GetComponent<MergedFood>();
-            var potentialRecipe = recipeManager.dataBase.TestFood(food);
+            if (other.gameObject.layer == 8)
+            {
+                // Try to get the food component
+                var recipeManager = RecipesManager.Instance;
+                var food = other.GetComponent<FoodSystem.FoodType.Food>();
+                var potentialRecipe = recipeManager.dataBase.TestFood(food);
 
-            // Completed recipe
-            if (potentialRecipe)
-                recipeManager.CompleteRecipe(potentialRecipe);
+                // Completed recipe
+                if (potentialRecipe)
+                    recipeManager.CompleteRecipe(potentialRecipe);
 
-            // Recipe dosn't exist
-            else
-                print("bruh");
+                // Recipe dosn't exist
+                else
+                    print("bruh");
 
+            }
         }
     }
 }

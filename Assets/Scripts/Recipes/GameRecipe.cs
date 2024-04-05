@@ -1,53 +1,42 @@
 using System.Collections;
 using UnityEngine;
 
-public class GameRecipe : MonoBehaviour
+namespace RecipeSystem.Core
 {
-    public Recipe recipe;
-
-    float timeRemaining;
-    bool failed;
-    bool completed;
-
-    public GameRecipe(Recipe recipe)
+    public class GameRecipe : MonoBehaviour
     {
-        this.recipe = recipe;
-        timeRemaining = recipe.secondsToComplete;
-    }
+        public Recipe recipe;
 
-    void Update()
-    {
-        timeRemaining -= Time.deltaTime;
-        if (timeRemaining <= 0)
+        float timeRemaining;
+        bool failed;
+        bool completed;
+
+        public GameRecipe(Recipe recipe)
         {
-            FailRecipe();
+            this.recipe = recipe;
+            timeRemaining = recipe.secondsToComplete;
         }
-    }
 
-    public void FailRecipe()
-    {
-        if (failed) return;
-        failed = true;
-        StartCoroutine("_FailRecipe");
-    }
-    IEnumerable _FailRecipe()
-    {
-        // Make funny animation
-        yield return new WaitForSeconds(1f);
-        RecipesManager.Instance.RemoveRecipe(recipe);
-    }
+        void Update()
+        {
+            timeRemaining -= Time.deltaTime;
+            if (timeRemaining <= 0 && !failed)
+                FailRecipe();
+        }
 
-    public void CompleteRecipe()
-    {
-        if (completed) return;
-        completed = true;
-        StartCoroutine("_CompleteRecipe");
-    }
+        public void FailRecipe()
+        {
+            if (failed) return;
+            failed = true;
+            RecipesManager.Instance.RemoveRecipe(recipe);
+        }
 
-    IEnumerable _CompleteRecipe()
-    {
-        // Make funny animation
-        yield return new WaitForSeconds(1f);
-        RecipesManager.Instance.RemoveRecipe(recipe);
+        public void CompleteRecipe()
+        {
+            if (completed) return;
+            completed = true;
+            // ---- Ajouter des points ici
+            RecipesManager.Instance.RemoveRecipe(recipe);
+        }
     }
 }

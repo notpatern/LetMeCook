@@ -1,23 +1,31 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecipeUI : MonoBehaviour
+namespace RecipeSystem.Core
 {
-    [SerializeField] GameObject UIList;
-    public static RecipeUI Instance { get; private set; }
-
-    void Awake()
+    public class RecipeUI : MonoBehaviour
     {
-        Instance = this;
-    }
+        [SerializeField] GameObject UIList;
+        public static RecipeUI Instance { get; private set; }
 
-    public void AddNewCard(GameRecipe recipe)
-    {
-        recipe.transform.parent = UIList.transform;
-    }
+        void Awake()
+        {
+            Instance = this;
+        }
 
-    public void RemoveNewCard(GameRecipe recipe)
-    {
-        
+        public void AddNewCard(GameRecipe recipe)
+        {
+            recipe.transform.SetParent(UIList.transform);
+        }
+
+        public void RemoveCard(GameRecipe recipe)
+        { StartCoroutine(_RemoveCard(recipe)); }
+        IEnumerator _RemoveCard(GameRecipe recipe)
+        {
+            // --- animation et trucs sympa ici
+            yield return null;
+            Destroy(recipe.gameObject);
+        }
     }
 }

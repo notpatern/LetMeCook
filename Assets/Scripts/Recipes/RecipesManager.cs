@@ -1,67 +1,93 @@
+using RecipeSystem.Core;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecipesManager : MonoBehaviour
+namespace RecipeSystem
 {
-    public static RecipesManager Instance { get; private set; }
-    public RecipesDataBase dataBase;
-    List<GameRecipe> activeRecipes;
-
-    void Awake()
+    public class RecipesManager : MonoBehaviour
     {
-        Instance = this;
-    }
+        public static RecipesManager Instance { get; private set; }
+        public RecipesDataBase dataBase;
+        List<Core.GameRecipe> activeRecipes;
 
-    /// <summary>
-    /// Append a new recipe to the game.
-    /// Return the instantiated GameRecipe.
-    /// </summary>
-    /// <param name="recipe"></param>
-    public GameRecipe AddNewRecipe(Recipe recipe)
-    {
-        var newGameRecipe = new GameRecipe(recipe);
-        Instantiate(newGameRecipe);
-        activeRecipes.Add(newGameRecipe);
-        RecipeUI.Instance.AddNewCard(newGameRecipe);
-        return newGameRecipe;
-    }
+        void Awake()
+        {
+            Instance = this;
+        }
 
-    /// <summary>
-    /// Remove a recipe from the game without completing or failing it.
-    /// Return true if the recipe was removed successfully.
-    /// </summary>
-    /// <param name="recipe"></param>
-    /// <returns></returns>
-    public bool RemoveRecipe(Recipe recipe)
-    {
-        var gameRecipe = FindRecipe(recipe);
-        if (!gameRecipe) return false;
+        void Update()
+        {
+            // Debug add random recipe
+            if (Input.GetKeyDown(KeyCode.F1))
+                AddNewRecipe(dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count - 1)]);
 
-        activeRecipes.Remove(gameRecipe);
-        Destroy(gameRecipe.gameObject);
-        return true;
-    }
+            // Debug complete first recipe in list
+            if (Input.GetKeyDown(KeyCode.F2))
+                CompleteRecipe(activeRecipes[0].recipe);
+        }
 
-    public void CompleteRecipe(Recipe recipe)
-    {
-        var gameRecipe = FindRecipe(recipe);
-        RecipeUI.Instance.RemoveNewCard(gameRecipe);
-        gameRecipe.CompleteRecipe();
-    }
+        /// <summary>
+        /// Append a new recipe to the game.
+        /// Return the instantiated GameRecipe.
+        /// </summary>
+        /// <param name="recipe"></param>
+        public GameRecipe AddNewRecipe(Recipe recipe)
+        {
+            GameRecipe newGameRecipe = new GameRecipe(recipe);
+            Instantiate(newGameRecipe);
+            activeRecipes.Add(newGameRecipe);
+            RecipeUI.Instance.AddNewCard(newGameRecipe);
+            return newGameRecipe;
+        }
 
-    public void FailRecipe(Recipe recipe)
-    {
-        var gameRecipe = FindRecipe(recipe);
-        RecipeUI.Instance.RemoveNewCard(gameRecipe);
-        gameRecipe.FailRecipe();
-    }
+        /// <summary>
+        /// Remove a recipe from the game without completing or failing it.
+        /// Return true if the recipe was removed successfully.
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        public bool RemoveRecipe(Recipe recipe)
+        {
+            GameRecipe gameRecipe = FindRecipe(recipe);
+            if (!gameRecipe) return false;
 
-    GameRecipe FindRecipe(Recipe recipe)
-    {
-        foreach (var gameRecipe in activeRecipes)
-            if (gameRecipe.recipe == recipe)
-                return gameRecipe;
+            activeRecipes.Remove(gameRecipe);
+            RecipeUI.Instance.RemoveCard(gameRecipe);
+            Destroy(gameRecipe.gameObject);
+            return true;
+        }
 
-        return null;
+        /// <summary>
+        /// Complete a recipe from the game and remove it.
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        public void CompleteRecipe(Recipe recipe)
+        {
+            GameRecipe gameRecipe = FindRecipe(recipe);
+            RecipeUI.Instance.RemoveCard(gameRecipe);
+            gameRecipe.CompleteRecipe();
+        }
+
+        /// <summary>
+        /// Fail a recipe from the game and remove it.
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        public void FailRecipe(Recipe recipe)
+        {
+            GameRecipe gameRecipe = FindRecipe(recipe);
+            RecipeUI.Instance.RemoveCard(gameRecipe);
+            gameRecipe.FailRecipe();
+        }
+
+        GameRecipe FindRecipe(Recipe recipe)
+        {
+            foreach (GameRecipe gameRecipe in activeRecipes)
+                if (gameRecipe.recipe == recipe)
+                    return gameRecipe;
+
+            return null;
+        }
     }
 }
