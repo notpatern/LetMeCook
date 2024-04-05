@@ -57,7 +57,10 @@ namespace PlayerSystems.MovementFSMCore
         {
             HandleGroundedState();
             _currentState.Update();
-            RegenerateStamina(staminaData.staminaToRegenerate);
+            if (Stamina <= staminaData.maxStamina)
+            {
+                RegenerateStamina(staminaData.staminaToRegenerate);
+            }
         }
 
         public void UpdateWallRunState(bool state)
