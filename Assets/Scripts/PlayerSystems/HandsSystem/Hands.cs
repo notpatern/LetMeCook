@@ -91,10 +91,9 @@ namespace Player.HandSystem
             RaycastHit hit;
             Vector3 dist = m_ThrowPoint.position - m_CameraTr.position;
             Debug.DrawLine(m_CameraTr.position, m_ThrowPoint.position, Color.red, 15f);
-            if (Physics.Raycast(m_CameraTr.position, dist.normalized, out hit, dist.magnitude))//m_InteractionLayerMask
+            if (Physics.Raycast(m_CameraTr.position, dist.normalized, out hit, dist.magnitude))
             {
                 m_HhandledFood.transform.position = hit.point;
-                Debug.Log("rrrr");
             }
 
             ThrowFoodVisualEffect();
