@@ -71,7 +71,7 @@ namespace PlayerSystems.PlayerBase
 
         public void SetPosition(Vector3 newPos)
         {
-            transform.position = newPos;
+            m_PlayerRb.position = newPos;
         }
 
         public void CrunchFoodInHands()
