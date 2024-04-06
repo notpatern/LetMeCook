@@ -14,7 +14,7 @@ namespace PlayerSystems.Camera
         
         public Transform orientation;
         public new Transform camera;
-        public new Transform camHolder;
+        public Transform camHolder;
         [SerializeField] Transform _handCamera;
 
         float _xRotation;

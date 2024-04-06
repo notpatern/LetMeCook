@@ -1,11 +1,10 @@
 using Player.Interaction;
 using UnityEngine;
 using System.Collections.Generic;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace FoodSystem.FoodType
 {
-    public abstract class Food : MonoBehaviour, IInteractable
+    public abstract class Food : MonoBehaviour, IInteractable, IDestructible
     {
         [SerializeField] BoxCollider col;
         [SerializeField] Rigidbody rb;

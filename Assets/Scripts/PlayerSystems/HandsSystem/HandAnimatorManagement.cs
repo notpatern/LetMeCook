@@ -7,8 +7,10 @@ namespace Player.HandSystem
     {
         UnityEvent m_ResincronyzeIdle = new UnityEvent();
         UnityEvent m_StopGrabParticle = new UnityEvent();
+        UnityEvent m_RemoveFoodFromHand = new UnityEvent();
         [SerializeField] GameObject m_MagicalCircleParticlePrefab;
         [SerializeField] GameObject m_MagicalFogParticlePrefab;
+        [SerializeField] GameObject m_CrunchFoodParticlesPrefab;
         bool canSpawnFogParticle = true;
         [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
         GameObject m_ParticleCircleInstance;
@@ -20,6 +22,11 @@ namespace Player.HandSystem
             m_GameEventCanSpawnMagicalFogForMerge.BindEventAction(CanSpawnFogParticle);
         }
 
+        public void BindRemoveFoodFromHand(UnityAction action)
+        {
+            m_RemoveFoodFromHand.AddListener(action);
+        }
+
         public void BindResincronyzationOnMainIdle(UnityAction action)
         {
             m_ResincronyzeIdle.AddListener(action);
@@ -28,6 +35,11 @@ namespace Player.HandSystem
         public void BindStopGrabParticle(UnityAction action)
         {
             m_StopGrabParticle.AddListener(action);
+        }
+
+        public void AskRemoveFoodFromHand()
+        {
+            m_RemoveFoodFromHand.Invoke();
         }
 
         public void AskResincronyzeAnimatorIdle()
@@ -42,15 +54,21 @@ namespace Player.HandSystem
 
         public void SpawnMagicalCircleParticle()
         {
-            SpawnPartcile(true, out m_ParticleCircleInstance, m_MagicalCircleParticlePrefab);
+            SpawnPartcile(false, out m_ParticleCircleInstance, m_MagicalCircleParticlePrefab);
         }
 
         public void SpawnFogParticle()
         {
             if (canSpawnFogParticle)
             {
-                SpawnPartcile(true, out m_ParticleFogInstance, m_MagicalFogParticlePrefab);
+                SpawnPartcile(false, out m_ParticleFogInstance, m_MagicalFogParticlePrefab);
             }
+        }
+
+        public void SpawnCrunchFoodFromHandsParticles()
+        {
+            GameObject particle;
+            SpawnPartcile(true, out particle, m_CrunchFoodParticlesPrefab);
         }
 
         void CanSpawnFogParticle(object isPossible)
@@ -62,7 +80,7 @@ namespace Player.HandSystem
         {
             savedInstance = Instantiate(particlePrefab, m_HandTransform);
 
-            if (parentToHand)
+            if (!parentToHand)
             {
                 savedInstance.transform.SetParent(null);
                 savedInstance.transform.localScale = Vector3.one;
