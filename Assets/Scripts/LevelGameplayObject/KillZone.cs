@@ -48,6 +48,7 @@ public class KillZone : MonoBehaviour
     IEnumerator SpawnPlayerDelay(PlayerSystems.PlayerBase.Player player)
     {
         yield return new WaitForSeconds(spawnDelay);
+        player.ClearPlayerStamina();
         player.SetPosition(respawnPoint.position);
     }
 }
