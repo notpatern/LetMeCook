@@ -1,3 +1,4 @@
+using System;
 using Player.Interaction;
 using UnityEngine;
 using System.Collections.Generic;
@@ -7,13 +8,29 @@ namespace FoodSystem.FoodType
 {
     public abstract class Food : MonoBehaviour, IInteractable
     {
-        [SerializeField] BoxCollider col;
+        [SerializeField] SphereCollider col;
         [SerializeField] Rigidbody rb;
         [SerializeField] TrailRenderer trailRenderer;
+        [SerializeField] LayerMask isGround;
 
         public GameObject StartInteraction()
         {
             return gameObject;
+        }
+
+        private void FixedUpdate()
+        {
+            rb.drag = Grounded() ? 10 : 0;
+        }
+
+        private bool Grounded()
+        {
+            return Physics.Raycast(
+                rb.position,
+                Vector3.down,
+                0.5f,
+                isGround
+            );
         }
 
         public abstract string GetContext();
