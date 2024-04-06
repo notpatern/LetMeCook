@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3781345244461024688}
   - component: {fileID: 5735421496793925991}
   - component: {fileID: 6764158770404907870}
-  - component: {fileID: 5133486324683220652}
   - component: {fileID: 6458256001630246702}
   - component: {fileID: 8478641122488135801}
   - component: {fileID: 6640363004773618717}
+  - component: {fileID: 4033413389540713654}
   m_Layer: 8
   m_Name: Food
   m_TagString: Untagged
@@ -88,27 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5133486324683220652
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7354829722045014985}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6458256001630246702
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -148,9 +127,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de0afd1c0027430299dc94b4a137f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  col: {fileID: 5133486324683220652}
+  col: {fileID: 4033413389540713654}
   rb: {fileID: 6458256001630246702}
   trailRenderer: {fileID: 1018286664606913482}
+  isGround:
+    serializedVersion: 2
+    m_Bits: 64
   data: {fileID: 11400000, guid: 8375f5230c78a49f3b4601e4f43d7787, type: 2}
 --- !u!114 &6640363004773618717
 MonoBehaviour:
@@ -164,6 +146,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf37494e7e10484685a552d63b73d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &4033413389540713654
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7354829722045014985}
+  m_Material: {fileID: 13400000, guid: 224ffbf92c7a8834bae8cd5036e7843f, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.74
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1030879465798063901
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 351691643200200083}
   - component: {fileID: 9015120407396002573}
   - component: {fileID: 583825096123807698}
-  - component: {fileID: 701757815993211734}
+  - component: {fileID: 4796859822881293288}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -179,14 +179,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &701757815993211734
-MeshCollider:
+--- !u!135 &4796859822881293288
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4365687664111358841}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 224ffbf92c7a8834bae8cd5036e7843f, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -197,10 +197,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: 329d5341c7f393b4590ae129a6f8545b, type: 3}
+  serializedVersion: 3
+  m_Radius: 0.024087481
+  m_Center: {x: -0.000032624226, y: -0.00018909197, z: 0.0017708517}
 --- !u!1 &6550280311143582117
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +415,9 @@ MonoBehaviour:
   col: {fileID: 5133486324683220652}
   rb: {fileID: 6458256001630246702}
   trailRenderer: {fileID: 6163088699770014596}
+  isGround:
+    serializedVersion: 2
+    m_Bits: 64
   infosCanvas: {fileID: 6550280311143582117}
   canvasContent: {fileID: 8349670985245663996}
   contentItemPrefab: {fileID: 1065001990217058368, guid: 3adca1df28b8eea45849e91194d9657d,
