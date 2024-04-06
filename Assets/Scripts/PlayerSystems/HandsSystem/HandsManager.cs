@@ -3,6 +3,8 @@ using Player.HandSystem;
 using UnityEngine;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
+using UnityEngine.XR;
+using Unity.VisualScripting;
 
 namespace PlayerSystems.HandsSystem
 {
@@ -127,7 +129,16 @@ namespace PlayerSystems.HandsSystem
 
         public void CrunchFoodInHands()
         {
+            if(m_LeftHand.GetHandFood())
+            {
+                m_HandsEnableMoveTech.ClearMoveTech(m_LeftHand.GetHandFood().GetFoodDatas().ToArray());
+            }
             m_LeftHand.m_Animator.SetTrigger("CrunchFood");
+
+            if (m_RightHand.GetHandFood())
+            {
+                m_HandsEnableMoveTech.ClearMoveTech(m_RightHand.GetHandFood().GetFoodDatas().ToArray());
+            }
             m_RightHand.m_Animator.SetTrigger("CrunchFood");
         }
 
