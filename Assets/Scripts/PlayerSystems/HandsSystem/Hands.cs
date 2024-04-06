@@ -28,16 +28,14 @@ namespace Player.HandSystem
         float m_IdleHandAnimSpeed;
         int m_IdleHashFullPathPlayerPrefabForSync;
         GameObject m_GrabbedFoodParticlePrefab;
-        LayerMask m_InteractionLayerMask;
 
-        public void InitData(float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection, float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle, Transform cameraTr, LayerMask interactionLayerMask)
+        public void InitData(float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection, float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle, Transform cameraTr)
         {
             m_ThrowForce = throwForce;
             m_MomentumRb = momentumRb;
             m_CameraTr = cameraTr;
             m_ThrowMomentumForwardDirection = throwMomentumForwardDirection;
             m_ThrowMomentumPlayerRb = throwMomentumPlayerRb;
-            m_InteractionLayerMask = interactionLayerMask;
 
             m_GrabbedFoodParticlePrefab = grabbedFoodParticle;
 
@@ -46,6 +44,7 @@ namespace Player.HandSystem
             m_IdleHashFullPathPlayerPrefabForSync = m_Animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
             m_HandAnimatorManagement.BindResincronyzationOnMainIdle(ResincronyzationOnMainIdleAnimation);
             m_HandAnimatorManagement.BindStopGrabParticle(RemoveFoodEffect);
+            m_HandAnimatorManagement.BindRemoveFoodFromHand(DestroyFood);
         }
 
         public void PutItHand(GameObject food, bool grabAnim)
@@ -110,6 +109,7 @@ namespace Player.HandSystem
         {
             UnityEngine.Object.Destroy(m_HhandledFood);
             SetFood(null, false);
+            RemoveFoodEffect();
         }
 
         public void SetFood(GameObject foodGo, bool grabAnim)

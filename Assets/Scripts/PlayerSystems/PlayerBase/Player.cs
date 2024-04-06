@@ -24,7 +24,7 @@ namespace PlayerSystems.PlayerBase
             m_InputManager.BindHandAction(m_PlayerInteraction.ActiveInteraction);
             m_InputManager.BindMergeHandInput(m_HandsManager.MergeFood);
 
-            m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator, m_MovementFsmCore.camera, m_PlayerInteraction.m_LayerMask);
+            m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator, m_MovementFsmCore.camera);
             InitFsmCore();
         }
 
@@ -67,6 +67,16 @@ namespace PlayerSystems.PlayerBase
             m_HandsManager.BindUpdateDashState(m_MovementFsmCore.UpdateDashState);
             m_HandsManager.BindUpdateDoubleJumpState(m_MovementFsmCore.UpdateDoubleJumpState);
             m_HandsManager.BindUpdateWallRunState(m_MovementFsmCore.UpdateWallRunState);
+        }
+
+        public void SetPosition(Vector3 newPos)
+        {
+            transform.position = newPos;
+        }
+
+        public void CrunchFoodInHands()
+        {
+            m_HandsManager.CrunchFoodInHands();
         }
     }
 }

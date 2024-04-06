@@ -10,27 +10,27 @@ namespace PlayerSystems.HandsSystem
     public class HandsManager
     {
         [Header("Throw Food")]
-        [SerializeField] private float m_ThrowForce;
+        [SerializeField] float m_ThrowForce;
         [SerializeField] Vector2 m_ThrowMomentumForwardDirection = new Vector2(1f, 2f);
         [SerializeField] float m_ThrowMomentumPlayerRb = .2f;
 
         [Header("Hands")]
         [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
         [SerializeField] GameObject m_GrabbedFoodParticlePrefab;
-        [SerializeField] private Hands m_LeftHand;
-        [SerializeField] private Hands m_RightHand;
+        [SerializeField] Hands m_LeftHand;
+        [SerializeField] Hands m_RightHand;
 
         [Header("Merged Food")]
-        [SerializeField] private GameObject m_MergedFoodPrefab;
+        [SerializeField] GameObject m_MergedFoodPrefab;
         [SerializeField] HandsEnableMoveTech m_HandsEnableMoveTech;
 
         [SerializeField] Material m_DefaultGemBraceletVisualMaterial;
         [SerializeField] GemBraceletVisual[] m_GemBraceletMoveTechVisual;
 
-        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator, Transform cameraTr, LayerMask interactionLayerMask)
+        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator, Transform cameraTr)
         {
-            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, interactionLayerMask);
-            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, interactionLayerMask);
+            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr);
+            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr);
 
             BindMoveTechVisualEffect();
         }
@@ -123,6 +123,12 @@ namespace PlayerSystems.HandsSystem
         public void MergeFood()
         {
             MergeHandFood(m_LeftHand, m_RightHand);
+        }
+
+        public void CrunchFoodInHands()
+        {
+            m_LeftHand.m_Animator.SetTrigger("CrunchFood");
+            m_RightHand.m_Animator.SetTrigger("CrunchFood");
         }
 
         //Bind Actions-----
