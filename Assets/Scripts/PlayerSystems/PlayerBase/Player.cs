@@ -72,6 +72,12 @@ namespace PlayerSystems.PlayerBase
         public void SetPosition(Vector3 newPos)
         {
             m_PlayerRb.position = newPos;
+            m_PlayerRb.velocity = Vector3.zero;
+        }
+
+        public void ClearPlayerStamina()
+        {
+            m_MovementFsmCore.ClearStamina();
         }
 
         public void CrunchFoodInHands()
