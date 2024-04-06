@@ -191,6 +191,11 @@ namespace PlayerSystems.MovementFSMCore
 
             _onStaminaUpdate.Invoke(Stamina / staminaData.maxStamina);
         }
+
+        public void ClearStamina()
+        {
+            Stamina -= staminaData.maxStamina;
+        }
     }
 }
 
