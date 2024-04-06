@@ -133,7 +133,7 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
-            if (!_currentState.context.canJump || (!Grounded() && !canJump))
+            if (!_currentState.context.canJump || (!Grounded() && !canJump && _currentState.GetType() != typeof(WallRunState)))
             {
                 return;
             }
@@ -190,6 +190,11 @@ namespace PlayerSystems.MovementFSMCore
             Stamina += staminaToRegenerate * Time.deltaTime;
 
             _onStaminaUpdate.Invoke(Stamina / staminaData.maxStamina);
+        }
+
+        public void ClearStamina()
+        {
+            Stamina -= staminaData.maxStamina;
         }
     }
 }
