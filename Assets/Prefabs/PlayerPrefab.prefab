@@ -1630,12 +1630,12 @@ MonoBehaviour:
     m_InteractionMaxDistance: 3
     m_LayerMask:
       serializedVersion: 2
-      m_Bits: 1280
+      m_Bits: 256
   m_InputManager: {fileID: 1342482868074891331}
   m_HandsManager:
-    m_ThrowForce: 5
+    m_ThrowForce: 7
     m_ThrowMomentumForwardDirection: {x: 1, y: 2}
-    m_ThrowMomentumPlayerRb: 0.2
+    m_ThrowMomentumPlayerRb: 1
     m_GameEventCanSpawnMagicalFogForMerge: {fileID: 11400000, guid: 0298f91ae91a7c542826295964af965e,
       type: 2}
     m_GrabbedFoodParticlePrefab: {fileID: 1921253003775114923, guid: 2bc392123e437504da2c9d2eacd009a2,
@@ -1680,7 +1680,7 @@ MonoBehaviour:
   m_MovementFsmCore:
     isGround:
       serializedVersion: 2
-      m_Bits: 1088
+      m_Bits: 64
     onFovChange: {fileID: 11400000, guid: 730093bf5e7e26f4587a6e9f7bc31e38, type: 2}
     onTiltChange: {fileID: 11400000, guid: 422f8c111f492344aa9f6147565f547c, type: 2}
     cameraData: {fileID: 11400000, guid: 84ebebe1671790541b522567e71a2f08, type: 2}
