@@ -27,7 +27,7 @@ namespace UI.MENUScripts
                 continueButton.onClick.AddListener(ToggleActiveMenuState);
 
             if(quitButton)
-                quitButton.onClick.AddListener(() => {GoToLevel(targetedQuitLevel.linkedScenePath); });
+                quitButton.onClick.AddListener(() => { GoToLevel(targetedQuitLevel.linkedScenePath); });
 
             if(restartButton)
                 restartButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex));
@@ -72,9 +72,9 @@ namespace UI.MENUScripts
             return !optionMenu.HandleMenuLayer();
         }
 
-        void GoToLevel(string sceneName)
+        void GoToLevel(string scenePath)
         {
-            LevelLoader.s_instance.LoadLevel(sceneName);
+            LevelLoader.s_instance.LoadLevel(scenePath);
         }
 
         public void ToggleOptionMenu()
