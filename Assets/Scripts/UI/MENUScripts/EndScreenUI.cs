@@ -70,7 +70,7 @@ public class EndScreenUI : MonoBehaviour
         }
         else
         {
-            LevelIsWin();
+            LevelIsWin(nextLevelData);
             m_NextLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(nextLevelData.linkedScenePath));
         }
 
@@ -78,14 +78,13 @@ public class EndScreenUI : MonoBehaviour
         m_RestartLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
-    void LevelIsWin()
+    void LevelIsWin(LevelData nextLevelData)
     {
         int reachedLevel = SaveSystem.GetLevelReached();
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if (reachedLevel < currentSceneIndex + 1)
+        if (reachedLevel < nextLevelData.levelID)
         {
-            SaveSystem.SaveLevelReached(currentSceneIndex + 1);
+            SaveSystem.SaveLevelReached(nextLevelData.levelID);
         }
     }
 

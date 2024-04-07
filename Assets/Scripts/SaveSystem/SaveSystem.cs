@@ -21,16 +21,16 @@ public class SaveSystem : MonoBehaviour
         isLoaded = false;
         string path = Application.persistentDataPath + "/Save.exe";
 
-        string data = JsonUtility.ToJson(levelReached);
-        string dataString = SecureHelper.DecryptAndCrypt(data);
+        string dataString = levelReached.ToString();
 
-        FileStream jsonFile = new FileStream(path, FileMode.Create);
-        jsonFile.Close();
-        File.WriteAllText(path, dataString);
+        FileStream file = new FileStream(path, FileMode.Create);
+        file.Close();
+        File.WriteAllText(path, SecureHelper.DecryptAndCrypt(dataString));
     }
 
     static int LoadLevelReached()
     {
+
         string path = Application.persistentDataPath + "/Save.exe";
 
         if (!File.Exists(path))
@@ -41,7 +41,10 @@ public class SaveSystem : MonoBehaviour
         string data = File.ReadAllText(path);
 
         string dataString = SecureHelper.DecryptAndCrypt(data);
-        int saveData = JsonUtility.FromJson<int>(dataString);
+        int saveData = int.Parse(dataString);
+
+        isLoaded = true;
+
         return saveData;
     }
 
