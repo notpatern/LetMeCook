@@ -66,10 +66,11 @@ public class EndScreenUI : MonoBehaviour
         }
         else if(playerScore.m_RequiredScore > playerScore.m_Score)
         {
-            LevelIsWin();
+            m_NextLevelButton.interactable = false;
         }
         else
         {
+            LevelIsWin();
             m_NextLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(nextLevelData.linkedScenePath));
         }
 
@@ -79,8 +80,6 @@ public class EndScreenUI : MonoBehaviour
 
     void LevelIsWin()
     {
-        m_NextLevelButton.interactable = false;
-
         int reachedLevel = SaveSystem.GetLevelReached();
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 

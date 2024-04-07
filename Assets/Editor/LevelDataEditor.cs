@@ -1,4 +1,5 @@
 using Dialog;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -24,6 +25,10 @@ public class LevelDataEditor : Editor
             var newPath = AssetDatabase.GetAssetPath(newScene);
             var scenePathProperty = serializedObject.FindProperty("linkedScenePath");
             scenePathProperty.stringValue = newPath;
+
+            EditorUtility.SetDirty(picker);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
         serializedObject.ApplyModifiedProperties();
     }

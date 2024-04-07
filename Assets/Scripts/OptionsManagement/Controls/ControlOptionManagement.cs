@@ -25,12 +25,11 @@ namespace ControlOptions
                 s_Instance = new ControlOptionsManagement();
             }
 
-
-            ControlsRemapping.LoadMap();
-
             canMove = new BoolTable();
             mouseSensitivity = PlayerPrefs.GetFloat("control_options_mouse_sensitivity", 1.0f);
             if (InputManager.s_PlayerInput == null) InputManager.s_PlayerInput = new PlayerInput();
+
+            ControlsRemapping.LoadMap();
         }
 
         public void SetMouseSensitivity(float newValue)
