@@ -14,6 +14,7 @@ namespace UI.MENUScripts
         [SerializeField] Button quitButton;
         [SerializeField] LevelData targetedQuitLevel;
         [SerializeField] Button restartButton;
+        bool blockPauseMenuFromOpening = false;
 
         public void Init(UIManager uIManager)
         {
@@ -34,17 +35,36 @@ namespace UI.MENUScripts
 
         public void ToggleActiveMenuState()
         {
+            if(blockPauseMenuFromOpening)
+            {
+                return;
+            }
+
+            ToggleMenu();
+        }
+
+        void ToggleMenu()
+        {
             bool state = !gameObject.activeSelf;
 
             if (state || HandleMenuLayer())
             {
-                TimeOptionManagement.s_Instance.SetActiveTime(!state);
+                TimeOptionManagement.SetActiveTime(!state);
 
                 gameObject.SetActive(state);
                 ControlOptionsManagement.SetCursorIsPlayMode(!state);
 
                 optionMenu.SetActiveOptionMenu(false);
             }
+        }
+
+        public void SetBlockPauseMenu(bool state, bool close)
+        {
+            if(gameObject.activeSelf && close)
+            {
+                ToggleMenu();
+            }
+            blockPauseMenuFromOpening = state;
         }
 
         bool HandleMenuLayer()

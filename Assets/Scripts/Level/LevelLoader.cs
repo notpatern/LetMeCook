@@ -37,7 +37,7 @@ public class LevelLoader : MonoBehaviour
 
     void StartLoadingScreen()
     {
-        TimeOptionManagement.s_Instance.SetActiveTime(true);
+        TimeOptionManagement.SetActiveTime(true);
         gameObject.SetActive(true);
     }
     

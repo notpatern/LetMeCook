@@ -9,15 +9,13 @@ namespace ControlOptions
     {
         public static ControlOptionsManagement s_Instance;
 
-        BoolTable canMove;
-        float mouseSensitivity = 1.0f;
+        static BoolTable canMove;
+        static float mouseSensitivity = 1.0f;
         Vector2 mouseRangeSensitivity = new Vector2(0.1f, 5f);
 
         public ControlOptionsManagement()
         {
-            canMove = new BoolTable();
-            mouseSensitivity = PlayerPrefs.GetFloat("control_options_mouse_sensitivity", 1.0f);
-            if (InputManager.s_PlayerInput == null) InputManager.s_PlayerInput = new PlayerInput();
+            
         }
 
         public static void LoadControlOptionsManagement()
@@ -29,6 +27,10 @@ namespace ControlOptions
 
 
             ControlsRemapping.LoadMap();
+
+            canMove = new BoolTable();
+            mouseSensitivity = PlayerPrefs.GetFloat("control_options_mouse_sensitivity", 1.0f);
+            if (InputManager.s_PlayerInput == null) InputManager.s_PlayerInput = new PlayerInput();
         }
 
         public void SetMouseSensitivity(float newValue)
