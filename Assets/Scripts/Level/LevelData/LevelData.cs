@@ -6,7 +6,7 @@ public class LevelData : ScriptableObject
 {
     public LevelUIData levelUIData;
     public DialogLevelData dialogLevelData;
-    [Tooltip("In Seconds")]
+    public string linkedScenePath;
     public float levelDuration = 120f;
     public int requiredScore = 100;
 }

@@ -1,16 +1,27 @@
-using Manager;
 using System.IO;
 using UnityEngine;
 
 public class SaveSystem : MonoBehaviour
 {
-    public static void Save(int levelReached)
+    static bool isLoaded = false;
+    static int levelReached = 0;
+
+    public static int GetLevelReached()
     {
+        if(!isLoaded)
+        {
+            levelReached = LoadLevelReached();
+        }
+
+        return levelReached;
+    }
+
+    public static void SaveLevelReached(int levelReached)
+    {
+        isLoaded = false;
         string path = Application.persistentDataPath + "/Save.exe";
 
-        SaveData saveData = new SaveData(levelReached);
-
-        string data = JsonUtility.ToJson(saveData);
+        string data = JsonUtility.ToJson(levelReached);
         string dataString = SecureHelper.DecryptAndCrypt(data);
 
         FileStream jsonFile = new FileStream(path, FileMode.Create);
@@ -18,19 +29,19 @@ public class SaveSystem : MonoBehaviour
         File.WriteAllText(path, dataString);
     }
 
-    public static SaveData Load()
+    static int LoadLevelReached()
     {
         string path = Application.persistentDataPath + "/Save.exe";
 
         if (!File.Exists(path))
         {
-            Save(0);
+            SaveLevelReached(0);
         }
 
         string data = File.ReadAllText(path);
 
         string dataString = SecureHelper.DecryptAndCrypt(data);
-        SaveData saveData = JsonUtility.FromJson<SaveData>(dataString);
+        int saveData = JsonUtility.FromJson<int>(dataString);
         return saveData;
     }
 
@@ -44,16 +55,5 @@ public class SaveSystem : MonoBehaviour
         }
 
         File.Delete(path);
-    }
-}
-
-[System.Serializable]
-public class SaveData
-{
-    public int m_LevelReached = 0;
-
-    public SaveData(int levelReached)
-    {
-        m_LevelReached = levelReached;
     }
 }

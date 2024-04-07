@@ -1,7 +1,10 @@
 using ControlOptions;
 using System.Collections;
+using TimeOption;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EndScreenUI : MonoBehaviour
 {
@@ -17,12 +20,18 @@ public class EndScreenUI : MonoBehaviour
     [SerializeField] TMP_Text m_CompletedRecipes;
     [SerializeField] TMP_Text m_MissedRecipes;
     [SerializeField] TMP_Text m_GroundedTime;
+
+    [Header("Buttons")]
+    [SerializeField] Button m_NextLevelButton;
+    [SerializeField] Button m_GotoMainMenuButton;
+    [SerializeField] Button m_RestartLevelButton;
+
     public void SetActive(bool state)
     {
         m_PanelContent.SetActive(state);
     }
 
-    public void InitEndScreen(TempScoreContainer playerScore)
+    public void InitEndScreen(TempScoreContainer playerScore, LevelData nextLevelData)
     {
         m_EndScreenAnimator.SetTrigger("Start");
 
@@ -50,6 +59,35 @@ public class EndScreenUI : MonoBehaviour
         //stars are generated based on *2 minimum required score is the max for now
         float scoreStep = playerScore.m_RequiredScore / (float)m_ActiveStarsGo.Length;
         StartCoroutine(ActiveStarWithOffsetTransition(minimumRequiredScoreOverflow, scoreStep));
+
+        if(!nextLevelData)
+        {
+            Destroy(m_NextLevelButton.gameObject);
+        }
+        else if(playerScore.m_RequiredScore > playerScore.m_Score)
+        {
+            LevelIsWin();
+        }
+        else
+        {
+            m_NextLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(nextLevelData.linkedScenePath));
+        }
+
+        m_GotoMainMenuButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(0));
+        m_RestartLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    void LevelIsWin()
+    {
+        m_NextLevelButton.interactable = false;
+
+        int reachedLevel = SaveSystem.GetLevelReached();
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (reachedLevel < currentSceneIndex + 1)
+        {
+            SaveSystem.SaveLevelReached(currentSceneIndex + 1);
+        }
     }
 
     IEnumerator ActiveStarWithOffsetTransition(int minimumRequiredScoreOverflow, float scoreStep)

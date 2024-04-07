@@ -12,7 +12,7 @@ namespace UI.MENUScripts
         [SerializeField] Button optionMenuButton;
         [SerializeField] Button continueButton;
         [SerializeField] Button quitButton;
-        [SerializeField] string targetedQuitLevel;
+        [SerializeField] LevelData targetedQuitLevel;
         [SerializeField] Button restartButton;
 
         public void Init(UIManager uIManager)
@@ -26,10 +26,10 @@ namespace UI.MENUScripts
                 continueButton.onClick.AddListener(ToggleActiveMenuState);
 
             if(quitButton)
-                quitButton.onClick.AddListener(() => {GoToLevel(targetedQuitLevel); });
+                quitButton.onClick.AddListener(() => {GoToLevel(targetedQuitLevel.linkedScenePath); });
 
             if(restartButton)
-                restartButton.onClick.AddListener(RestartLevel);
+                restartButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex));
         }
 
         public void ToggleActiveMenuState()
@@ -50,12 +50,6 @@ namespace UI.MENUScripts
         bool HandleMenuLayer()
         {
             return !optionMenu.HandleMenuLayer();
-        }
-
-        void RestartLevel()
-        {
-            TimeOptionManagement.s_Instance.SetActiveTime(true);
-            LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex);
         }
 
         void GoToLevel(string sceneName)

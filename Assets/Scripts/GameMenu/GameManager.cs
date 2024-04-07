@@ -1,4 +1,3 @@
-using PlayerSystems.PlayerBase;
 using UnityEngine;
 
 namespace Manager
@@ -7,6 +6,7 @@ namespace Manager
     {
         [SerializeField] PlayerSystems.PlayerBase.Player m_Player;
         [SerializeField] GameEndCondition m_GameEndCondition;
+        [SerializeField, Tooltip("Can be null")] LevelData m_NextLevelData;
 
         //TEMP SCORE
         [SerializeField] int score = 0;
@@ -24,7 +24,7 @@ namespace Manager
             m_GameEndCondition.BindOnEndCondition(() =>
             {
                 m_Player.gameObject.SetActive(false);
-                m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes, m_LevelData.requiredScore));
+                m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes, m_LevelData.requiredScore), m_NextLevelData);
                 m_UiManager.endScreen.SetActive(true);
             });
         }

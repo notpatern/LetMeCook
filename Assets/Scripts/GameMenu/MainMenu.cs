@@ -1,6 +1,7 @@
 using Manager;
-using System.Collections;
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : LevelManager
@@ -10,8 +11,14 @@ public class MainMenu : LevelManager
 
     [Header("Level Selector")]
     [SerializeField] GameObject m_LevelSelectorPanel;
-    [SerializeField] Button[] m_Levels;
-    [SerializeField] int m_FirstLevelBuildIndex;
+    [SerializeField] LevelButtons[] m_Levels;
+
+    [Serializable]
+    class LevelButtons
+    {
+        public Button m_LevelButton;
+        public LevelData m_LevelData;
+    }
 
     void Start()
     {
@@ -21,8 +28,7 @@ public class MainMenu : LevelManager
 
     void LoadLevelSelectorBtn()
     {
-        SaveData data = SaveSystem.Load();
-        int levelReached = data.m_LevelReached;
+        int levelReached = SaveSystem.GetLevelReached();
 
         m_LevelSelectorPanel.SetActive(false);
         m_LevelSelectorBtn.onClick.AddListener(() => { m_LevelSelectorPanel.SetActive(!m_LevelSelectorPanel.activeSelf); });
@@ -30,9 +36,9 @@ public class MainMenu : LevelManager
         for (int i=0; i< m_Levels.Length; i++)
         {
             int iCopy = i;
-            m_Levels[i].onClick.AddListener(() => { LevelLoader.s_instance.LoadLevel(m_FirstLevelBuildIndex+iCopy); });
+            m_Levels[i].m_LevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(m_Levels[iCopy].m_LevelData.linkedScenePath));
 
-            m_Levels[i].interactable = i > levelReached ? false : true;
+            m_Levels[i].m_LevelButton.interactable = i > levelReached ? false : true;
         }
     }
 }

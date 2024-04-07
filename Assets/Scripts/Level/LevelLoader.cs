@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TimeOption;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -21,16 +22,9 @@ public class LevelLoader : MonoBehaviour
         }
     }
 
-    public bool LoadLevel(string sceneName)
+    public bool LoadLevel(string scenePath)
     {
-        StartLoadingScreen();
-        if(CheckSceneName(sceneName))
-        {
-            StartCoroutine(LoadLevelAsync(StartOperation(sceneName)));
-            return true;
-        }
-
-        return false;
+        return LoadLevel(SceneUtility.GetBuildIndexByScenePath(scenePath));
     }
 
     public bool LoadLevel(int id)
@@ -43,34 +37,13 @@ public class LevelLoader : MonoBehaviour
 
     void StartLoadingScreen()
     {
+        TimeOptionManagement.s_Instance.SetActiveTime(true);
         gameObject.SetActive(true);
     }
     
     AsyncOperation StartOperation(int id)
     {
         return SceneManager.LoadSceneAsync(id);
-    }
-
-    AsyncOperation StartOperation(string sceneName)
-    {
-        return SceneManager.LoadSceneAsync(sceneName);
-    }
-
-    bool CheckSceneName(string sceneName)
-    {
-        int scenesCount = SceneManager.sceneCountInBuildSettings;
-
-        string currentSceneName;
-        for(int i=0; i < scenesCount; i++)
-        {
-            currentSceneName = System.IO.Path.GetFileNameWithoutExtension( SceneUtility.GetScenePathByBuildIndex( i ) );
-            if (sceneName.ToLower() == currentSceneName.ToLower())
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     IEnumerator LoadLevelAsync(AsyncOperation operation)

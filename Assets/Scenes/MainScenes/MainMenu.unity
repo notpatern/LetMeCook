@@ -2584,15 +2584,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DefaultLevelData: {fileID: 11400000, guid: 52b1262684663464faab3f400d5afa2f, type: 2}
   m_LevelData: {fileID: 11400000, guid: 1f0f88c0d85e0c344a444ecf3fd43632, type: 2}
+  m_EndconditionParentUI: {fileID: 0}
   m_LevelSelectorBtn: {fileID: 975471114}
   m_OptionBtn: {fileID: 734036805}
   m_LevelSelectorPanel: {fileID: 1076053084}
   m_Levels:
-  - {fileID: 1987018290}
-  - {fileID: 2043467664}
-  - {fileID: 672025784}
-  - {fileID: 1392238465}
-  m_FirstLevelBuildIndex: 2
+  - m_LevelButton: {fileID: 1987018290}
+    m_LevelData: {fileID: 11400000, guid: 22a12519f21a98042b28e68e6e07d26d, type: 2}
+  - m_LevelButton: {fileID: 2043467664}
+    m_LevelData: {fileID: 11400000, guid: 1a4fc680f4fa0c143ae304c86008af37, type: 2}
+  - m_LevelButton: {fileID: 672025784}
+    m_LevelData: {fileID: 11400000, guid: 161bf4c327cf1d44f9bc416d0e38d95d, type: 2}
+  - m_LevelButton: {fileID: 1392238465}
+    m_LevelData: {fileID: 11400000, guid: 20e164205d32eed4d8545ffeb2909997, type: 2}
 --- !u!4 &2137826830
 Transform:
   m_ObjectHideFlags: 0
