@@ -36,6 +36,14 @@ namespace ParticleSystemUtility
             }
         }
 
+        public void Play()
+        {
+            foreach (var particle in m_Particles)
+            {
+                particle.Play();
+            }
+        }
+
         public void Stop(bool clear)
         {
             foreach (var particle in m_Particles)

@@ -1,3 +1,4 @@
+using ParticleSystemUtility;
 using Player.Interaction;
 using UnityEngine;
 
@@ -7,12 +8,12 @@ namespace FoodSystem.FoodMachinery
     {
         [SerializeField] Transform foodSpawn;
         [SerializeField] Collider collisionToEnableOnFoodStocked;
-        [SerializeField] GameObject activeParticle;
+        [SerializeField] ParticleInstanceManager activeParticle;
 
         void Awake()
         {
             collisionToEnableOnFoodStocked.enabled = false;
-            activeParticle.SetActive(false);
+            activeParticle.Stop(false);
         }
 
         public GameObject StartInteraction()
@@ -22,7 +23,7 @@ namespace FoodSystem.FoodMachinery
                 return null;
             }
 
-            activeParticle.SetActive(false);
+            activeParticle.Stop(false);
 
             collisionToEnableOnFoodStocked.enabled = false;
             GameObject foodToGive = collectedFoodGo;
@@ -39,7 +40,7 @@ namespace FoodSystem.FoodMachinery
 
         protected override void OnFoodCollected()
         {
-            activeParticle.SetActive(true);
+            activeParticle.Play();
 
             collisionToEnableOnFoodStocked.enabled = true;
             Rigidbody rb = collectedFoodGo.GetComponent<Rigidbody>();
@@ -47,8 +48,8 @@ namespace FoodSystem.FoodMachinery
             rb.isKinematic = true;
 
             collectedFoodGo.transform.SetParent(foodSpawn, false);
-            collectedFoodGo.transform.position = Vector3.zero;
-            collectedFoodGo.transform.rotation = Quaternion.identity;
+            collectedFoodGo.transform.localPosition = Vector3.zero;
+            collectedFoodGo.transform.localRotation = Quaternion.identity;
 
             canCollect = false;
         }
