@@ -85,7 +85,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private bool CanStillWallRun()
         {
-            return !(_context.wallTime <= 0) && fsmCore.Input.x != 0 && Physics.Raycast(fsmCore.rb.transform.position, -_wallNormal, 1f, LayerMask.GetMask("isWall"));
+            return !(_context.wallTime <= 0) && (fsmCore.Input.x != 0 || fsmCore.Input.y != 0) && Physics.Raycast(fsmCore.rb.transform.position, -_wallNormal, 1f, LayerMask.GetMask("isWall"));
         }
 
         public override void Jump()
