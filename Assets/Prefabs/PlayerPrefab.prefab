@@ -1294,7 +1294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 5114515750986605142}
 --- !u!1 &3312842294856815700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1642,6 +1642,13 @@ MonoBehaviour:
     m_ThrowForce: 7
     m_ThrowMomentumForwardDirection: {x: 1, y: 2}
     m_ThrowMomentumPlayerRb: 1
+    m_ThrowSound:
+      Guid:
+        Data1: -1930444987
+        Data2: 1200695111
+        Data3: 539825568
+        Data4: 283256216
+      Path: event:/ThrowFood
     m_GameEventCanSpawnMagicalFogForMerge: {fileID: 11400000, guid: 0298f91ae91a7c542826295964af965e,
       type: 2}
     m_GrabbedFoodParticlePrefab: {fileID: 1921253003775114923, guid: 2bc392123e437504da2c9d2eacd009a2,
