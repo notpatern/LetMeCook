@@ -45,7 +45,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _wallNormal = _context.wallInfo.normal;
             _wallDirection = Vector3.Cross(_wallNormal, fsmCore.rb.transform.up);
             
-            if ((fsmCore.orientation.forward - _wallDirection).magnitude > (fsmCore.orientation.forward + _wallDirection).magnitude && fsmCore.Input.y > 0)
+            if ((fsmCore.orientation.forward - _wallDirection).magnitude > (fsmCore.orientation.forward + _wallDirection).magnitude)
             {
                 _wallDirection = -_wallDirection;
             }
@@ -85,7 +85,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private bool CanStillWallRun()
         {
-            return !(_context.wallTime <= 0) && fsmCore.Input.y != 0 && Physics.Raycast(fsmCore.rb.transform.position, -_wallNormal, 1f, LayerMask.GetMask("isWall"));
+            return !(_context.wallTime <= 0) && fsmCore.Input.x != 0 && Physics.Raycast(fsmCore.rb.transform.position, -_wallNormal, 1f, LayerMask.GetMask("isWall"));
         }
 
         public override void Jump()

@@ -185,13 +185,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484134352136168401}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.095845714, z: 0, w: 0.99539626}
+  m_LocalRotation: {x: -0, y: -0.095845714, z: -0, w: 0.99539626}
   m_LocalPosition: {x: -0.678, y: -0.49, z: 0.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 436653946350306262}
-  m_Father: {fileID: 7932818568912763235}
+  m_Father: {fileID: 2160664460749505128}
   m_LocalEulerAnglesHint: {x: 0, y: -11, z: 0}
 --- !u!95 &4782654478144548433
 Animator:
@@ -229,6 +229,8 @@ MonoBehaviour:
   m_MagicalCircleParticlePrefab: {fileID: 1921253003775114923, guid: 5e912c167c0df974eb6c6bbc4093886a,
     type: 3}
   m_MagicalFogParticlePrefab: {fileID: 3401707488106937788, guid: 69f4277f8c493ab4687d3819f8179c18,
+    type: 3}
+  m_CrunchFoodParticlesPrefab: {fileID: 3401707488106937788, guid: a059831a0896aac43a08d5bb404ac98d,
     type: 3}
   m_GameEventCanSpawnMagicalFogForMerge: {fileID: 11400000, guid: 0298f91ae91a7c542826295964af965e,
     type: 2}
@@ -289,13 +291,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768292082813519357}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.92387956, z: 0.38268343, w: 0}
+  m_LocalRotation: {x: -0.067933716, y: 0.9242676, z: 0.3465701, w: -0.14492664}
   m_LocalPosition: {x: 0, y: 0.0201, z: 0.0237}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8221537140322708263}
-  m_LocalEulerAnglesHint: {x: -45, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -38.386, y: 203.694, z: -16.76}
 --- !u!1 &867577674325127235
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +942,7 @@ Transform:
   m_GameObject: {fileID: 2661691400763169678}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1163,8 +1165,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6300218486211125689}
-  - {fileID: 1787968002601497254}
   - {fileID: 2160664460749505128}
   m_Father: {fileID: 79585516526279688}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1604,7 +1604,7 @@ Transform:
   m_GameObject: {fileID: 5114515750986605142}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1628,7 +1628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerInteraction:
     m_Origin: {fileID: 7932818568912763235}
-    m_InteractionMaxDistance: 3
+    m_InteractionMaxDistance: 5
     m_LayerMask:
       serializedVersion: 2
       m_Bits: 256
@@ -1952,13 +1952,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6333598000920081791}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.38268328, z: 0.9238796, w: -0}
+  m_LocalRotation: {x: 0.029875997, y: -0.380429, z: 0.9189382, w: -0.09966791}
   m_LocalPosition: {x: 0, y: 0.0201, z: 0.0237}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1494886343112047280}
-  m_LocalEulerAnglesHint: {x: -225, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -223.886, y: 190.452, z: 16.600998}
 --- !u!1 &6387263562994443116
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,7 +2217,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6300218486211125689}
+  - {fileID: 1787968002601497254}
   m_Father: {fileID: 7932818568912763235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &8707962459180104450
@@ -2793,13 +2795,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364608763095009122}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.095845714, z: 0, w: 0.99539626}
+  m_LocalRotation: {x: -0, y: 0.095845714, z: -0, w: 0.99539626}
   m_LocalPosition: {x: 0.678, y: -0.49, z: 0.9099999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3469684052593059383}
-  m_Father: {fileID: 7932818568912763235}
+  m_Father: {fileID: 2160664460749505128}
   m_LocalEulerAnglesHint: {x: 0, y: 11, z: 0}
 --- !u!95 &942321250605974333
 Animator:
@@ -2837,6 +2839,8 @@ MonoBehaviour:
   m_MagicalCircleParticlePrefab: {fileID: 1921253003775114923, guid: bdbfa01db881bc9409515c78e2451b6a,
     type: 3}
   m_MagicalFogParticlePrefab: {fileID: 3401707488106937788, guid: 69f4277f8c493ab4687d3819f8179c18,
+    type: 3}
+  m_CrunchFoodParticlesPrefab: {fileID: 3401707488106937788, guid: a059831a0896aac43a08d5bb404ac98d,
     type: 3}
   m_GameEventCanSpawnMagicalFogForMerge: {fileID: 11400000, guid: 0298f91ae91a7c542826295964af965e,
     type: 2}
@@ -3216,6 +3220,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502302561912161516, guid: 22622be941b003c499d2a32e8a97e1a1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.576
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502302561912161516, guid: 22622be941b003c499d2a32e8a97e1a1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.631
+      objectReference: {fileID: 0}
+    - target: {fileID: 2502302561912161516, guid: 22622be941b003c499d2a32e8a97e1a1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.048
       objectReference: {fileID: 0}
     - target: {fileID: 3218742676934921258, guid: 22622be941b003c499d2a32e8a97e1a1,
         type: 3}
