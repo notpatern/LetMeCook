@@ -7,6 +7,7 @@ namespace Manager
         [SerializeField] PlayerSystems.PlayerBase.Player m_Player;
         [SerializeField] GameEndCondition m_GameEndCondition;
         [SerializeField, Tooltip("Can be null")] LevelData m_NextLevelData;
+        [SerializeField] GameEventScriptableObject m_LoadPlayerTransform;
 
         //TEMP SCORE
         [SerializeField] int score = 0;
@@ -28,6 +29,11 @@ namespace Manager
                 m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes, m_LevelData.requiredScore), m_NextLevelData);
                 m_UiManager.endScreen.SetActive(true);
             });
+        }
+
+        void Start()
+        {
+            m_LoadPlayerTransform.TriggerEvent(m_Player.transform);
         }
 
         private void Update()
