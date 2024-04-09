@@ -1,4 +1,3 @@
-using System;
 using Player.Interaction;
 using UnityEngine;
 using System.Collections.Generic;

@@ -1,19 +1,19 @@
-using FoodSystem.FoodType;
 using Player.Interaction;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace FoodSystem.FoodMachinery
 {
     public class FoodDropper : MonoBehaviour, IInteractable
     {
-        [SerializeField] SimpleFood givingFood;
-    
+        [FormerlySerializedAs("_data")] public FoodData data;
+
         public GameObject StartInteraction()
         {
-            //TODO give food to the player's hand
-            return givingFood.data.prefab;
+            GameObject food = Instantiate(data.prefab);
+            return food;
         }
 
-        public string GetContext() => "dropper (" + givingFood.GetContext() + ")";
+        public string GetContext() => "dropper (" + data.foodName + ")";
     }
 }

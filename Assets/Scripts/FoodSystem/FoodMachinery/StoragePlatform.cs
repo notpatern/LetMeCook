@@ -12,6 +12,7 @@ namespace FoodSystem.FoodMachinery
 
         void Awake()
         {
+            collectMergedFood = true;
             collisionToEnableOnFoodStocked.enabled = false;
             activeParticle.Stop(false);
         }

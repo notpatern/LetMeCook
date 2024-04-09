@@ -10,7 +10,7 @@ namespace FoodSystem.FoodMachinery
         protected GameObject collectedFoodGo;
 
         protected bool canCollect = true;
-        [SerializeField] bool collectMergedFood = false;
+        protected bool collectMergedFood = false;
     
         void OnCollisionEnter(Collision other)
         {

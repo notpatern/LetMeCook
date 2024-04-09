@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
 {
-    public class Fryer : FoodTransformer
+    public class Purifier : FoodTransformer
     {
         protected override void ReleaseFood()
         {
-            GameObject newFood = Instantiate(collectedFoodData[0].friedFood.prefab,
+            GameObject newFood = Instantiate(collectedFoodData[0].purifiedFood.prefab,
                 launcher.StartPoint, Quaternion.identity);
 
             launcher.ThrowItem(newFood.GetComponent<LaunchableItem>());
@@ -15,7 +15,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             base.ReleaseFood();
         }
 
-        protected override bool CheckIfCanCook(FoodData foodData) => foodData.friedFood != null;
+        protected override bool CheckIfCanCook(FoodData foodData) => foodData.purifiedFood != null;
         
     }
 }

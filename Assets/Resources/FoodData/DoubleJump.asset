@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0be2f7fc416a54b398b1d64579258ebd, type: 3}
-  m_Name: TESTFOOD BAKED
+  m_Name: DoubleJump
   m_EditorClassIdentifier: 
   foodName: DoubleJump
-  prefab: {fileID: 7354829722045014985, guid: 014112bf7480d4242b7a9d3bcee2dd9b, type: 3}
+  prefab: {fileID: 7354829722045014985, guid: 81e964e1bea62e74691f2968cbb61145, type: 3}
   dash: 0
   doubleJump: 1
   wallRide: 0
   bakedFood: {fileID: 0}
-  choppedFood: {fileID: 0}
-  friedFood: {fileID: 0}
+  choppedFood: {fileID: 11400000, guid: 71227ec4b3e985c42a6e9c8125eb43fb, type: 2}
+  purifiedFood: {fileID: 0}
