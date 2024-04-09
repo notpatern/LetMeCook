@@ -8,7 +8,7 @@ namespace Player.HandSystem
     public class Hands
     {
         [SerializeField] private Transform m_FoodPosition;
-        [SerializeField] private Transform m_ThrowPoint;
+        [SerializeField] Transform m_ThrowPoint;
         Transform m_CameraTr;
 
         [SerializeField] private Transform m_EffectSpawnPoint; 

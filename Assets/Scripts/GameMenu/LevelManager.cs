@@ -7,6 +7,7 @@ namespace Manager
     {
         [SerializeField] DefaultLevelData m_DefaultLevelData;
         protected UIManager m_UiManager;
+        [SerializeField] AudioSoundData m_AudioSoundData;
         [SerializeField] protected LevelData m_LevelData;
         [SerializeField, Tooltip("can be null")] Transform m_EndconditionParentUI;
 
@@ -20,6 +21,7 @@ namespace Manager
             GraphicsOption.GraphicsOptionManagement.LoadGraphicsOptionManagement();
             ControlOptions.ControlOptionsManagement.LoadControlOptionsManagement();
             TimeOption.TimeOptionManagement.LoadTimeOptionsManagement();
+            Audio.AudioManager.InitAudioManager(m_AudioSoundData);
 
             m_UiManager = new UIManager();
             m_UiManager.LoadUI(m_LevelData.levelUIData, m_LevelData.dialogLevelData, m_EndconditionParentUI);

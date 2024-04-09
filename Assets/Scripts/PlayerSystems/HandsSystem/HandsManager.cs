@@ -3,8 +3,8 @@ using Player.HandSystem;
 using UnityEngine;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
-using UnityEngine.XR;
-using Unity.VisualScripting;
+using FMODUnity;
+using Audio;
 
 namespace PlayerSystems.HandsSystem
 {
@@ -29,8 +29,11 @@ namespace PlayerSystems.HandsSystem
         [SerializeField] Material m_DefaultGemBraceletVisualMaterial;
         [SerializeField] GemBraceletVisual[] m_GemBraceletMoveTechVisual;
 
+        Transform m_CameraTr;
+
         public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator, Transform cameraTr)
         {
+            m_CameraTr = cameraTr;
             m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr);
             m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr);
 
@@ -119,6 +122,7 @@ namespace PlayerSystems.HandsSystem
             else
             {
                 ReleaseFromHand(hand);
+                AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerThrowSound, m_CameraTr.position);
             }
         }
 
