@@ -27,14 +27,14 @@ namespace Audio
             RuntimeManager.PlayOneShot(sound, worldPosition);
         }
 
-        EventInstance CreateInstance(EventReference eventReference)
+        public EventInstance CreateInstance(EventReference eventReference)
         {
             EventInstance instance = RuntimeManager.CreateInstance(eventReference);
             m_EventInstances.Add(instance);
             return instance;
         }
 
-        void CleanUp()
+        public void CleanUp()
         {
             foreach(EventInstance instance in m_EventInstances)
             {

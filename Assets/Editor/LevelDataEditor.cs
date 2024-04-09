@@ -15,6 +15,7 @@ public class LevelDataEditor : Editor
         EditorGUI.BeginChangeCheck();
         picker.levelID = EditorGUILayout.IntField(new GUIContent("Level ID (first is 0)", ""), picker.levelID);
         SceneAsset newScene = EditorGUILayout.ObjectField("Linked Scene", oldScene, typeof(SceneAsset), false) as SceneAsset;
+        picker.levelMusicData = EditorGUILayout.ObjectField("Level Music Data", picker.levelMusicData, typeof(LevelMusicData), false) as LevelMusicData;
         picker.levelUIData = EditorGUILayout.ObjectField("Level UI Data", picker.levelUIData, typeof(LevelUIData), false) as LevelUIData;
         picker.dialogLevelData = EditorGUILayout.ObjectField("Dialog Level Data", picker.dialogLevelData, typeof(DialogLevelData), false) as DialogLevelData;
         picker.levelDuration = EditorGUILayout.FloatField(new GUIContent("Level Duration (In Seconds)", ""), picker.levelDuration);
