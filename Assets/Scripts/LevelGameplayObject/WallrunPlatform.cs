@@ -1,13 +1,14 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WallrunPlatform : MonoBehaviour
 {
     [SerializeField] GameEventScriptableObject m_GameEvent;
-    [SerializeField] GameObject m_LigthsEffect;
+    [SerializeField] GameObject m_eyeLid;
 
     void Awake()
     {
-        m_LigthsEffect.SetActive(false);
+        m_eyeLid.SetActive(true);
     }
 
     void OnEnable()
@@ -22,6 +23,6 @@ public class WallrunPlatform : MonoBehaviour
 
     void ActiveLight(object args)
     {
-        m_LigthsEffect.SetActive((bool)args);
+        m_eyeLid.SetActive(!(bool)args);
     }
 }
