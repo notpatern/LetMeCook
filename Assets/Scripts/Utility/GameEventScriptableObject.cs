@@ -5,10 +5,16 @@ using UnityEngine.Events;
 public class GameEventScriptableObject : ScriptableObject
 {
     UnityEvent<object> m_GameEvent = new UnityEvent<object>();
+    [SerializeField] bool m_ClearAfterTriggered = false;
 
     public void TriggerEvent(object args = null)
     {
         m_GameEvent.Invoke(args);
+        
+        if(m_ClearAfterTriggered)
+        {
+            m_GameEvent.RemoveAllListeners();
+        }
     }
 
     public void BindEventAction(UnityAction<object> action)

@@ -26,7 +26,7 @@ namespace FoodSystem.FoodType
             return Physics.Raycast(
                 rb.position,
                 Vector3.down,
-                1f,
+                .5f,
                 isGround
             );
         }
