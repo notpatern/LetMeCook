@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections.Generic;
 
 namespace Player.HandSystem
 {
@@ -13,8 +14,6 @@ namespace Player.HandSystem
         [SerializeField] GameObject m_CrunchFoodParticlesPrefab;
         bool canSpawnFogParticle = true;
         [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
-        GameObject m_ParticleCircleInstance;
-        GameObject m_ParticleFogInstance;
         [SerializeField] Transform m_HandTransform;
 
         void Awake()
@@ -54,21 +53,20 @@ namespace Player.HandSystem
 
         public void SpawnMagicalCircleParticle()
         {
-            SpawnPartcile(false, out m_ParticleCircleInstance, m_MagicalCircleParticlePrefab);
+            SpawnPartcile(false, m_MagicalCircleParticlePrefab);
         }
 
         public void SpawnFogParticle()
         {
             if (canSpawnFogParticle)
             {
-                SpawnPartcile(false, out m_ParticleFogInstance, m_MagicalFogParticlePrefab);
+                SpawnPartcile(false, m_MagicalFogParticlePrefab);
             }
         }
 
         public void SpawnCrunchFoodFromHandsParticles()
         {
-            GameObject particle;
-            SpawnPartcile(true, out particle, m_CrunchFoodParticlesPrefab);
+            SpawnPartcile(true, m_CrunchFoodParticlesPrefab);
         }
 
         void CanSpawnFogParticle(object isPossible)
@@ -76,33 +74,14 @@ namespace Player.HandSystem
             canSpawnFogParticle = (bool)isPossible;
         }
 
-        void SpawnPartcile(bool parentToHand, out GameObject savedInstance, GameObject particlePrefab)
+        void SpawnPartcile(bool parentToHand, GameObject particlePrefab)
         {
-            savedInstance = Instantiate(particlePrefab, m_HandTransform);
+            GameObject go = Instantiate(particlePrefab, m_HandTransform);
 
             if (!parentToHand)
             {
-                savedInstance.transform.SetParent(null);
-                savedInstance.transform.localScale = Vector3.one;
-            }
-        }
-
-        public void StopMagicalCircleParticle()
-        {
-            StopParticle(m_ParticleCircleInstance);
-
-        }
-
-        public void StopMagicalFogParticle()
-        {
-            StopParticle(m_ParticleFogInstance);
-        }
-
-        void StopParticle(GameObject particleInstance)
-        {
-            if (particleInstance)
-            {
-                Destroy(particleInstance);
+                go.transform.SetParent(null);
+                go.transform.localScale = Vector3.one;
             }
         }
     }
