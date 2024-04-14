@@ -6,10 +6,15 @@ namespace FoodSystem.FoodType
 {
     public abstract class Food : MonoBehaviour, IInteractable, IDestructible
     {
-        [SerializeField] SphereCollider col;
+        Collider[] col;
         [SerializeField] Rigidbody rb;
         [SerializeField] TrailRenderer trailRenderer;
         [SerializeField] LayerMask isGround;
+
+        void Awake()
+        {
+            col = GetComponents<Collider>();
+        }
 
         public GameObject StartInteraction()
         {
@@ -40,7 +45,10 @@ namespace FoodSystem.FoodType
         public virtual void PutInHand(Transform hand)
         {
             rb.isKinematic = true;
-            col.enabled = false;
+            foreach (Collider coll in col)
+            {
+                coll.enabled = false;
+            }
             transform.SetParent(hand);
             transform.position = hand.position;
             transform.localRotation = Quaternion.identity;
@@ -54,7 +62,10 @@ namespace FoodSystem.FoodType
             rb.isKinematic = false;
             rb.velocity = Vector3.zero;
             transform.SetParent(null);
-            col.enabled = true;
+            foreach (Collider coll in col)
+            {
+                coll.enabled = true;
+            }
             ChangeLayer("Food");
 
             trailRenderer.enabled = true;
