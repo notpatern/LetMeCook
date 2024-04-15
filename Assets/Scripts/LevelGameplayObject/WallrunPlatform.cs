@@ -9,8 +9,11 @@ public class WallrunPlatform : MonoBehaviour
     private Transform m_playerTransform;
     [SerializeField] GameObject m_leftPupil;
     [SerializeField] GameObject m_rightPupil;
+    [SerializeField] GameObject m_eyeBall;
     private Quaternion leftRotation;
     private Quaternion rightRotation;
+
+    bool isEyeActive;
 
     void Awake()
     {
@@ -36,25 +39,27 @@ public class WallrunPlatform : MonoBehaviour
 
     void ActiveLight(object args)
     {
+        isEyeActive = (bool)args;
         m_eyeLid.SetActive(!(bool)args);
     }
 
     private void Update()
     {
-        FollowPlayer();
+        if (isEyeActive)
+        {
+            FollowPlayer();
+        }
     }
 
     void FollowPlayer()
     {
         Vector3 position = m_playerTransform.position;
         
-        Vector3 leftPupilDirection = position - m_leftPupil.transform.position;
-        Vector3 rightPupilDirection = position - m_rightPupil.transform.position;
+        Vector3 eyeBallDirection = (position - m_eyeBall.transform.position).normalized;
 
-        Quaternion targetLeftRotation = Quaternion.LookRotation(leftPupilDirection);
-        Quaternion targetRightRotation = Quaternion.LookRotation(rightPupilDirection);
+        Quaternion eyeBallRotation = Quaternion.LookRotation(eyeBallDirection);
 
-        m_leftPupil.transform.rotation = Quaternion.RotateTowards(leftRotation, targetLeftRotation, 16.2256f);
-        m_rightPupil.transform.rotation = Quaternion.RotateTowards(rightRotation, targetRightRotation, 16.2256f);
+        m_leftPupil.transform.rotation = Quaternion.RotateTowards(leftRotation, eyeBallRotation, 16.2256f);
+        m_rightPupil.transform.rotation = Quaternion.RotateTowards(rightRotation, eyeBallRotation, 16.2256f);
     }
 }
