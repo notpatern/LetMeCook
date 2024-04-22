@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1326450201666392980}
   - component: {fileID: 2754078890434705281}
   - component: {fileID: 7674622604260740335}
+  - component: {fileID: 3776365549890717167}
   m_Layer: 6
   m_Name: Baker
   m_TagString: Untagged
@@ -104,7 +105,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -146,6 +147,27 @@ MonoBehaviour:
   t1: 0.5
   t2: 0.3
   throwSpeed: 0.8
+--- !u!65 &3776365549890717167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730659523122247027}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2727415519975370226
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +224,7 @@ Transform:
   m_GameObject: {fileID: 6976859288192533019}
   serializedVersion: 2
   m_LocalRotation: {x: -0.13109106, y: -0, z: -0, w: 0.9913703}
-  m_LocalPosition: {x: -10.02, y: -5.538, z: -36.278}
+  m_LocalPosition: {x: -17.897, y: -5.537, z: -36.261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
