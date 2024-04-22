@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 28756636951979423}
-  - component: {fileID: 8807356017705713113}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -32,27 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 372990560227329985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8807356017705713113
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034470943817277195}
-  m_Material: {fileID: 13400000, guid: 30f74db5fbd571e4f9118d35fc07eaab, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 2.2488403, z: 1}
-  m_Center: {x: 0, y: -0.83501697, z: 0}
 --- !u!1 &6093473444591461966
 GameObject:
   m_ObjectHideFlags: 0
@@ -4898,6 +4876,7 @@ GameObject:
   - component: {fileID: 4035538470459637335}
   - component: {fileID: 3413463533341010610}
   - component: {fileID: 1019095142626533544}
+  - component: {fileID: 2868817198905087}
   m_Layer: 10
   m_Name: Storage
   m_TagString: Untagged
@@ -5006,7 +4985,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodSpawn: {fileID: 28756636951979423}
-  collisionToEnableOnFoodStocked: {fileID: 8807356017705713113}
+  collisionToEnableOnFoodStocked: {fileID: 2868817198905087}
+  interactionTrigger: {fileID: 3413463533341010610}
   activeParticle: {fileID: 1780258260127102177}
 --- !u!65 &3413463533341010610
 BoxCollider:
@@ -5050,6 +5030,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &2868817198905087
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328354660843397327}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.09, z: 0}
 --- !u!1 &6516911287074730546
 GameObject:
   m_ObjectHideFlags: 0

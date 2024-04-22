@@ -26,7 +26,7 @@ namespace FoodSystem.FoodType
             rb.drag = Grounded() ? 10 : 0;
         }
 
-        private bool Grounded()
+        public bool Grounded()
         {
             return Physics.Raycast(
                 rb.position,

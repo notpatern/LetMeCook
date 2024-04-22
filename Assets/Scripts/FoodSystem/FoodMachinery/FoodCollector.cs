@@ -12,20 +12,20 @@ namespace FoodSystem.FoodMachinery
         protected bool canCollect = true;
         protected bool collectMergedFood = false;
     
-        void OnCollisionEnter(Collision other)
+        void OnTriggerEnter(Collider other)
         {
             if (!canCollect) return;
         
             MergedFood tempMergedFood = other.transform.GetComponent<MergedFood>();
             SimpleFood tempSimpleFood = other.transform.GetComponent<SimpleFood>();
         
-            if (tempMergedFood != null && collectMergedFood)
+            if (tempMergedFood != null && collectMergedFood && !tempMergedFood.Grounded())
             {
                 collectedFood = tempMergedFood;
                 FoodData[] tempDataArray = tempMergedFood.GetFoodDatas().ToArray();
                 collectedFoodData = tempDataArray;
             }
-            else if (tempSimpleFood != null)
+            else if (tempSimpleFood != null && !tempSimpleFood.Grounded())
             {
                 collectedFood = tempSimpleFood;
                 collectedFoodData = new [] { tempSimpleFood.data };

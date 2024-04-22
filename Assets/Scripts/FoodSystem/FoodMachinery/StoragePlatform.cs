@@ -8,12 +8,14 @@ namespace FoodSystem.FoodMachinery
     {
         [SerializeField] Transform foodSpawn;
         [SerializeField] Collider collisionToEnableOnFoodStocked;
+        [SerializeField] Collider interactionTrigger;
         [SerializeField] ParticleInstanceManager activeParticle;
 
         void Awake()
         {
             collectMergedFood = true;
             collisionToEnableOnFoodStocked.enabled = false;
+            interactionTrigger.enabled = true;
             activeParticle.Stop(false);
         }
 
@@ -27,6 +29,7 @@ namespace FoodSystem.FoodMachinery
             activeParticle.Stop(false);
 
             collisionToEnableOnFoodStocked.enabled = false;
+            interactionTrigger.enabled = true;
             GameObject foodToGive = collectedFoodGo;
             foodToGive.GetComponent<Collider>().enabled = true;
             ResetCollector();
@@ -46,6 +49,7 @@ namespace FoodSystem.FoodMachinery
             collisionToEnableOnFoodStocked.enabled = true;
             Rigidbody rb = collectedFoodGo.GetComponent<Rigidbody>();
             collectedFoodGo.GetComponent<Collider>().enabled = false;
+            interactionTrigger.enabled = false;
             rb.isKinematic = true;
 
             collectedFoodGo.transform.SetParent(foodSpawn, false);
