@@ -1,11 +1,12 @@
 using Manager;
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : LevelManager
 {
+    [SerializeField] GameObject m_DefaultAudioSelectionMenu;
+
     [SerializeField] Button m_LevelSelectorBtn;
     [SerializeField] Button m_OptionBtn;
 
@@ -24,6 +25,23 @@ public class MainMenu : LevelManager
     {
         LoadLevelSelectorBtn();
         m_OptionBtn.onClick.AddListener(() => { m_UiManager.optionMenu.ToggleOptionMenu(); });
+
+        LoadDefaultMusicVolumeSelection();
+    }
+
+    void LoadDefaultMusicVolumeSelection()
+    {
+        m_DefaultAudioSelectionMenu.SetActive(false);
+        if (PlayerPrefs.GetInt("DEFAULT_VOLUME_SELECTION_LOCKED", 1) == 1)
+        {
+            m_DefaultAudioSelectionMenu.SetActive(true);
+        }
+    }
+
+    public void CloseDefaultVolumeSelectionMenu()
+    {
+        m_DefaultAudioSelectionMenu.SetActive(false);
+        PlayerPrefs.SetInt("DEFAULT_VOLUME_SELECTION_LOCKED", 0);
     }
 
     void LoadLevelSelectorBtn()

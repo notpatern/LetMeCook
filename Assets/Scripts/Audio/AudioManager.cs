@@ -24,6 +24,10 @@ namespace Audio
             m_MasterBus = RuntimeManager.GetBus("bus:/");
             m_MusicBus = RuntimeManager.GetBus("bus:/Music");
             m_SFXBus = RuntimeManager.GetBus("bus:/SFX");
+
+            SetMasterVolume(PlayerPrefs.GetFloat("VOLUME_MASTER", 0.1f));
+            SetMusicVolume(PlayerPrefs.GetFloat("VOLUME_MUSIC", 0.1f));
+            SetSFXVolume(PlayerPrefs.GetFloat("VOLUME_SFX", 0.1f));
         }
 
         public static void InitAudioManager(AudioSoundData audioSoundData)
@@ -60,18 +64,21 @@ namespace Audio
 
         public void SetMasterVolume(float volume)
         {
+            PlayerPrefs.SetFloat("VOLUME_MASTER", volume);
             m_MasterVolume = volume;
             m_MasterBus.setVolume(volume);
         }
 
-        public void SetMusicSolume(float volume)
+        public void SetMusicVolume(float volume)
         {
+            PlayerPrefs.SetFloat("VOLUME_MUSIC", volume);
             m_MusicVolume = volume;
             m_MusicBus.setVolume(volume);
         }
 
         public void SetSFXVolume(float volume)
         {
+            PlayerPrefs.SetFloat("VOLUME_SFX", volume);
             m_SFXVolume = volume;
             m_SFXBus.setVolume(volume);
         }
