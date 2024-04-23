@@ -1,24 +1,26 @@
 using System;
 using FoodSystem.FoodType;
+using PlayerSystems.HandsSystem;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Player.HandSystem
 {
     [Serializable]
     public class Hands
     {
-        [SerializeField] private Transform m_FoodPosition;
+        [SerializeField] Transform m_FoodPosition;
         [SerializeField] Transform m_ThrowPoint;
         Transform m_CameraTr;
 
-        [SerializeField] private Transform m_EffectSpawnPoint; 
+        [SerializeField] Transform m_EffectSpawnPoint; 
         public Animator m_Animator;
-        [SerializeField] private HandAnimatorManagement m_HandAnimatorManagement;
+        [SerializeField] HandAnimatorManagement m_HandAnimatorManagement;
         ParticleSystemUtility.ParticleInstanceManager m_ParticleInstanceManager;
 
-        private float m_ThrowForce;
-        private GameObject m_HhandledFood;
-        private Food m_CurrentFood;
+        float m_ThrowForce;
+        GameObject m_HhandledFood;
+        Food m_CurrentFood;
 
         Rigidbody m_MomentumRb;
         Vector2 m_ThrowMomentumForwardDirection;
@@ -29,7 +31,14 @@ namespace Player.HandSystem
         int m_IdleHashFullPathPlayerPrefabForSync;
         GameObject m_GrabbedFoodParticlePrefab;
 
-        public void InitData(float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection, float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle, Transform cameraTr)
+        public bool m_IsCrushing = false;
+        UnityAction<Hands> m_RemoveHandMoveTechAction;
+
+        public void InitData(
+            float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection,
+            float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle, 
+            Transform cameraTr, UnityAction<Hands> removeHandMoveTechAction
+        )
         {
             m_ThrowForce = throwForce;
             m_MomentumRb = momentumRb;
@@ -38,13 +47,15 @@ namespace Player.HandSystem
             m_ThrowMomentumPlayerRb = throwMomentumPlayerRb;
 
             m_GrabbedFoodParticlePrefab = grabbedFoodParticle;
-
             m_PlayerPrefabAnimator = playerPrefabAnimator;
+
+            m_RemoveHandMoveTechAction = removeHandMoveTechAction;
+
             m_IdleHandAnimSpeed = m_Animator.GetCurrentAnimatorStateInfo(0).speed;
             m_IdleHashFullPathPlayerPrefabForSync = m_Animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
             m_HandAnimatorManagement.BindResincronyzationOnMainIdle(ResincronyzationOnMainIdleAnimation);
             m_HandAnimatorManagement.BindStopGrabParticle(RemoveFoodEffect);
-            m_HandAnimatorManagement.BindRemoveFoodFromHand(DestroyFood);
+            m_HandAnimatorManagement.BindCrushFoodFromHand(CrushHand);
         }
 
         public void PutItHand(GameObject food, bool grabAnim)
@@ -110,6 +121,13 @@ namespace Player.HandSystem
             UnityEngine.Object.Destroy(m_HhandledFood);
             SetFood(null, false);
             RemoveFoodEffect();
+        }
+
+        void CrushHand()
+        {
+            m_IsCrushing = false;
+            m_RemoveHandMoveTechAction.Invoke(this);
+            DestroyFood();
         }
 
         public void SetFood(GameObject foodGo, bool grabAnim)

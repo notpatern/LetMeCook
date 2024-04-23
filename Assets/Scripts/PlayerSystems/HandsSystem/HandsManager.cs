@@ -3,7 +3,6 @@ using Player.HandSystem;
 using UnityEngine;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
-using FMODUnity;
 using Audio;
 
 namespace PlayerSystems.HandsSystem
@@ -34,8 +33,8 @@ namespace PlayerSystems.HandsSystem
         public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator, Transform cameraTr)
         {
             m_CameraTr = cameraTr;
-            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr);
-            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr);
+            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, ClearHandMoveTech);
+            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, ClearHandMoveTech);
 
             BindMoveTechVisualEffect();
         }
@@ -128,22 +127,26 @@ namespace PlayerSystems.HandsSystem
 
         public void MergeFood()
         {
-            MergeHandFood(m_LeftHand, m_RightHand);
+            if (!m_RightHand.m_IsCrushing && !m_LeftHand.m_IsCrushing)
+            {
+                MergeHandFood(m_LeftHand, m_RightHand);
+            }
         }
 
         public void CrunchFoodInHands()
         {
-            if(m_LeftHand.GetHandFood())
-            {
-                m_HandsEnableMoveTech.ClearMoveTech(m_LeftHand.GetHandFood().GetFoodDatas().ToArray());
-            }
+            m_LeftHand.m_IsCrushing = true;
             m_LeftHand.m_Animator.SetTrigger("CrunchFood");
-
-            if (m_RightHand.GetHandFood())
-            {
-                m_HandsEnableMoveTech.ClearMoveTech(m_RightHand.GetHandFood().GetFoodDatas().ToArray());
-            }
+            m_RightHand.m_IsCrushing = true;
             m_RightHand.m_Animator.SetTrigger("CrunchFood");
+        }
+
+        public void ClearHandMoveTech(Hands hand)
+        {
+            if (hand.GetHandFood())
+            {
+                m_HandsEnableMoveTech.ClearMoveTech(hand.GetHandFood().GetFoodDatas().ToArray());
+            }
         }
 
         //Bind Actions-----

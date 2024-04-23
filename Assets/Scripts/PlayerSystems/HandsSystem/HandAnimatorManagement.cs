@@ -21,7 +21,7 @@ namespace Player.HandSystem
             m_GameEventCanSpawnMagicalFogForMerge.BindEventAction(CanSpawnFogParticle);
         }
 
-        public void BindRemoveFoodFromHand(UnityAction action)
+        public void BindCrushFoodFromHand(UnityAction action)
         {
             m_RemoveFoodFromHand.AddListener(action);
         }
@@ -36,7 +36,7 @@ namespace Player.HandSystem
             m_StopGrabParticle.AddListener(action);
         }
 
-        public void AskRemoveFoodFromHand()
+        public void AskCrushFoodFromHand()
         {
             m_RemoveFoodFromHand.Invoke();
         }
