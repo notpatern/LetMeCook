@@ -9,10 +9,12 @@ namespace UI.MENUScripts
         [Header("Buttons")]
         [SerializeField] Button m_GraphicsParameter;
         [SerializeField] Button m_ControlsParameter;
-        
+        [SerializeField] Button m_VolumeParameter;
+
         [Header("Menus")]
         [SerializeField] GameObject m_GraphicsPanel;
         [SerializeField] GameObject m_ControlsPanel;
+        [SerializeField] GameObject m_VolumeOptionPanel;
 
         [Header("Menu References")]
         [SerializeField] ResolutionUIMenu m_ResolutionUIMenu;
@@ -24,6 +26,7 @@ namespace UI.MENUScripts
             
             m_GraphicsParameter.onClick.AddListener(ToggleGraphicsParameter);
             m_ControlsParameter.onClick.AddListener(ToggleControlsParameter);
+            m_VolumeParameter.onClick.AddListener(ToggleVolumeParameter);
 
             CloseAllPanel();
         }
@@ -44,6 +47,12 @@ namespace UI.MENUScripts
             if(m_GraphicsPanel.activeSelf)
             {
                 ToggleGraphicsParameter();
+                return true;
+            }
+
+            if(m_VolumeOptionPanel.activeSelf)
+            {
+                ToggleVolumeParameter();
                 return true;
             }
 
@@ -83,7 +92,11 @@ namespace UI.MENUScripts
         public void ToggleControlsParameter()
         {
             TogglePanel(m_ControlsPanel);
-            
+        }
+
+        public void ToggleVolumeParameter()
+        {
+            TogglePanel(m_VolumeOptionPanel);
         }
 
         void TogglePanel(GameObject go)
