@@ -6,6 +6,7 @@ namespace ParticleSystemUtility
     {
         [SerializeField] ParticleSystem[] m_Particles;
         [SerializeField] bool isPermanent = false;
+        [SerializeField] float maxStartLifeTimeToAutoClear = 10000f;
 
         private void Update()
         {
@@ -50,7 +51,7 @@ namespace ParticleSystemUtility
             {
                 particle.Stop();
 
-                if (clear)
+                if (clear || particle.main.startLifetime.constant >= maxStartLifeTimeToAutoClear)
                 {
                     particle.Clear();
                 }
