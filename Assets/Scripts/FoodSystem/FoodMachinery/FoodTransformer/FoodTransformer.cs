@@ -1,4 +1,5 @@
 using ItemLaunch;
+using ParticleSystemUtility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         [SerializeField] GameObject progressBarUI;
         [SerializeField] Image progressFill;
         Transform playerTr;
+        [SerializeField] Animator animator;
+        [SerializeField] ParticleInstanceManager cookParticleInstanceManager;
 
         protected ItemLauncher launcher;
 
@@ -22,7 +25,12 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         {
             loadPlayerTransformAtStart.BindEventAction(LoadPlayerTransform);
             progressBarUI.SetActive(false);
-            launcher = GetComponent<ItemLauncher>(); 
+            launcher = GetComponent<ItemLauncher>();
+        }
+
+        void Start()
+        {
+            cookParticleInstanceManager.Stop(false);
         }
 
         void LoadPlayerTransform(object args)
@@ -38,6 +46,9 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 ResetCollector();
                 return;
             }
+
+            cookParticleInstanceManager.Play();
+            animator.SetTrigger("Cook");
 
             progressBarUI.SetActive(true);
             canCollect = false;
@@ -65,6 +76,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         protected virtual void ReleaseFood()
         {
+            cookParticleInstanceManager.Stop(false);
+            animator.SetTrigger("Throw");
             progressBarUI.SetActive(false);
             ResetCollector();
             canCollect = true;

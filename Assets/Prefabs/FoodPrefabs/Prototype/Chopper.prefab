@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4147411135281689755}
   - component: {fileID: 37038940572109279}
   - component: {fileID: 1326450201666392980}
+  - component: {fileID: 2328159016483736292}
+  - component: {fileID: 5840504697518832111}
   - component: {fileID: -6942139893871543674}
   - component: {fileID: 7674622604260740335}
   - component: {fileID: -7756914394425909665}
@@ -111,6 +113,41 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.35, y: 2.35, z: 2.35}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2328159016483736292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730659523122247027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ad916144545be4492d2c17b958cf22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Particles: []
+  isPermanent: 1
+--- !u!95 &5840504697518832111
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730659523122247027}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 537c81927a6853d4eb0f0456c05f93a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &-6942139893871543674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +164,8 @@ MonoBehaviour:
     type: 2}
   progressBarUI: {fileID: 5853614215720795572}
   progressFill: {fileID: 3215455514433947490}
+  animator: {fileID: 5840504697518832111}
+  cookParticleInstanceManager: {fileID: 2328159016483736292}
   cookingTime: 5
 --- !u!114 &7674622604260740335
 MonoBehaviour:
@@ -256,7 +295,7 @@ Transform:
   m_GameObject: {fileID: 6976859288192533019}
   serializedVersion: 2
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 4.914, y: -5.305, z: -96.83}
+  m_LocalPosition: {x: 0.62, y: -3.8, z: -59.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
