@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &375331362889227212
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6012026790291789977}
+  m_Layer: 6
+  m_Name: FoodPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6012026790291789977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375331362889227212}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8230899504278034056}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &730659523122247027
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +111,7 @@ MonoBehaviour:
   progressFill: {fileID: 6123233011037439801}
   animator: {fileID: 3908404589749268418}
   cookParticleInstanceManager: {fileID: 6968986569004081372}
+  cookingFoodPos: {fileID: 6012026790291789977}
   cookingTime: 5
 --- !u!114 &7674622604260740335
 MonoBehaviour:
@@ -44554,6 +44586,7 @@ Transform:
   - {fileID: 360369606069308927}
   - {fileID: 1216323945202301977}
   - {fileID: 4950513808463574548}
+  - {fileID: 6012026790291789977}
   m_Father: {fileID: 2175303863478672204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4125301014180410535

@@ -18,9 +18,12 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         protected ItemLauncher launcher;
 
+        [Header("Food during cooking")]
+        [SerializeField] protected Transform cookingFoodPos;
+
         float _timer = 0f;
-        [SerializeField] float cookingTime = 5f;
-        bool _cooking = false;
+        [SerializeField] protected float cookingTime = 5f;
+        protected bool _cooking = false;
         void Awake() 
         {
             loadPlayerTransformAtStart.BindEventAction(LoadPlayerTransform);
@@ -28,7 +31,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             launcher = GetComponent<ItemLauncher>();
         }
 
-        void Start()
+        protected virtual void Start()
         {
             cookParticleInstanceManager.Stop(false);
         }
@@ -54,10 +57,13 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             canCollect = false;
             _timer = 0f;
             _cooking = true;
-            Destroy(collectedFoodGo);
+            collectedFoodGo.transform.localPosition = Vector3.zero;
+            collectedFoodGo.transform.SetParent(cookingFoodPos, false);
+            collectedFoodGo.GetComponent<Collider>().enabled = false;
+            collectedFoodGo.GetComponent<Rigidbody>().isKinematic = true;
         }
 
-        void Update()
+        protected virtual void Update()
         {
             if (!_cooking)
                 return;
@@ -76,6 +82,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         protected virtual void ReleaseFood()
         {
+            Destroy(collectedFoodGo);
+
             cookParticleInstanceManager.Stop(false);
             animator.SetTrigger("Throw");
             progressBarUI.SetActive(false);

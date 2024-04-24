@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
 	<object class="ParameterPreset" id="{6d557f04-5b3d-4381-b4ca-979a1f40c782}">
-		<property name="note" />
 		<property name="name">
 			<value>MusicTypeValue</value>
 		</property>
@@ -13,6 +12,12 @@
 		</relationship>
 	</object>
 	<object class="GameParameter" id="{1d44f9d6-6d23-4bb5-96b1-5805421188c0}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>6</value>
+		</property>
 		<property name="initialValue">
 			<value>0</value>
 		</property>

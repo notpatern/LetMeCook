@@ -5436,6 +5436,7 @@ MonoBehaviour:
   - {fileID: 7670743933027702997}
   - {fileID: 198228572083654459}
   isPermanent: 0
+  maxStartLifeTimeToAutoClear: 10000
 --- !u!1 &8678344782398983345
 GameObject:
   m_ObjectHideFlags: 0
@@ -5657,9 +5658,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.033976663, g: 0, b: 0.49056602, a: 1}
+      minMaxState: 2
+      minColor: {r: 0.03529412, g: 0, b: 0.4901961, a: 0.29803923}
+      maxColor: {r: 0.033976663, g: 0, b: 0.49056602, a: 0.54509807}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10271,7 +10272,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 855c01c6ef2ee374b947538f2220767c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10291,7 +10292,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
