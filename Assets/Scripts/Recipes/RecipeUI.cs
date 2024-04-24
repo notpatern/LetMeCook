@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RecipeSystem.Core
@@ -7,6 +8,9 @@ namespace RecipeSystem.Core
     {
         [SerializeField] GameObject UIList;
         [SerializeField] GameObject recipeCard;
+
+        List<RecipeCard> activeRecipeCards = new List<RecipeCard>();
+
         public static RecipeUI Instance { get; private set; }
 
         void Awake()
@@ -16,7 +20,11 @@ namespace RecipeSystem.Core
 
         public void AddNewCard(GameRecipe recipe)
         {
-            recipe.transform.SetParent(UIList.transform);
+            GameObject newCard = Instantiate(recipeCard);
+            RecipeCard card = newCard.GetComponent<RecipeCard>();
+            card.gameRecipe = recipe;
+            newCard.transform.SetParent(UIList.transform);
+            activeRecipeCards.Add(card);
         }
 
         public void RemoveCard(GameRecipe recipe)
@@ -25,7 +33,21 @@ namespace RecipeSystem.Core
         {
             // --- animation et trucs sympa ici
             yield return null;
-            Destroy(recipe.gameObject);
+
+            // Remove card from list
+            RecipeCard cardFound = null;
+            foreach (var card in activeRecipeCards)
+                if (card.gameRecipe == recipe)
+                    cardFound = card;
+
+            if (!cardFound)
+            {
+                Debug.LogError($"No card found for recipe {recipe.recipe.nametag}.");
+                yield break;
+            }
+
+            activeRecipeCards.Remove(cardFound);
+            Destroy(cardFound.gameObject);
         }
     }
 }

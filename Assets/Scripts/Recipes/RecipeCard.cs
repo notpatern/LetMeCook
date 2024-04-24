@@ -11,7 +11,7 @@ namespace RecipeSystem.Core
         [SerializeField] Image background;
         [SerializeField] GameObject ingredientsList;
         [SerializeField] GameObject ingredientPrefab;
-        GameRecipe gameRecipe;
+        public GameRecipe gameRecipe;
 
         void Start()
         {
@@ -26,7 +26,9 @@ namespace RecipeSystem.Core
         void Update()
         {
             timeVisual.fillAmount = gameRecipe.timeRemaining / gameRecipe.recipe.secondsToComplete;
-            Color timeColor = Color.HSVToRGB((120 - (120 * timeVisual.fillAmount)) / 360, 1, 1);
+            Color timeColor = Color.HSVToRGB(120 * timeVisual.fillAmount / 360, .75f, 1);
+            timeColor.a = .3f;
+
             timeVisual.color = timeColor;
             background.color = timeColor;
         }

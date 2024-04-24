@@ -1,5 +1,7 @@
 using RecipeSystem.Core;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RecipeSystem
@@ -8,11 +10,26 @@ namespace RecipeSystem
     {
         public static RecipesManager Instance { get; private set; }
         public RecipesDataBase dataBase;
-        List<Core.GameRecipe> activeRecipes;
+        List<Core.GameRecipe> activeRecipes = new List<GameRecipe>();
 
         void Awake()
         {
             Instance = this;
+        }
+        private void Start()
+        {
+            //var randomRecipe = dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count-1)];
+            //AddNewRecipe(randomRecipe);
+            StartCoroutine(RecipeDebug());
+        }
+
+        IEnumerator RecipeDebug()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                AddNewRecipe(dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count)]);
+                yield return new WaitForSeconds(2f);
+            }
         }
 
         /// <summary>
@@ -22,8 +39,10 @@ namespace RecipeSystem
         /// <param name="recipe"></param>
         public GameRecipe AddNewRecipe(Recipe recipe)
         {
-            GameRecipe newGameRecipe = new GameRecipe(recipe);
-            Instantiate(newGameRecipe);
+            GameObject newGameObject = new GameObject(recipe.nametag);
+            GameRecipe newGameRecipe = newGameObject.AddComponent<GameRecipe>();
+            newGameRecipe.Init(recipe);
+
             activeRecipes.Add(newGameRecipe);
             RecipeUI.Instance.AddNewCard(newGameRecipe);
             return newGameRecipe;

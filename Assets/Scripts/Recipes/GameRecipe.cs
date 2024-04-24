@@ -11,7 +11,7 @@ namespace RecipeSystem.Core
         bool failed;
         bool completed;
 
-        public GameRecipe(Recipe recipe)
+        public void Init(Recipe recipe)
         {
             this.recipe = recipe;
             timeRemaining = recipe.secondsToComplete;
