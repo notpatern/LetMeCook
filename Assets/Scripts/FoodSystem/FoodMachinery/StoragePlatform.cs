@@ -55,7 +55,7 @@ namespace FoodSystem.FoodMachinery
             collectedFoodGo.transform.SetParent(foodSpawn, false);
             collectedFoodGo.transform.localPosition = Vector3.zero;
             collectedFoodGo.transform.localRotation = Quaternion.identity;
-
+            Debug.Log("colected");
             canCollect = false;
         }
     }

@@ -4,7 +4,7 @@ namespace RecipeSystem.Core
 {
     public class RecipeGoal : MonoBehaviour
     {
-        LayerMask foodlayer;
+        [SerializeField] LayerMask foodlayer;
         RecipesManager recipesManager;
 
         private void Start()
@@ -14,7 +14,7 @@ namespace RecipeSystem.Core
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.layer == foodlayer)
+            if (foodlayer == (foodlayer | (1 << other.gameObject.layer)))
             {
                 // Try to get the food component
                 var food = other.GetComponent<FoodSystem.FoodType.Food>();
@@ -24,6 +24,10 @@ namespace RecipeSystem.Core
                 if (potentialRecipe)
                 {
                     recipesManager.CompleteRecipe(potentialRecipe);
+                }
+                else
+                {
+                    Destroy(other.gameObject);
                 }
             }
         }
