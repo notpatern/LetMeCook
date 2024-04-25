@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8633680480453331280}
   - component: {fileID: 4339399895306436311}
   - component: {fileID: 7736415360047757875}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ThrowMagicCircleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,14 +44,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921253003775114923}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -119,7 +119,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1e+22
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4907,6 +4907,7 @@ MonoBehaviour:
   - {fileID: 8633680480453331280}
   - {fileID: 1269860385925649216}
   - {fileID: 2217136429627633513}
+  isPermanent: 0
 --- !u!1 &3979935739705283961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4918,7 +4919,7 @@ GameObject:
   - component: {fileID: 4909189877335541048}
   - component: {fileID: 2217136429627633513}
   - component: {fileID: 4141697112236326662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MagicCircleChil (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4948,14 +4949,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3979935739705283961}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.1
   simulationSpeed: 2
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5023,7 +5024,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1e+22
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9815,7 +9816,7 @@ GameObject:
   - component: {fileID: 5673664428025369978}
   - component: {fileID: 1269860385925649216}
   - component: {fileID: 2943337468518876849}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MagicCircleChil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9845,14 +9846,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4813938937017197941}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 0.1
   simulationSpeed: 2
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -9920,7 +9921,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1e+22
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2

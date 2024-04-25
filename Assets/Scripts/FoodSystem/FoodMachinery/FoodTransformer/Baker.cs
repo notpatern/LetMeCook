@@ -11,7 +11,6 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 launcher.StartPoint, Quaternion.identity);
 
             launcher.ThrowItem(newFood.GetComponent<LaunchableItem>());
-        
             base.ReleaseFood();
         }
         

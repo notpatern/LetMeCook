@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Levels
+  m_EditorClassIdentifier: 
+  m_GroupName: Levels
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 9976c4525834cdc4f8aa40b27d762d3d
+  m_SerializeEntries:
+  - m_GUID: 22a12519f21a98042b28e68e6e07d26d
+    m_Address: LevelData1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 52b1262684663464faab3f400d5afa2f
+    m_Address: Assets/Resources_moved/Levels/DefaultLevelData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a4fc680f4fa0c143ae304c86008af37
+    m_Address: Assets/Resources_moved/Levels/Level1/LevelData1.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 161bf4c327cf1d44f9bc416d0e38d95d
+    m_Address: Assets/Resources_moved/Levels/Level2/LevelData2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 20e164205d32eed4d8545ffeb2909997
+    m_Address: Assets/Resources_moved/Levels/Level3/LevelData3.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f09321b090cd51e44abfed3533c225ea, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: bfd6cdf30d4fa5e4db4f92cd2cc941d5, type: 2}
+    - {fileID: 11400000, guid: cfe6090a7f5f56b4f84ea7b935bb2015, type: 2}

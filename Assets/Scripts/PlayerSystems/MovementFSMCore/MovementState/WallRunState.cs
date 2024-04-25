@@ -22,6 +22,19 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _context.maxMovementSpeed = fsmCore.rb.velocity.magnitude;
             _context.canJump = true;
             GetWallDirection();
+
+            float[] fovValues = { fsmCore.cameraData.wallRunFov, fsmCore.cameraData.wallRunFovTimeToSet };
+            fsmCore.onFovChange.TriggerEvent(fovValues);
+            
+            if (_context.wallRight)
+            {
+                fsmCore.onTiltChange.TriggerEvent(fsmCore.cameraData.wallRunTilt);
+            }
+            else
+            {
+                
+                fsmCore.onTiltChange.TriggerEvent(-fsmCore.cameraData.wallRunTilt);
+            }
             var velocity = fsmCore.rb.velocity;
             velocity = new Vector3(velocity.x, 0f, velocity.z);
             fsmCore.rb.velocity = velocity;
@@ -32,7 +45,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _wallNormal = _context.wallInfo.normal;
             _wallDirection = Vector3.Cross(_wallNormal, fsmCore.rb.transform.up);
             
-            if ((fsmCore.orientation.forward - _wallDirection).magnitude > (fsmCore.orientation.forward + _wallDirection).magnitude && fsmCore.Input.y > 0)
+            if ((fsmCore.orientation.forward - _wallDirection).magnitude > (fsmCore.orientation.forward + _wallDirection).magnitude)
             {
                 _wallDirection = -_wallDirection;
             }
@@ -41,11 +54,12 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Update()
         {
             WallTimer();
+            fsmCore.ConsumeStamina(fsmCore.staminaData.wallRunStamina * Time.deltaTime);
         }
 
         public override void FixedUpdate()
         {
-            if (CanStillWallRun())
+            if (CanStillWallRun() && fsmCore.Stamina > 0)
             {
                 WallRunMovement();
                 return;
@@ -60,8 +74,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void WallRunMovement()
         {
-            
-            
             if (fsmCore.rb.velocity.magnitude > _context.maxMovementSpeed)
             {
                 var velocity = fsmCore.rb.velocity.normalized * _context.maxMovementSpeed;
@@ -73,7 +85,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private bool CanStillWallRun()
         {
-            return !(_context.wallTime <= 0) && fsmCore.Input.y != 0 && Physics.Raycast(fsmCore.rb.transform.position, -_wallNormal, 1f, LayerMask.GetMask("isWall"));
+            return !(_context.wallTime <= 0) && (fsmCore.Input.x != 0 || fsmCore.Input.y != 0) && Physics.Raycast(fsmCore.rb.transform.position, -_wallNormal, 1f, LayerMask.GetMask("isWall"));
         }
 
         public override void Jump()
@@ -85,7 +97,10 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void ExitState()
         {
-            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, _context.canJump, true, fsmCore.canWallRun, _context.wallInfo));
+            float[] fovValues = { fsmCore.cameraData.defaultFov, fsmCore.cameraData.defaultFovTimeToSet };
+            fsmCore.onFovChange.TriggerEvent(fovValues);
+            fsmCore.onTiltChange.TriggerEvent(fsmCore.cameraData.defaultTilt);
+            fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, fsmCore.canJump, true, fsmCore.canWallRun, _context.wallInfo));
         }
     }
 }

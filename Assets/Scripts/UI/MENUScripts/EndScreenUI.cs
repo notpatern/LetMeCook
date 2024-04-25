@@ -1,11 +1,15 @@
 using ControlOptions;
 using System.Collections;
+using TimeOption;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EndScreenUI : MonoBehaviour
 {
     [SerializeField] GameObject m_PanelContent;
+    [SerializeField] Animator m_EndScreenAnimator;
     [Header("Stars")]
     [SerializeField] GameObject[] m_ActiveStarsGo;
     [SerializeField] float m_StarActivationTransitionTime = 0.5f;
@@ -13,18 +17,32 @@ public class EndScreenUI : MonoBehaviour
     [Header("Score Texts")]
     [SerializeField] TMP_Text m_ScoreText;
     [SerializeField] TMP_Text m_CompletedRecipesRateText;
+    [SerializeField] TMP_Text m_CompletedRecipes;
+    [SerializeField] TMP_Text m_MissedRecipes;
+    [SerializeField] TMP_Text m_GroundedTime;
+
+    [Header("Buttons")]
+    [SerializeField] Button m_NextLevelButton;
+    [SerializeField] Button m_GotoMainMenuButton;
+    [SerializeField] Button m_RestartLevelButton;
+
     public void SetActive(bool state)
     {
         m_PanelContent.SetActive(state);
     }
 
-    public void InitEndScreen(TempScoreContainer playerScore)
+    public void InitEndScreen(TempScoreContainer playerScore, LevelData nextLevelData)
     {
+        m_EndScreenAnimator.SetTrigger("Start");
+
         ControlOptionsManagement.SetCursorIsPlayMode(false);
         ControlOptionsManagement.s_Instance.DisableMainPlayerInputs();
 
         m_ScoreText.text = "Score : " + playerScore.m_Score;
         m_CompletedRecipesRateText.text = "Completed Recipes Rate : " + (playerScore.m_CompletedRecipes/(float)playerScore.m_TotalRecipes * 100) + "%";
+        m_CompletedRecipes.text = "Completed Reciped : " + playerScore.m_CompletedRecipes;
+        m_MissedRecipes.text = "Missed Reciped : " + playerScore.m_TotalRecipes;
+        m_GroundedTime.text = "Time On Ground : 15s";//TODO link the grounded time
 
         int minimumRequiredScoreOverflow = playerScore.m_Score - playerScore.m_RequiredScore;
 
@@ -41,6 +59,33 @@ public class EndScreenUI : MonoBehaviour
         //stars are generated based on *2 minimum required score is the max for now
         float scoreStep = playerScore.m_RequiredScore / (float)m_ActiveStarsGo.Length;
         StartCoroutine(ActiveStarWithOffsetTransition(minimumRequiredScoreOverflow, scoreStep));
+
+        if(!nextLevelData)
+        {
+            Destroy(m_NextLevelButton.gameObject);
+        }
+        else if(playerScore.m_RequiredScore > playerScore.m_Score)
+        {
+            m_NextLevelButton.interactable = false;
+        }
+        else
+        {
+            LevelIsWin(nextLevelData);
+            m_NextLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(nextLevelData.linkedScenePath));
+        }
+
+        m_GotoMainMenuButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(0));
+        m_RestartLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex));
+    }
+
+    void LevelIsWin(LevelData nextLevelData)
+    {
+        int reachedLevel = SaveSystem.GetLevelReached();
+
+        if (reachedLevel < nextLevelData.levelID)
+        {
+            SaveSystem.SaveLevelReached(nextLevelData.levelID);
+        }
     }
 
     IEnumerator ActiveStarWithOffsetTransition(int minimumRequiredScoreOverflow, float scoreStep)

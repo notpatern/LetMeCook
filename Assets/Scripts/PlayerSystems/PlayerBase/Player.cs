@@ -17,13 +17,14 @@ namespace PlayerSystems.PlayerBase
         [SerializeField] Animator m_PlayerPrefabAnimator;
         [SerializeField] MovementFsmCore m_MovementFsmCore;
 
-        void Start()
+        public void Init()
         {
+            m_PlayerInteraction.InitPlayerInteraction(m_HandsManager);
             m_PlayerInteraction.BindPerformInteraction(m_HandsManager.UseHand);
             m_InputManager.BindHandAction(m_PlayerInteraction.ActiveInteraction);
             m_InputManager.BindMergeHandInput(m_HandsManager.MergeFood);
 
-            m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator);
+            m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator, m_MovementFsmCore.camera);
             InitFsmCore();
         }
 
@@ -39,8 +40,11 @@ namespace PlayerSystems.PlayerBase
             m_MovementFsmCore.FixedUpdate();
         }
 
-        public void InitUIEvent(UI.UIManager uIManager)
+        public void InitUI(UI.UIManager uIManager)
         {
+            //Stamina---------
+            m_MovementFsmCore.BindStaminaRegeneration(uIManager.playerHUD.UpdateStaminaFill);
+
             //Inputs----------
             m_InputManager.BindTogglePauseMenu(uIManager.pauseMenu.ToggleActiveMenuState);
 
@@ -63,6 +67,22 @@ namespace PlayerSystems.PlayerBase
             m_HandsManager.BindUpdateDashState(m_MovementFsmCore.UpdateDashState);
             m_HandsManager.BindUpdateDoubleJumpState(m_MovementFsmCore.UpdateDoubleJumpState);
             m_HandsManager.BindUpdateWallRunState(m_MovementFsmCore.UpdateWallRunState);
+        }
+
+        public void SetPosition(Vector3 newPos)
+        {
+            m_PlayerRb.position = newPos;
+            m_PlayerRb.velocity = Vector3.zero;
+        }
+
+        public void ClearPlayerStamina()
+        {
+            m_MovementFsmCore.ClearStamina();
+        }
+
+        public void CrunchFoodInHands()
+        {
+            m_HandsManager.CrunchFoodInHands();
         }
     }
 }

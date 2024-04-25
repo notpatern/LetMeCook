@@ -1,3 +1,4 @@
+using ParticleSystemUtility;
 using Player.Interaction;
 using UnityEngine;
 
@@ -6,24 +7,54 @@ namespace FoodSystem.FoodMachinery
     public class StoragePlatform : FoodCollector, IInteractable
     {
         [SerializeField] Transform foodSpawn;
-        IInteractable _interactableImplementation;
+        [SerializeField] Collider collisionToEnableOnFoodStocked;
+        [SerializeField] Collider interactionTrigger;
+        [SerializeField] ParticleInstanceManager activeParticle;
+
+        void Awake()
+        {
+            collectMergedFood = true;
+            collisionToEnableOnFoodStocked.enabled = false;
+            interactionTrigger.enabled = true;
+            activeParticle.Stop(false);
+        }
 
         public GameObject StartInteraction()
         {
-            //TODO Give food to the player's hand
+            if(!collectedFoodGo)
+            {
+                return null;
+            }
+
+            activeParticle.Stop(false);
+
+            collisionToEnableOnFoodStocked.enabled = false;
+            interactionTrigger.enabled = true;
+            GameObject foodToGive = collectedFoodGo;
+            foodToGive.GetComponent<Collider>().enabled = true;
+            ResetCollector();
             canCollect = true;
-            return collectedFoodGo;
+            return foodToGive;
         }
 
-        public string GetContext() => collectedFood.GetContext();
+        public string GetContext() 
+        {
+            return "platform's food";
+        }
 
         protected override void OnFoodCollected()
         {
+            activeParticle.Play();
+
+            collisionToEnableOnFoodStocked.enabled = true;
             Rigidbody rb = collectedFoodGo.GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-        
-            collectedFoodGo.transform.position = foodSpawn.position;
-            collectedFoodGo.transform.rotation = foodSpawn.rotation;
+            collectedFoodGo.GetComponent<Collider>().enabled = false;
+            interactionTrigger.enabled = false;
+            rb.isKinematic = true;
+
+            collectedFoodGo.transform.SetParent(foodSpawn, false);
+            collectedFoodGo.transform.localPosition = Vector3.zero;
+            collectedFoodGo.transform.localRotation = Quaternion.identity;
 
             canCollect = false;
         }

@@ -22,14 +22,14 @@ namespace Dialog
             dialogPanel.SetActive(false);
             StartDialogQueue(dialogLevelData.startLevel);
         }
-
         public bool StartDialogQueue(DialogInfos dialogInfos)
+
         {
             m_DialogInfosQueue.Enqueue(dialogInfos);
 
             if (isInDialog) return false;
 
-            StartCoroutine(StartDialog());
+            //StartCoroutine(StartDialog());
 
             return true;
         }

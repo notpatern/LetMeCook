@@ -1,36 +1,50 @@
-using Manager;
 using System.IO;
 using UnityEngine;
 
 public class SaveSystem : MonoBehaviour
 {
-    public static void Save(int levelReached)
+    static bool isLoaded = false;
+    static int levelReached = 0;
+
+    public static int GetLevelReached()
     {
-        string path = Application.persistentDataPath + "/Save.exe";
+        if(!isLoaded)
+        {
+            levelReached = LoadLevelReached();
+        }
 
-        SaveData saveData = new SaveData(levelReached);
-
-        string data = JsonUtility.ToJson(saveData);
-        string dataString = SecureHelper.DecryptAndCrypt(data);
-
-        FileStream jsonFile = new FileStream(path, FileMode.Create);
-        jsonFile.Close();
-        File.WriteAllText(path, dataString);
+        return levelReached;
     }
 
-    public static SaveData Load()
+    public static void SaveLevelReached(int levelReached)
     {
+        isLoaded = false;
+        string path = Application.persistentDataPath + "/Save.exe";
+
+        string dataString = levelReached.ToString();
+
+        FileStream file = new FileStream(path, FileMode.Create);
+        file.Close();
+        File.WriteAllText(path, SecureHelper.DecryptAndCrypt(dataString));
+    }
+
+    static int LoadLevelReached()
+    {
+
         string path = Application.persistentDataPath + "/Save.exe";
 
         if (!File.Exists(path))
         {
-            Save(0);
+            SaveLevelReached(0);
         }
 
         string data = File.ReadAllText(path);
 
         string dataString = SecureHelper.DecryptAndCrypt(data);
-        SaveData saveData = JsonUtility.FromJson<SaveData>(dataString);
+        int saveData = int.Parse(dataString);
+
+        isLoaded = true;
+
         return saveData;
     }
 
@@ -44,16 +58,5 @@ public class SaveSystem : MonoBehaviour
         }
 
         File.Delete(path);
-    }
-}
-
-[System.Serializable]
-public class SaveData
-{
-    public int m_LevelReached = 0;
-
-    public SaveData(int levelReached)
-    {
-        m_LevelReached = levelReached;
     }
 }

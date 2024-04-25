@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb12d5f9764f70246ac242d7c0f963af, type: 3}
+  m_Name: DialogLevelData
+  m_EditorClassIdentifier: 
+  sentenceDelay: 1
+  sentenceMaxLength: 30
+  sentenceMinLength: 5
+  startLevel:
+    pnjName: 
+    content: test de save pour fchanger les nombre de max lettre possible actuellement
+      un
+    loadedContent:
+    - test de save
+    - ' pour fchanger'
+    - ' les nombre de'
+    - ' max lettre'
+    - ' possible'
+    - ' actuellement u un'
+  endLevelDialog:
+    pnjName: 
+    content: 
+    loadedContent: []
+  startRecepieDialogs:
+  - pnjName: 
+    content: 
+    loadedContent: []
+  - pnjName: boby
+    content: bonjour je suis un dialog super
+    loadedContent:
+    - bonjour je suis un dialog supe
+    - ' super'
+    - 
+  - pnjName: 
+    content: 
+    loadedContent: []
+  endRecepieDialogs: []

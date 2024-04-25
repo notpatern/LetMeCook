@@ -1,18 +1,46 @@
 using ItemLaunch;
+using ParticleSystemUtility;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
 {
     [RequireComponent(typeof(ItemLauncher))]
     public abstract class FoodTransformer : FoodCollector
     {
+        [SerializeField] GameEventScriptableObject loadPlayerTransformAtStart;
+        [Header("World UI")]
+        [SerializeField] GameObject progressBarUI;
+        [SerializeField] Image progressFill;
+        Transform playerTr;
+        [SerializeField] Animator animator;
+        [SerializeField] ParticleInstanceManager cookParticleInstanceManager;
+
         protected ItemLauncher launcher;
 
-        float _timer = 0f;
-        [SerializeField] float cookingTime = 5f;
-        bool _cooking = false;
+        [Header("Food during cooking")]
+        [SerializeField] protected Transform cookingFoodPos;
 
-        void Awake() { launcher = GetComponent<ItemLauncher>(); }
+        float _timer = 0f;
+        [SerializeField] protected float cookingTime = 5f;
+        protected bool _cooking = false;
+        void Awake() 
+        {
+            loadPlayerTransformAtStart.BindEventAction(LoadPlayerTransform);
+            progressBarUI.SetActive(false);
+            launcher = GetComponent<ItemLauncher>();
+        }
+
+        protected virtual void Start()
+        {
+            cookParticleInstanceManager.Stop(false);
+        }
+
+        void LoadPlayerTransform(object args)
+        {
+            playerTr = (Transform)args;
+        }
+
 
         protected override void OnFoodCollected()
         {
@@ -21,26 +49,44 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 ResetCollector();
                 return;
             }
-            
+
+            cookParticleInstanceManager.Play();
+            animator.SetTrigger("Cook");
+
+            progressBarUI.SetActive(true);
             canCollect = false;
-            _timer = cookingTime;
+            _timer = 0f;
             _cooking = true;
-            Destroy(collectedFoodGo);
+            collectedFoodGo.transform.localPosition = Vector3.zero;
+            collectedFoodGo.transform.SetParent(cookingFoodPos, false);
+            collectedFoodGo.GetComponent<Collider>().enabled = false;
+            collectedFoodGo.GetComponent<Rigidbody>().isKinematic = true;
         }
 
-        void Update()
+        protected virtual void Update()
         {
             if (!_cooking)
                 return;
-        
-            if (_timer > 0f)
-                _timer -= Time.deltaTime;
+
+            if (_timer <= cookingTime)
+            {
+                progressBarUI.transform.LookAt(playerTr.position);
+
+                progressFill.fillAmount = _timer / cookingTime;
+
+                _timer += Time.deltaTime;
+            }
             else
                 ReleaseFood();
         }
 
         protected virtual void ReleaseFood()
         {
+            Destroy(collectedFoodGo);
+
+            cookParticleInstanceManager.Stop(false);
+            animator.SetTrigger("Throw");
+            progressBarUI.SetActive(false);
             ResetCollector();
             canCollect = true;
             _cooking = false;

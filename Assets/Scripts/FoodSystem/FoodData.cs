@@ -17,6 +17,6 @@ namespace FoodSystem
         [Header("Next step")]
         public FoodData bakedFood;
         public FoodData choppedFood;
-        public FoodData friedFood;
+        public FoodData purifiedFood;
     }
 }

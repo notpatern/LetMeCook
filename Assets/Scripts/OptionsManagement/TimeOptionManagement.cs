@@ -2,26 +2,16 @@ using UnityEngine;
 
 namespace TimeOption
 {
-    public class TimeOptionManagement
+    public static class TimeOptionManagement
     {
-        public static TimeOptionManagement s_Instance;
+        static BoolTable m_IsTimeActivated;
 
-        BoolTable m_IsTimeActivated;
-
-        public TimeOptionManagement()
+        public static void LoadTimeOptionsManagement()
         {
             m_IsTimeActivated = new BoolTable();
         }
 
-        public static void LoadTimeOptionsManagement()
-        {
-            if(s_Instance == null)
-            {
-                s_Instance = new TimeOptionManagement();
-            }
-        }
-
-        public void SetActiveTime(bool state)
+        public static void SetActiveTime(bool state)
         {
             m_IsTimeActivated.Value = state;
 

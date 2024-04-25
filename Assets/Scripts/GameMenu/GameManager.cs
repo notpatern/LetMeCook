@@ -1,4 +1,4 @@
-using PlayerSystems.PlayerBase;
+using Audio;
 using UnityEngine;
 
 namespace Manager
@@ -7,6 +7,8 @@ namespace Manager
     {
         [SerializeField] PlayerSystems.PlayerBase.Player m_Player;
         [SerializeField] GameEndCondition m_GameEndCondition;
+        [SerializeField, Tooltip("Can be null")] LevelData m_NextLevelData;
+        [SerializeField] GameEventScriptableObject m_LoadPlayerTransform;
 
         //TEMP SCORE
         [SerializeField] int score = 0;
@@ -16,16 +18,24 @@ namespace Manager
         override protected void Awake()
         { 
             base.Awake();
-            m_Player.InitUIEvent(m_UiManager);
+            m_Player.Init();
+            m_Player.InitUI(m_UiManager);
 
             m_GameEndCondition = new DefaultGameEndCondition();
             m_GameEndCondition.InitGameEndCondition(m_LevelData.levelDuration, m_UiManager.endConditionUI);
             m_GameEndCondition.BindOnEndCondition(() =>
             {
                 m_Player.gameObject.SetActive(false);
-                m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes, m_LevelData.requiredScore));
+                m_MusicManager.IncreaseMusicTypeOffsetAmount();
+                m_UiManager.pauseMenu.SetBlockPauseMenu(true, true);
+                m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes, m_LevelData.requiredScore), m_NextLevelData);
                 m_UiManager.endScreen.SetActive(true);
             });
+        }
+
+        void Start()
+        {
+            m_LoadPlayerTransform.TriggerEvent(m_Player.transform);
         }
 
         private void Update()

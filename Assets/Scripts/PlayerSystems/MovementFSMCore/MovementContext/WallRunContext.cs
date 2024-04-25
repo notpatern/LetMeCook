@@ -12,11 +12,13 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         public float wallGravity;
         public float wallTime;
         public RaycastHit wallInfo;
+        public bool wallRight;
         
-        public WallRunContext(FsmWallRunData wallRunContext, RaycastHit wallInfo, bool canJump = true, bool canDash = false, bool canWallRun = true) : base(wallRunContext, canJump, canDash, canWallRun)
+        public WallRunContext(FsmWallRunData wallRunContext, RaycastHit wallInfo, bool wallRight, bool canJump = true, bool canDash = false, bool canWallRun = true) : base(wallRunContext, canJump, canDash, canWallRun)
         {
             this._wallRunContext = wallRunContext;
             this.wallInfo = wallInfo;
+            this.wallRight = wallRight;
         }
 
         public override void Init()

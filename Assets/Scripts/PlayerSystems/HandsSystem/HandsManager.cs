@@ -3,8 +3,7 @@ using Player.HandSystem;
 using UnityEngine;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
-using System.Linq;
-using Unity.VisualScripting;
+using Audio;
 
 namespace PlayerSystems.HandsSystem
 {
@@ -12,27 +11,30 @@ namespace PlayerSystems.HandsSystem
     public class HandsManager
     {
         [Header("Throw Food")]
-        [SerializeField] private float m_ThrowForce;
+        [SerializeField] float m_ThrowForce;
         [SerializeField] Vector2 m_ThrowMomentumForwardDirection = new Vector2(1f, 2f);
         [SerializeField] float m_ThrowMomentumPlayerRb = .2f;
 
         [Header("Hands")]
         [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
         [SerializeField] GameObject m_GrabbedFoodParticlePrefab;
-        [SerializeField] private Hands m_LeftHand;
-        [SerializeField] private Hands m_RightHand;
+        [SerializeField] Hands m_LeftHand;
+        [SerializeField] Hands m_RightHand;
 
         [Header("Merged Food")]
-        [SerializeField] private GameObject m_MergedFoodPrefab;
+        [SerializeField] GameObject m_MergedFoodPrefab;
         [SerializeField] HandsEnableMoveTech m_HandsEnableMoveTech;
 
         [SerializeField] Material m_DefaultGemBraceletVisualMaterial;
         [SerializeField] GemBraceletVisual[] m_GemBraceletMoveTechVisual;
 
-        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator)
+        Transform m_CameraTr;
+
+        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator, Transform cameraTr)
         {
-            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
-            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab);
+            m_CameraTr = cameraTr;
+            m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, ClearHandMoveTech);
+            m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, ClearHandMoveTech);
 
             BindMoveTechVisualEffect();
         }
@@ -93,6 +95,22 @@ namespace PlayerSystems.HandsSystem
             }
         }
 
+        public bool IsFoodHandle(HandsType handsType)
+        {
+            switch (handsType)
+            {
+                case HandsType.NONE:
+                    Debug.LogError("This should not happen but does.");
+                    return false;
+                case HandsType.LEFT:
+                    return m_LeftHand.isFoodHandle;
+                case HandsType.RIGHT:
+                    return m_RightHand.isFoodHandle;
+            }
+
+            return false;
+        }
+
         public void PerformHandAction(GameObject food, Hands hand)
         {
             if (!hand.isFoodHandle)
@@ -103,12 +121,32 @@ namespace PlayerSystems.HandsSystem
             else
             {
                 ReleaseFromHand(hand);
+                AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerThrowSound, m_CameraTr.position);
             }
         }
 
         public void MergeFood()
         {
-            MergeHandFood(m_LeftHand, m_RightHand);
+            if (!m_RightHand.m_IsCrushing && !m_LeftHand.m_IsCrushing)
+            {
+                MergeHandFood(m_LeftHand, m_RightHand);
+            }
+        }
+
+        public void CrunchFoodInHands()
+        {
+            m_LeftHand.m_IsCrushing = true;
+            m_LeftHand.m_Animator.SetTrigger("CrunchFood");
+            m_RightHand.m_IsCrushing = true;
+            m_RightHand.m_Animator.SetTrigger("CrunchFood");
+        }
+
+        public void ClearHandMoveTech(Hands hand)
+        {
+            if (hand.GetHandFood())
+            {
+                m_HandsEnableMoveTech.ClearMoveTech(hand.GetHandFood().GetFoodDatas().ToArray());
+            }
         }
 
         //Bind Actions-----

@@ -13,7 +13,7 @@ namespace ItemLaunch
             _launcher = launcher;
             transform.LookAt(launcher.transform);
             _doingTheBezierCurve = true;
-            GetComponent<Rigidbody>().useGravity = false;
+            GetComponent<Rigidbody>().isKinematic = true;
         }
     
         void Update()
@@ -34,7 +34,7 @@ namespace ItemLaunch
 
         void QuitBezierCurve()
         {
-            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<Rigidbody>().isKinematic = false;
             _doingTheBezierCurve = false;
             Destroy(this);
         }

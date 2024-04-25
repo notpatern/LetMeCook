@@ -12,8 +12,9 @@ namespace UI.MENUScripts
         [SerializeField] Button optionMenuButton;
         [SerializeField] Button continueButton;
         [SerializeField] Button quitButton;
-        [SerializeField] string targetedQuitLevel;
+        [SerializeField] LevelData targetedQuitLevel;
         [SerializeField] Button restartButton;
+        bool blockPauseMenuFromOpening = false;
 
         public void Init(UIManager uIManager)
         {
@@ -26,19 +27,29 @@ namespace UI.MENUScripts
                 continueButton.onClick.AddListener(ToggleActiveMenuState);
 
             if(quitButton)
-                quitButton.onClick.AddListener(() => {GoToLevel(targetedQuitLevel); });
+                quitButton.onClick.AddListener(() => { GoToLevel(targetedQuitLevel.linkedScenePath); });
 
             if(restartButton)
-                restartButton.onClick.AddListener(RestartLevel);
+                restartButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex));
         }
 
         public void ToggleActiveMenuState()
+        {
+            if(blockPauseMenuFromOpening)
+            {
+                return;
+            }
+
+            ToggleMenu();
+        }
+
+        void ToggleMenu()
         {
             bool state = !gameObject.activeSelf;
 
             if (state || HandleMenuLayer())
             {
-                TimeOptionManagement.s_Instance.SetActiveTime(!state);
+                TimeOptionManagement.SetActiveTime(!state);
 
                 gameObject.SetActive(state);
                 ControlOptionsManagement.SetCursorIsPlayMode(!state);
@@ -47,20 +58,23 @@ namespace UI.MENUScripts
             }
         }
 
+        public void SetBlockPauseMenu(bool state, bool close)
+        {
+            if(gameObject.activeSelf && close)
+            {
+                ToggleMenu();
+            }
+            blockPauseMenuFromOpening = state;
+        }
+
         bool HandleMenuLayer()
         {
             return !optionMenu.HandleMenuLayer();
         }
 
-        void RestartLevel()
+        void GoToLevel(string scenePath)
         {
-            TimeOptionManagement.s_Instance.SetActiveTime(true);
-            LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        void GoToLevel(string sceneName)
-        {
-            LevelLoader.s_instance.LoadLevel(sceneName);
+            LevelLoader.s_instance.LoadLevel(scenePath);
         }
 
         public void ToggleOptionMenu()
