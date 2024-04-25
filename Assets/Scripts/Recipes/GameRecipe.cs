@@ -2,13 +2,12 @@ using UnityEngine;
 
 namespace RecipeSystem.Core
 {
-    public class GameRecipe : MonoBehaviour
+    public class GameRecipe
     {
         public Recipe recipe;
 
         [HideInInspector] public float timeRemaining;
-        bool failed;
-        bool completed;
+        [HideInInspector] public bool isFailed = false;
 
         public void Init(Recipe recipe)
         {
@@ -16,26 +15,21 @@ namespace RecipeSystem.Core
             timeRemaining = recipe.secondsToComplete;
         }
 
-        void Update()
+        public void Update()
         {
+            if (isFailed) return;
+
             timeRemaining -= Time.deltaTime;
-            if (timeRemaining <= 0 && !failed)
+            if (timeRemaining <= 0)
+            {
                 FailRecipe();
+            }
         }
 
         public void FailRecipe()
         {
-            if (failed) return;
-            failed = true;
-            RecipesManager.Instance.RemoveRecipe(recipe);
-        }
-
-        public void CompleteRecipe()
-        {
-            if (completed) return;
-            completed = true;
-            // ---- Ajouter des points ici
-            RecipesManager.Instance.RemoveRecipe(recipe);
+            isFailed = true;
+            Debug.Log("fail");
         }
     }
 }

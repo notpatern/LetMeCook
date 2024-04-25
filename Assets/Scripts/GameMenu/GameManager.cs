@@ -21,6 +21,8 @@ namespace Manager
             m_Player.Init();
             m_Player.InitUI(m_UiManager);
 
+            m_RecipesManager.Init(this, m_UiManager.recipeUI);
+
             m_GameEndCondition = new DefaultGameEndCondition();
             m_GameEndCondition.InitGameEndCondition(m_LevelData.levelDuration, m_UiManager.endConditionUI);
             m_GameEndCondition.BindOnEndCondition(() =>

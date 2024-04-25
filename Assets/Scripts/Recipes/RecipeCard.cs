@@ -13,8 +13,11 @@ namespace RecipeSystem.Core
         [SerializeField] GameObject ingredientPrefab;
         public GameRecipe gameRecipe;
 
-        void Start()
+        public void Init(GameRecipe recipe, Transform parent)
         {
+            transform.SetParent(parent);
+            gameRecipe = recipe;
+
             titleText.text = gameRecipe.recipe.nametag;
             foreach (var ingredient in gameRecipe.recipe.ingredients)
             {

@@ -11,26 +11,11 @@ namespace RecipeSystem.Core
 
         List<RecipeCard> activeRecipeCards = new List<RecipeCard>();
 
-        public static RecipeUI Instance { get; private set; }
-
-        void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-
         public void AddNewCard(GameRecipe recipe)
         {
             GameObject newCard = Instantiate(recipeCard);
             RecipeCard card = newCard.GetComponent<RecipeCard>();
-            card.gameRecipe = recipe;
-            newCard.transform.SetParent(UIList.transform);
+            card.Init(recipe, UIList.transform);
             activeRecipeCards.Add(card);
         }
 
@@ -46,8 +31,13 @@ namespace RecipeSystem.Core
             // Remove card from list
             RecipeCard cardFound = null;
             foreach (var card in activeRecipeCards)
-                if (card.gameRecipe == recipe)
+            {
+                if (card.gameRecipe.recipe == recipe.recipe)
+                {
                     cardFound = card;
+                    break;
+                }
+            }
 
             if (!cardFound)
             {

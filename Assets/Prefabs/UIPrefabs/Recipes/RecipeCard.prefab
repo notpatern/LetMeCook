@@ -221,7 +221,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5220433785967220082}
-  - component: {fileID: 5730273911955393901}
   - component: {fileID: 7368903353680838321}
   m_Layer: 5
   m_Name: RecipeCard
@@ -253,20 +252,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5730273911955393901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7396155464216941047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72b7ee61e7aa55a4c96acce729e46e7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recipe: {fileID: 11400000, guid: 2ce887bb0f6568446a7c18a636e4759b, type: 2}
-  timeRemaining: 0
 --- !u!114 &7368903353680838321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +270,6 @@ MonoBehaviour:
   ingredientsList: {fileID: 6356223757235929987}
   ingredientPrefab: {fileID: 5966623312370463836, guid: 98503a2163cbe3f4a98ec7a035b6215a,
     type: 3}
-  gameRecipe: {fileID: 0}
 --- !u!1 &7572646151706809913
 GameObject:
   m_ObjectHideFlags: 0
