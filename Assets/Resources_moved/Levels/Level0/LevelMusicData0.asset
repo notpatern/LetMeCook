@@ -18,7 +18,15 @@ MonoBehaviour:
       Data2: 1094642110
       Data3: -1428884289
       Data4: -1122324128
-    Path: event:/Music/BackMusic
-  m_BackMusicTransition: 10
-  m_backMusicTimestamps:
-  - 10
+    Path: event:/Music/BackMusicLevel1
+  m_MusicPeriod:
+  - m_IsOneShot: 1
+    m_MusicLoopPeriodDuration: 0
+  - m_IsOneShot: 0
+    m_MusicLoopPeriodDuration: 35
+  - m_IsOneShot: 0
+    m_MusicLoopPeriodDuration: 50
+  - m_IsOneShot: 1
+    m_MusicLoopPeriodDuration: 0
+  - m_IsOneShot: 0
+    m_MusicLoopPeriodDuration: 30

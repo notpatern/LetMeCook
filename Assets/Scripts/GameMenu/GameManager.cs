@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 
 namespace Manager
@@ -25,6 +26,7 @@ namespace Manager
             m_GameEndCondition.BindOnEndCondition(() =>
             {
                 m_Player.gameObject.SetActive(false);
+                m_MusicManager.IncreaseMusicTypeOffsetAmount();
                 m_UiManager.pauseMenu.SetBlockPauseMenu(true, true);
                 m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes, m_LevelData.requiredScore), m_NextLevelData);
                 m_UiManager.endScreen.SetActive(true);

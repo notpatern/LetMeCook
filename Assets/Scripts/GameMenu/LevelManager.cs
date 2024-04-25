@@ -12,7 +12,7 @@ namespace Manager
         [SerializeField] protected LevelData m_LevelData;
         [SerializeField, Tooltip("can be null")] Transform m_EndconditionParentUI;
 
-        MusicManager m_MusicManager;
+        protected MusicManager m_MusicManager;
 
         protected virtual void Awake()
         {
