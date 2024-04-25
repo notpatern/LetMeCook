@@ -84,5 +84,10 @@ namespace PlayerSystems.PlayerBase
         {
             m_HandsManager.CrunchFoodInHands();
         }
+
+        public float GetGroundedTime()
+        {
+            return m_MovementFsmCore.GetGroundedTime();
+        }
     }
 }

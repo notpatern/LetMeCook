@@ -15,7 +15,14 @@ namespace RecipeSystem.Core
 
         void Awake()
         {
-            Instance = this;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void AddNewCard(GameRecipe recipe)
@@ -28,7 +35,9 @@ namespace RecipeSystem.Core
         }
 
         public void RemoveCard(GameRecipe recipe)
-        { StartCoroutine(_RemoveCard(recipe)); }
+        { 
+            StartCoroutine(_RemoveCard(recipe)); 
+        }
         IEnumerator _RemoveCard(GameRecipe recipe)
         {
             // --- animation et trucs sympa ici

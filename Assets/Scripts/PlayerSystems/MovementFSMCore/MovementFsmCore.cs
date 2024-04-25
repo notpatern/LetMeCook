@@ -39,6 +39,8 @@ namespace PlayerSystems.MovementFSMCore
         [HideInInspector] public bool canWallRun;
         private bool _jumpInput;
         private bool _dashInput;
+
+        float _groundedTime = 0f;
     
         public Vector2 Input { private set; get; }
 
@@ -61,6 +63,16 @@ namespace PlayerSystems.MovementFSMCore
             {
                 RegenerateStamina(staminaData.staminaToRegenerate);
             }
+
+            if(_currentState.GetType() == typeof(GroundState))
+            {
+                _groundedTime += Time.deltaTime;
+            }
+        }
+
+        public float GetGroundedTime()
+        {
+            return _groundedTime;
         }
 
         public void UpdateWallRunState(bool state)

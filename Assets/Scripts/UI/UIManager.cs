@@ -1,4 +1,5 @@
 using Dialog;
+using RecipeSystem.Core;
 using UnityEngine;
 
 namespace UI
@@ -12,6 +13,8 @@ namespace UI
         public EndConditionUI endConditionUI;
         public EndScreenUI endScreen;
         public DialogUIManagement dialogUiManagement;
+
+        public RecipeUI recipeUI;
 
         //if there are problems with multiple layers then do a layer system with an UIContent parent or something and add a layer parameter
         public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData, Transform endConditionParent)
@@ -44,6 +47,16 @@ namespace UI
             {
                 LoadEndScreen(levelUIData.endScreenMenuPrefab);
             }
+
+            if(levelUIData.recipeContentParent)
+            {
+                LoadRecipeContentParent(levelUIData.recipeContentParent);
+            }
+        }
+
+        void LoadRecipeContentParent(GameObject recipieEndMenu)
+        {
+            recipeUI = Object.Instantiate(recipieEndMenu, menuCanvas.transform).GetComponent<RecipeUI>();
         }
 
         void LoadEndScreen(GameObject endScreenPrefab)

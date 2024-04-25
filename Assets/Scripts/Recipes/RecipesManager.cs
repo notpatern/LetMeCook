@@ -1,7 +1,9 @@
+using Manager;
 using RecipeSystem.Core;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using Audio;
 
 namespace RecipeSystem
 {
@@ -9,25 +11,30 @@ namespace RecipeSystem
     {
         public static RecipesManager Instance { get; private set; }
         public RecipesDataBase dataBase;
-        List<Core.GameRecipe> activeRecipes = new List<GameRecipe>();
+        [SerializeField] GameManager gameManager;
+        List<GameRecipe> activeRecipes = new List<GameRecipe>();
+        [SerializeField] Transform SpawnVoice3DPosition;
 
         void Awake()
         {
             Instance = this;
         }
+        
         private void Start()
         {
             //var randomRecipe = dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count-1)];
             //AddNewRecipe(randomRecipe);
-            StartCoroutine(RecipeDebug());
+            StartCoroutine(StartRecipesContainerPeriod());
         }
 
-        IEnumerator RecipeDebug()
+        IEnumerator StartRecipesContainerPeriod()
         {
-            for (int i = 0; i < 4; i++)
+            yield return new WaitForSeconds(dataBase.m_StartPeriodOffset);
+
+            for (int i = 0; i < dataBase.recipesContainers.Length; i++)
             {
-                AddNewRecipe(dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count)]);
-                yield return new WaitForSeconds(2f);
+                AddNewRecipe(dataBase.recipesContainers[i].m_Recipe);
+                yield return new WaitForSeconds(dataBase.recipesContainers[i].m_WaitPeriod);
             }
         }
 
@@ -42,8 +49,13 @@ namespace RecipeSystem
             GameRecipe newGameRecipe = newGameObject.AddComponent<GameRecipe>();
             newGameRecipe.Init(recipe);
 
+            AudioManager.s_Instance.PlayOneShot(recipe.vocaloidVoice, SpawnVoice3DPosition.position);
+
             activeRecipes.Add(newGameRecipe);
             RecipeUI.Instance.AddNewCard(newGameRecipe);
+
+            gameManager.AddRecipesCount(1);
+
             return newGameRecipe;
         }
 
@@ -74,6 +86,9 @@ namespace RecipeSystem
             GameRecipe gameRecipe = FindRecipe(recipe);
             RecipeUI.Instance.RemoveCard(gameRecipe);
             gameRecipe.CompleteRecipe();
+
+            gameManager.AddScore(recipe.addedScore);
+            gameManager.AddAcomplishedRecipes(1);
         }
 
         /// <summary>

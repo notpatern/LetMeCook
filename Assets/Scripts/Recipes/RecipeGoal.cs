@@ -4,23 +4,27 @@ namespace RecipeSystem.Core
 {
     public class RecipeGoal : MonoBehaviour
     {
+        LayerMask foodlayer;
+        RecipesManager recipesManager;
+
+        private void Start()
+        {
+            recipesManager = RecipesManager.Instance;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.layer == 8)
+            if (other.gameObject.layer == foodlayer)
             {
                 // Try to get the food component
-                var recipeManager = RecipesManager.Instance;
                 var food = other.GetComponent<FoodSystem.FoodType.Food>();
-                var potentialRecipe = recipeManager.dataBase.TestFood(food);
+                var potentialRecipe = recipesManager.dataBase.TestFood(food);
 
                 // Completed recipe
                 if (potentialRecipe)
-                    recipeManager.CompleteRecipe(potentialRecipe);
-
-                // Recipe dosn't exist
-                else
-                    print("bruh");
-
+                {
+                    recipesManager.CompleteRecipe(potentialRecipe);
+                }
             }
         }
     }

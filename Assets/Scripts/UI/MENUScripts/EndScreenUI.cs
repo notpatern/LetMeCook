@@ -41,8 +41,8 @@ public class EndScreenUI : MonoBehaviour
         m_ScoreText.text = "Score : " + playerScore.m_Score;
         m_CompletedRecipesRateText.text = "Completed Recipes Rate : " + (playerScore.m_CompletedRecipes/(float)playerScore.m_TotalRecipes * 100) + "%";
         m_CompletedRecipes.text = "Completed Reciped : " + playerScore.m_CompletedRecipes;
-        m_MissedRecipes.text = "Missed Reciped : " + playerScore.m_TotalRecipes;
-        m_GroundedTime.text = "Time On Ground : 15s";//TODO link the grounded time
+        m_MissedRecipes.text = "Missed Reciped : " + (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes);
+        m_GroundedTime.text = "Time On Ground : " + playerScore.m_PlayerGroundedTime + "s";
 
         int minimumRequiredScoreOverflow = playerScore.m_Score - playerScore.m_RequiredScore;
 
@@ -111,12 +111,14 @@ public class TempScoreContainer
     public int m_TotalRecipes;
     public int m_CompletedRecipes;
     public int m_RequiredScore;
+    public float m_PlayerGroundedTime;
 
-    public TempScoreContainer(int score, int totalRecipes, int completedRecipes, int requiredScore)
+    public TempScoreContainer(int score, int totalRecipes, int completedRecipes, int requiredScore, float playerGroundedTime)
     {
         m_Score = score;
         m_TotalRecipes = totalRecipes;
         m_CompletedRecipes = completedRecipes;
         m_RequiredScore = requiredScore;
+        m_PlayerGroundedTime = playerGroundedTime;
     }
 }

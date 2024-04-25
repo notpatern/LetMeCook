@@ -8897,7 +8897,7 @@ Transform:
   m_LocalScale: {x: 0.43, y: 0.43, z: 0.43}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4971705632506436901}
+  - {fileID: 5741887419112660187}
   - {fileID: 8084190898634738160}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8941,11 +8941,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6458256001630246702}
-  trailRenderer: {fileID: 1018286664606913482}
+  trailRenderer: {fileID: 392355855595328052}
   isGround:
     serializedVersion: 2
     m_Bits: 64
-  data: {fileID: 11400000, guid: ca96661746de9ab4e849cfcc9ff85488, type: 2}
+  data: {fileID: 11400000, guid: e1fb23a4247660f4fbc42a563d4e2505, type: 2}
 --- !u!114 &6640363004773618717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9000,7 +9000,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &1030879465798063901
+--- !u!1001 &368776923121653475
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9068,15 +9068,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35160c18c29be4f47addd7fc0ccabb3b, type: 3}
---- !u!96 &1018286664606913482 stripped
+--- !u!96 &392355855595328052 stripped
 TrailRenderer:
   m_CorrespondingSourceObject: {fileID: 31460575419221207, guid: 35160c18c29be4f47addd7fc0ccabb3b,
     type: 3}
-  m_PrefabInstance: {fileID: 1030879465798063901}
+  m_PrefabInstance: {fileID: 368776923121653475}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4971705632506436901 stripped
+--- !u!4 &5741887419112660187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5382189166722910776, guid: 35160c18c29be4f47addd7fc0ccabb3b,
     type: 3}
-  m_PrefabInstance: {fileID: 1030879465798063901}
+  m_PrefabInstance: {fileID: 368776923121653475}
   m_PrefabAsset: {fileID: 0}
