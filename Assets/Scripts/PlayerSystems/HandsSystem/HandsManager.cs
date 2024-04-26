@@ -97,6 +97,7 @@ namespace PlayerSystems.HandsSystem
 
         public bool IsFoodHandle(HandsType handsType)
         {
+
             switch (handsType)
             {
                 case HandsType.NONE:
@@ -115,8 +116,10 @@ namespace PlayerSystems.HandsSystem
         {
             if (!hand.isFoodHandle)
             {
-                if(food)
+                if (food)
+                {
                     PutInHand(food, hand, true, true);
+                }
             }
             else
             {
