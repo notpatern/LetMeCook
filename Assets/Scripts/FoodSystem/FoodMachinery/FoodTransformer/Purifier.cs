@@ -11,11 +11,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         [SerializeField] Transform m_AnnimationStartPos;
         [SerializeField] Transform m_AnnimationEndPos;
-
-        protected override void Start()
-        {
-            cookingFoodPos.position = m_AnnimationStartPos.position;
-        }
+        [SerializeField] Transform m_Particles;
 
         protected override void ReleaseFood()
         {
@@ -29,6 +25,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         protected override void Update()
         {
+            base.Update();
+
             if(_cooking)
             {
                 m_Timer += Time.deltaTime;
@@ -51,7 +49,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 m_LerpDirection *= -1;
             }
 
-            cookingFoodPos.position = PerformVectorLerp(m_AnnimationStartPos.position, m_AnnimationEndPos.position, m_LerpDirection);
+            m_Particles.position = PerformVectorLerp(m_AnnimationStartPos.position, m_AnnimationEndPos.position, m_LerpDelta);
         }
 
         Vector3 PerformVectorLerp(Vector3 from, Vector3 to, float t)
