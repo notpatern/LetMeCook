@@ -11,7 +11,12 @@ namespace FoodSystem.FoodMachinery
 
         protected bool canCollect = true;
         protected bool collectMergedFood = false;
-    
+
+        private void OnTriggerStay(Collider other)
+        {
+            OnTriggerEnter(other);
+        }
+
         void OnTriggerEnter(Collider other)
         {
             if (!canCollect) return;

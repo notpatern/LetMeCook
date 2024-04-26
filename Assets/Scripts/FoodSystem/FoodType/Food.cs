@@ -1,20 +1,17 @@
 using Player.Interaction;
 using UnityEngine;
 using System.Collections.Generic;
+using ItemLaunch;
 
 namespace FoodSystem.FoodType
 {
     public abstract class Food : MonoBehaviour, IInteractable, IDestructible
     {
-        Collider[] col;
+        [SerializeField]  protected Collider[] cols;
         [SerializeField] Rigidbody rb;
         [SerializeField] TrailRenderer trailRenderer;
         [SerializeField] LayerMask isGround;
-
-        void Awake()
-        {
-            col = GetComponents<Collider>();
-        }
+        [SerializeField] LaunchableItem launchableItem;
 
         public GameObject StartInteraction()
         {
@@ -42,13 +39,19 @@ namespace FoodSystem.FoodType
         public abstract void AddFood(MergedFood mergedFood);
         public abstract List<FoodData> GetFoodDatas();
 
+        public void SetActiveColliders(bool state)
+        {
+            foreach (var col in cols)
+            {
+                col.enabled = state;
+            }
+        }
+
         public virtual void PutInHand(Transform hand)
         {
+            launchableItem.QuitBezierCurve();
             rb.isKinematic = true;
-            foreach (Collider coll in col)
-            {
-                coll.enabled = false;
-            }
+            SetActiveColliders(false);
             transform.SetParent(hand);
             transform.position = hand.position;
             transform.localRotation = Quaternion.identity;
@@ -62,10 +65,7 @@ namespace FoodSystem.FoodType
             rb.isKinematic = false;
             rb.velocity = Vector3.zero;
             transform.SetParent(null);
-            foreach (Collider coll in col)
-            {
-                coll.enabled = true;
-            }
+            SetActiveColliders(true);
             ChangeLayer("Food");
 
             trailRenderer.enabled = true;

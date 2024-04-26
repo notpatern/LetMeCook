@@ -8940,11 +8940,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2de0afd1c0027430299dc94b4a137f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cols:
+  - {fileID: 8465984500107889973}
+  - {fileID: 4033413389540713654}
   rb: {fileID: 6458256001630246702}
   trailRenderer: {fileID: 2959012598008564917}
   isGround:
     serializedVersion: 2
     m_Bits: 64
+  launchableItem: {fileID: 6640363004773618717}
   data: {fileID: 11400000, guid: ca96661746de9ab4e849cfcc9ff85488, type: 2}
 --- !u!114 &6640363004773618717
 MonoBehaviour:

@@ -76,7 +76,7 @@ namespace GraphicsOption
                 }
             }
 
-            Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId);
+            //Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId);
 
         }
         

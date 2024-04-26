@@ -1,3 +1,4 @@
+using FoodSystem.FoodType;
 using ParticleSystemUtility;
 using Player.Interaction;
 using UnityEngine;
@@ -31,7 +32,7 @@ namespace FoodSystem.FoodMachinery
             collisionToEnableOnFoodStocked.enabled = false;
             interactionTrigger.enabled = true;
             GameObject foodToGive = collectedFoodGo;
-            foodToGive.GetComponent<Collider>().enabled = true;
+            foodToGive.GetComponent<Food>().SetActiveColliders(true);
             ResetCollector();
             canCollect = true;
             return foodToGive;
@@ -48,14 +49,13 @@ namespace FoodSystem.FoodMachinery
 
             collisionToEnableOnFoodStocked.enabled = true;
             Rigidbody rb = collectedFoodGo.GetComponent<Rigidbody>();
-            collectedFoodGo.GetComponent<Collider>().enabled = false;
+            collectedFoodGo.GetComponent<Food>().SetActiveColliders(false);
             interactionTrigger.enabled = false;
             rb.isKinematic = true;
 
             collectedFoodGo.transform.position = Vector3.zero;
             collectedFoodGo.transform.rotation = Quaternion.identity;
             collectedFoodGo.transform.SetParent(foodSpawn, false);
-            Debug.Log("colected");
             canCollect = false;
         }
     }

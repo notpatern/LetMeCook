@@ -29,7 +29,6 @@ namespace RecipeSystem.Core
         public void FailRecipe()
         {
             isFailed = true;
-            Debug.Log("fail");
         }
     }
 }
