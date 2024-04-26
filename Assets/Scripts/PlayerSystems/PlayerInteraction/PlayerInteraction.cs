@@ -86,22 +86,16 @@ namespace Player.Interaction
                 {
                     GameObject food = hit.collider.gameObject;
 
-                    if (m_HandManager.m_LeftHand.GetHandFood() != null)
+                    if (m_HandManager.IsFoodInHand(HandsType.RIGHT, food))
                     {
-                        if (m_HandManager.m_LeftHand.GetHandFood().gameObject == food)
-                        {
-                            m_OnActiveInteract.Invoke(null, handType);
-                            return;
-                        }
+                        m_OnActiveInteract.Invoke(null, handType);
+                        return;
                     }
 
-                    if (m_HandManager.m_RightHand.GetHandFood() != null)
+                    if (m_HandManager.IsFoodInHand(HandsType.LEFT, food))
                     {
-                        if (m_HandManager.m_RightHand.GetHandFood().gameObject == food)
-                        {
-                            m_OnActiveInteract.Invoke(null, handType);
-                            return;
-                        }
+                        m_OnActiveInteract.Invoke(null, handType);
+                        return;
                     }
                 }
                 
@@ -112,7 +106,6 @@ namespace Player.Interaction
                 }
             }
             m_OnActiveInteract.Invoke(null, handType);
-            
         }
     }
 }

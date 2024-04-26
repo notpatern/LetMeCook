@@ -4,6 +4,7 @@ using UnityEngine;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
 using Audio;
+using UnityEngine.Rendering.Universal;
 
 namespace PlayerSystems.HandsSystem
 {
@@ -18,8 +19,8 @@ namespace PlayerSystems.HandsSystem
         [Header("Hands")]
         [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
         [SerializeField] GameObject m_GrabbedFoodParticlePrefab;
-        public Hands m_LeftHand;
-        public Hands m_RightHand;
+        [SerializeField] Hands m_LeftHand;
+        [SerializeField] Hands m_RightHand;
 
         [Header("Merged Food")]
         [SerializeField] GameObject m_MergedFoodPrefab;
@@ -110,6 +111,30 @@ namespace PlayerSystems.HandsSystem
             }
 
             return false;
+        }
+
+        public bool IsFoodInHand(HandsType handsType, GameObject food)
+        {
+            switch(handsType)
+            {
+                case HandsType.NONE:
+                    Debug.LogError("This should not happen but does.");
+                    return false;
+
+                case HandsType.LEFT:
+                    if (!IsFoodHandle(HandsType.LEFT)) break;
+                    return IsFoodInCurrentHand(m_LeftHand, food);
+
+                case HandsType.RIGHT:
+                    if (!IsFoodHandle(HandsType.RIGHT)) break;
+                    return IsFoodInCurrentHand(m_RightHand, food);
+            }
+            return false;
+        }
+
+        private bool IsFoodInCurrentHand(Hands hand, GameObject food)
+        {
+            return hand.GetHandFood().gameObject == food;
         }
 
         public void PerformHandAction(GameObject food, Hands hand)
