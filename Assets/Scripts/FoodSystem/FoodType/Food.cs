@@ -7,7 +7,7 @@ namespace FoodSystem.FoodType
 {
     public abstract class Food : MonoBehaviour, IInteractable, IDestructible
     {
-        [SerializeField]  protected Collider[] cols;
+        [SerializeField] public Collider[] cols;
         [SerializeField] Rigidbody rb;
         [SerializeField] TrailRenderer trailRenderer;
         [SerializeField] LayerMask isGround;
@@ -49,9 +49,9 @@ namespace FoodSystem.FoodType
 
         public virtual void PutInHand(Transform hand)
         {
+            SetActiveColliders(false);
             launchableItem.QuitBezierCurve();
             rb.isKinematic = true;
-            SetActiveColliders(false);
             transform.SetParent(hand);
             transform.position = hand.position;
             transform.localRotation = Quaternion.identity;

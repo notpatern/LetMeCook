@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using Player.HandSystem;
 using PlayerSystems.HandsSystem;
+using FoodSystem.FoodType;
+using Unity.VisualScripting;
 
 namespace Player.Interaction
 {
@@ -22,7 +24,9 @@ namespace Player.Interaction
         UnityEvent<GameObject, HandsType> m_OnActiveInteract = new UnityEvent<GameObject, HandsType>();
         UnityEvent<bool, string> m_OnStartInteraction = new UnityEvent<bool, string>();
         UnityEvent<bool> m_OnEndInteraction = new UnityEvent<bool>();
-        
+
+        RaycastHit hit;
+
         public void InitPlayerInteraction(HandsManager handsManager)
         {
             m_HandManager = handsManager;
@@ -46,7 +50,6 @@ namespace Player.Interaction
 
         public void UpdateInteraction()
         {
-            RaycastHit hit;
             if (Physics.Raycast(m_Origin.position, m_Origin.forward, out hit, m_InteractionMaxDistance, m_LayerMask))
             {
                 OnStartInteraction(hit.transform.GetComponent<IInteractable>());
@@ -77,15 +80,39 @@ namespace Player.Interaction
 
         public void ActiveInteraction(HandsType handType)
         {
-            if (m_CurrentInteraction != null && !m_HandManager.IsFoodHandle(handType))
+            if (m_CurrentInteraction != null)
             {
-                m_OnActiveInteract.Invoke(m_CurrentInteraction.StartInteraction(), handType);
+                if (hit.collider.gameObject != null)
+                {
+                    GameObject food = hit.collider.gameObject;
 
+                    if (m_HandManager.m_LeftHand.GetHandFood() != null)
+                    {
+                        if (m_HandManager.m_LeftHand.GetHandFood().gameObject == food)
+                        {
+                            m_OnActiveInteract.Invoke(null, handType);
+                            return;
+                        }
+                    }
+
+                    if (m_HandManager.m_RightHand.GetHandFood() != null)
+                    {
+                        if (m_HandManager.m_RightHand.GetHandFood().gameObject == food)
+                        {
+                            m_OnActiveInteract.Invoke(null, handType);
+                            return;
+                        }
+                    }
+                }
+                
+                if (!m_HandManager.IsFoodHandle(handType))
+                {
+                    m_OnActiveInteract.Invoke(m_CurrentInteraction.StartInteraction(), handType);
+                    return;
+                }
             }
-            else
-            {
-                m_OnActiveInteract.Invoke(null, handType);
-            }
+            m_OnActiveInteract.Invoke(null, handType);
+            
         }
     }
 }

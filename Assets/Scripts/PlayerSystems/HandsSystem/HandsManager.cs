@@ -18,8 +18,8 @@ namespace PlayerSystems.HandsSystem
         [Header("Hands")]
         [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
         [SerializeField] GameObject m_GrabbedFoodParticlePrefab;
-        [SerializeField] Hands m_LeftHand;
-        [SerializeField] Hands m_RightHand;
+        public Hands m_LeftHand;
+        public Hands m_RightHand;
 
         [Header("Merged Food")]
         [SerializeField] GameObject m_MergedFoodPrefab;
