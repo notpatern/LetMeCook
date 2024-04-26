@@ -1,4 +1,5 @@
 using FoodSystem.FoodType;
+using ItemLaunch;
 using ParticleSystemUtility;
 using Player.Interaction;
 using UnityEngine;
@@ -45,6 +46,7 @@ namespace FoodSystem.FoodMachinery
 
         protected override void OnFoodCollected()
         {
+            collectedFoodGo.GetComponent<LaunchableItem>().QuitBezierCurve();
             activeParticle.Play();
 
             collisionToEnableOnFoodStocked.enabled = true;
