@@ -83,7 +83,6 @@ namespace RecipeSystem
 
             recipeUI.RemoveCard(gameRecipe);
             activeRecipes.RemoveAt(recipeId);
-            Debug.Log("Remove");
             return true;
         }
 
@@ -99,7 +98,6 @@ namespace RecipeSystem
 
             gameManager.AddScore(gameRecipe.recipe.addedScore);
             gameManager.AddAcomplishedRecipes(1);
-            Debug.Log("complet");
         }
 
         /// <summary>

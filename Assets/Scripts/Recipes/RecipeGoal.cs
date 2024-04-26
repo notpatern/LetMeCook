@@ -20,7 +20,6 @@ namespace RecipeSystem.Core
                 // Completed recipe
                 if (potentialRecipe >= 0)
                 {
-                    Debug.Log(potentialRecipe);
                     recipesManager.CompleteRecipe(potentialRecipe);
                 }
                 
