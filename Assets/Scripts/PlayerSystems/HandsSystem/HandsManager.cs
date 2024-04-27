@@ -4,7 +4,6 @@ using UnityEngine;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
 using Audio;
-using UnityEngine.Rendering.Universal;
 
 namespace PlayerSystems.HandsSystem
 {
@@ -269,7 +268,7 @@ namespace PlayerSystems.HandsSystem
             mergedFood.AddFood(simpleToReplace);
 
             handToReplace.DestroyFood();
-            PutInHand(handMergedGo, handToReplace, false, false);
+            PutInHand(handMergedGo, handToReplace, false, true);
 
             //Add right hand in merged left hand
             PutInHand(newGoFood, handToReplace, false, false);
