@@ -19,7 +19,10 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 launcher.StartPoint, Quaternion.identity);
 
             launcher.ThrowItem(newFood.GetComponent<LaunchableItem>());
-        
+            m_LerpDirection = 0;
+            m_LerpDelta = 0f;
+            m_LerpDirection = 1;
+
             base.ReleaseFood();
         }
 
