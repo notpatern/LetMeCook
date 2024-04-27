@@ -41,7 +41,12 @@ namespace FoodSystem.FoodMachinery
 
         public string GetContext() 
         {
-            return "platform's food";
+            if(collectedFood)
+            {
+                return collectedFood.GetContext();
+            }
+
+            return "Empty platform";
         }
 
         protected override void OnFoodCollected()

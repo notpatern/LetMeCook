@@ -14,6 +14,6 @@ namespace FoodSystem.FoodMachinery
             return food;
         }
 
-        public string GetContext() => "dropper (" + data.foodName + ")";
+        public string GetContext() => data.foodName;
     }
 }
