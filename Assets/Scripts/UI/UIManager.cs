@@ -43,14 +43,14 @@ namespace UI
                 LoadEndConditionUI(levelUIData.endConditionPrefab, endConditionParent);
             }
 
-            if(levelUIData.endScreenMenuPrefab)
-            {
-                LoadEndScreen(levelUIData.endScreenMenuPrefab);
-            }
-
-            if(levelUIData.recipeContentParent)
+            if (levelUIData.recipeContentParent)
             {
                 LoadRecipeContentParent(levelUIData.recipeContentParent);
+            }
+
+            if (levelUIData.endScreenMenuPrefab)
+            {
+                LoadEndScreen(levelUIData.endScreenMenuPrefab);
             }
         }
 
