@@ -16,7 +16,6 @@ namespace RecipeSystem
         List<GameRecipe> activeRecipes = new List<GameRecipe>();
         [SerializeField] Transform SpawnVoice3DPosition;
         RecipeUI recipeUI;
-        
         public void Init(GameManager gameManager, RecipeUI recipeUI)
         {
             //var randomRecipe = dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count-1)];
