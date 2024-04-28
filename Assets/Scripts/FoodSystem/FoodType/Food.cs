@@ -40,7 +40,7 @@ namespace FoodSystem.FoodType
         private void OnCollisionEnter(Collision collision)
         {
             Debug.Log(collision.gameObject.name);
-            Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
+            Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
         }
 
         public abstract string GetContext();
