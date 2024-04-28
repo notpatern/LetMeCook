@@ -8949,6 +8949,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   launchableItem: {fileID: 6640363004773618717}
+  decalProjector: {fileID: 1401065438823867097, guid: 96f707b8362656a4cb81110686bef6e0,
+    type: 3}
+  groundedDistance: 1.5
   data: {fileID: 11400000, guid: 317f06e50476f6a42b3787a6921eb52b, type: 2}
 --- !u!114 &6640363004773618717
 MonoBehaviour:
@@ -8981,7 +8984,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.74
+  m_Radius: 1.47
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &8465984500107889973
 SphereCollider:

@@ -2,6 +2,7 @@ using Player.Interaction;
 using UnityEngine;
 using System.Collections.Generic;
 using ItemLaunch;
+using System.Linq;
 
 namespace FoodSystem.FoodType
 {
@@ -12,6 +13,8 @@ namespace FoodSystem.FoodType
         [SerializeField] TrailRenderer trailRenderer;
         [SerializeField] LayerMask isGround;
         [SerializeField] LaunchableItem launchableItem;
+        [SerializeField] GameObject decalProjector;
+        [SerializeField] float groundedDistance;
 
         public GameObject StartInteraction()
         {
@@ -28,9 +31,16 @@ namespace FoodSystem.FoodType
             return Physics.Raycast(
                 rb.position,
                 Vector3.down,
-                .5f,
+                groundedDistance,
                 isGround
             );
+        }
+
+        [System.Obsolete]
+        private void OnCollisionEnter(Collision collision)
+        {
+            Debug.Log(collision.gameObject.name);
+            Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
         }
 
         public abstract string GetContext();

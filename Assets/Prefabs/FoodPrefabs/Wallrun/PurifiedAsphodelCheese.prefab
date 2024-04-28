@@ -440,7 +440,7 @@ Transform:
   m_GameObject: {fileID: 4531705540185180047}
   serializedVersion: 2
   m_LocalRotation: {x: -0.23353785, y: -0.37025538, z: 0.09673454, w: 0.89387554}
-  m_LocalPosition: {x: -0.25, y: -0.80167246, z: 0.5116471}
+  m_LocalPosition: {x: -0.15, y: -0.80167246, z: 0.21}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -721,7 +721,7 @@ Transform:
   m_GameObject: {fileID: 6683809015930725561}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.434, y: 0.833, z: 0.122}
+  m_LocalPosition: {x: 0.28, y: 0.96, z: -0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -813,14 +813,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cols:
-  - {fileID: 8465984500107889973}
   - {fileID: 4033413389540713654}
+  - {fileID: 8465984500107889973}
   rb: {fileID: 6458256001630246702}
   trailRenderer: {fileID: 1018286664606913482}
   isGround:
     serializedVersion: 2
     m_Bits: 64
   launchableItem: {fileID: 6640363004773618717}
+  decalProjector: {fileID: 1401065438823867097, guid: 96f707b8362656a4cb81110686bef6e0,
+    type: 3}
+  groundedDistance: 1.4
   data: {fileID: 11400000, guid: 775e89e8cfc4ef948a00caeb892de161, type: 2}
 --- !u!114 &6640363004773618717
 MonoBehaviour:
@@ -853,7 +856,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.74
+  m_Radius: 1.01
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &8465984500107889973
 SphereCollider:
