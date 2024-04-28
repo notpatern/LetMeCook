@@ -39,7 +39,9 @@ namespace FoodSystem.FoodType
         [System.Obsolete]
         private void OnCollisionEnter(Collision collision)
         {
-            Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
+            GameObject decal = Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
+            Vector3 rotation = new Vector3(decal.transform.rotation.eulerAngles.x, decal.transform.rotation.eulerAngles.y, Random.RandomRange(0, 360));
+            decal.transform.rotation = Quaternion.EulerAngles(rotation);
         }
 
         public abstract string GetContext();
