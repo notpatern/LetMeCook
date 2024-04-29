@@ -39,10 +39,10 @@ public class EndScreenUI : MonoBehaviour
         ControlOptionsManagement.s_Instance.DisableMainPlayerInputs();
 
         m_ScoreText.text = "Score : " + playerScore.m_Score;
-        m_CompletedRecipesRateText.text = "Completed Recipes Rate : " + (playerScore.m_CompletedRecipes/(float)playerScore.m_TotalRecipes * 100) + "%";
+        m_CompletedRecipesRateText.text = "Completed Recipes Rate : " + Mathf.RoundToInt((playerScore.m_CompletedRecipes/(float)playerScore.m_TotalRecipes * 100)) + "%";
         m_CompletedRecipes.text = "Completed Recipes : " + playerScore.m_CompletedRecipes;
         m_MissedRecipes.text = "Missed Recipes : " + (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes);
-        m_GroundedTime.text = "Time On Ground : " + playerScore.m_PlayerGroundedTime + "s";
+        m_GroundedTime.text = "Time On Ground : " + playerScore.m_PlayerGroundedTime.ToString("0.#") + "s";
 
         int minimumRequiredScoreOverflow = playerScore.m_Score - playerScore.m_RequiredScore;
 

@@ -14,6 +14,7 @@ namespace FoodSystem.FoodType
         [SerializeField] LayerMask isGround;
         [SerializeField] LaunchableItem launchableItem;
         [SerializeField] GameObject decalProjector;
+        [SerializeField] GameObject foodFog;
         [SerializeField] float groundedDistance;
 
         public GameObject StartInteraction()
@@ -42,6 +43,9 @@ namespace FoodSystem.FoodType
             GameObject decal = Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
             Vector3 rotation = new Vector3(decal.transform.rotation.eulerAngles.x, decal.transform.rotation.eulerAngles.y, Random.RandomRange(0, 360));
             decal.transform.rotation = Quaternion.EulerAngles(rotation);
+
+            Destroy(decal, 8f);
+            Instantiate(foodFog, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
         }
 
         public abstract string GetContext();
