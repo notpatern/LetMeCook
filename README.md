@@ -13,7 +13,8 @@ A fast paced cooking simulator.
 ### Branches
 
 - Create one when you need to add a new feature
-- Branch name must be in kebab case ***ex***:`"my-brand-new-feature"`
+- Must add "let-me-" before every branch name
+- Branch name must be in kebab case ***ex***:`"let-me-my-brand-new-feature"`
 
 ### Contributors
 
