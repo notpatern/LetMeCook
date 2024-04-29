@@ -1,6 +1,5 @@
 using System;
 using FoodSystem.FoodType;
-using PlayerSystems.HandsSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -61,8 +60,8 @@ namespace Player.HandSystem
         public void PutItHand(GameObject food, bool grabAnim)
         {
             if(food == null) return;
-            
-            if(m_CurrentFood && m_CurrentFood.GetType() == typeof(MergedFood))
+
+            if (m_CurrentFood && m_CurrentFood.GetType() == typeof(MergedFood))
             {
                 SimpleFood newSimpleFood = food.GetComponent<SimpleFood>();
                 
@@ -82,7 +81,6 @@ namespace Player.HandSystem
             {
                 food.GetComponent<Food>().PutInHand(m_FoodPosition);
                 SetFood(food, grabAnim);
-
             }
         }
 
@@ -100,7 +98,6 @@ namespace Player.HandSystem
         {
             RaycastHit hit;
             Vector3 dist = m_ThrowPoint.position - m_CameraTr.position;
-            Debug.DrawLine(m_CameraTr.position, m_ThrowPoint.position, Color.red, 15f);
             if (Physics.Raycast(m_CameraTr.position, dist.normalized, out hit, dist.magnitude))
             {
                 m_HhandledFood.transform.position = hit.point;
@@ -109,6 +106,8 @@ namespace Player.HandSystem
             ThrowFoodVisualEffect();
 
             Food food = m_HhandledFood.GetComponent<Food>();
+
+            food.GetComponent<Collider>().enabled = true;
             food.RemoveFromHand();
 
             Vector3 momentum = m_ThrowPoint.forward * m_ThrowMomentumForwardDirection.x + m_ThrowPoint.up * m_ThrowMomentumForwardDirection.y;

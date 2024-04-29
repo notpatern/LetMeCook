@@ -1,4 +1,4 @@
-using Audio;
+using RecipeSystem;
 using UnityEngine;
 
 namespace Manager
@@ -9,17 +9,19 @@ namespace Manager
         [SerializeField] GameEndCondition m_GameEndCondition;
         [SerializeField, Tooltip("Can be null")] LevelData m_NextLevelData;
         [SerializeField] GameEventScriptableObject m_LoadPlayerTransform;
+        [SerializeField] RecipesManager m_RecipesManager;
 
-        //TEMP SCORE
-        [SerializeField] int score = 0;
-        int recipesNb = 10;
-        int completedRecipes = 3;
+        int score = 0;
+        int recipesNb = 0;
+        int completedRecipes = 0;
 
         override protected void Awake()
         { 
             base.Awake();
             m_Player.Init();
             m_Player.InitUI(m_UiManager);
+
+            m_RecipesManager.Init(this, m_UiManager.recipeUI);
 
             m_GameEndCondition = new DefaultGameEndCondition();
             m_GameEndCondition.InitGameEndCondition(m_LevelData.levelDuration, m_UiManager.endConditionUI);
@@ -28,7 +30,7 @@ namespace Manager
                 m_Player.gameObject.SetActive(false);
                 m_MusicManager.IncreaseMusicTypeOffsetAmount();
                 m_UiManager.pauseMenu.SetBlockPauseMenu(true, true);
-                m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes, m_LevelData.requiredScore), m_NextLevelData);
+                m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes, m_LevelData.requiredScore, m_Player.GetGroundedTime()), m_NextLevelData);
                 m_UiManager.endScreen.SetActive(true);
             });
         }
@@ -41,6 +43,21 @@ namespace Manager
         private void Update()
         {
             m_GameEndCondition.Update(Time.deltaTime);
+        }
+
+        public void AddScore(int scoreAmount)
+        {
+            score += scoreAmount;
+        }
+
+        public void AddRecipesCount(int amount)
+        {
+            recipesNb += amount;
+        }
+
+        public void AddAcomplishedRecipes(int amount)
+        {
+            completedRecipes += amount;
         }
     }
 }

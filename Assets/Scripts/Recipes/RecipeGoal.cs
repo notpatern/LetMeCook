@@ -1,28 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RecipeSystem.Core
 {
     public class RecipeGoal : MonoBehaviour
     {
+        [SerializeField] LayerMask foodlayer;
+        [SerializeField] RecipesManager recipesManager;
+        [SerializeField] Animator mouthAnimator;
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.layer == 8)
+            if (foodlayer == (foodlayer | (1 << other.gameObject.layer)))
             {
                 // Try to get the food component
-                var recipeManager = RecipesManager.Instance;
                 var food = other.GetComponent<FoodSystem.FoodType.Food>();
-                var potentialRecipe = recipeManager.dataBase.TestFood(food);
+                if (!food) return;
+
+                var potentialRecipe = recipesManager.GetRecipeFoodId(food);
 
                 // Completed recipe
-                if (potentialRecipe)
-                    recipeManager.CompleteRecipe(potentialRecipe);
+                if (potentialRecipe >= 0)
+                {
+                    recipesManager.CompleteRecipe(potentialRecipe);
+                }
 
-                // Recipe dosn't exist
-                else
-                    print("bruh");
-
+                mouthAnimator.SetTrigger("EatFood");
+                Destroy(other.gameObject);
             }
         }
     }

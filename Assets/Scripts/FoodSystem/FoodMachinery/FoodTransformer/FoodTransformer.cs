@@ -2,6 +2,7 @@ using ItemLaunch;
 using ParticleSystemUtility;
 using UnityEngine;
 using UnityEngine.UI;
+using FoodSystem.FoodType;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
 {
@@ -58,6 +59,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             _timer = 0f;
             _cooking = true;
             collectedFoodGo.transform.localPosition = Vector3.zero;
+            collectedFoodGo.GetComponent<Food>().SetActiveColliders(false);
             collectedFoodGo.transform.SetParent(cookingFoodPos, false);
             collectedFoodGo.GetComponent<Collider>().enabled = false;
             collectedFoodGo.GetComponent<Rigidbody>().isKinematic = true;
@@ -86,6 +88,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
             cookParticleInstanceManager.Stop(false);
             animator.SetTrigger("Throw");
+            collectedFoodGo.GetComponent<Food>().SetActiveColliders(true);
             progressBarUI.SetActive(false);
             ResetCollector();
             canCollect = true;

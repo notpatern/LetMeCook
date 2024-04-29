@@ -21,7 +21,10 @@ namespace PlayerSystems.PlayerInput
 
         private void Awake()
         {
-            s_PlayerInput = new global::PlayerInput();
+            if (s_PlayerInput == null)
+            {
+                s_PlayerInput = new global::PlayerInput();
+            }
         }
 
         private void OnEnable()

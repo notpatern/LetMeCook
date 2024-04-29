@@ -1200,7 +1200,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 1000
+  far clip plane: 5000
   field of view: 80
   orthographic: 0
   orthographic size: 5
@@ -1642,13 +1642,6 @@ MonoBehaviour:
     m_ThrowForce: 7
     m_ThrowMomentumForwardDirection: {x: 1, y: 2}
     m_ThrowMomentumPlayerRb: 1
-    m_ThrowSound:
-      Guid:
-        Data1: -1930444987
-        Data2: 1200695111
-        Data3: 539825568
-        Data4: 283256216
-      Path: event:/ThrowFood
     m_GameEventCanSpawnMagicalFogForMerge: {fileID: 11400000, guid: 0298f91ae91a7c542826295964af965e,
       type: 2}
     m_GrabbedFoodParticlePrefab: {fileID: 1921253003775114923, guid: 2bc392123e437504da2c9d2eacd009a2,
@@ -1659,12 +1652,14 @@ MonoBehaviour:
       m_EffectSpawnPoint: {fileID: 570011751970811531}
       m_Animator: {fileID: 4782654478144548433}
       m_HandAnimatorManagement: {fileID: 4871591894362827141}
+      m_IsCrushing: 0
     m_RightHand:
       m_FoodPosition: {fileID: 6287754216700759419}
       m_ThrowPoint: {fileID: 901554103337421967}
       m_EffectSpawnPoint: {fileID: 115420639327000635}
       m_Animator: {fileID: 942321250605974333}
       m_HandAnimatorManagement: {fileID: 2316508184197310299}
+      m_IsCrushing: 0
     m_MergedFoodPrefab: {fileID: 7354829722045014985, guid: a04b9f56709f78941815ea4072a5a32b,
       type: 3}
     m_HandsEnableMoveTech:
@@ -1764,7 +1759,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5114515750986605142}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 30f74db5fbd571e4f9118d35fc07eaab, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

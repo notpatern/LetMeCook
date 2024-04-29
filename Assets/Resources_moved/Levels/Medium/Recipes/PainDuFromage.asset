@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5fd44727d1ae8488b931d07aa44dc0, type: 3}
+  m_Name: PainDuFromage
+  m_EditorClassIdentifier: 
+  vocaloidVoice:
+    Guid:
+      Data1: -267609268
+      Data2: 1079425891
+      Data3: -360511078
+      Data4: -1352553695
+    Path: event:/SFX/VocaloidLevel0/PainDuFromage
+  nametag: Pain Du Fromage
+  secondsToComplete: 60
+  ingredients:
+  - {fileID: 11400000, guid: 775e89e8cfc4ef948a00caeb892de161, type: 2}
+  - {fileID: 11400000, guid: e1fb23a4247660f4fbc42a563d4e2505, type: 2}
+  addedScore: 150

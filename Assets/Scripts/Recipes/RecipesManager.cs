@@ -1,34 +1,52 @@
+using Manager;
 using RecipeSystem.Core;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
+using Audio;
+using FoodSystem.FoodType;
+using FoodSystem;
 
 namespace RecipeSystem
 {
     public class RecipesManager : MonoBehaviour
     {
-        public static RecipesManager Instance { get; private set; }
         public RecipesDataBase dataBase;
-        List<Core.GameRecipe> activeRecipes = new List<GameRecipe>();
-
-        void Awake()
-        {
-            Instance = this;
-        }
-        private void Start()
+        GameManager gameManager;
+        List<GameRecipe> activeRecipes = new List<GameRecipe>();
+        [SerializeField] Transform SpawnVoice3DPosition;
+        RecipeUI recipeUI;
+        public void Init(GameManager gameManager, RecipeUI recipeUI)
         {
             //var randomRecipe = dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count-1)];
             //AddNewRecipe(randomRecipe);
-            StartCoroutine(RecipeDebug());
+            this.gameManager = gameManager;
+            this.recipeUI = recipeUI;
+            StartCoroutine(StartRecipesContainerPeriod());
         }
 
-        IEnumerator RecipeDebug()
+        private void Update()
         {
-            for (int i = 0; i < 4; i++)
+            for(int i=0; i<activeRecipes.Count; i++)
             {
-                AddNewRecipe(dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count)]);
-                yield return new WaitForSeconds(2f);
+                activeRecipes[i].Update();
+
+                if (activeRecipes[i].isFailed)
+                {
+                    RemoveRecipe(i);
+                    return;
+                }
+            }
+        }
+
+        IEnumerator StartRecipesContainerPeriod()
+        {
+            yield return new WaitForSeconds(dataBase.m_StartPeriodOffset);
+
+            for (int i = 0; i < dataBase.recipesContainers.Length; i++)
+            {
+                AddNewRecipe(dataBase.recipesContainers[i].m_Recipe);
+                yield return new WaitForSeconds(dataBase.recipesContainers[i].m_WaitPeriod);
             }
         }
 
@@ -39,12 +57,16 @@ namespace RecipeSystem
         /// <param name="recipe"></param>
         public GameRecipe AddNewRecipe(Recipe recipe)
         {
-            GameObject newGameObject = new GameObject(recipe.nametag);
-            GameRecipe newGameRecipe = newGameObject.AddComponent<GameRecipe>();
+            GameRecipe newGameRecipe = new GameRecipe();
             newGameRecipe.Init(recipe);
 
+            AudioManager.s_Instance.PlayOneShot(recipe.vocaloidVoice, SpawnVoice3DPosition.position);
+
             activeRecipes.Add(newGameRecipe);
-            RecipeUI.Instance.AddNewCard(newGameRecipe);
+            recipeUI.AddNewCard(newGameRecipe);
+
+            gameManager.AddRecipesCount(1);
+
             return newGameRecipe;
         }
 
@@ -54,14 +76,12 @@ namespace RecipeSystem
         /// </summary>
         /// <param name="recipe"></param>
         /// <returns></returns>
-        public bool RemoveRecipe(Recipe recipe)
+        bool RemoveRecipe(int recipeId)
         {
-            GameRecipe gameRecipe = FindRecipe(recipe);
-            if (!gameRecipe) return false;
+            GameRecipe gameRecipe = activeRecipes[recipeId];
 
-            activeRecipes.Remove(gameRecipe);
-            RecipeUI.Instance.RemoveCard(gameRecipe);
-            Destroy(gameRecipe.gameObject);
+            recipeUI.RemoveCard(gameRecipe);
+            activeRecipes.RemoveAt(recipeId);
             return true;
         }
 
@@ -70,22 +90,84 @@ namespace RecipeSystem
         /// </summary>
         /// <param name="recipe"></param>
         /// <returns></returns>
-        public void CompleteRecipe(Recipe recipe)
+        public void CompleteRecipe(int recipeId)
         {
-            GameRecipe gameRecipe = FindRecipe(recipe);
-            RecipeUI.Instance.RemoveCard(gameRecipe);
-            gameRecipe.CompleteRecipe();
+            GameRecipe gameRecipe = activeRecipes[recipeId];
+            RemoveRecipe(recipeId);
+
+            gameManager.AddScore(gameRecipe.recipe.addedScore);
+            gameManager.AddAcomplishedRecipes(1);
         }
+
+        /// <summary>
+        /// Test if a recipe exist for a merged food or a food and return it id if it exist, return -1 otherwise.
+        /// </summary>
+        /// <param name="food"></param>
+        /// <returns></returns>
+        public int GetRecipeFoodId(Food food)
+        {
+            List<FoodData> currentfoodDatas = food.GetFoodDatas();
+            List<FoodData> currentContainerFoodDatas;
+            int foodDatasCount = currentfoodDatas.Count;
+
+            // Check all recipes
+            for (int i = 0; i < activeRecipes.Count; i++)
+            {
+                // No need to check if it's isn't the same size
+                if (activeRecipes[i].recipe.ingredients.Count != foodDatasCount)
+                {
+                    continue;
+                }
+
+                currentContainerFoodDatas = new List<FoodData>(activeRecipes[i].recipe.ingredients);
+                currentfoodDatas = new List<FoodData>(food.GetFoodDatas());
+
+                bool isOk = true;
+                // Check if every ingredient in the food(s) match the activeRecipes
+                foreach(FoodData foodData in food.GetFoodDatas())
+                {
+                    // Remove the item every time to handle the exemple : 2 pizza and 3 ravioli in recipe and 3 pizza and 2 ravioli in hand
+                    if (currentContainerFoodDatas.Contains(foodData) && currentfoodDatas.Contains(foodData))
+                    {
+                        currentContainerFoodDatas.Remove(foodData);
+                        currentfoodDatas.Remove(foodData);
+                    }
+                    else
+                    {
+                        isOk = false;
+                        break;
+                    }
+                }
+
+                if (isOk)
+                {
+                    return i;
+                }
+            }
+
+            // No recipe match the food(s)
+            return -1;
+        }
+
+
+
+
+
+
+
 
         /// <summary>
         /// Fail a recipe from the game and remove it.
         /// </summary>
         /// <param name="recipe"></param>
         /// <returns></returns>
+        /// 
+
+        ////////////////////////////////////// Useless fo now
         public void FailRecipe(Recipe recipe)
         {
             GameRecipe gameRecipe = FindRecipe(recipe);
-            RecipeUI.Instance.RemoveCard(gameRecipe);
+            recipeUI.RemoveCard(gameRecipe);
             gameRecipe.FailRecipe();
         }
 
@@ -97,5 +179,6 @@ namespace RecipeSystem
 
             return null;
         }
+        //////////////////////////////////////
     }
 }

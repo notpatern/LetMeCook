@@ -11,7 +11,12 @@ namespace FoodSystem.FoodMachinery
 
         protected bool canCollect = true;
         protected bool collectMergedFood = false;
-    
+
+        private void OnTriggerStay(Collider other)
+        {
+            OnTriggerEnter(other);
+        }
+
         void OnTriggerEnter(Collider other)
         {
             if (!canCollect) return;
@@ -19,13 +24,13 @@ namespace FoodSystem.FoodMachinery
             MergedFood tempMergedFood = other.transform.GetComponent<MergedFood>();
             SimpleFood tempSimpleFood = other.transform.GetComponent<SimpleFood>();
         
-            if (tempMergedFood != null && collectMergedFood && !tempMergedFood.Grounded())
+            if (tempMergedFood != null && collectMergedFood)
             {
                 collectedFood = tempMergedFood;
                 FoodData[] tempDataArray = tempMergedFood.GetFoodDatas().ToArray();
                 collectedFoodData = tempDataArray;
             }
-            else if (tempSimpleFood != null && !tempSimpleFood.Grounded())
+            else if (tempSimpleFood != null)
             {
                 collectedFood = tempSimpleFood;
                 collectedFoodData = new [] { tempSimpleFood.data };

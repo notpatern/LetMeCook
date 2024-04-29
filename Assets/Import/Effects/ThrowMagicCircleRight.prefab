@@ -119,7 +119,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4908,6 +4908,7 @@ MonoBehaviour:
   - {fileID: 1269860385925649216}
   - {fileID: 2217136429627633513}
   isPermanent: 0
+  maxStartLifeTimeToAutoClear: 10000
 --- !u!1 &3979935739705283961
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,7 +5025,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9921,7 +9922,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2

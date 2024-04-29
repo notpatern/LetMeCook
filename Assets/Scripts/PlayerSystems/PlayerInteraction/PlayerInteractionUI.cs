@@ -24,7 +24,7 @@ namespace Player.Interaction
 
         void UpdateInteractionText(string data)
         {
-            intereactionText.text = "You can get " + data;
+            intereactionText.text = data;
         }
 
         public void StartInteraction(bool state, string data)

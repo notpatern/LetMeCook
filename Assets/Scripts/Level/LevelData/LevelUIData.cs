@@ -17,4 +17,7 @@ public class LevelUIData : ScriptableObject
 
     [Header("GameMode")]
     public GameObject endConditionPrefab;
+
+    [Header("Recipe UI")]
+    public GameObject recipeContentParent;
 }

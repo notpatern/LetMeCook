@@ -92,6 +92,8 @@ namespace GraphicsOption
 
         bool IsAuthorizedRatio(in Resolution a)
         {
+            if(a.width == 0 || a.height == 0) return false;
+
             foreach(int ration in m_authorizedRatios)
             {
                 if(ration == a.width / a.height)

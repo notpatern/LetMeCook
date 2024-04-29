@@ -1,6 +1,4 @@
-﻿
-using System;
-using ControlOptions;
+﻿using ControlOptions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
@@ -33,8 +31,8 @@ namespace PlayerSystems.Camera
 
         void Update()
         {
-            float mouseY = Mouse.current.delta.ReadValue().y * 0.01f * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity() * 3 * Time.timeScale;
-            float mouseX = Mouse.current.delta.ReadValue().x * 0.01f * ControlOptions.ControlOptionsManagement.s_Instance.GetMouseSensitivity() * 3 * Time.timeScale;
+            float mouseY = Mouse.current.delta.ReadValue().y * 0.01f * ControlOptionsManagement.s_Instance.GetMouseSensitivity() * 3 * Time.timeScale;
+            float mouseX = Mouse.current.delta.ReadValue().x * 0.01f * ControlOptionsManagement.s_Instance.GetMouseSensitivity() * 3 * Time.timeScale;
 
             _yRotation += mouseX;
             _xRotation -= mouseY;

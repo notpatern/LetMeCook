@@ -7,13 +7,15 @@ namespace FoodSystem.FoodMachinery
     public class FoodDropper : MonoBehaviour, IInteractable
     {
         [FormerlySerializedAs("_data")] public FoodData data;
+        [SerializeField] Animator animator;
 
         public GameObject StartInteraction()
         {
+            animator.SetTrigger("GetFood");
             GameObject food = Instantiate(data.prefab);
             return food;
         }
 
-        public string GetContext() => "dropper (" + data.foodName + ")";
+        public string GetContext() => data.foodName;
     }
 }

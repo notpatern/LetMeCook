@@ -32,11 +32,9 @@ namespace ItemLaunch
 
         void OnCollisionEnter(Collision other) { QuitBezierCurve(); }
 
-        void QuitBezierCurve()
+        public void QuitBezierCurve()
         {
-            GetComponent<Rigidbody>().isKinematic = false;
             _doingTheBezierCurve = false;
-            Destroy(this);
         }
     
         Vector3 CalculateBezierPoint(float t, Vector3 start, Vector3 end, Vector3 startTangent, Vector3 endTangent) {

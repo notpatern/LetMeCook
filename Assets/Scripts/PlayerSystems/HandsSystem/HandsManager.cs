@@ -97,6 +97,7 @@ namespace PlayerSystems.HandsSystem
 
         public bool IsFoodHandle(HandsType handsType)
         {
+
             switch (handsType)
             {
                 case HandsType.NONE:
@@ -111,12 +112,38 @@ namespace PlayerSystems.HandsSystem
             return false;
         }
 
+        public bool IsFoodInHand(HandsType handsType, GameObject food)
+        {
+            switch(handsType)
+            {
+                case HandsType.NONE:
+                    Debug.LogError("This should not happen but does.");
+                    return false;
+
+                case HandsType.LEFT:
+                    if (!IsFoodHandle(HandsType.LEFT)) break;
+                    return IsFoodInCurrentHand(m_LeftHand, food);
+
+                case HandsType.RIGHT:
+                    if (!IsFoodHandle(HandsType.RIGHT)) break;
+                    return IsFoodInCurrentHand(m_RightHand, food);
+            }
+            return false;
+        }
+
+        private bool IsFoodInCurrentHand(Hands hand, GameObject food)
+        {
+            return hand.GetHandFood().gameObject == food;
+        }
+
         public void PerformHandAction(GameObject food, Hands hand)
         {
             if (!hand.isFoodHandle)
             {
-                if(food)
+                if (food)
+                {
                     PutInHand(food, hand, true, true);
+                }
             }
             else
             {
@@ -241,7 +268,7 @@ namespace PlayerSystems.HandsSystem
             mergedFood.AddFood(simpleToReplace);
 
             handToReplace.DestroyFood();
-            PutInHand(handMergedGo, handToReplace, false, false);
+            PutInHand(handMergedGo, handToReplace, false, true);
 
             //Add right hand in merged left hand
             PutInHand(newGoFood, handToReplace, false, false);

@@ -1,20 +1,21 @@
 using Player.Interaction;
 using UnityEngine;
 using System.Collections.Generic;
+using ItemLaunch;
+using System.Linq;
 
 namespace FoodSystem.FoodType
 {
     public abstract class Food : MonoBehaviour, IInteractable, IDestructible
     {
-        Collider[] col;
+        [SerializeField] public Collider[] cols;
         [SerializeField] Rigidbody rb;
         [SerializeField] TrailRenderer trailRenderer;
         [SerializeField] LayerMask isGround;
-
-        void Awake()
-        {
-            col = GetComponents<Collider>();
-        }
+        [SerializeField] LaunchableItem launchableItem;
+        [SerializeField] GameObject decalProjector;
+        [SerializeField] GameObject foodFog;
+        [SerializeField] float groundedDistance;
 
         public GameObject StartInteraction()
         {
@@ -31,9 +32,20 @@ namespace FoodSystem.FoodType
             return Physics.Raycast(
                 rb.position,
                 Vector3.down,
-                .5f,
+                groundedDistance,
                 isGround
             );
+        }
+
+        [System.Obsolete]
+        private void OnCollisionEnter(Collision collision)
+        {
+            GameObject decal = Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
+            Vector3 rotation = new Vector3(decal.transform.rotation.eulerAngles.x, decal.transform.rotation.eulerAngles.y, Random.RandomRange(0, 360));
+            decal.transform.rotation = Quaternion.EulerAngles(rotation);
+
+            Destroy(decal, 8f);
+            Instantiate(foodFog, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
         }
 
         public abstract string GetContext();
@@ -42,13 +54,19 @@ namespace FoodSystem.FoodType
         public abstract void AddFood(MergedFood mergedFood);
         public abstract List<FoodData> GetFoodDatas();
 
+        public void SetActiveColliders(bool state)
+        {
+            foreach (var col in cols)
+            {
+                col.enabled = state;
+            }
+        }
+
         public virtual void PutInHand(Transform hand)
         {
+            SetActiveColliders(false);
+            launchableItem.QuitBezierCurve();
             rb.isKinematic = true;
-            foreach (Collider coll in col)
-            {
-                coll.enabled = false;
-            }
             transform.SetParent(hand);
             transform.position = hand.position;
             transform.localRotation = Quaternion.identity;
@@ -62,10 +80,7 @@ namespace FoodSystem.FoodType
             rb.isKinematic = false;
             rb.velocity = Vector3.zero;
             transform.SetParent(null);
-            foreach (Collider coll in col)
-            {
-                coll.enabled = true;
-            }
+            SetActiveColliders(true);
             ChangeLayer("Food");
 
             trailRenderer.enabled = true;

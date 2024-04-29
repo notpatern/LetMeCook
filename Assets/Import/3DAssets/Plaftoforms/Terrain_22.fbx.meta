@@ -3,7 +3,17 @@ guid: 719d0e126bbb43b4e9764e40939b5f76
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Desert
+    second: {fileID: 2100000, guid: 3767d86bccb5a8147b78f48daf8799b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: f5fbbe364c37efd4fb0dc2e12999d9b1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

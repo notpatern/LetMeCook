@@ -35,7 +35,10 @@ namespace Manager
 
         void OnDestroy()
         {
-            AudioManager.s_Instance.CleanUp();
+            if (AudioManager.s_Instance != null)
+            {
+                AudioManager.s_Instance.CleanUp();
+            }
         }
     }
 }

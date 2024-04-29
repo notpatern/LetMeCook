@@ -28,7 +28,7 @@ public class LevelDataEditor : Editor
             scenePathProperty.stringValue = newPath;
 
             EditorUtility.SetDirty(picker);
-            AssetDatabase.SaveAssets();
+            // AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
         serializedObject.ApplyModifiedProperties();
