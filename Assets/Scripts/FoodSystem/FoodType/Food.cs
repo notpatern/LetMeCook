@@ -62,6 +62,11 @@ namespace FoodSystem.FoodType
             }
         }
 
+        public void SetActiveTrails(bool state)
+        {
+            trailRenderer.enabled = state;
+        }
+
         public virtual void PutInHand(Transform hand)
         {
             SetActiveColliders(false);

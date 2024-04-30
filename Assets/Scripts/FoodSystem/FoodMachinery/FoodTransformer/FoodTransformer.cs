@@ -60,6 +60,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             _cooking = true;
             collectedFoodGo.transform.localPosition = Vector3.zero;
             collectedFoodGo.GetComponent<Food>().SetActiveColliders(false);
+            collectedFoodGo.GetComponent<Food>().SetActiveTrails(false);
             collectedFoodGo.transform.SetParent(cookingFoodPos, false);
             collectedFoodGo.GetComponent<Collider>().enabled = false;
             collectedFoodGo.GetComponent<Rigidbody>().isKinematic = true;
@@ -89,6 +90,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             cookParticleInstanceManager.Stop(false);
             animator.SetTrigger("Throw");
             collectedFoodGo.GetComponent<Food>().SetActiveColliders(true);
+            collectedFoodGo.GetComponent<Food>().SetActiveTrails(true);
             progressBarUI.SetActive(false);
             ResetCollector();
             canCollect = true;

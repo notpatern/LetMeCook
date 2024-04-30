@@ -34,6 +34,7 @@ namespace FoodSystem.FoodMachinery
             interactionTrigger.enabled = true;
             GameObject foodToGive = collectedFoodGo;
             foodToGive.GetComponent<Food>().SetActiveColliders(true);
+            collectedFoodGo.GetComponent<Food>().SetActiveTrails(true);
             ResetCollector();
             canCollect = true;
             return foodToGive;
@@ -57,6 +58,7 @@ namespace FoodSystem.FoodMachinery
             collisionToEnableOnFoodStocked.enabled = true;
             Rigidbody rb = collectedFoodGo.GetComponent<Rigidbody>();
             collectedFoodGo.GetComponent<Food>().SetActiveColliders(false);
+            collectedFoodGo.GetComponent<Food>().SetActiveTrails(false);
             interactionTrigger.enabled = false;
             rb.isKinematic = true;
 

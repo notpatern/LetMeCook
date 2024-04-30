@@ -30,7 +30,7 @@ namespace Player.HandSystem
         int m_IdleHashFullPathPlayerPrefabForSync;
         GameObject m_GrabbedFoodParticlePrefab;
 
-        public bool m_IsCrushing = false;
+        [HideInInspector] public bool m_IsCrushing = false;
         UnityAction<Hands> m_RemoveHandMoveTechAction;
 
         public void InitData(
