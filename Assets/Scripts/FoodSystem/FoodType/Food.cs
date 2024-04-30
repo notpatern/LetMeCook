@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using ItemLaunch;
 using System.Linq;
+using System.Diagnostics;
 
 namespace FoodSystem.FoodType
 {
@@ -43,6 +44,7 @@ namespace FoodSystem.FoodType
             GameObject decal = Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
             Vector3 rotation = new Vector3(decal.transform.rotation.eulerAngles.x, decal.transform.rotation.eulerAngles.y, Random.RandomRange(0, 360));
             decal.transform.rotation = Quaternion.EulerAngles(rotation);
+            decal.transform.SetParent(collision.transform);
 
             Destroy(decal, 8f);
             Instantiate(foodFog, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
