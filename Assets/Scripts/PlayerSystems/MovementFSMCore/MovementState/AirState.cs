@@ -68,13 +68,13 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             
             bool canWallRun = false;
             
-            if (_wallLeft && fsmCore.Input is { x: < 0 })
+            if (_wallLeft && fsmCore.Input is { y: > 0 })
             {
                 _wallHit = _wallLeftHit;
                 _wallRightTilt = false;
                 canWallRun = true;
             }
-            if (_wallRight && fsmCore.Input is { x: > 0 })
+            if (_wallRight && fsmCore.Input is { y: > 0 })
             {
                 _wallHit = _wallRightHit;
                 _wallRightTilt = true;
