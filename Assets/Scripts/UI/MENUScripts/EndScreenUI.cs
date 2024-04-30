@@ -39,32 +39,27 @@ public class EndScreenUI : MonoBehaviour
         ControlOptionsManagement.s_Instance.DisableMainPlayerInputs();
 
         m_ScoreText.text = "Score : " + playerScore.m_Score;
-        m_CompletedRecipesRateText.text = "Completed Recipes Rate : " + Mathf.RoundToInt((playerScore.m_CompletedRecipes/(float)playerScore.m_TotalRecipes * 100)) + "%";
+        m_CompletedRecipesRateText.text = "Completed Recipes Rate : " + Mathf.RoundToInt((playerScore.m_CompletedRecipes / (float)playerScore.m_TotalRecipes * 100)) + "%";
         m_CompletedRecipes.text = "Completed Recipes : " + playerScore.m_CompletedRecipes;
         m_MissedRecipes.text = "Missed Recipes : " + (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes);
         m_GroundedTime.text = "Time On Ground : " + playerScore.m_PlayerGroundedTime.ToString("0.#") + "s";
 
         int minimumRequiredScoreOverflow = playerScore.m_Score - playerScore.m_RequiredScore;
 
-        foreach(GameObject star in m_ActiveStarsGo)
+        foreach (GameObject star in m_ActiveStarsGo)
         {
             star.SetActive(false);
-        }
-
-        if(minimumRequiredScoreOverflow < 0) 
-        {
-            return;
         }
 
         //stars are generated based on *2 minimum required score is the max for now
         float scoreStep = playerScore.m_RequiredScore / (float)m_ActiveStarsGo.Length;
         StartCoroutine(ActiveStarWithOffsetTransition(minimumRequiredScoreOverflow, scoreStep));
 
-        if(!nextLevelData)
+        if (!nextLevelData)
         {
             Destroy(m_NextLevelButton.gameObject);
         }
-        else if(playerScore.m_RequiredScore > playerScore.m_Score)
+        else if (playerScore.m_RequiredScore > playerScore.m_Score)
         {
             m_NextLevelButton.interactable = false;
         }
