@@ -7,6 +7,8 @@ namespace RecipeSystem.Core
         [SerializeField] LayerMask foodlayer;
         [SerializeField] RecipesManager recipesManager;
         [SerializeField] Animator mouthAnimator;
+        [SerializeField] GameObject receiveParticleParticles;
+
         private void OnTriggerEnter(Collider other)
         {
             if (foodlayer == (foodlayer | (1 << other.gameObject.layer)))
@@ -22,6 +24,8 @@ namespace RecipeSystem.Core
                 {
                     recipesManager.CompleteRecipe(potentialRecipe);
                 }
+
+                Instantiate(receiveParticleParticles, other.bounds.ClosestPoint(other.transform.position), transform.rotation);
 
                 mouthAnimator.SetTrigger("EatFood");
                 Destroy(other.gameObject);
