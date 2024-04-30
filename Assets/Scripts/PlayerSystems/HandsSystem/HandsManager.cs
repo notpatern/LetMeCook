@@ -160,12 +160,24 @@ namespace PlayerSystems.HandsSystem
             }
         }
 
-        public void CrunchFoodInHands()
+        public void CrunchFoodInHands(bool forceAnim)
         {
             m_LeftHand.m_IsCrushing = true;
-            m_LeftHand.m_Animator.SetTrigger("CrunchFood");
             m_RightHand.m_IsCrushing = true;
-            m_RightHand.m_Animator.SetTrigger("CrunchFood");
+
+            if (!forceAnim)
+            {
+                if(m_LeftHand.isFoodHandle || m_RightHand.isFoodHandle)
+                {
+                    m_LeftHand.m_Animator.SetTrigger("CrunchFood");
+                    m_RightHand.m_Animator.SetTrigger("CrunchFood");
+                }
+            }
+            else
+            {
+                m_LeftHand.m_Animator.SetTrigger("CrunchFood");
+                m_RightHand.m_Animator.SetTrigger("CrunchFood");
+            }
         }
 
         public void ClearHandMoveTech(Hands hand)

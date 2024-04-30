@@ -80,9 +80,9 @@ namespace PlayerSystems.PlayerBase
             m_MovementFsmCore.ClearStamina();
         }
 
-        public void CrunchFoodInHands()
+        public void CrunchFoodInHands(bool forceAnim)
         {
-            m_HandsManager.CrunchFoodInHands();
+            m_HandsManager.CrunchFoodInHands(forceAnim);
         }
 
         public float GetGroundedTime()

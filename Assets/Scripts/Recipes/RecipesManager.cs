@@ -18,10 +18,13 @@ namespace RecipeSystem
         RecipeUI recipeUI;
         public void Init(GameManager gameManager, RecipeUI recipeUI)
         {
-            //var randomRecipe = dataBase.dataBase[Random.Range(0, dataBase.dataBase.Count-1)];
-            //AddNewRecipe(randomRecipe);
             this.gameManager = gameManager;
             this.recipeUI = recipeUI;
+            StartRecipesList();
+        }
+
+        void StartRecipesList()
+        {
             StartCoroutine(StartRecipesContainerPeriod());
         }
 

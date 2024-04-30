@@ -8,7 +8,7 @@ public class CrunchFoodTriggerZone : TriggerEffectZone
 
         if(player)
         {
-            player.CrunchFoodInHands();
+            player.CrunchFoodInHands(false);
         }
     }
 }
