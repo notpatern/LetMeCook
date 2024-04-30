@@ -14,7 +14,7 @@ namespace GraphicsOption
         int m_currentSelectedResolutionID;
         int m_DirtySelectedResolutionID;
         Resolution[] m_deviceAvailableResolutions;
-        float[] m_authorizedRatios = {16/9, 4/3};
+        float[] m_authorizedRatios = {16f/9f, 4f/3f};
         //------------------
 
         public static void LoadGraphicsOptionManagement()
@@ -76,7 +76,7 @@ namespace GraphicsOption
                 }
             }
 
-            Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId);
+            Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId+1);
 
         }
         
@@ -94,10 +94,12 @@ namespace GraphicsOption
         {
             if(a.width == 0 || a.height == 0) return false;
 
-            foreach(int ration in m_authorizedRatios)
+            foreach(float ratio in m_authorizedRatios)
             {
-                if(ration == a.width / a.height)
+                if (Mathf.FloatToHalf(ratio) == Mathf.FloatToHalf(a.width / (float)a.height))
+                {
                     return true;
+                }
             }
             
             return false;
