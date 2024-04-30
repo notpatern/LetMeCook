@@ -50571,6 +50571,18 @@ PrefabInstance:
       objectReference: {fileID: 200690959}
     - target: {fileID: 859965252461806114, guid: 5933f2b56aa15e2479ea94387f939071,
         type: 3}
+      propertyPath: m_LevelData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5edcb12d6ae0c5943a554dbd88d82430,
+        type: 2}
+    - target: {fileID: 859965252461806114, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: m_NextLevelData
+      value: 
+      objectReference: {fileID: 11400000, guid: 22a12519f21a98042b28e68e6e07d26d,
+        type: 2}
+    - target: {fileID: 859965252461806114, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
       propertyPath: m_EndconditionParentUI
       value: 
       objectReference: {fileID: 200690958}
@@ -50599,6 +50611,12 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1273264540}
+    - target: {fileID: 3800780351969097613, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: dataBase
+      value: 
+      objectReference: {fileID: 11400000, guid: 92d52b1d7be892248a84b8b5569d2825,
+        type: 2}
     - target: {fileID: 4957334384553287571, guid: 5933f2b56aa15e2479ea94387f939071,
         type: 3}
       propertyPath: m_Mesh
@@ -66393,7 +66411,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
