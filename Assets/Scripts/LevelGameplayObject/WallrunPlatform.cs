@@ -25,6 +25,8 @@ public class WallrunPlatform : MonoBehaviour
         
         leftRotation = m_leftPupil.transform.rotation;
         rightRotation = m_rightPupil.transform.rotation;
+
+        ActiveLight(false);
     }
 
     void OnEnable()
@@ -41,6 +43,7 @@ public class WallrunPlatform : MonoBehaviour
     {
         isEyeActive = (bool)args;
         m_eyeLid.SetActive(!(bool)args);
+        m_eyeBall.SetActive((bool)args);
     }
 
     private void Update()
