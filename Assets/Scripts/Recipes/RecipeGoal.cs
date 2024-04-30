@@ -17,12 +17,12 @@ namespace RecipeSystem.Core
                 var food = other.GetComponent<FoodSystem.FoodType.Food>();
                 if (!food) return;
 
-                var potentialRecipe = recipesManager.GetRecipeFoodId(food);
+                int potentialRecipe = recipesManager.GetRecipeFoodId(food);
 
                 // Completed recipe
                 if (potentialRecipe >= 0)
                 {
-                    recipesManager.CompleteRecipe(potentialRecipe);
+                    OnFoodOk(potentialRecipe);
                 }
 
                 Instantiate(receiveParticleParticles, other.bounds.ClosestPoint(other.transform.position), transform.rotation);
@@ -30,6 +30,11 @@ namespace RecipeSystem.Core
                 mouthAnimator.SetTrigger("EatFood");
                 Destroy(other.gameObject);
             }
+        }
+
+        protected virtual void OnFoodOk(int potentialRecipe)
+        {
+            recipesManager.CompleteRecipe(potentialRecipe);
         }
     }
 }
