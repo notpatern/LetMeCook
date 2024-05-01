@@ -25,7 +25,7 @@ namespace FoodSystem.FoodType
 
         private void FixedUpdate()
         {
-            rb.drag = Grounded() ? 10 : 0;
+            rb.drag = Grounded() ? 5 : 0;
         }
 
         public bool Grounded()
