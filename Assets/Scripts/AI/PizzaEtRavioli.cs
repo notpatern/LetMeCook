@@ -1,11 +1,12 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class PizzaEtRavioli : MonoBehaviour
 {
     [SerializeField] float m_LerpSpeed = 10f;
-    [SerializeField] float m_TimeBetweenAnim;
+    [SerializeField] float m_StartOffsetRange = 3;
     [SerializeField] private float m_RotationThreshold = 0.2f;
  
     [SerializeField] private Animator m_BoulbiAnim;
@@ -14,21 +15,32 @@ public class PizzaEtRavioli : MonoBehaviour
 
     Quaternion m_NextDirection;
 
-    private bool isActive = false;
+    private bool m_isActive = false;
+
+    private bool m_isFacingWall;
+    private float m_RaycastDistance;
+    
 
     void Start()
     {
-        GetNextDirection();
+        StartCoroutine(StartOffsetCoroutine());
     }
 
     void Update()
     {
-        if (!isActive)
+        if (!m_isActive)
         {
             StartRotate();
             if(Quaternion.Angle(m_NextDirection, transform.rotation) < m_RotationThreshold)
             {
-                StartAnimation();
+                if (!CheckForWall())
+                {
+                    StartAnimation();
+                }
+                else
+                {
+                    GetNextDirection();
+                }
             }
         }
     }
@@ -45,14 +57,29 @@ public class PizzaEtRavioli : MonoBehaviour
 
     void StartAnimation()
     {
-        isActive = true;
+        m_isActive = true;
         m_BoulbiAnim.SetTrigger("LaunchJump");
     }
 
     void EndAnimation()
     {
-        isActive = false;
+        m_isActive = false;
         transform.position = m_PositionAtEnd.position;
         GetNextDirection();
+    }
+
+    bool CheckForWall()
+    {
+       return m_isFacingWall = Physics.Raycast(transform.position, transform.forward, m_RaycastDistance);
+    }
+
+    IEnumerator StartOffsetCoroutine()
+    {
+        m_isActive = true;
+        yield return new WaitForSeconds(Random.Range(0, m_StartOffsetRange));
+        m_RaycastDistance = Vector3.Distance(m_PositionAtEnd.position ,transform.position);
+        GetNextDirection();
+        m_isActive = false;
+        
     }
 }
