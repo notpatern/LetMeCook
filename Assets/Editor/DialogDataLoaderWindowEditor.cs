@@ -56,7 +56,7 @@ public class DialogDataLoaderWindowEditor : EditorWindow
 
         if (GUILayout.Button("LoadDialog"))
         {
-            LoadDialogInfos(ref loadedDialogInfos[index].loadedContent);
+            LoadDialogInfos(ref loadedDialogInfos[index].loadedContent.loadedString);
         }
     }
 
