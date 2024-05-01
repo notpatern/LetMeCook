@@ -9,6 +9,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         protected readonly MovementFsmCore fsmCore;
         public bool jumpLeniency;
         protected Vector3 movementDir;
+        
 
         protected FsmState(FsmContext context, MovementFsmCore fsmCore)
         {
@@ -26,6 +27,11 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public virtual void Update()
         {
             jumpLeniency = IsGroundUnderForJumpLeniency();
+        }
+
+        public void DecreaseCoyoteTime()
+        {
+            fsmCore.coyoteTime -= Time.deltaTime;
         }
 
         public virtual void FixedUpdate()

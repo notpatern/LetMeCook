@@ -4,6 +4,7 @@ namespace PlayerSystems.MovementFSMCore.DataClass
 {
     public class FsmData : ScriptableObject
     {
+        public float coyoteTime;
         public float jumpLeniency;
         public float movementSpeed;
         public float drag;

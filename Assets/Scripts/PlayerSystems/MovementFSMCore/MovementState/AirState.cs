@@ -32,7 +32,10 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Update()
         {
             base.Update();
-            Debug.Log(jumpLeniency);
+            if (fsmCore.coyoteTime >= 0)
+            {
+                DecreaseCoyoteTime();
+            }
         }
 
         public override void FixedUpdate()
@@ -58,15 +61,25 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         public override void Jump()
         {
-            if (jumpLeniency)
+            if (fsmCore.coyoteTime > 0)
             {
+                base.Jump();
+                fsmCore.coyoteTime = 0f;
                 return;
             }
 
+            if (jumpLeniency)
+            {
+                fsmCore.coyoteTime = 0f;
+                return;
+            }
+
+            fsmCore.coyoteTime = 0f;
+
             var vel = fsmCore.rb.velocity;
             fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
-            
-            fsmCore.rb.AddForce(Vector3.up * context.jumpForce, ForceMode.Impulse);
+
+            fsmCore.rb.AddForce(Vector3.up * _context.doubleJumpForce, ForceMode.Impulse);
             context.canJump = false;
         }
         

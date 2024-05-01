@@ -9,5 +9,11 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public GroundState(GroundContext context, MovementFsmCore fsmCore) : base(context, fsmCore)
         {
         }
+
+        public override void Jump()
+        {
+            base.Jump();
+            fsmCore.coyoteTime = 0f;
+        }
     }
 }

@@ -6,6 +6,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
     public abstract class FsmContext
     {
         private readonly FsmData _fsmData;
+        public float coyoteTime;
         public float jumpLeniency;
         public float movementSpeed;
         public float drag;
@@ -27,6 +28,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
 
         public virtual void Init()
         {
+            coyoteTime = _fsmData.coyoteTime;
             jumpLeniency = _fsmData.jumpLeniency;
             movementSpeed = _fsmData.movementSpeed;
             drag = _fsmData.drag;
