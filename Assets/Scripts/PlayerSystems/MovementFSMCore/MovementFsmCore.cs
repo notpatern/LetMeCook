@@ -158,7 +158,6 @@ namespace PlayerSystems.MovementFSMCore
                 ConsumeStamina(staminaData.doubleJumpStamina);
             }
 
-            Debug.Log("jump");
             _jumpInput = true;
         }
 
