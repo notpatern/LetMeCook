@@ -36,7 +36,6 @@ namespace PlayerSystems.PlayerInput
             s_PlayerInput.Player.Jump.performed += Jump;
             s_PlayerInput.Player.Jump.canceled += JumpReleased;
             s_PlayerInput.Player.Dash.performed += Dash;
-            s_PlayerInput.Player.Interact.performed += Interact;
             s_PlayerInput.Player.LeftHand.performed += LeftHand;
             s_PlayerInput.Player.RightHand.performed += RightHand;
             s_PlayerInput.Player.MergeHand.performed += MergeHandInput;
@@ -52,7 +51,6 @@ namespace PlayerSystems.PlayerInput
             s_PlayerInput.Player.Jump.performed -= Jump;
             s_PlayerInput.Player.Jump.canceled -= JumpReleased;
             s_PlayerInput.Player.Dash.performed -= Dash;
-            s_PlayerInput.Player.Interact.performed -= Interact;
             s_PlayerInput.Player.LeftHand.performed -= LeftHand;
             s_PlayerInput.Player.RightHand.performed -= RightHand;
             s_PlayerInput.Player.MergeHand.performed -= MergeHandInput;
@@ -83,11 +81,6 @@ namespace PlayerSystems.PlayerInput
         private void Dash(InputAction.CallbackContext context)
         {
             m_OnDashinput.Invoke();
-        }
-
-        private void Interact(InputAction.CallbackContext context)
-        {
-            m_OnInteractInput.Invoke();
         }
 
         private void LeftHand(InputAction.CallbackContext context)

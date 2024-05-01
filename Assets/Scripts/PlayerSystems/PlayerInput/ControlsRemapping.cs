@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using PlayerSystems.PlayerInput;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening.Plugins.Core.PathCore;
 
 namespace Player.Input
 {
@@ -13,7 +14,9 @@ namespace Player.Input
     {
         public static Action<InputAction> SuccessfulRebinding;
 
-        public static Dictionary<string, string> OverridesDictionary = new Dictionary<string, string>();
+        static Dictionary<string, string> OverridesDictionary = new Dictionary<string, string>();
+
+        static string keyFormat = "{0} : {1}";
 
         public static void LoadMap()
         {
@@ -27,6 +30,8 @@ namespace Player.Input
 
         static void RemapAction(InputAction actionToRebind, int targetBinding, string[] groups)
         {
+            string oldPath = actionToRebind.bindings[targetBinding].path;
+
             actionToRebind.Disable();
             var rebindOperation = actionToRebind.PerformInteractiveRebinding(targetBinding)
                 .WithCancelingThrough("<Keyboard>/escape")
@@ -34,18 +39,40 @@ namespace Player.Input
                 .OnComplete(operation => {
                     operation.Dispose();
                     AddOverrideToDictionary(actionToRebind.id, actionToRebind.bindings[targetBinding].effectivePath, targetBinding);
-                    SaveControlOverrides();
-                    SuccessfulRebinding?.Invoke(actionToRebind);
 
-                    //InputManager.s_PlayerInput.asset.FindAction(id).ApplyBindingOverride(index, item.Value);
+                    CheckForDuplication(actionToRebind, targetBinding, groups, oldPath);
+                    SaveControlOverrides();
+
+                    SuccessfulRebinding?.Invoke(actionToRebind);
                 })
                 .Start();
+
             actionToRebind.Enable();
+        }
+
+        static void CheckForDuplication(InputAction actionToRebind, int targetBinding, string[] groups, string oldPath)
+        {
+            string key;
+            foreach(KeyValuePair<string, string> actionDic in OverridesDictionary)
+            {
+                key = string.Format(keyFormat, actionToRebind.id, targetBinding);
+
+                if (actionDic.Key != key)
+                {
+                    if (actionDic.Value == actionToRebind.bindings[targetBinding].effectivePath)
+                    {
+                        actionToRebind.ApplyBindingOverride(targetBinding, oldPath);
+
+                        AddOverrideToDictionary(actionToRebind.id, actionToRebind.bindings[targetBinding].effectivePath, targetBinding);
+                        return;
+                    }
+                }
+            }
         }
 
         private static void AddOverrideToDictionary(Guid actionId, string path, int bindingIndex)
         {
-            string key = string.Format("{0} : {1}", actionId.ToString(), bindingIndex);
+            string key = string.Format(keyFormat, actionId.ToString(), bindingIndex);
 
             if (OverridesDictionary.ContainsKey(key))
             {
