@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011088076, g: 0.004785902, b: 0.016615944, a: 1}
+  m_IndirectSpecularColor: {r: 0.011083694, g: 0.0047815335, b: 0.016611641, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16734,7 +16734,7 @@ Transform:
   m_GameObject: {fileID: 1829758484}
   serializedVersion: 2
   m_LocalRotation: {x: -0.05782615, y: -0.9786963, z: -0.07433007, w: -0.18244116}
-  m_LocalPosition: {x: 45.252625, y: 2.6016135, z: 76.758255}
+  m_LocalPosition: {x: 45.536, y: 2.6016135, z: 76.141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20724,6 +20724,12 @@ PrefabInstance:
       propertyPath: m_Player
       value: 
       objectReference: {fileID: 1463037843}
+    - target: {fileID: 4699983668110006517, guid: a5578045f5c58e041a0e4c53f2178352,
+        type: 3}
+      propertyPath: m_NextLevelData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5edcb12d6ae0c5943a554dbd88d82430,
+        type: 2}
     - target: {fileID: 4699983668110006517, guid: a5578045f5c58e041a0e4c53f2178352,
         type: 3}
       propertyPath: m_EndconditionParentUI
