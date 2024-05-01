@@ -55,15 +55,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
-                    ""type"": ""Button"",
-                    ""id"": ""46da00a8-344a-4a26-94a2-e45299e37b87"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""LeftHand"",
                     ""type"": ""Button"",
                     ""id"": ""a329090d-4e82-4c3c-96b4-603cde96f8c7"",
@@ -180,17 +171,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5561a216-0696-4821-a1c6-048b3c885abc"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""704b5532-9aa5-4e55-acb8-ab0943e7de17"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -243,7 +223,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_WASD = m_Player.FindAction("WASD", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_LeftHand = m_Player.FindAction("LeftHand", throwIfNotFound: true);
         m_Player_RightHand = m_Player.FindAction("RightHand", throwIfNotFound: true);
         m_Player_TogglePauseMenu = m_Player.FindAction("TogglePauseMenu", throwIfNotFound: true);
@@ -312,7 +291,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_WASD;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_LeftHand;
     private readonly InputAction m_Player_RightHand;
     private readonly InputAction m_Player_TogglePauseMenu;
@@ -324,7 +302,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @WASD => m_Wrapper.m_Player_WASD;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @LeftHand => m_Wrapper.m_Player_LeftHand;
         public InputAction @RightHand => m_Wrapper.m_Player_RightHand;
         public InputAction @TogglePauseMenu => m_Wrapper.m_Player_TogglePauseMenu;
@@ -347,9 +324,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
             @LeftHand.started += instance.OnLeftHand;
             @LeftHand.performed += instance.OnLeftHand;
             @LeftHand.canceled += instance.OnLeftHand;
@@ -375,9 +349,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
             @LeftHand.started -= instance.OnLeftHand;
             @LeftHand.performed -= instance.OnLeftHand;
             @LeftHand.canceled -= instance.OnLeftHand;
@@ -412,7 +383,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnWASD(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
         void OnLeftHand(InputAction.CallbackContext context);
         void OnRightHand(InputAction.CallbackContext context);
         void OnTogglePauseMenu(InputAction.CallbackContext context);
