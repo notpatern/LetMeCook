@@ -12,7 +12,7 @@ namespace PlayerSystems.MovementFSMCore
     public class MovementFsmCore : IStamina
     {
         [Header("References")] [SerializeField]
-        private LayerMask isGround;
+        public LayerMask isGround;
 
         public GameEventScriptableObject onFovChange;
         public GameEventScriptableObject onTiltChange;
@@ -151,7 +151,7 @@ namespace PlayerSystems.MovementFSMCore
             }
 
             if (!Grounded() && _currentState.GetType() != typeof(WallRunState) &&
-                CanConsumeStamina(staminaData.doubleJumpStamina))
+                CanConsumeStamina(staminaData.doubleJumpStamina) && !_currentState.jumpLeniency)
             {
                 ConsumeStamina(staminaData.doubleJumpStamina);
             }

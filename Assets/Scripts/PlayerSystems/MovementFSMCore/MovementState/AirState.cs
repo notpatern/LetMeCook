@@ -29,6 +29,11 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _isWall = LayerMask.GetMask("isWall");
         }
 
+        public override void Update()
+        {
+            base.Update();
+        }
+
         public override void FixedUpdate()
         {
             base.FixedUpdate();
@@ -52,6 +57,12 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         public override void Jump()
         {
+            Debug.Log(jumpLeniency);
+            if (jumpLeniency)
+            {
+                return;
+            }
+
             var vel = fsmCore.rb.velocity;
             fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
             

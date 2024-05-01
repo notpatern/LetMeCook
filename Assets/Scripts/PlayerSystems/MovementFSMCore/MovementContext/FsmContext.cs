@@ -6,6 +6,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
     public abstract class FsmContext
     {
         private readonly FsmData _fsmData;
+        public float jumpLeniency;
         public float movementSpeed;
         public float drag;
         public float movementMultiplier;
