@@ -63,7 +63,7 @@ namespace Manager
             isEndStateInit = true;
         }
 
-        void Start()
+        protected virtual void Start()
         {
             m_LoadPlayerTransform.TriggerEvent(m_Player.transform);
         }

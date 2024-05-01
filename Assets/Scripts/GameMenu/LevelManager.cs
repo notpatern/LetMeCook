@@ -9,7 +9,7 @@ namespace Manager
         [SerializeField] DefaultLevelData m_DefaultLevelData;
         protected UIManager m_UiManager;
         [SerializeField] AudioSoundData m_AudioSoundData;
-        [SerializeField] protected LevelData m_LevelData;
+        public LevelData m_LevelData;
         [SerializeField, Tooltip("can be null")] protected Transform m_EndconditionParentUI;
 
         protected MusicManager m_MusicManager;
