@@ -1,4 +1,5 @@
 using Manager;
+using PlayerSystems.PlayerInput;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ public class MainMenu : LevelManager
 
     [SerializeField] Button m_LevelSelectorBtn;
     [SerializeField] Button m_OptionBtn;
+
+    [SerializeField] InputManager m_InputManager;
 
     [Header("Level Selector")]
     [SerializeField] GameObject m_LevelSelectorPanel;
@@ -23,6 +26,8 @@ public class MainMenu : LevelManager
 
     void Start()
     {
+        m_InputManager.BindTogglePauseMenu(() => { m_UiManager.optionMenu.HandleMenuLayer(); });
+
         LoadLevelSelectorBtn();
         m_OptionBtn.onClick.AddListener(() => { m_UiManager.optionMenu.ToggleOptionMenu(); });
 
