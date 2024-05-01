@@ -14,7 +14,6 @@ public class DialogInfosTriggerZone : TriggerEffectZone
     {
         if (isDestroyed) return;
 
-        Debug.Log(other.gameObject.name);
         m_CallDialogEvent.TriggerEvent(m_CurrentDialogInfos);
 
         if(destroyOnTrigger)
