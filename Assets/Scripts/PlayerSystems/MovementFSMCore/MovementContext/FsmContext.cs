@@ -27,6 +27,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
 
         public virtual void Init()
         {
+            jumpLeniency = _fsmData.jumpLeniency;
             movementSpeed = _fsmData.movementSpeed;
             drag = _fsmData.drag;
             movementMultiplier = _fsmData.movementMultiplier;

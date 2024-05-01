@@ -32,6 +32,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Update()
         {
             base.Update();
+            Debug.Log(jumpLeniency);
         }
 
         public override void FixedUpdate()
@@ -57,7 +58,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         public override void Jump()
         {
-            Debug.Log(jumpLeniency);
             if (jumpLeniency)
             {
                 return;
