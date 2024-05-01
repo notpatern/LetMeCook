@@ -35,6 +35,9 @@ namespace FoodSystem.FoodType
         public override void PutInHand(Transform hand)
         {
             base.PutInHand(hand);
+
+            infosCanvas.transform.localRotation = Quaternion.Euler(infosCanvas.transform.localRotation.eulerAngles.x, hand.localRotation.eulerAngles.y + 180, infosCanvas.transform.localRotation.eulerAngles.z);
+
             infosCanvas.SetActive(true);
         }
 

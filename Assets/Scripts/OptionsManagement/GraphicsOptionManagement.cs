@@ -71,7 +71,7 @@ namespace GraphicsOption
 
                     if(IsResolutionsSameSize(Screen.resolutions[i], Screen.currentResolution))
                     {
-                        m_currentSelectedResolutionID = currentResolutionId-1;
+                        m_currentSelectedResolutionID = currentResolutionId;
                     }
                 }
             }
