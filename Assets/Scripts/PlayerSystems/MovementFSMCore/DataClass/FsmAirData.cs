@@ -6,6 +6,7 @@ namespace PlayerSystems.MovementFSMCore.DataClass
     public class FsmAirData : FsmData
     {
         public float wallCheckDistance;
+        public float doubleJumpForce;
         public float restartWallRunFalloffDistance;
     }
 }

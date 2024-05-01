@@ -12,7 +12,7 @@ namespace PlayerSystems.MovementFSMCore
     public class MovementFsmCore : IStamina
     {
         [Header("References")] [SerializeField]
-        private LayerMask isGround;
+        public LayerMask isGround;
 
         public GameEventScriptableObject onFovChange;
         public GameEventScriptableObject onTiltChange;
@@ -37,6 +37,7 @@ namespace PlayerSystems.MovementFSMCore
         [HideInInspector] public bool canJump;
         [HideInInspector] public bool canDash;
         [HideInInspector] public bool canWallRun;
+        [HideInInspector] public float coyoteTime;
         private bool _jumpInput;
         private bool _dashInput;
 
@@ -121,6 +122,7 @@ namespace PlayerSystems.MovementFSMCore
             if (Grounded() && _currentState.GetType() != typeof(GroundState))
             {
                 SwitchState<GroundState>(typeof(GroundState), new GroundContext(groundData, true, true));
+                coyoteTime = _currentState.context.coyoteTime;
             }
             else if (!Grounded() && _currentState.GetType() == typeof(GroundState))
             {
@@ -145,17 +147,18 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
-            if (!_currentState.context.canJump || (!Grounded() && !canJump && _currentState.GetType() != typeof(WallRunState)))
+            if ((!_currentState.context.canJump || (!Grounded() && !canJump && _currentState.GetType() != typeof(WallRunState))) && coyoteTime <= 0)
             {
                 return;
             }
 
             if (!Grounded() && _currentState.GetType() != typeof(WallRunState) &&
-                CanConsumeStamina(staminaData.doubleJumpStamina))
+                CanConsumeStamina(staminaData.doubleJumpStamina) && !_currentState.jumpLeniency && coyoteTime <= 0)
             {
                 ConsumeStamina(staminaData.doubleJumpStamina);
             }
-            
+
+            Debug.Log("jump");
             _jumpInput = true;
         }
 

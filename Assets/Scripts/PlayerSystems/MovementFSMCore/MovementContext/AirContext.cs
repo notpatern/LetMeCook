@@ -6,6 +6,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
     public class AirContext : FsmContext
     {
         private readonly FsmAirData _airDataContext;
+        public float doubleJumpForce;
         public float wallRunExitTime;
         public float wallCheckDistance;
         public RaycastHit previousWallInfo;
@@ -21,6 +22,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         public override void Init()
         {
             base.Init();
+            doubleJumpForce = _airDataContext.doubleJumpForce;
             wallCheckDistance = _airDataContext.wallCheckDistance;
             restartWallRunFalloffDistance = _airDataContext.restartWallRunFalloffDistance;
         }

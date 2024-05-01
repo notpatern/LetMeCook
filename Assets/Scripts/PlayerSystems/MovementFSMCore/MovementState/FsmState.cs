@@ -7,7 +7,9 @@ namespace PlayerSystems.MovementFSMCore.MovementState
     {
         public readonly FsmContext context;
         protected readonly MovementFsmCore fsmCore;
+        public bool jumpLeniency;
         protected Vector3 movementDir;
+        
 
         protected FsmState(FsmContext context, MovementFsmCore fsmCore)
         {
@@ -24,6 +26,12 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         public virtual void Update()
         {
+            jumpLeniency = IsGroundUnderForJumpLeniency();
+        }
+
+        public void DecreaseCoyoteTime()
+        {
+            fsmCore.coyoteTime -= Time.deltaTime;
         }
 
         public virtual void FixedUpdate()
@@ -71,6 +79,11 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
 
             fsmCore.rb.AddForce(Vector3.up * context.jumpForce, ForceMode.Impulse);
+        }
+
+        public bool IsGroundUnderForJumpLeniency()
+        {
+            return Physics.Raycast(fsmCore.rb.position, Vector3.down, context.jumpLeniency, fsmCore.isGround);
         }
 
         public virtual void Dash()
