@@ -47,6 +47,8 @@ public class DialogDataLoaderWindowEditor : EditorWindow
         GUIStyle style = new GUIStyle(EditorStyles.textArea);
         style.wordWrap = true;
 
+        EditorGUILayout.LabelField("No Game Content Name ID : ");
+        loadedDialogInfos[index].noGameContentNameID = EditorGUILayout.TextArea(loadedDialogInfos[index].noGameContentNameID);
         EditorGUILayout.LabelField("PNJ Name : ");
         loadedDialogInfos[index].pnjName = EditorGUILayout.TextArea(loadedDialogInfos[index].pnjName);
         EditorGUILayout.LabelField("DialogContent : ");
@@ -125,7 +127,7 @@ public class DialogDataLoaderWindowEditor : EditorWindow
         }
 
         //Check if sentences are fiting with the min length then resize
-        if (result.Length > 1 && result[result.Length - 1].Length < m_DialogLevelData.sentenceMinLength)
+        if (m_DialogLevelData && result.Length > 1 && result[result.Length - 1].Length < m_DialogLevelData.sentenceMinLength)
         {
             result[result.Length - 2] += result[result.Length - 1];
             Array.Resize(ref result, result.Length - 1);

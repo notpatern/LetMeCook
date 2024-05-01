@@ -311,6 +311,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 117180082}
+    - target: {fileID: 4595446405592552815, guid: 6585f239436eabf428a855ee3eaaaea4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 117180082}
     - target: {fileID: 8591219141009133227, guid: 6585f239436eabf428a855ee3eaaaea4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1426,6 +1431,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1427716746}
     - target: {fileID: 3988135143213629776, guid: 6585f239436eabf428a855ee3eaaaea4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1153203865}
+    - target: {fileID: 4595446405592552815, guid: 6585f239436eabf428a855ee3eaaaea4,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4447,6 +4457,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 47826252}
+    - target: {fileID: 4595446405592552815, guid: 6585f239436eabf428a855ee3eaaaea4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 47826252}
     - target: {fileID: 8591219141009133227, guid: 6585f239436eabf428a855ee3eaaaea4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5684,6 +5699,98 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &812513330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812513331}
+  - component: {fileID: 812513333}
+  - component: {fileID: 812513332}
+  m_Layer: 0
+  m_Name: DialogGameColliderTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &812513331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812513330}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0249377, y: 5.466671, z: -11.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1189205547}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812513332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812513330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f60f500b65f042941b1f816d952b1a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerableLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  destroyOnTrigger: 1
+  m_CurrentDialogInfos:
+    pnjName: Hades
+    content: "Welcome to Hell!\r You were sent here because you fucked up big time
+      haha!\r But don\u2019t worry about it, I\u2019ve chosen you to be my new chef
+      so you wont have to suffer for eternity. Unless you\u2019re a terrible cook,
+      then I\u2019ll just make you to be Sisyphus II or something.\r Here, approach
+      the green obelisk in front of you using {0}"
+    loadedContent:
+    - "Welcome to Hell!\r You were"
+    - ' sent here because you fucked'
+    - " up big time haha!\r But don\u2019t"
+    - " worry about it, I\u2019ve chosen"
+    - ' you to be my new chef so you'
+    - ' wont have to suffer for'
+    - " eternity. Unless you\u2019re a"
+    - " terrible cook, then I\u2019ll just"
+    - ' make you to be Sisyphus II or'
+    - " something.\r Here, approach"
+    - ' the green obelisk in front of'
+    - ' you using {0}'
+  m_DialogInfosBindingEvent: {fileID: 0}
+  m_CallDialogEvent: {fileID: 11400000, guid: adebe2cc9844e5541ae77227083f9587, type: 2}
+--- !u!65 &812513333
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812513330}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.3171215, y: 11.651537, z: 3.1848297}
+  m_Center: {x: -0.35847664, y: -1.0616817, z: 1.0924149}
 --- !u!1 &825140931
 GameObject:
   m_ObjectHideFlags: 0
@@ -6556,6 +6663,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1427716746}
     - target: {fileID: 3988135143213629776, guid: 6585f239436eabf428a855ee3eaaaea4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1427716746}
+    - target: {fileID: 4595446405592552815, guid: 6585f239436eabf428a855ee3eaaaea4,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -10850,6 +10962,39 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1492009653}
   m_SourcePrefab: {fileID: 100100000, guid: f606618a8e606fc48ae28dd77aa1fa00, type: 3}
+--- !u!1 &1189205546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1189205547}
+  m_Layer: 0
+  m_Name: GAME TRIGGER EVENT
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1189205547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189205546}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.77515376, y: -1.4714168, z: 22.855944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1795004979}
+  - {fileID: 812513331}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1244249658
 GameObject:
   m_ObjectHideFlags: 0
@@ -16038,12 +16183,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795004976}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24978404, y: 3.9952543, z: 227.3329}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0249377, y: 5.466671, z: 204.47696}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1189205547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1797351721
 GameObject:
@@ -17461,6 +17606,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 780510387}
     - target: {fileID: 3988135143213629776, guid: 6585f239436eabf428a855ee3eaaaea4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 780510387}
+    - target: {fileID: 4595446405592552815, guid: 6585f239436eabf428a855ee3eaaaea4,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -19730,6 +19880,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 969073176}
+    - target: {fileID: 4595446405592552815, guid: 6585f239436eabf428a855ee3eaaaea4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 969073176}
     - target: {fileID: 8591219141009133227, guid: 6585f239436eabf428a855ee3eaaaea4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19815,6 +19970,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1153203865}
     - target: {fileID: 3988135143213629776, guid: 6585f239436eabf428a855ee3eaaaea4,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1312191963}
+    - target: {fileID: 4595446405592552815, guid: 6585f239436eabf428a855ee3eaaaea4,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -20463,4 +20623,4 @@ SceneRoots:
   - {fileID: 266903607}
   - {fileID: 1766164293}
   - {fileID: 1836017682}
-  - {fileID: 1795004979}
+  - {fileID: 1189205547}

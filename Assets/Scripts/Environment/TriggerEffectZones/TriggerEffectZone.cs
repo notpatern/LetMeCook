@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class TriggerEffectZone : MonoBehaviour
 {
-    [SerializeField] LayerMask triggerableLayers;
+    public LayerMask triggerableLayers;
 
     private void OnTriggerEnter(Collider other)
     {
