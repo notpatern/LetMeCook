@@ -64603,6 +64603,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1756387495}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1773425555 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1676476264601069027, guid: d578990f53d17c54980913d52f0df760,
+    type: 3}
+  m_PrefabInstance: {fileID: 1787830721875021506}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1773425559
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773425555}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4711208715938537054, guid: adca62aae000518418175c77a0949966, type: 3}
 --- !u!43 &1788692103
 Mesh:
   m_ObjectHideFlags: 0
@@ -67117,7 +67145,7 @@ PrefabInstance:
     - target: {fileID: 6994733465835429278, guid: d578990f53d17c54980913d52f0df760,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 35.91
+      value: 31.6
       objectReference: {fileID: 0}
     - target: {fileID: 6994733465835429278, guid: d578990f53d17c54980913d52f0df760,
         type: 3}
@@ -67167,7 +67195,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1676476264601069027, guid: d578990f53d17c54980913d52f0df760,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1773425559}
   m_SourcePrefab: {fileID: 100100000, guid: d578990f53d17c54980913d52f0df760, type: 3}
 --- !u!64 &4102539747526480980
 MeshCollider:
