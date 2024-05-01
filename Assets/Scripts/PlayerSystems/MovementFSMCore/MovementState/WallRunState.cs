@@ -19,7 +19,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         {
             base.Init();
             _context.Init();
-            _context.maxMovementSpeed = fsmCore.rb.velocity.magnitude;
             _context.canJump = true;
             GetWallDirection();
 
@@ -32,12 +31,19 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             }
             else
             {
-                
                 fsmCore.onTiltChange.TriggerEvent(-fsmCore.cameraData.wallRunTilt);
             }
             var velocity = fsmCore.rb.velocity;
             velocity = new Vector3(velocity.x, 0f, velocity.z);
+
+            if (velocity.magnitude < _context.maxMovementSpeed)
+            {
+                velocity = velocity.normalized * _context.maxMovementSpeed;
+            }
+
             fsmCore.rb.velocity = velocity;
+
+            _context.maxMovementSpeed = fsmCore.rb.velocity.magnitude;
         }
 
         private void GetWallDirection()
@@ -85,7 +91,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private bool CanStillWallRun()
         {
-            return !(_context.wallTime <= 0) && (fsmCore.Input.x != 0 || fsmCore.Input.y != 0) && Physics.Raycast(fsmCore.rb.transform.position, -_wallNormal, 1f, LayerMask.GetMask("isWall"));
+            return !(_context.wallTime <= 0) && (fsmCore.Input.x != 0 || fsmCore.Input.y > 0) && Physics.Raycast(fsmCore.rb.transform.position, -_wallNormal, 1.5f, LayerMask.GetMask("isWall"));
         }
 
         public override void Jump()
