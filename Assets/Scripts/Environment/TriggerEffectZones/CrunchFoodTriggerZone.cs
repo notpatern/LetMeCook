@@ -1,3 +1,4 @@
+using FoodSystem.FoodType;
 using UnityEngine;
 
 public class CrunchFoodTriggerZone : TriggerEffectZone
@@ -9,6 +10,15 @@ public class CrunchFoodTriggerZone : TriggerEffectZone
         if(player)
         {
             player.CrunchFoodInHands(false);
+        }
+        else
+        {
+            Food food = other.GetComponent<Food>();
+
+            if(food)
+            {
+                Destroy(food.gameObject);
+            }
         }
     }
 }

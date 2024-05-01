@@ -12,12 +12,14 @@ namespace FoodSystem.FoodMachinery
         [SerializeField] Collider collisionToEnableOnFoodStocked;
         [SerializeField] Collider interactionTrigger;
         [SerializeField] ParticleInstanceManager activeParticle;
+        [SerializeField] GameObject energyStockagePaltform;
 
         void Awake()
         {
             collectMergedFood = true;
             collisionToEnableOnFoodStocked.enabled = false;
             interactionTrigger.enabled = true;
+            energyStockagePaltform.SetActive(false);
             activeParticle.Stop(false);
         }
 
@@ -35,6 +37,7 @@ namespace FoodSystem.FoodMachinery
             GameObject foodToGive = collectedFoodGo;
             foodToGive.GetComponent<Food>().SetActiveColliders(true);
             collectedFoodGo.GetComponent<Food>().SetActiveTrails(true);
+            energyStockagePaltform.SetActive(false);
             ResetCollector();
             canCollect = true;
             return foodToGive;
@@ -52,6 +55,7 @@ namespace FoodSystem.FoodMachinery
 
         protected override void OnFoodCollected()
         {
+            energyStockagePaltform.SetActive(true);
             collectedFoodGo.GetComponent<LaunchableItem>().QuitBezierCurve();
             activeParticle.Play();
 
