@@ -17,26 +17,32 @@ MonoBehaviour:
   sentenceMinLength: 5
   letterDelay: 0.05
   dialogInfos:
-  - pnjName: Hades
+  - noGameContentNameID: Hades Welcome
+    pnjName: Hades
     content: "Welcome to Hell!\r You were sent here because you fucked up big time
       haha!\r But don\u2019t worry about it, I\u2019ve chosen you to be my new chef
       so you wont have to suffer for eternity. Unless you\u2019re a terrible cook,
       then I\u2019ll just make you to be Sisyphus II or something.\r Here, approach
       the green obelisk in front of you using {0}"
     loadedContent:
-    - "Welcome to Hell!\r You were"
-    - ' sent here because you fucked'
-    - " up big time haha!\r But don\u2019t"
-    - " worry about it, I\u2019ve chosen"
-    - ' you to be my new chef so you'
-    - ' wont have to suffer for'
-    - " eternity. Unless you\u2019re a"
-    - " terrible cook, then I\u2019ll just"
-    - ' make you to be Sisyphus II or'
-    - " something.\r Here, approach"
-    - ' the green obelisk in front of'
-    - ' you using {0}'
-  - pnjName: Hades
+      loadedString:
+      - ' you using {0} or {1}'
+      - Welcome to Hell !
+      - ' sent here because you fucked'
+      - ' up big time haha! '
+      - " worry about it, I\u2019ve chosen"
+      - ' you to be my new chef so you'
+      - ' wont have to suffer for'
+      - " eternity. Unless you\u2019re a"
+      - " terrible cook, then I\u2019ll just"
+      - ' make you to be Sisyphus II or'
+      - something.  Here, approach
+      - ' the green obelisk in front of'
+      args:
+      - {fileID: 11400000, guid: 2a1c617a8fc2ce242a63dc03a8cb8308, type: 2}
+      - {fileID: 11400000, guid: c1622e0b2475d2f4e9376984d1a544eb, type: 2}
+  - noGameContentNameID: 
+    pnjName: Hades
     content: "This green obelisk will dispense you green food, which will allow you
       to double jump by pressing [Jump Key] in the air! To pick up the food you can
       use either [right click] or [left click]. As long as you have this piece of
@@ -44,23 +50,10 @@ MonoBehaviour:
       it you won\u2019t be able to double jump anymore. Now I gotta show you the
       other food that I like to eat, get to the next obelisk."
     loadedContent:
-    - This green obelisk will
-    - ' dispense you green food,'
-    - ' which will allow you to'
-    - ' double jump by pressing [Jump'
-    - ' Key] in the air! To pick up'
-    - ' the food you can use either'
-    - ' [right click] or [left'
-    - ' click]. As long as you have'
-    - ' this piece of food in your'
-    - ' hand you will be impregnated'
-    - ' with its magical power, if'
-    - " you drop it you won\u2019t be able"
-    - ' to double jump anymore. Now I'
-    - ' gotta show you the other food'
-    - ' that I like to eat, get to'
-    - ' the next obelisk.'
-  - pnjName: Hades
+      loadedString: []
+      args: []
+  - noGameContentNameID: 
+    pnjName: Hades
     content: "So, as you might have seen this obelisk is red, wait can you see red?
       Are you colorblind? mh, I hope you\u2019re not because I'm hungry\u2026 anyhow.
       Red obelisks will dispense you red food which will allow you to dash using
@@ -69,25 +62,10 @@ MonoBehaviour:
       more fitting. So yeah I think I get this food delivered by Hermes so I\u2019ll
       have to ask him, I don\u2019t know why I never did\u2026"
     loadedContent:
-    - So, as you might have seen
-    - ' this obelisk is red, wait can'
-    - ' you see red? Are you'
-    - " colorblind? mh, I hope you\u2019re"
-    - " not because I'm hungry\u2026"
-    - ' anyhow. Red obelisks will'
-    - ' dispense you red food which'
-    - ' will allow you to dash using'
-    - " [Dash Key]. Don\u2019t ask me why"
-    - ' the food is magic, I have no'
-    - ' idea bro- can I call you bro?'
-    - ' or would you rather sis? mh..'
-    - " I\u2019ll call you Chef, it\u2019s more"
-    - ' fitting. So yeah I think I'
-    - ' get this food delivered by'
-    - " Hermes so I\u2019ll have to ask"
-    - " him, I don\u2019t know why I never"
-    - " him, I don\u2019t know why I never did..."
-  - pnjName: Hades
+      loadedString: []
+      args: []
+  - noGameContentNameID: 
+    pnjName: Hades
     content: "Ok so the white food allows you to run on walls- YES JUST LIKE IN TITANFALL,
       I KNOW IT\u2019S SUPER COOL I DO THAT ALL THE TIME WITH- hum coughs yeah it\u2019s
       alright no big deal. If you want to carry more than two pieces of food at the
@@ -95,19 +73,5 @@ MonoBehaviour:
       you\u2019re currently carrying, oh and once you\u2019ve stored them you can\u2019t
       get them out! So be careful with the crystal!"
     loadedContent:
-    - Ok so the white food allows
-    - ' you to run on walls- YES JUST'
-    - ' LIKE IN TITANFALL, I KNOW'
-    - " IT\u2019S SUPER COOL I DO THAT ALL"
-    - ' THE TIME WITH- hum coughs'
-    - " yeah it\u2019s alright no big"
-    - ' deal. If you want to carry'
-    - ' more than two pieces of food'
-    - ' at the same time you can use'
-    - ' a Hell Crystal with [Merge'
-    - ' Keys]  to store the'
-    - " ingredients you\u2019re currently"
-    - " carrying, oh and once you\u2019ve"
-    - " stored them you can\u2019t get"
-    - ' them out! So be careful with'
-    - ' the crystal!'
+      loadedString: []
+      args: []

@@ -14,6 +14,8 @@ namespace Dialog
 
         [Header("Dialogs")]
         public DialogInfos[] dialogInfos;
+
+        
     }
 
     [Serializable]
@@ -23,6 +25,13 @@ namespace Dialog
         public string pnjName;
         public string content;
         [Header("Data loaded in DialogDataLoader Window Editor")]
-        public string[] loadedContent;
+        public LoadedContent loadedContent;
+
+        [Serializable]
+        public class LoadedContent
+        {
+            public string[] loadedString;
+            public KeybindsData[] args;
+        }
     }
 }

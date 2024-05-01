@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 namespace Dialog
 {
@@ -56,13 +57,33 @@ namespace Dialog
             }
 
             pnjNameDialogText.text = dialogInfos.pnjName;
+            InputAction inputActionArg;
+            KeybindsData keybindsData;
+            string[] loadedKeys;
 
-            for (int i = 0; i < dialogInfos.loadedContent.Length; i++)
+            for (int i = 0; i < dialogInfos.loadedContent.loadedString.Length; i++)
             {
-                defaultLoadedText = dialogInfos.loadedContent[i];
+                if (dialogInfos.loadedContent.args.Length > 0)
+                {
+                    loadedKeys = new string[dialogInfos.loadedContent.args.Length];
+                    defaultLoadedText = dialogInfos.loadedContent.loadedString[i];
+                    for (int j=0; j<dialogInfos.loadedContent.args.Length; j++)
+                    {
+                        keybindsData = dialogInfos.loadedContent.args[j];
+                        inputActionArg = keybindsData.inputActionReference;
+                        loadedKeys[j] = inputActionArg.GetBindingDisplayString(keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+                    }
+
+
+                    defaultLoadedText = string.Format(defaultLoadedText, loadedKeys);
+                }
+                else
+                {
+                    defaultLoadedText = dialogInfos.loadedContent.loadedString[i];
+                }
 
                 alphaIndex = 0;
-                foreach (char c in dialogInfos.loadedContent[i])
+                foreach (char c in dialogInfos.loadedContent.loadedString[i])
                 {
                     alphaIndex++;
                     displayText = defaultLoadedText.Insert(alphaIndex, c_ALPHACOLOR);
@@ -71,7 +92,7 @@ namespace Dialog
                     yield return new WaitForSeconds(m_DialogLevelData.letterDelay);
                 }
 
-                if (i + 1 < dialogInfos.loadedContent.Length)
+                if (i + 1 < dialogInfos.loadedContent.loadedString.Length)
                 {
                     displayText = defaultLoadedText + "...";
                     dialogText.text = displayText;

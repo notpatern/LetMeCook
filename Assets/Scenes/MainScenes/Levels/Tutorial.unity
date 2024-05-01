@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011083694, g: 0.0047815335, b: 0.016611641, a: 1}
+  m_IndirectSpecularColor: {r: 0.011088076, g: 0.004785902, b: 0.016615944, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6351,7 +6351,7 @@ MonoBehaviour:
     m_Bits: 512
   destroyOnTrigger: 1
   m_CurrentDialogInfos:
-    noGameContentNameID: 
+    noGameContentNameID: Hades Welcome
     pnjName: Hades
     content: "Welcome to Hell!\r You were sent here because you fucked up big time
       haha!\r But don\u2019t worry about it, I\u2019ve chosen you to be my new chef
@@ -6359,18 +6359,22 @@ MonoBehaviour:
       then I\u2019ll just make you to be Sisyphus II or something.\r Here, approach
       the green obelisk in front of you using {0}"
     loadedContent:
-    - "Welcome to Hell!\r You were"
-    - ' sent here because you fucked'
-    - " up big time haha!\r But don\u2019t"
-    - " worry about it, I\u2019ve chosen"
-    - ' you to be my new chef so you'
-    - ' wont have to suffer for'
-    - " eternity. Unless you\u2019re a"
-    - " terrible cook, then I\u2019ll just"
-    - ' make you to be Sisyphus II or'
-    - " something.\r Here, approach"
-    - ' the green obelisk in front of'
-    - ' you using {0}'
+      loadedString:
+      - ' you using {0} or {1}'
+      - Welcome to Hell !
+      - ' sent here because you fucked'
+      - ' up big time haha! '
+      - " worry about it, I\u2019ve chosen"
+      - ' you to be my new chef so you'
+      - ' wont have to suffer for'
+      - " eternity. Unless you\u2019re a"
+      - " terrible cook, then I\u2019ll just"
+      - ' make you to be Sisyphus II or'
+      - something.  Here, approach
+      - ' the green obelisk in front of'
+      args:
+      - {fileID: 11400000, guid: 2a1c617a8fc2ce242a63dc03a8cb8308, type: 2}
+      - {fileID: 11400000, guid: c1622e0b2475d2f4e9376984d1a544eb, type: 2}
   m_DialogInfosBindingEvent: {fileID: 0}
   m_CallDialogEvent: {fileID: 11400000, guid: adebe2cc9844e5541ae77227083f9587, type: 2}
 --- !u!65 &812513333
@@ -18195,7 +18199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerableLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768
 --- !u!65 &1795004978
 BoxCollider:
   m_ObjectHideFlags: 0
