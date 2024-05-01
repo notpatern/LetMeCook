@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PizzaEtRavioli : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class PizzaEtRavioli : MonoBehaviour
 
     Quaternion m_NextDirection;
 
+    private bool isActive = false;
+
     void Start()
     {
         GetNextDirection();
@@ -19,10 +23,13 @@ public class PizzaEtRavioli : MonoBehaviour
 
     void Update()
     {
-        StartRotate();
-        if(Quaternion.Angle(m_NextDirection, transform.rotation) < m_RotationThreshold)
+        if (!isActive)
         {
-            StartAnimation();
+            StartRotate();
+            if(Quaternion.Angle(m_NextDirection, transform.rotation) < m_RotationThreshold)
+            {
+                StartAnimation();
+            }
         }
     }
 
@@ -38,11 +45,13 @@ public class PizzaEtRavioli : MonoBehaviour
 
     void StartAnimation()
     {
+        isActive = true;
         m_BoulbiAnim.SetTrigger("LaunchJump");
     }
 
     void EndAnimation()
     {
+        isActive = false;
         transform.position = m_PositionAtEnd.position;
         GetNextDirection();
     }
