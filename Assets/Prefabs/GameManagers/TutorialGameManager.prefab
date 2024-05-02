@@ -56,6 +56,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialGameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1194087551724790445, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 4709
+      objectReference: {fileID: 0}
     - target: {fileID: 1242863108839405188, guid: 5933f2b56aa15e2479ea94387f939071,
         type: 3}
       propertyPath: recipesManager
@@ -65,6 +70,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_VersionIndex
       value: 5669
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806748567661226039, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 4951
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904988234128018625, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 6757
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134963767160120148, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 4709
       objectReference: {fileID: 0}
     - target: {fileID: 3550792873206673443, guid: 5933f2b56aa15e2479ea94387f939071,
         type: 3}
@@ -86,12 +106,32 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 4871
       objectReference: {fileID: 0}
+    - target: {fileID: 6332424758720766192, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 6409
+      objectReference: {fileID: 0}
     - target: {fileID: 6415780378168496261, guid: 5933f2b56aa15e2479ea94387f939071,
         type: 3}
       propertyPath: m_VersionIndex
       value: 4984
       objectReference: {fileID: 0}
     - target: {fileID: 6449197590946156670, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 5385
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436986391798469269, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 5600
+      objectReference: {fileID: 0}
+    - target: {fileID: 7895287390899013808, guid: 5933f2b56aa15e2479ea94387f939071,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 4709
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262193199815175324, guid: 5933f2b56aa15e2479ea94387f939071,
         type: 3}
       propertyPath: m_VersionIndex
       value: 5385
@@ -197,7 +237,7 @@ MonoBehaviour:
   m_LevelData: {fileID: 11400000, guid: 1a4fc680f4fa0c143ae304c86008af37, type: 2}
   m_EndconditionParentUI: {fileID: 0}
   m_Player: {fileID: 0}
-  m_NextLevelData: {fileID: 11400000, guid: 22a12519f21a98042b28e68e6e07d26d, type: 2}
+  m_NextLevelData: {fileID: 11400000, guid: 5edcb12d6ae0c5943a554dbd88d82430, type: 2}
   m_LoadPlayerTransform: {fileID: 11400000, guid: f7c4a8211971b4846a78dbe99dafeb68,
     type: 2}
   m_RecipesManager: {fileID: 392597949435769583}
@@ -223,9 +263,9 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0181878, y: 17.296452, z: 20.832565}
   m_Center: {x: 148.81213, y: 3.6482258, z: 9.268775}
---- !u!4 &1175337046145950264 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 688921788955764079, guid: 5933f2b56aa15e2479ea94387f939071,
+--- !u!95 &5401288484746806525 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5995719528764605354, guid: 5933f2b56aa15e2479ea94387f939071,
     type: 3}
   m_PrefabInstance: {fileID: 1855527471376418647}
   m_PrefabAsset: {fileID: 0}
@@ -251,19 +291,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   recipesManager: {fileID: 392597949435769583}
-  mouthAnimator: {fileID: 8329749929465859381}
+  mouthAnimator: {fileID: 5401288484746806525}
   receiveParticleParticles: {fileID: 917468930401981285, guid: 950cbe1f335a86249bf8c68803aea7c4,
     type: 3}
   m_TutorialgoalRecipesGaol: {fileID: 4699983668110006517}
 --- !u!4 &7304967354621683517 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8980280446119190634, guid: 5933f2b56aa15e2479ea94387f939071,
-    type: 3}
-  m_PrefabInstance: {fileID: 1855527471376418647}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8329749929465859381 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7663190372918168162, guid: 5933f2b56aa15e2479ea94387f939071,
     type: 3}
   m_PrefabInstance: {fileID: 1855527471376418647}
   m_PrefabAsset: {fileID: 0}
@@ -286,4 +320,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataBase: {fileID: 11400000, guid: 8a79171a686fbed4e961ba0ccaf7c189, type: 2}
-  SpawnVoice3DPosition: {fileID: 1175337046145950264}
+  SpawnVoice3DPosition: {fileID: 0}
+  emptyRecipes: 0
