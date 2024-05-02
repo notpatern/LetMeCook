@@ -256,9 +256,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
+    m_Left: 20
+    m_Right: 20
+    m_Top: 40
     m_Bottom: 0
   m_ChildAlignment: 1
   m_Spacing: 0
@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 685230724193944433}
   - component: {fileID: 4794666732181766859}
   - component: {fileID: 5073018154971705492}
+  - component: {fileID: 1999039612320396729}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -385,10 +386,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1234597393482611823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -20.654999}
+  m_SizeDelta: {x: -20, y: 21.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4794666732181766859
 CanvasRenderer:
@@ -418,7 +419,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cheap Burger
+  m_text: teste tes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ca43f9415f967284084c7d5c3ee56eb1, type: 2}
   m_sharedMaterial: {fileID: 3562767104118442971, guid: ca43f9415f967284084c7d5c3ee56eb1,
@@ -446,8 +447,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.05
-  m_fontSizeBase: 36
+  m_fontSize: 19.38
+  m_fontSizeBase: 19.38
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 4.97
@@ -461,7 +462,7 @@ MonoBehaviour:
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
+  m_charWidthMaxAdj: 2
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
@@ -488,3 +489,23 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1999039612320396729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572646151706809913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 1
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
