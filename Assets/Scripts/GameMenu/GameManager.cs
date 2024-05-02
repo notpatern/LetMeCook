@@ -76,6 +76,11 @@ namespace Manager
             }
         }
 
+        public void ForceEndConditionTimerValue(float value)
+        {
+            m_GameEndCondition.m_Timer = value;
+        }
+
         public void AddScore(int scoreAmount)
         {
             score += scoreAmount;

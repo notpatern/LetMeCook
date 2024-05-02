@@ -16,6 +16,10 @@ namespace RecipeSystem
         List<GameRecipe> activeRecipes = new List<GameRecipe>();
         [SerializeField] Transform SpawnVoice3DPosition;
         RecipeUI recipeUI;
+
+        protected int recipesRemoved = 0;
+        public bool emptyRecipes = false;
+
         public void Init(GameManager gameManager, RecipeUI recipeUI)
         {
             this.gameManager = gameManager;
@@ -85,6 +89,13 @@ namespace RecipeSystem
 
             recipeUI.RemoveCard(gameRecipe);
             activeRecipes.RemoveAt(recipeId);
+            recipesRemoved++;
+
+            if (dataBase.recipesContainers.Length - recipesRemoved == 0)
+            {
+                gameManager.ForceEndConditionTimerValue(0f);
+            }
+
             return true;
         }
 
