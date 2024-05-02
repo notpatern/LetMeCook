@@ -1663,8 +1663,14 @@ MonoBehaviour:
     m_MergedFoodPrefab: {fileID: 7354829722045014985, guid: a04b9f56709f78941815ea4072a5a32b,
       type: 3}
     m_HandsEnableMoveTech:
-      m_WallunGameEventScriptableObject: {fileID: 11400000, guid: 6d314ed95b1c5d44a92bf28deb7368a0,
+      m_WallrunGameEventScriptableObject: {fileID: 11400000, guid: 6d314ed95b1c5d44a92bf28deb7368a0,
         type: 2}
+      m_SimpleNotCookedFoodWallrunGameEventScriptableObject: {fileID: 11400000, guid: 444535bde4edb0046aeab57ad273696a,
+        type: 2}
+      m_SimpleNotCookedFoodDashGameEventScriptableObject: {fileID: 11400000, guid: 986c0f016e08dd84696b17e2d530f38b,
+        type: 2}
+      m_SimpleNotCookedFoodDoubleJumpGameEventScriptableObject: {fileID: 11400000,
+        guid: db588259c8e434f4fa8c9bd6b89e1383, type: 2}
     m_DefaultGemBraceletVisualMaterial: {fileID: 2100000, guid: e7e0dab952a090047bd2ab6451e7b4e9,
       type: 2}
     m_GemBraceletMoveTechVisual:
@@ -1704,6 +1710,7 @@ MonoBehaviour:
     canJump: 0
     canDash: 0
     canWallRun: 0
+    coyoteTime: 0
 --- !u!114 &1342482868074891331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2578,8 +2585,8 @@ Transform:
   m_GameObject: {fileID: 7524237280947726291}
   serializedVersion: 2
   m_LocalRotation: {x: 0.70710677, y: 0, z: 0, w: -0.70710677}
-  m_LocalPosition: {x: 0, y: 0.0201, z: 0.0237}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.0000006207847, y: 0.020099185, z: 0.023699872}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1494886343112047280}

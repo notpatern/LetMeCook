@@ -184,7 +184,8 @@ namespace PlayerSystems.HandsSystem
         {
             if (hand.GetHandFood())
             {
-                m_HandsEnableMoveTech.ClearMoveTech(hand.GetHandFood().GetFoodDatas().ToArray());
+                bool isSimpleFood = hand.GetHandFood().GetType() == typeof(SimpleFood);
+                m_HandsEnableMoveTech.ClearMoveTech(hand.GetHandFood().GetFoodDatas().ToArray(), isSimpleFood);
             }
         }
 
@@ -211,13 +212,16 @@ namespace PlayerSystems.HandsSystem
 
             if(activeMoveTechChecker)
             {
-                m_HandsEnableMoveTech.LoadMoveTech(hand.GetHandFood().GetFoodDatas().ToArray());
+                bool isSimpleFood = hand.GetHandFood().GetType() == typeof(SimpleFood);
+                m_HandsEnableMoveTech.LoadMoveTech(hand.GetHandFood().GetFoodDatas().ToArray(), isSimpleFood);
             }
         }
 
         void ReleaseFromHand(Hands hand)
         {
-            m_HandsEnableMoveTech.ClearMoveTech(hand.GetHandFood().GetFoodDatas().ToArray());
+            bool isSimpleFood = hand.GetHandFood().GetType() == typeof(SimpleFood);
+
+            m_HandsEnableMoveTech.ClearMoveTech(hand.GetHandFood().GetFoodDatas().ToArray(), isSimpleFood);
             hand.ReleaseFood();
         }
 
@@ -228,6 +232,9 @@ namespace PlayerSystems.HandsSystem
             (GameObject, Food) currentFinalPosHandData = finalMergeHand.GetHandInfos();
             (GameObject, Food) currentMovedPosHandData = movedHand.GetHandInfos();
 
+            Type finalMergedHandType = currentFinalPosHandData.Item1 ? currentFinalPosHandData.Item2.GetType() : null;
+            Type movedHandType = currentMovedPosHandData.Item2.GetType();
+
             m_GameEventCanSpawnMagicalFogForMerge.TriggerEvent(true);
             if (!finalMergeHand.isFoodHandle)
             {
@@ -237,12 +244,30 @@ namespace PlayerSystems.HandsSystem
 
                 m_GameEventCanSpawnMagicalFogForMerge.TriggerEvent(false);
             }
-            else if(currentFinalPosHandData.Item2.GetType() == typeof(SimpleFood))
+            else if(finalMergedHandType == typeof(SimpleFood))
             {
+                SimpleFood simpleFood = (SimpleFood)currentFinalPosHandData.Item2;
+                m_HandsEnableMoveTech.UpdateNotCookedSimpleFoodMoveTechEvent(simpleFood.data, false);
+
+                
+                if (movedHandType == typeof(SimpleFood))
+                {
+                    SimpleFood secondSimpleFood = (SimpleFood)currentMovedPosHandData.Item2;
+                    m_HandsEnableMoveTech.UpdateNotCookedSimpleFoodMoveTechEvent(secondSimpleFood.data, false);
+                }
+
+                m_HandsEnableMoveTech.CallUpdateNotCookedSimpleFoodMoveTechEvent();
                 ReplaceSimpleFoodHandWithMergedFood(finalMergeHand, (SimpleFood)currentFinalPosHandData.Item2, movedHand, currentMovedPosHandData.Item1);   
             }
-            else if(currentFinalPosHandData.Item2.GetType() == typeof(MergedFood))
+            else if(finalMergedHandType == typeof(MergedFood))
             {
+                if (movedHandType == typeof(SimpleFood))
+                {
+                    SimpleFood secondSimpleFood = (SimpleFood)currentMovedPosHandData.Item2;
+                    m_HandsEnableMoveTech.UpdateNotCookedSimpleFoodMoveTechEvent(secondSimpleFood.data, false);
+                    m_HandsEnableMoveTech.CallUpdateNotCookedSimpleFoodMoveTechEvent();
+                }
+
                 finalMergeHand.PutItHand(currentMovedPosHandData.Item1, true);
                 //AddFoodInHand(currentFinalPosHandData.Item2, currentMovedPosHandData.Item2);
                 movedHand.DestroyFood();
@@ -280,7 +305,7 @@ namespace PlayerSystems.HandsSystem
             mergedFood.AddFood(simpleToReplace);
 
             handToReplace.DestroyFood();
-            PutInHand(handMergedGo, handToReplace, false, true);
+            PutInHand(handMergedGo, handToReplace, false, false);
 
             //Add right hand in merged left hand
             PutInHand(newGoFood, handToReplace, false, false);

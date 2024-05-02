@@ -9856,6 +9856,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadPlayerTransformAtStart: {fileID: 11400000, guid: f7c4a8211971b4846a78dbe99dafeb68,
     type: 2}
+  vines: {fileID: 229352716483060947}
+  simpleNotCookedFoodChangeMoveTechStateEvent: {fileID: 11400000, guid: 444535bde4edb0046aeab57ad273696a,
+    type: 2}
   progressBarUI: {fileID: 3792827525590303098}
   progressFill: {fileID: 1015994563005632271}
   animator: {fileID: 2655264467435653161}
@@ -35524,11 +35527,57 @@ PrefabInstance:
       propertyPath: m_Name
       value: vines
       objectReference: {fileID: 0}
+    - target: {fileID: 2159124764119544652, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ec31f585421d9a4a84b7e5a8631a683, type: 2}
+    - target: {fileID: 2897239105692997993, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ec31f585421d9a4a84b7e5a8631a683, type: 2}
+    - target: {fileID: 3286306467237565485, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ec31f585421d9a4a84b7e5a8631a683, type: 2}
+    - target: {fileID: 3570174563393422361, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ec31f585421d9a4a84b7e5a8631a683, type: 2}
+    - target: {fileID: 3849120464145608979, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ec31f585421d9a4a84b7e5a8631a683, type: 2}
+    - target: {fileID: 5690705266803034374, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ec31f585421d9a4a84b7e5a8631a683, type: 2}
+    - target: {fileID: 6355787099077120763, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ec31f585421d9a4a84b7e5a8631a683, type: 2}
+    - target: {fileID: 7510109792931096153, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2ec31f585421d9a4a84b7e5a8631a683, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49bafc898fb80e148a4c0a14084fd5e8, type: 3}
+--- !u!1 &229352716483060947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8737990371025291923, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8821778605056028224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7514966509116448574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1308232880326357374, guid: 49bafc898fb80e148a4c0a14084fd5e8,
