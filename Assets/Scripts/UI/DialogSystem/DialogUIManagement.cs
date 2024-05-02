@@ -59,22 +59,25 @@ namespace Dialog
             pnjNameDialogText.text = dialogInfos.pnjName;
             InputAction inputActionArg;
             KeybindsData keybindsData;
-            string[] loadedKeys;
+            string[] loadedKeys = new string[dialogInfos.loadedContent.args.Length];
+
+            if (dialogInfos.loadedContent.args.Length > 0)
+            {
+                loadedKeys = new string[dialogInfos.loadedContent.args.Length];
+                for (int j = 0; j < dialogInfos.loadedContent.args.Length; j++)
+                {
+                    keybindsData = dialogInfos.loadedContent.args[j];
+                    inputActionArg = keybindsData.inputActionReference;
+                    loadedKeys[j] = inputActionArg.GetBindingDisplayString(keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+                }
+            }
 
             for (int i = 0; i < dialogInfos.loadedContent.loadedString.Length; i++)
             {
+                defaultLoadedText = dialogInfos.loadedContent.loadedString[i];
+                
                 if (dialogInfos.loadedContent.args.Length > 0)
                 {
-                    loadedKeys = new string[dialogInfos.loadedContent.args.Length];
-                    defaultLoadedText = dialogInfos.loadedContent.loadedString[i];
-                    for (int j=0; j<dialogInfos.loadedContent.args.Length; j++)
-                    {
-                        keybindsData = dialogInfos.loadedContent.args[j];
-                        inputActionArg = keybindsData.inputActionReference;
-                        loadedKeys[j] = inputActionArg.GetBindingDisplayString(keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
-                    }
-
-
                     defaultLoadedText = string.Format(defaultLoadedText, loadedKeys);
                 }
                 else
@@ -83,7 +86,7 @@ namespace Dialog
                 }
 
                 alphaIndex = 0;
-                foreach (char c in dialogInfos.loadedContent.loadedString[i])
+                foreach (char c in defaultLoadedText)
                 {
                     alphaIndex++;
                     displayText = defaultLoadedText.Insert(alphaIndex, c_ALPHACOLOR);
