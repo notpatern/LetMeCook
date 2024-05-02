@@ -8,7 +8,7 @@ namespace RecipeSystem
     {
         public RecipeContainer[] recipesContainers;
         [Tooltip("Must have same points")]
-        public RecipeContainer[] randomFillerRecipes;
+        public Recipe[] randomFillerRecipes;
         public float m_StartPeriodOffset = 5f;
 
         [Serializable]
