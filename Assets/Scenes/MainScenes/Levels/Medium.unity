@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4024171, g: 0.0447471, b: 0.0447471, a: 1}
+  m_IndirectSpecularColor: {r: 0.4011436, g: 0.0447471, b: 0.0447471, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2314,6 +2314,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FoodDropper
+      objectReference: {fileID: 0}
+    - target: {fileID: 3250104826764497540, guid: b5161011a28ec5048b525e87008c1798,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4954085221559924397, guid: b5161011a28ec5048b525e87008c1798,
         type: 3}
