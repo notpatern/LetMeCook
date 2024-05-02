@@ -95,6 +95,10 @@ namespace RecipeSystem
             {
                 gameManager.ForceEndConditionTimerValue(0f);
             }
+            else if(activeRecipes.Count == 0)
+            {
+                AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)].m_Recipe);
+            }
 
             return true;
         }

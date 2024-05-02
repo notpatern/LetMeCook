@@ -7,6 +7,8 @@ namespace RecipeSystem
     public class RecipesDataBase : ScriptableObject
     {
         public RecipeContainer[] recipesContainers;
+        [Tooltip("Must have same points")]
+        public RecipeContainer[] randomFillerRecipes;
         public float m_StartPeriodOffset = 5f;
 
         [Serializable]
