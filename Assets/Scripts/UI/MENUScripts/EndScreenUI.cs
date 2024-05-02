@@ -26,6 +26,8 @@ public class EndScreenUI : MonoBehaviour
     [SerializeField] Button m_GotoMainMenuButton;
     [SerializeField] Button m_RestartLevelButton;
 
+    TempScoreContainer score;
+
     public void SetActive(bool state)
     {
         m_PanelContent.SetActive(state);
@@ -33,13 +35,14 @@ public class EndScreenUI : MonoBehaviour
 
     public void InitEndScreen(TempScoreContainer playerScore, LevelData nextLevelData)
     {
+        score = playerScore;
         m_EndScreenAnimator.SetTrigger("Start");
 
         ControlOptionsManagement.SetCursorIsPlayMode(false);
         ControlOptionsManagement.s_Instance.DisableMainPlayerInputs();
 
         m_ScoreText.text = playerScore.m_Score + "pts";
-        m_CompletedRecipesRateText.text = Mathf.RoundToInt((playerScore.m_CompletedRecipes / (float)playerScore.m_TotalRecipes * 100)) + "%" + " Completion Rate";
+        m_CompletedRecipesRateText.text = Mathf.RoundToInt(playerScore.m_CompletedRecipes / (float)playerScore.m_TotalRecipes * 100) + "%" + " Completion Rate";
         m_CompletedRecipes.text = playerScore.m_CompletedRecipes + " Finished Recipes";
         m_MissedRecipes.text = (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes) + " Missed Recipes";
         m_GroundedTime.text = playerScore.m_PlayerGroundedTime.ToString("0.#") + "s" + " Spend on the Ground";
@@ -51,9 +54,6 @@ public class EndScreenUI : MonoBehaviour
             star.SetActive(false);
         }
 
-        //stars are generated based on *2 minimum required score is the max for now
-        float scoreStep = playerScore.m_RequiredScore / (float)m_ActiveStarsGo.Length;
-        
         if (!nextLevelData)
         {
             Destroy(m_NextLevelButton.gameObject);
@@ -64,7 +64,7 @@ public class EndScreenUI : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ActiveStarWithOffsetTransition(minimumRequiredScoreOverflow, scoreStep));
+            StartCoroutine(ActiveStarWithOffsetTransition(minimumRequiredScoreOverflow));
             LevelIsWin(nextLevelData);
             m_NextLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(nextLevelData.linkedScenePath));
         }
@@ -83,14 +83,27 @@ public class EndScreenUI : MonoBehaviour
         }
     }
 
-    IEnumerator ActiveStarWithOffsetTransition(int minimumRequiredScoreOverflow, float scoreStep)
+    IEnumerator ActiveStarWithOffsetTransition(int minimumRequiredScoreOverflow)
     {
         for (int i = 0; i < m_ActiveStarsGo.Length; i++)
         {
-            if (i == 0 || minimumRequiredScoreOverflow >= scoreStep * i)
+            if (i == 0)
             {
                 m_ActiveStarsGo[i].SetActive(true);
                 yield return new WaitForSeconds(m_StarActivationTransitionTime);
+                continue;
+            }
+            else if (score.m_Score >= minimumRequiredScoreOverflow * 2)
+            {
+                m_ActiveStarsGo[1].SetActive(true);
+                yield return new WaitForSeconds(m_StarActivationTransitionTime);
+                continue;
+            }
+            else if (Mathf.RoundToInt(score.m_CompletedRecipes / (float)score.m_TotalRecipes * 100) == 100)
+            {
+                m_ActiveStarsGo[2].SetActive(true);
+                yield return new WaitForSeconds(m_StarActivationTransitionTime);
+                continue;
             }
             else
             {
