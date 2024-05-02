@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using FoodSystem;
 
 namespace RecipeSystem.Core
 {
@@ -9,8 +10,9 @@ namespace RecipeSystem.Core
         [SerializeField] TextMeshProUGUI titleText;
         [SerializeField] Image timeVisual;
         [SerializeField] Image background;
-        [SerializeField] GameObject ingredientsList;
+        [SerializeField] Transform ingredientsListContent;
         [SerializeField] GameObject ingredientPrefab;
+        [SerializeField] GameObject rectList;
         public GameRecipe gameRecipe;
 
         public void Init(GameRecipe recipe, Transform parent)
@@ -19,10 +21,19 @@ namespace RecipeSystem.Core
             gameRecipe = recipe;
 
             titleText.text = gameRecipe.recipe.nametag;
-            foreach (var ingredient in gameRecipe.recipe.ingredients)
+
+            FoodData lastIngredient = null;
+            GameObject currentParentContent = null;
+            foreach (FoodData ingredient in gameRecipe.recipe.ingredients)
             {
-                var newIngredient = Instantiate(ingredientPrefab, ingredientsList.transform);
-                newIngredient.GetComponentInChildren<TextMeshProUGUI>().text = ingredient.foodName;
+                if (lastIngredient != ingredient)
+                {
+                    currentParentContent = Instantiate(rectList, ingredientsListContent);
+                }
+
+                Instantiate(ingredientPrefab, currentParentContent.transform).GetComponent<RecipeCardItem>().InitItem(ingredient.icon);
+
+                lastIngredient = ingredient;
             }
         }
 

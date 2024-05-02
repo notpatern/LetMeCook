@@ -8,6 +8,7 @@ namespace FoodSystem
         [Header("General")]
         public string foodName;
         public GameObject prefab;
+        public Sprite icon;
 
         [Header("Bonus skill")]
         public bool dash = false;
