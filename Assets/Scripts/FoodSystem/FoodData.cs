@@ -19,5 +19,10 @@ namespace FoodSystem
         public FoodData bakedFood;
         public FoodData choppedFood;
         public FoodData purifiedFood;
+
+        public bool HasNextTransformatedState()
+        {
+            return bakedFood || choppedFood || purifiedFood;
+        }
     }
 }

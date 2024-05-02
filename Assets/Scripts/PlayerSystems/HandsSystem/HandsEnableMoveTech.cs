@@ -77,7 +77,7 @@ namespace PlayerSystems.HandsSystem
 
         public void UpdateNotCookedSimpleFoodMoveTechEvent(FoodData simpleFoodData, bool state)
         {
-            if(!HasNextTransformatedState(simpleFoodData))
+            if(!simpleFoodData.HasNextTransformatedState())
             {
                 return;
             }
@@ -94,11 +94,6 @@ namespace PlayerSystems.HandsSystem
             {
                 m_IsSimpleFoodDoubleJumpActivated.Value = state;
             }
-        }
-
-        bool HasNextTransformatedState(FoodData data)
-        {
-            return data.bakedFood || data.choppedFood || data.purifiedFood;
         }
 
         public void CallUpdateNotCookedSimpleFoodMoveTechEvent()

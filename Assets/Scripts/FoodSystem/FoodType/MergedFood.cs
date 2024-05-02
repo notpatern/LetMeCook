@@ -7,15 +7,18 @@ namespace FoodSystem.FoodType
     { 
         List<FoodData> data = new List<FoodData>();
         [SerializeField] GameObject infosCanvas;
-        [SerializeField] Transform canvasContent;
+        [SerializeField] Transform rawCanvasContent;
+        [SerializeField] Transform cookedCanvasContent;
         [SerializeField] GameObject contentItemPrefab;
+
+        List<MergedFoodUIItem> mergedFoodUIItems = new List<MergedFoodUIItem>();
 
         public override string GetContext() => "food bag";
 
         public override void AddFood(SimpleFood newFood)
         {
             data.Add(newFood.data);
-            Instantiate(contentItemPrefab, canvasContent).GetComponent<MergedFoodUIItem>().SetText(newFood.data.foodName);
+            AddFoodInUIContent(newFood.data);
         }
 
         public override void AddFood(MergedFood mergedFood)
@@ -23,7 +26,26 @@ namespace FoodSystem.FoodType
             foreach(FoodData foodData in mergedFood.GetFoodDatas())
             {
                 data.Add(foodData);
-                Instantiate(contentItemPrefab, canvasContent).GetComponent<MergedFoodUIItem>().SetText(foodData.foodName);
+
+                AddFoodInUIContent(foodData);
+            }
+        }
+
+        void AddFoodInUIContent(FoodData foodData)
+        {
+            MergedFoodUIItem uiItem = GetMergedUIItem(foodData);
+
+            if(!uiItem)
+            {
+                Transform content = foodData.HasNextTransformatedState() ? rawCanvasContent : cookedCanvasContent;
+
+                MergedFoodUIItem newUIItem = Instantiate(contentItemPrefab, content).GetComponent<MergedFoodUIItem>();
+                newUIItem.InitItem("x", foodData);
+                mergedFoodUIItems.Add(newUIItem);
+            }
+            else
+            {
+                uiItem.IncrementFoodCounter();
             }
         }
 
@@ -45,6 +67,19 @@ namespace FoodSystem.FoodType
         {
             base.RemoveFromHand();
             infosCanvas.SetActive(false);
+        }
+
+        MergedFoodUIItem GetMergedUIItem(FoodData foodData)
+        {
+            foreach(MergedFoodUIItem mergedFoodUIItem in mergedFoodUIItems)
+            {
+                if(mergedFoodUIItem.m_FoodData == foodData)
+                {
+                    return mergedFoodUIItem;
+                }
+            }
+
+            return null;
         }
     }
 }
