@@ -9,7 +9,10 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
     [RequireComponent(typeof(ItemLauncher))]
     public abstract class FoodTransformer : FoodCollector
     {
+        [Header("Actions with movetech and food")]
         [SerializeField] GameEventScriptableObject loadPlayerTransformAtStart;
+        [SerializeField] GameObject vines;
+        [SerializeField] GameEventScriptableObject simpleNotCookedFoodChangeMoveTechStateEvent;
         [Header("World UI")]
         [SerializeField] GameObject progressBarUI;
         [SerializeField] Image progressFill;
@@ -28,6 +31,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         void Awake() 
         {
             loadPlayerTransformAtStart.BindEventAction(LoadPlayerTransform);
+            simpleNotCookedFoodChangeMoveTechStateEvent.BindEventAction(SimpleFoodChangeMoveTechState);
+            vines.SetActive(false);
             progressBarUI.SetActive(false);
             launcher = GetComponent<ItemLauncher>();
         }
@@ -42,6 +47,10 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             playerTr = (Transform)args;
         }
 
+        void SimpleFoodChangeMoveTechState(object isActive)
+        {
+            vines.SetActive((bool)isActive);
+        }
 
         protected override void OnFoodCollected()
         {
