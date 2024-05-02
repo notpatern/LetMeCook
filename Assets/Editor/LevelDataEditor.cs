@@ -18,7 +18,6 @@ public class LevelDataEditor : Editor
         picker.levelMusicData = EditorGUILayout.ObjectField("Level Music Data", picker.levelMusicData, typeof(LevelMusicData), false) as LevelMusicData;
         picker.levelUIData = EditorGUILayout.ObjectField("Level UI Data", picker.levelUIData, typeof(LevelUIData), false) as LevelUIData;
         picker.dialogLevelData = EditorGUILayout.ObjectField("Dialog Level Data", picker.dialogLevelData, typeof(DialogLevelData), false) as DialogLevelData;
-        picker.levelDuration = EditorGUILayout.FloatField(new GUIContent("Level Duration (In Seconds)", ""), picker.levelDuration);
         picker.requiredScore = EditorGUILayout.IntField(new GUIContent("Required Score", "the maximum stars is this x2"), picker.requiredScore);
 
         if (EditorGUI.EndChangeCheck())

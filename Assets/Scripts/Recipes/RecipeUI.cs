@@ -11,11 +11,11 @@ namespace RecipeSystem.Core
 
         List<RecipeCard> activeRecipeCards = new List<RecipeCard>();
 
-        public void AddNewCard(GameRecipe recipe)
+        public void AddNewCard(GameRecipe recipe, bool isLastRecipe)
         {
             GameObject newCard = Instantiate(recipeCard);
             RecipeCard card = newCard.GetComponent<RecipeCard>();
-            card.Init(recipe, UIList.transform);
+            card.Init(recipe, UIList.transform, isLastRecipe);
             activeRecipeCards.Add(card);
         }
 

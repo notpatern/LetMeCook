@@ -6,6 +6,7 @@ using UnityEngine;
 using Audio;
 using FoodSystem.FoodType;
 using FoodSystem;
+using static RecipeSystem.RecipesDataBase;
 
 namespace RecipeSystem
 {
@@ -70,7 +71,7 @@ namespace RecipeSystem
             AudioManager.s_Instance.PlayOneShot(recipe.vocaloidVoice, SpawnVoice3DPosition.position);
 
             activeRecipes.Add(newGameRecipe);
-            recipeUI.AddNewCard(newGameRecipe);
+            recipeUI.AddNewCard(newGameRecipe, dataBase.recipesContainers.Length - recipesRemoved - 1 == 0);
 
             gameManager.AddRecipesCount(1);
 
@@ -167,36 +168,17 @@ namespace RecipeSystem
             return -1;
         }
 
-
-
-
-
-
-
-
-        /// <summary>
-        /// Fail a recipe from the game and remove it.
-        /// </summary>
-        /// <param name="recipe"></param>
-        /// <returns></returns>
-        /// 
-
-        ////////////////////////////////////// Useless fo now
-        public void FailRecipe(Recipe recipe)
+        public float GetLevelDurationBasedOnRecipesDataBase()
         {
-            GameRecipe gameRecipe = FindRecipe(recipe);
-            recipeUI.RemoveCard(gameRecipe);
-            gameRecipe.FailRecipe();
-        }
+            float result = 0f;
+            for(int i=0; i < dataBase.recipesContainers.Length - 1; i++)
+            {
+                result += dataBase.recipesContainers[i].m_WaitPeriod;
+            }
 
-        GameRecipe FindRecipe(Recipe recipe)
-        {
-            foreach (GameRecipe gameRecipe in activeRecipes)
-                if (gameRecipe.recipe == recipe)
-                    return gameRecipe;
+            result += dataBase.recipesContainers[dataBase.recipesContainers.Length - 1].m_Recipe.secondsToComplete;
 
-            return null;
+            return result;
         }
-        //////////////////////////////////////
     }
 }

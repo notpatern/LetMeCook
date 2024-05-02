@@ -13,14 +13,17 @@ namespace RecipeSystem.Core
         [SerializeField] Transform ingredientsListContent;
         [SerializeField] GameObject ingredientPrefab;
         [SerializeField] GameObject rectList;
+        [SerializeField] GameObject lastRecipeIndicator;
         public GameRecipe gameRecipe;
 
-        public void Init(GameRecipe recipe, Transform parent)
+        public void Init(GameRecipe recipe, Transform parent, bool isLastRecipe)
         {
             transform.SetParent(parent);
             gameRecipe = recipe;
 
             titleText.text = gameRecipe.recipe.nametag;
+
+            lastRecipeIndicator.SetActive(isLastRecipe);
 
             FoodData lastIngredient = null;
             GameObject currentParentContent = null;

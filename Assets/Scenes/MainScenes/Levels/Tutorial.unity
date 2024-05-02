@@ -8140,7 +8140,7 @@ PrefabInstance:
     - target: {fileID: 461642414715698503, guid: 8da474700d08f9f42a6481e9147d73af,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2248816
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 461642414715698503, guid: 8da474700d08f9f42a6481e9147d73af,
         type: 3}
@@ -8208,7 +8208,7 @@ PrefabInstance:
     - target: {fileID: 5423376958673632784, guid: 4015eaff0ce42df4ca6e008f0abe7298,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7202988
+      value: 2.44
       objectReference: {fileID: 0}
     - target: {fileID: 5423376958673632784, guid: 4015eaff0ce42df4ca6e008f0abe7298,
         type: 3}
@@ -14633,7 +14633,7 @@ PrefabInstance:
     - target: {fileID: 4954085221559924397, guid: b5161011a28ec5048b525e87008c1798,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.774882
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4954085221559924397, guid: b5161011a28ec5048b525e87008c1798,
         type: 3}
@@ -21782,7 +21782,7 @@ PrefabInstance:
     - target: {fileID: 5423376958673632784, guid: 4015eaff0ce42df4ca6e008f0abe7298,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.3848817
+      value: 7.53
       objectReference: {fileID: 0}
     - target: {fileID: 5423376958673632784, guid: 4015eaff0ce42df4ca6e008f0abe7298,
         type: 3}
@@ -21918,6 +21918,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004116270}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2023328741 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6025927826224168583, guid: a5578045f5c58e041a0e4c53f2178352,
+    type: 3}
+  m_PrefabInstance: {fileID: 2957610967826495450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2027781008
 Mesh:
   m_ObjectHideFlags: 0
@@ -23095,6 +23101,11 @@ PrefabInstance:
       propertyPath: m_VersionIndex
       value: 6760
       objectReference: {fileID: 0}
+    - target: {fileID: 392597949435769583, guid: a5578045f5c58e041a0e4c53f2178352,
+        type: 3}
+      propertyPath: SpawnVoice3DPosition
+      value: 
+      objectReference: {fileID: 2023328741}
     - target: {fileID: 667566982827991770, guid: a5578045f5c58e041a0e4c53f2178352,
         type: 3}
       propertyPath: m_Mesh

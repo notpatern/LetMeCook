@@ -12,11 +12,12 @@ namespace Manager
         [SerializeField] GameEventScriptableObject m_LoadPlayerTransform;
         [SerializeField] RecipesManager m_RecipesManager;
 
-        protected int score = 0;
-        protected int recipesNb = 0;
-        protected int completedRecipes = 0;
+        int m_Score = 0;
+        int m_RecipesNb = 0;
+        int m_CompletedRecipes = 0;
 
-        protected bool isEndStateInit = false;
+        protected bool m_IsEndStateInit = false;
+        protected float m_LevelDuration = 0f;
 
         override protected void Awake()
         { 
@@ -25,6 +26,8 @@ namespace Manager
             m_Player.InitUI(m_UiManager);
 
             InitRecipeManager();
+
+            m_LevelDuration = m_RecipesManager.GetLevelDurationBasedOnRecipesDataBase();
 
             InitEndCondition();
         }
@@ -37,10 +40,10 @@ namespace Manager
 
         protected virtual void InitEndCondition()
         {
-            if (isEndStateInit) return;
+            if (m_IsEndStateInit) return;
 
             m_GameEndCondition = new DefaultGameEndCondition();
-            m_GameEndCondition.InitGameEndCondition(m_LevelData.levelDuration, m_UiManager.endConditionUI);
+            m_GameEndCondition.InitGameEndCondition(m_LevelDuration, m_UiManager.endConditionUI);
             m_GameEndCondition.BindOnEndCondition(() =>
             {
                 TriggerEndScreenSystem();
@@ -54,13 +57,13 @@ namespace Manager
             m_Player.gameObject.SetActive(false);
             m_MusicManager.IncreaseMusicTypeOffsetAmount();
             m_UiManager.pauseMenu.SetBlockPauseMenu(true, true);
-            m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(score, recipesNb, completedRecipes, m_LevelData.requiredScore, m_Player.GetGroundedTime()), m_NextLevelData);
+            m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(m_Score, m_RecipesNb, m_CompletedRecipes, m_LevelData.requiredScore, m_Player.GetGroundedTime()), m_NextLevelData);
             m_UiManager.endScreen.SetActive(true);
         }
 
         protected void OnEndConditionInitialized()
         {
-            isEndStateInit = true;
+            m_IsEndStateInit = true;
         }
 
         protected virtual void Start()
@@ -70,7 +73,7 @@ namespace Manager
 
         protected virtual void Update()
         {
-            if (isEndStateInit)
+            if (m_IsEndStateInit)
             {
                 m_GameEndCondition.Update(Time.deltaTime);
             }
@@ -83,17 +86,17 @@ namespace Manager
 
         public void AddScore(int scoreAmount)
         {
-            score += scoreAmount;
+            m_Score += scoreAmount;
         }
 
         public void AddRecipesCount(int amount)
         {
-            recipesNb += amount;
+            m_RecipesNb += amount;
         }
 
         public void AddAcomplishedRecipes(int amount)
         {
-            completedRecipes += amount;
+            m_CompletedRecipes += amount;
         }
     }
 }

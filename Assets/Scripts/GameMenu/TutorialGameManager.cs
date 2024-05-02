@@ -8,7 +8,7 @@ namespace Manager
 
         void OnTriggerEnter(Collider other)
         {
-            if (!isEndStateInit)
+            if (!m_IsEndStateInit)
             {
                 base.InitRecipeManager();
                 StartInitDefaultEndCondition();
@@ -29,11 +29,11 @@ namespace Manager
         void StartInitDefaultEndCondition()
         {
             m_GameEndCondition = new DefaultGameEndCondition();
-            m_GameEndCondition.InitGameEndCondition(m_LevelData.levelDuration, m_UiManager.endConditionUI);
+            m_GameEndCondition.InitGameEndCondition(m_LevelDuration, m_UiManager.endConditionUI);
             m_GameEndCondition.BindOnEndCondition(() =>
             {
                 m_EndconditionParentUI.gameObject.SetActive(false);
-                isEndStateInit = false;
+                m_IsEndStateInit = false;
                 m_Player.SetPosition(respawnTr.position);
                 m_Player.CrunchFoodInHands(false);
             });
