@@ -138,7 +138,7 @@ namespace PlayerSystems.HandsSystem
 
         public void PerformHandAction(GameObject food, Hands hand)
         {
-            if (hand.m_IsCrushing) return;
+            if (hand.m_IsCrushing) return; 
 
             if (!hand.isFoodHandle)
             {
@@ -164,22 +164,26 @@ namespace PlayerSystems.HandsSystem
 
         public void CrunchFoodInHands(bool forceAnim)
         {
-            m_LeftHand.m_IsCrushing = true;
-            m_RightHand.m_IsCrushing = true;
-
             if (!forceAnim)
             {
                 if(m_LeftHand.isFoodHandle || m_RightHand.isFoodHandle)
                 {
-                    m_LeftHand.m_Animator.SetTrigger("CrunchFood");
-                    m_RightHand.m_Animator.SetTrigger("CrunchFood");
+                    CrunchHands();
                 }
             }
             else
             {
-                m_LeftHand.m_Animator.SetTrigger("CrunchFood");
-                m_RightHand.m_Animator.SetTrigger("CrunchFood");
+                CrunchHands();
             }
+        }
+
+        void CrunchHands()
+        {
+            m_LeftHand.m_IsCrushing = true;
+            m_RightHand.m_IsCrushing = true;
+
+            m_LeftHand.m_Animator.SetTrigger("CrunchFood");
+            m_RightHand.m_Animator.SetTrigger("CrunchFood");
         }
 
         public void ClearHandMoveTech(Hands hand)
