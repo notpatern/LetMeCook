@@ -3,6 +3,9 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using Audio;
+using FMOD.Studio;
+using System;
 
 namespace Dialog
 {
@@ -14,14 +17,18 @@ namespace Dialog
         [SerializeField] GameEventScriptableObject m_CallDialogEvent;
         bool isInDialog;
 
-        DialogLevelData m_DialogLevelData;
-        Queue<DialogInfos> m_DialogInfosQueue = new Queue<DialogInfos>();
+        DialogLevelData dialogLevelData;
+        Queue<DialogInfos> dialogInfosQueue = new Queue<DialogInfos>();
+
+        EventInstance currentVoice;
 
         const string c_ALPHACOLOR = "<color=#00000000>";
 
+        bool isMusicPlaying = false;
+
         public void Init(DialogLevelData dialogLevelData)
         {
-            m_DialogLevelData = dialogLevelData;
+            this.dialogLevelData = dialogLevelData;
             dialogPanel.SetActive(false);
 
             m_CallDialogEvent.BindEventAction(OnStartDialogEvent);
@@ -35,9 +42,9 @@ namespace Dialog
         public bool StartDialogQueue(DialogInfos dialogInfos)
 
         {
-            m_DialogInfosQueue.Enqueue(dialogInfos);
+            dialogInfosQueue.Enqueue(dialogInfos);
 
-            if (isInDialog) return false;
+            if (isInDialog || isMusicPlaying) return false;
 
             StartCoroutine(StartDialog());
 
@@ -46,7 +53,7 @@ namespace Dialog
 
         IEnumerator StartDialog()
         {
-            DialogInfos dialogInfos = m_DialogInfosQueue.Dequeue();
+            DialogInfos dialogInfos = dialogInfosQueue.Dequeue();
             string displayText = "";
             int alphaIndex = 0;
             string defaultLoadedText;
@@ -60,6 +67,10 @@ namespace Dialog
             InputAction inputActionArg;
             KeybindsData keybindsData;
             string[] loadedKeys = new string[dialogInfos.loadedContent.args.Length];
+
+            currentVoice = AudioManager.s_Instance.CreateInstance(dialogInfos.audioVoice);
+            currentVoice.setCallback(DialogVoiceMarkerEventCallback, EVENT_CALLBACK_TYPE.STOPPED);
+            currentVoice.start();
 
             if (dialogInfos.loadedContent.args.Length > 0)
             {
@@ -92,7 +103,7 @@ namespace Dialog
                     displayText = defaultLoadedText.Insert(alphaIndex, c_ALPHACOLOR);
                     dialogText.text = displayText;
 
-                    yield return new WaitForSeconds(m_DialogLevelData.letterDelay);
+                    yield return new WaitForSeconds(dialogLevelData.letterDelay);
                 }
 
                 if (i + 1 < dialogInfos.loadedContent.loadedString.Length)
@@ -102,11 +113,11 @@ namespace Dialog
                 }
 
 
-                yield return new WaitForSeconds(m_DialogLevelData.sentenceDelay);
+                yield return new WaitForSeconds(dialogLevelData.sentenceDelay);
             }
 
             //Stop dialog
-            if (m_DialogInfosQueue.Count == 0)
+            if (dialogInfosQueue.Count == 0)
             {
                 SetActiveDialog(false);
             }
@@ -121,6 +132,17 @@ namespace Dialog
         {
             dialogPanel.SetActive(state);
             isInDialog = state;
+        }
+
+        FMOD.RESULT DialogVoiceMarkerEventCallback(EVENT_CALLBACK_TYPE type, IntPtr instance, IntPtr parameterPtr)
+        {
+            if (type == EVENT_CALLBACK_TYPE.STOPPED)
+            {
+                isMusicPlaying = false;
+                AudioManager.s_Instance.CleanUp(currentVoice);
+            }
+
+            return FMOD.RESULT.OK;
         }
     }
 }

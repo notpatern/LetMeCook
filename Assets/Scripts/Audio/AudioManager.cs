@@ -53,12 +53,19 @@ namespace Audio
             return instance;
         }
 
+        public void CleanUp(EventInstance instance)
+        {
+            m_EventInstances.Remove(instance);
+            instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            instance.release();
+        }
+
         public void CleanUp()
         {
-            foreach(EventInstance instance in m_EventInstances)
+            for(int i=0; i < m_EventInstances.Count; i++)
             {
-                instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                instance.release();
+                m_EventInstances[i].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                m_EventInstances[i].release();
             }
         }
 

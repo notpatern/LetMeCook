@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using FMODUnity;
 
 namespace Dialog
 {
@@ -24,6 +25,8 @@ namespace Dialog
         public string noGameContentNameID;
         public string pnjName;
         public string content;
+        public EventReference audioVoice;
+
         [Header("Data loaded in DialogDataLoader Window Editor")]
         public LoadedContent loadedContent;
 

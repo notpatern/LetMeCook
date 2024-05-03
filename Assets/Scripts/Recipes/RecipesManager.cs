@@ -6,7 +6,9 @@ using UnityEngine;
 using Audio;
 using FoodSystem.FoodType;
 using FoodSystem;
-using static RecipeSystem.RecipesDataBase;
+using FMOD.Studio;
+using System;
+using FMODUnity;
 
 namespace RecipeSystem
 {
@@ -20,6 +22,10 @@ namespace RecipeSystem
 
         protected int recipesRemoved = 0;
         public bool emptyRecipes = false;
+
+        //FMOD UGLY
+        Queue<EventReference> currentRecipeVoiceQueue = new Queue<EventReference>();
+        EventInstance currentVoiceInstance;
 
         public void Init(GameManager gameManager, RecipeUI recipeUI)
         {
@@ -68,7 +74,7 @@ namespace RecipeSystem
             GameRecipe newGameRecipe = new GameRecipe();
             newGameRecipe.Init(recipe);
 
-            AudioManager.s_Instance.PlayOneShot(recipe.vocaloidVoice, SpawnVoice3DPosition.position);
+            StartRecipeVoice(recipe.vocaloidVoice);
 
             activeRecipes.Add(newGameRecipe);
             recipeUI.AddNewCard(newGameRecipe, dataBase.recipesContainers.Length - recipesRemoved - 1 == 0);
@@ -98,7 +104,7 @@ namespace RecipeSystem
             }
             else if(activeRecipes.Count == 0)
             {
-                AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)]);
+                AddNewRecipe(dataBase.randomFillerRecipes[UnityEngine.Random.Range(0, dataBase.randomFillerRecipes.Length)]);
             }
 
             return true;
@@ -179,6 +185,37 @@ namespace RecipeSystem
             result += dataBase.recipesContainers[dataBase.recipesContainers.Length - 1].m_Recipe.secondsToComplete;
 
             return result;
+        }
+
+        void StartRecipeVoice(EventReference eventReference)
+        {
+            PLAYBACK_STATE pbState;
+            currentVoiceInstance.getPlaybackState(out pbState);
+
+            if (pbState == PLAYBACK_STATE.PLAYING)
+            {
+                currentRecipeVoiceQueue.Enqueue(eventReference);
+                return;
+            }
+
+            currentVoiceInstance = AudioManager.s_Instance.CreateInstance(eventReference);
+            currentVoiceInstance.setCallback(DialogVoiceMarkerEventCallback, EVENT_CALLBACK_TYPE.STOPPED);
+            currentVoiceInstance.start();
+        }
+
+        FMOD.RESULT DialogVoiceMarkerEventCallback(EVENT_CALLBACK_TYPE type, IntPtr instance, IntPtr parameterPtr)
+        {
+            if (type == EVENT_CALLBACK_TYPE.STOPPED)
+            {
+                //AudioManager.s_Instance.CleanUp(currentVoiceInstance);
+
+                if (currentRecipeVoiceQueue.Count > 0)
+                {
+                    StartRecipeVoice(currentRecipeVoiceQueue.Dequeue());
+                }
+            }
+
+            return FMOD.RESULT.OK;
         }
     }
 }
