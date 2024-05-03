@@ -142,7 +142,7 @@ namespace PlayerSystems.HandsSystem
             {
                 if (food)
                 {
-                    PutInHand(food, hand, true, true);
+                    PutInHand(food, hand, true, true, false);
                 }
             }
             else
@@ -206,9 +206,9 @@ namespace PlayerSystems.HandsSystem
         }
         //-----------------
 
-        void PutInHand(GameObject food, Hands hand, bool activeMoveTechChecker, bool grabAnim) 
+        void PutInHand(GameObject food, Hands hand, bool activeMoveTechChecker, bool grabAnim, bool forceParticles) 
         {
-            hand.PutItHand(food, grabAnim);
+            hand.PutItHand(food, grabAnim, forceParticles);
 
             if(activeMoveTechChecker)
             {
@@ -239,8 +239,8 @@ namespace PlayerSystems.HandsSystem
             if (!finalMergeHand.isFoodHandle)
             {
                 //PutInHand(UnityEngine.Object.Instantiate(m_MergedFoodPrefab), finalMergeHand);
-                PutInHand(currentMovedPosHandData.Item1, finalMergeHand, false, true);
-                movedHand.SetFood(null, false);
+                PutInHand(currentMovedPosHandData.Item1, finalMergeHand, false, true, false);
+                movedHand.SetFood(null, false, false);
 
                 m_GameEventCanSpawnMagicalFogForMerge.TriggerEvent(false);
             }
@@ -268,7 +268,7 @@ namespace PlayerSystems.HandsSystem
                     m_HandsEnableMoveTech.CallUpdateNotCookedSimpleFoodMoveTechEvent();
                 }
 
-                finalMergeHand.PutItHand(currentMovedPosHandData.Item1, true);
+                finalMergeHand.PutItHand(currentMovedPosHandData.Item1, true, false);
                 //AddFoodInHand(currentFinalPosHandData.Item2, currentMovedPosHandData.Item2);
                 movedHand.DestroyFood();
             }
@@ -305,10 +305,10 @@ namespace PlayerSystems.HandsSystem
             mergedFood.AddFood(simpleToReplace);
 
             handToReplace.DestroyFood();
-            PutInHand(handMergedGo, handToReplace, false, false);
+            PutInHand(handMergedGo, handToReplace, false, false, true);
 
             //Add right hand in merged left hand
-            PutInHand(newGoFood, handToReplace, false, false);
+            PutInHand(newGoFood, handToReplace, false, false, false);
             otherHand.DestroyFood();
         }
     }

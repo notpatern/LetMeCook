@@ -57,7 +57,7 @@ namespace Player.HandSystem
             m_HandAnimatorManagement.BindCrushFoodFromHand(CrushHand);
         }
 
-        public void PutItHand(GameObject food, bool grabAnim)
+        public void PutItHand(GameObject food, bool grabAnim, bool forceParticles)
         {
             if(food == null) return;
 
@@ -80,7 +80,7 @@ namespace Player.HandSystem
             else if(!m_CurrentFood)
             {
                 food.GetComponent<Food>().PutInHand(m_FoodPosition);
-                SetFood(food, grabAnim);
+                SetFood(food, grabAnim, forceParticles);
             }
         }
 
@@ -112,13 +112,13 @@ namespace Player.HandSystem
 
             Vector3 momentum = m_ThrowPoint.forward * m_ThrowMomentumForwardDirection.x + m_ThrowPoint.up * m_ThrowMomentumForwardDirection.y;
             food.LaunchFood(momentum * m_ThrowForce + m_MomentumRb.velocity * m_ThrowMomentumPlayerRb);
-            SetFood(null, false);
+            SetFood(null, false, false);
         }
 
         public void DestroyFood()
         {
             UnityEngine.Object.Destroy(m_HhandledFood);
-            SetFood(null, false);
+            SetFood(null, false, false);
             RemoveFoodEffect();
         }
 
@@ -129,7 +129,7 @@ namespace Player.HandSystem
             DestroyFood();
         }
 
-        public void SetFood(GameObject foodGo, bool grabAnim)
+        public void SetFood(GameObject foodGo, bool grabAnim, bool forceParticle)
         {
             m_HhandledFood = foodGo;
 
@@ -138,6 +138,10 @@ namespace Player.HandSystem
                 if (grabAnim)
                 {
                     GrabFoodVisualEffect();
+                }
+                else if(forceParticle)
+                {
+                    m_ParticleInstanceManager.Emit(1);
                 }
 
                 if (foodGo.GetComponent<Food>().GetType() == typeof(SimpleFood))
