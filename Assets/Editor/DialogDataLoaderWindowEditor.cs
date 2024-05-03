@@ -116,7 +116,7 @@ public class DialogDataLoaderWindowEditor : EditorWindow
 
     void LoadDialogInfos(ref string[] result)
     {
-        result = new string[Mathf.CeilToInt(loadedDialogInfos[index].content.Length / (float)m_DialogLevelData.sentenceMaxLength) + 1];
+        result = new string[Mathf.FloorToInt(loadedDialogInfos[index].content.Length / (float)m_DialogLevelData.sentenceMaxLength) + 1];
         //Split content in result
         int id = 0;
         foreach (string data in ChunksUpto(loadedDialogInfos[index].content, m_DialogLevelData.sentenceMaxLength))
