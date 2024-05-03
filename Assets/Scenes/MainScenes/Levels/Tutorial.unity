@@ -6491,7 +6491,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0ba01b2d224fdc24491da324c0a3fce5,
         type: 3}
       propertyPath: m_Name
-      value: crater (1)
+      value: crater (1)old
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ba01b2d224fdc24491da324c0a3fce5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0ba01b2d224fdc24491da324c0a3fce5,
         type: 3}
@@ -8483,7 +8488,7 @@ LightingSettings:
   m_EnableRealtimeLightmaps: 0
   m_RealtimeEnvironmentLighting: 1
   m_BounceScale: 1
-  m_AlbedoBoost: 1
+  m_AlbedoBoost: 1.25
   m_IndirectOutputScale: 1
   m_UsingShadowmask: 1
   m_BakeBackend: 2
@@ -8491,7 +8496,7 @@ LightingSettings:
   m_BakeResolution: 40
   m_Padding: 2
   m_LightmapCompression: 3
-  m_AO: 0
+  m_AO: 1
   m_AOMaxDistance: 1
   m_CompAOExponent: 1
   m_CompAOExponentDirect: 0
@@ -8508,7 +8513,7 @@ LightingSettings:
   m_FinalGather: 0
   m_FinalGatherRayCount: 256
   m_FinalGatherFiltering: 1
-  m_PVRCulling: 1
+  m_PVRCulling: 0
   m_PVRSampling: 1
   m_PVRDirectSampleCount: 32
   m_PVRSampleCount: 512
@@ -24044,7 +24049,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0ba01b2d224fdc24491da324c0a3fce5,
         type: 3}
       propertyPath: m_Name
-      value: crater
+      value: craterold
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ba01b2d224fdc24491da324c0a3fce5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0ba01b2d224fdc24491da324c0a3fce5,
         type: 3}
