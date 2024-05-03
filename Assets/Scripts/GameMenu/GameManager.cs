@@ -88,7 +88,7 @@ namespace Manager
         {
             m_Score += scoreAmount;
 
-            m_UiManager.playerHUD.UpdateScoreUI(m_Score);
+            m_UiManager.UpdateScore(m_Score);
         }
 
         public void AddRecipesCount(int amount)
