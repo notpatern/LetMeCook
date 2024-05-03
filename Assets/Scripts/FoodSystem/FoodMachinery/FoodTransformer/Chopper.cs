@@ -38,9 +38,13 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 {
                     m_Timer = 0f;
                     m_LerpDelta = 0f;
-                    m_BladeTr.position = m_AnnimationStartPos.position;
                 }
             }
+        }
+
+        void ResetPosition()
+        {
+            m_BladeTr.position = m_AnnimationStartPos.position;
         }
 
         void UpdateMovement()

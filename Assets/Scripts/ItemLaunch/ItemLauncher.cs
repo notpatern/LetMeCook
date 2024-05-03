@@ -10,7 +10,7 @@ namespace ItemLaunch
         [Header("Curve Properties")]
         public Transform spawnPoint;
         [SerializeField] Transform endPoint;
-        [SerializeField, Range(0, 20)] float height;
+        [SerializeField, Range(0, 50)] float height;
         [SerializeField, Range(0, 1)] float t1 = 0.5f;
         [SerializeField, Range(0, 1)] float t2 = 0.3f;
 
