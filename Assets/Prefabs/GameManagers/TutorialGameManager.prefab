@@ -263,9 +263,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0181878, y: 17.296452, z: 20.832565}
   m_Center: {x: 148.81213, y: 3.6482258, z: 9.268775}
+--- !u!114 &4464576755534187665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2609119655864437702, guid: 5933f2b56aa15e2479ea94387f939071,
+    type: 3}
+  m_PrefabInstance: {fileID: 1855527471376418647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689711172970259199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefa87d592343ab45bd5191de0290b30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &5401288484746806525 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5995719528764605354, guid: 5933f2b56aa15e2479ea94387f939071,
+    type: 3}
+  m_PrefabInstance: {fileID: 1855527471376418647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6025927826224168583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5359368258130901456, guid: 5933f2b56aa15e2479ea94387f939071,
     type: 3}
   m_PrefabInstance: {fileID: 1855527471376418647}
   m_PrefabAsset: {fileID: 0}
@@ -320,5 +338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataBase: {fileID: 11400000, guid: 8a79171a686fbed4e961ba0ccaf7c189, type: 2}
-  SpawnVoice3DPosition: {fileID: 0}
+  SpawnVoice3DPosition: {fileID: 6025927826224168583}
   emptyRecipes: 0
+  m_AudioQueueComponent: {fileID: 4464576755534187665}
