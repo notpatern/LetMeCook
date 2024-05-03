@@ -39,6 +39,7 @@ namespace FoodSystem.FoodMachinery
                 return;
 
             collectedFoodGo = other.gameObject;
+            collectedFoodGo.transform.rotation = Quaternion.identity;
             OnFoodCollected();
         }
 
