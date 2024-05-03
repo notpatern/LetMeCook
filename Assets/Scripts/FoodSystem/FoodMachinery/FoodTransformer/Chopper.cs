@@ -7,7 +7,6 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
     {
         float m_Timer = 0f;
         float m_LerpDelta = 0f;
-        int m_LerpDirection = 1;
 
         [SerializeField] Transform m_AnnimationStartPos;
         [SerializeField] Transform m_AnnimationEndPos;
@@ -19,9 +18,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 launcher.StartPoint, Quaternion.identity);
 
             launcher.ThrowItem(newFood.GetComponent<LaunchableItem>());
-            m_LerpDirection = 0;
             m_LerpDelta = 0f;
-            m_LerpDirection = 1;
 
             base.ReleaseFood();
         }
@@ -33,7 +30,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             if (_cooking)
             {
                 m_Timer += Time.deltaTime;
-                m_LerpDelta += Time.deltaTime / (cookingTime / 2f) * m_LerpDirection;
+                m_LerpDelta += Time.deltaTime / cookingTime;
 
                 UpdateMovement();
 
@@ -41,17 +38,13 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 {
                     m_Timer = 0f;
                     m_LerpDelta = 0f;
+                    m_BladeTr.position = m_AnnimationStartPos.position;
                 }
             }
         }
 
         void UpdateMovement()
         {
-            if (Mathf.Abs(m_LerpDelta) >= 1)
-            {
-                m_LerpDirection *= -1;
-            }
-
             m_BladeTr.position = PerformVectorLerp(m_AnnimationStartPos.position, m_AnnimationEndPos.position, m_LerpDelta);
         }
 

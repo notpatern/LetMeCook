@@ -122,7 +122,7 @@ MonoBehaviour:
   cookParticleInstanceManager: {fileID: 2328159016483736292}
   cookingFoodPos: {fileID: 9083274010841945693}
   cookingTime: 5
-  m_AnnimationStartPos: {fileID: 3945855129123853401}
+  m_AnnimationStartPos: {fileID: 8734262296828751691}
   m_AnnimationEndPos: {fileID: 9083274010841945693}
   m_BladeTr: {fileID: 3945855129123853401}
 --- !u!114 &7674622604260740335
@@ -5062,6 +5062,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &844549148182041460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8734262296828751691}
+  m_Layer: 0
+  m_Name: DefaultBladesPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8734262296828751691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844549148182041460}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.436, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6863233591592331539}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1181631072951522397
 GameObject:
   m_ObjectHideFlags: 0
@@ -5093,7 +5124,8 @@ Transform:
   m_Children:
   - {fileID: 9083274010841945693}
   - {fileID: 2443842936522619543}
-  - {fileID: 378492459056182181}
+  - {fileID: 3945855129123853401}
+  - {fileID: 8734262296828751691}
   m_Father: {fileID: 1557085082202284530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1845695540021785725
@@ -15083,38 +15115,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2175303863478672204}
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
---- !u!1 &3045788642289727490
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 378492459056182181}
-  m_Layer: 0
-  m_Name: BladesStartPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &378492459056182181
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3045788642289727490}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.436, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3945855129123853401}
-  m_Father: {fileID: 6863233591592331539}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3285118952570189271
 GameObject:
   m_ObjectHideFlags: 0
@@ -15140,13 +15140,13 @@ Transform:
   m_GameObject: {fileID: 3285118952570189271}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.4359999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3375851477178038517}
   - {fileID: 7452535931681715269}
-  m_Father: {fileID: 378492459056182181}
+  m_Father: {fileID: 6863233591592331539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3601896436731406229
 GameObject:
@@ -20216,13 +20216,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6751819683519043658}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0.016, y: 4.194, z: 0.046}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6863233591592331539}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
 --- !u!1 &6976859288192533019
 GameObject:
   m_ObjectHideFlags: 0
