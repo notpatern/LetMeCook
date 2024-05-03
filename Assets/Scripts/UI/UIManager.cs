@@ -1,5 +1,6 @@
 using Dialog;
 using RecipeSystem.Core;
+using TMPro;
 using UnityEngine;
 
 namespace UI
@@ -15,6 +16,7 @@ namespace UI
         public DialogUIManagement dialogUiManagement;
 
         public RecipeUI recipeUI;
+        TMP_Text scoreText;
 
         //if there are problems with multiple layers then do a layer system with an UIContent parent or something and add a layer parameter
         public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData, Transform endConditionParent)
@@ -41,6 +43,7 @@ namespace UI
             if(levelUIData.endConditionPrefab && endConditionParent)
             {
                 LoadEndConditionUI(levelUIData.endConditionPrefab, endConditionParent);
+                LoadScoreWorldUI(levelUIData.scorePrefab, endConditionParent);
             }
 
             if (levelUIData.recipeContentParent)
@@ -63,6 +66,17 @@ namespace UI
         {
             endScreen = Object.Instantiate(endScreenPrefab, menuCanvas.transform).GetComponent<EndScreenUI>();
             endScreen.SetActive(false);
+        }
+
+        void LoadScoreWorldUI(GameObject scorePrefab, Transform parent)
+        {
+            scoreText = Object.Instantiate(scorePrefab, parent).GetComponent<EndConditionUI>().GetComponent<TMP_Text>();
+            UpdateScore(0);
+        }
+
+        public void UpdateScore(int amount)
+        {
+            scoreText.text = amount.ToString();
         }
 
         void LoadEndConditionUI(GameObject endConditionPrefab, Transform parent)

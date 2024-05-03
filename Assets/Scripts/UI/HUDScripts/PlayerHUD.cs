@@ -10,18 +10,8 @@ public class PlayerHUD : MonoBehaviour
 
     [SerializeField] TMP_Text scoreUI;
 
-    private void Awake()
-    {
-        UpdateScoreUI(0);
-    }
-
     public void UpdateStaminaFill(float percentageAmount)
     {
         staminaFill.fillAmount = percentageAmount;
-    }
-
-    public void UpdateScoreUI(int scoreAmouunt) 
-    {
-        scoreUI.text = "Score : " + scoreAmouunt.ToString();
     }
 }
