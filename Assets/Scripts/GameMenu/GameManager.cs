@@ -1,5 +1,4 @@
 using RecipeSystem;
-using UI;
 using UnityEngine;
 
 namespace Manager
@@ -18,6 +17,8 @@ namespace Manager
 
         protected bool m_IsEndStateInit = false;
         protected float m_LevelDuration = 0f;
+
+        public static int maxDecalsNumber = 25;
 
         override protected void Awake()
         { 

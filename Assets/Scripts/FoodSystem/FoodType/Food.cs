@@ -2,8 +2,7 @@ using Player.Interaction;
 using UnityEngine;
 using System.Collections.Generic;
 using ItemLaunch;
-using System.Linq;
-using System.Diagnostics;
+using Manager;
 
 namespace FoodSystem.FoodType
 {
@@ -17,6 +16,9 @@ namespace FoodSystem.FoodType
         [SerializeField] GameObject decalProjector;
         [SerializeField] GameObject foodFog;
         [SerializeField] float groundedDistance;
+
+        static GameObject[] decals = new GameObject[GameManager.maxDecalsNumber];
+        static int currentFoodDecals = 0;
 
         public GameObject StartInteraction()
         {
@@ -41,12 +43,28 @@ namespace FoodSystem.FoodType
         [System.Obsolete]
         private void OnCollisionEnter(Collision collision)
         {
+            int id = 0;
+            if(currentFoodDecals >= GameManager.maxDecalsNumber)
+            {
+                currentFoodDecals = 0;
+            }
+            else
+            {
+                id = currentFoodDecals;
+            }
+
+            if(decals[currentFoodDecals])
+            {
+                Destroy(decals[currentFoodDecals]);
+            }
+
             GameObject decal = Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
             Vector3 rotation = new Vector3(decal.transform.rotation.eulerAngles.x, decal.transform.rotation.eulerAngles.y, Random.RandomRange(0, 360));
             decal.transform.rotation = Quaternion.EulerAngles(rotation);
             decal.transform.SetParent(collision.transform);
 
-            Destroy(decal, 8f);
+            decals[id] = decal;
+            currentFoodDecals++;
             Instantiate(foodFog, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
         }
 
