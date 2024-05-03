@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Audio;
 using FMOD.Studio;
 using System;
+using FMODUnity;
 
 namespace Dialog
 {
@@ -20,7 +21,10 @@ namespace Dialog
         DialogLevelData dialogLevelData;
         Queue<DialogInfos> dialogInfosQueue = new Queue<DialogInfos>();
 
+        //FMOD UGLY
         EventInstance currentVoice;
+        PLAYBACK_STATE currentPbState;
+        //
 
         const string c_ALPHACOLOR = "<color=#00000000>";
 
@@ -32,6 +36,19 @@ namespace Dialog
             dialogPanel.SetActive(false);
 
             m_CallDialogEvent.BindEventAction(OnStartDialogEvent);
+        }
+
+        void Update()
+        {
+            //FMOD QUEUE
+            if (isMusicPlaying)
+            {
+                currentVoice.getPlaybackState(out currentPbState);
+                if (currentPbState == PLAYBACK_STATE.STOPPED)
+                {
+                    isMusicPlaying = false;
+                }
+            }
         }
 
         void OnStartDialogEvent(object args)
@@ -68,9 +85,18 @@ namespace Dialog
             KeybindsData keybindsData;
             string[] loadedKeys = new string[dialogInfos.loadedContent.args.Length];
 
-            currentVoice = AudioManager.s_Instance.CreateInstance(dialogInfos.audioVoice);
-            currentVoice.setCallback(DialogVoiceMarkerEventCallback, EVENT_CALLBACK_TYPE.STOPPED);
-            currentVoice.start();
+            if (!dialogInfos.audioVoice.IsNull)
+            {
+
+                currentVoice = AudioManager.s_Instance.CreateInstance(dialogInfos.audioVoice);
+                currentVoice.start();
+                currentVoice.release();
+                isMusicPlaying = true;
+            }
+            else
+            {
+                Debug.Log("?");
+            }
 
             if (dialogInfos.loadedContent.args.Length > 0)
             {
@@ -132,17 +158,6 @@ namespace Dialog
         {
             dialogPanel.SetActive(state);
             isInDialog = state;
-        }
-
-        FMOD.RESULT DialogVoiceMarkerEventCallback(EVENT_CALLBACK_TYPE type, IntPtr instance, IntPtr parameterPtr)
-        {
-            if (type == EVENT_CALLBACK_TYPE.STOPPED)
-            {
-                isMusicPlaying = false;
-                AudioManager.s_Instance.CleanUp(currentVoice);
-            }
-
-            return FMOD.RESULT.OK;
         }
     }
 }

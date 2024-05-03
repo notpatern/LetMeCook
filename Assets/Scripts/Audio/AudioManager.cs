@@ -18,7 +18,7 @@ namespace Audio
         [HideInInspector] public Bus m_MasterBus;
         [HideInInspector] public Bus m_MusicBus;
         [HideInInspector] public Bus m_SFXBus;
-        
+
         public AudioManager()
         {
             m_MasterBus = RuntimeManager.GetBus("bus:/");
@@ -51,13 +51,6 @@ namespace Audio
             EventInstance instance = RuntimeManager.CreateInstance(eventReference);
             m_EventInstances.Add(instance);
             return instance;
-        }
-
-        public void CleanUp(EventInstance instance)
-        {
-            m_EventInstances.Remove(instance);
-            instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            instance.release();
         }
 
         public void CleanUp()

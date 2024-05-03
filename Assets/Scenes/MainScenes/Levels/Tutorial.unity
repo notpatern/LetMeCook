@@ -9346,6 +9346,13 @@ MonoBehaviour:
     content: "Welcome to Hell!\r\nYou were sent here because you fucked up big time
       haha!\r\nBut don\u2019t worry about it, I\u2019ve chosen you to be my new chef
       so you wont have to suffer for eternity. Unless you\u2019re a terrible cook."
+    audioVoice:
+      Guid:
+        Data1: -1202096662
+        Data2: 1205078576
+        Data3: -823739734
+        Data4: -767290326
+      Path: event:/SFX/VoiceLinuTuto/WelcomeToHell
     loadedContent:
       loadedString:
       - "Welcome to Hell!\r\nYou were sent here because you fucked up big time haha!\r\nBut
@@ -22441,25 +22448,34 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   destroyOnTrigger: 1
-  index: 0
+  index: 3
   m_CurrentDialogInfos:
-    noGameContentNameID: Hades Welcome
+    noGameContentNameID: WallRunDash food presentation
     pnjName: Hades
-    content: "Welcome to Hell!\r\nYou were sent here because you fucked up big time
-      haha!\r\nBut don\u2019t worry about it, I\u2019ve chosen you to be my new chef
-      so you wont have to suffer for eternity. Unless you\u2019re a terrible cook."
+    content: "Ok so the white food allows you to run on walls- YES JUST LIKE IN TITANFALL,
+      I KNOW IT\u2019S SUPER COOL I DO THAT ALL THE TIME WITH- hum coughs yeah it\u2019s
+      alright no big deal. If you want to carry more than two pieces of food at the
+      same time you can use a Hell Crystal with {0} to store the ingredients you\u2019re
+      currently carrying, oh and once you\u2019ve stored them you can\u2019t get
+      them out! So be careful with the crystal!"
+    audioVoice:
+      Guid:
+        Data1: -312886480
+        Data2: 1323168555
+        Data3: -957299542
+        Data4: -2041452526
+      Path: event:/SFX/VoiceLinuTuto/WhiteObeliskTuto
     loadedContent:
       loadedString:
-      - "Welcome to Hell!\r\nYou were sent here because you fucked up big time haha!\r\nBut
-        don\u2019t worry about it, I\u2019ve chosen you to be my new chef so you
-        wont have to suffer for eternity. Unless you\u2019re a terrible cook,"
-      - " then I\u2019ll just make you to be Sisyphus II or something. Here, approach
-        the green obelisk in front of you using {0}, {1}, {2}, {3}"
+      - "Ok so the white food allows you to run on walls- YES JUST LIKE IN TITANFALL,
+        I KNOW IT\u2019S SUPER COOL I DO THAT ALL THE TIME WITH- hum coughs yeah
+        it\u2019s alright no big deal."
+      - "If you want to carry more than two pieces of food at the same time you can
+        use a Hell Crystal with {0} to store the ingredients you\u2019re currently
+        carrying, oh and once you\u2019ve stored them you can\u2019t get them out!
+        So be careful with the crystal!"
       args:
-      - {fileID: 11400000, guid: 4cefa89310e4c504bb16e10da34b263d, type: 2}
-      - {fileID: 11400000, guid: 01acaf1ec6e504449ac77b40deec08f2, type: 2}
-      - {fileID: 11400000, guid: 0fd62c875a6455344a511ebb89065672, type: 2}
-      - {fileID: 11400000, guid: 3c3151d02000c024fbba63f96c1e701e, type: 2}
+      - {fileID: 11400000, guid: 0ffd2b561e85c374dbccac9363ec52d2, type: 2}
   m_DialogInfosBindingEvent: {fileID: 0}
   m_CallDialogEvent: {fileID: 11400000, guid: adebe2cc9844e5541ae77227083f9587, type: 2}
 --- !u!65 &1439379093
@@ -28517,25 +28533,35 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   destroyOnTrigger: 1
-  index: 0
+  index: 2
   m_CurrentDialogInfos:
-    noGameContentNameID: Hades Welcome
+    noGameContentNameID: Dash red food presentation
     pnjName: Hades
-    content: "Welcome to Hell!\r\nYou were sent here because you fucked up big time
-      haha!\r\nBut don\u2019t worry about it, I\u2019ve chosen you to be my new chef
-      so you wont have to suffer for eternity. Unless you\u2019re a terrible cook."
+    content: "So, as you might have seen this obelisk is red, wait can you see red?
+      Are you colorblind? mh, I hope you\u2019re not because I'm hungry\u2026 anyhow.
+      Red obelisks will dispense you red food which will allow you to dash using
+      [Dash Key]. Don\u2019t ask me why the food is magic, I have no idea bro- can
+      I call you bro? or would you rather sis? mh.. I\u2019ll call you Chef, it\u2019s
+      more fitting. So yeah I think I get this food delivered by Hermes so I\u2019ll
+      have to ask him, I don\u2019t know why I never did\u2026"
+    audioVoice:
+      Guid:
+        Data1: 1422082431
+        Data2: 1235719159
+        Data3: -1461717886
+        Data4: 512471637
+      Path: event:/SFX/VoiceLinuTuto/RedObeliskTuto
     loadedContent:
       loadedString:
-      - "Welcome to Hell!\r\nYou were sent here because you fucked up big time haha!\r\nBut
-        don\u2019t worry about it, I\u2019ve chosen you to be my new chef so you
-        wont have to suffer for eternity. Unless you\u2019re a terrible cook,"
-      - " then I\u2019ll just make you to be Sisyphus II or something. Here, approach
-        the green obelisk in front of you using {0}, {1}, {2}, {3}"
+      - "So, as you might have seen this obelisk is red, wait can you see red? Are
+        you colorblind? mh, I hope you\u2019re not because I'm hungry\u2026 anyhow.
+        Red obelisks will dispense you red food which will allow you to dash using
+        {0}."
+      - "Don\u2019t ask me why the food is magic, I have no idea bro- can I call
+        you bro? or would you rather sis? mh.. I\u2019ll call you Chef, it\u2019s
+        more fitting."
       args:
-      - {fileID: 11400000, guid: 4cefa89310e4c504bb16e10da34b263d, type: 2}
-      - {fileID: 11400000, guid: 01acaf1ec6e504449ac77b40deec08f2, type: 2}
-      - {fileID: 11400000, guid: 0fd62c875a6455344a511ebb89065672, type: 2}
-      - {fileID: 11400000, guid: 3c3151d02000c024fbba63f96c1e701e, type: 2}
+      - {fileID: 11400000, guid: d95760f549da0104d9755425969eac16, type: 2}
   m_DialogInfosBindingEvent: {fileID: 0}
   m_CallDialogEvent: {fileID: 11400000, guid: adebe2cc9844e5541ae77227083f9587, type: 2}
 --- !u!65 &1722215572
@@ -35617,25 +35643,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   destroyOnTrigger: 1
-  index: 0
+  index: 1
   m_CurrentDialogInfos:
-    noGameContentNameID: Hades Welcome
+    noGameContentNameID: green food presentation
     pnjName: Hades
-    content: "Welcome to Hell!\r\nYou were sent here because you fucked up big time
-      haha!\r\nBut don\u2019t worry about it, I\u2019ve chosen you to be my new chef
-      so you wont have to suffer for eternity. Unless you\u2019re a terrible cook."
+    content: "This green obelisk will dispense you green food, which will allow you
+      to double jump by pressing {0} in the air!\r\nTo pick up the food you can use
+      either {1} or {2}. As long as you have this piece of food in your hand you
+      will be impregnated with its magical power, if you drop it you won\u2019t be
+      able to double jump anymore. Now I gotta show you the other food that I like
+      to eat, get to the next obelisk. "
+    audioVoice:
+      Guid:
+        Data1: 541754684
+        Data2: 1295187934
+        Data3: -1607011698
+        Data4: -1390064713
+      Path: event:/SFX/VoiceLinuTuto/GreenObeliskTuto
     loadedContent:
       loadedString:
-      - "Welcome to Hell!\r\nYou were sent here because you fucked up big time haha!\r\nBut
-        don\u2019t worry about it, I\u2019ve chosen you to be my new chef so you
-        wont have to suffer for eternity. Unless you\u2019re a terrible cook,"
-      - " then I\u2019ll just make you to be Sisyphus II or something. Here, approach
-        the green obelisk in front of you using {0}, {1}, {2}, {3}"
+      - This green obelisk will dispense you green food, which will allow you to
+        double jump by pressing {0} in the air! To pick up the food you can use either
+        {1} or {2}.
+      - "As long as you have this piece of food in your hand you will be impregnated
+        with its magical power, if you drop it you won\u2019t be able to double jump
+        anymore. Now I gotta show you the other food that I like to eat, get to the
+        next obelisk. "
       args:
-      - {fileID: 11400000, guid: 4cefa89310e4c504bb16e10da34b263d, type: 2}
-      - {fileID: 11400000, guid: 01acaf1ec6e504449ac77b40deec08f2, type: 2}
-      - {fileID: 11400000, guid: 0fd62c875a6455344a511ebb89065672, type: 2}
-      - {fileID: 11400000, guid: 3c3151d02000c024fbba63f96c1e701e, type: 2}
+      - {fileID: 11400000, guid: 339c0ddda31ecbc42a35484b2b531506, type: 2}
+      - {fileID: 11400000, guid: 2a1c617a8fc2ce242a63dc03a8cb8308, type: 2}
+      - {fileID: 11400000, guid: c1622e0b2475d2f4e9376984d1a544eb, type: 2}
   m_DialogInfosBindingEvent: {fileID: 0}
   m_CallDialogEvent: {fileID: 11400000, guid: adebe2cc9844e5541ae77227083f9587, type: 2}
 --- !u!65 &2050075160

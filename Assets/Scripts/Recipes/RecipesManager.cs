@@ -3,12 +3,9 @@ using RecipeSystem.Core;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using Audio;
 using FoodSystem.FoodType;
 using FoodSystem;
-using FMOD.Studio;
-using System;
-using FMODUnity;
+using Audio;
 
 namespace RecipeSystem
 {
@@ -23,14 +20,13 @@ namespace RecipeSystem
         protected int recipesRemoved = 0;
         public bool emptyRecipes = false;
 
-        //FMOD UGLY
-        Queue<EventReference> currentRecipeVoiceQueue = new Queue<EventReference>();
-        EventInstance currentVoiceInstance;
+        [SerializeField] AudioQueueComponent m_AudioQueueComponent;
 
         public void Init(GameManager gameManager, RecipeUI recipeUI)
         {
             this.gameManager = gameManager;
             this.recipeUI = recipeUI;
+
             StartRecipesList();
         }
 
@@ -74,7 +70,7 @@ namespace RecipeSystem
             GameRecipe newGameRecipe = new GameRecipe();
             newGameRecipe.Init(recipe);
 
-            StartRecipeVoice(recipe.vocaloidVoice);
+            m_AudioQueueComponent.StartSound(recipe.vocaloidVoice);
 
             activeRecipes.Add(newGameRecipe);
             recipeUI.AddNewCard(newGameRecipe, dataBase.recipesContainers.Length - recipesRemoved - 1 == 0);
@@ -185,37 +181,6 @@ namespace RecipeSystem
             result += dataBase.recipesContainers[dataBase.recipesContainers.Length - 1].m_Recipe.secondsToComplete;
 
             return result;
-        }
-
-        void StartRecipeVoice(EventReference eventReference)
-        {
-            PLAYBACK_STATE pbState;
-            currentVoiceInstance.getPlaybackState(out pbState);
-
-            if (pbState == PLAYBACK_STATE.PLAYING)
-            {
-                currentRecipeVoiceQueue.Enqueue(eventReference);
-                return;
-            }
-
-            currentVoiceInstance = AudioManager.s_Instance.CreateInstance(eventReference);
-            currentVoiceInstance.setCallback(DialogVoiceMarkerEventCallback, EVENT_CALLBACK_TYPE.STOPPED);
-            currentVoiceInstance.start();
-        }
-
-        FMOD.RESULT DialogVoiceMarkerEventCallback(EVENT_CALLBACK_TYPE type, IntPtr instance, IntPtr parameterPtr)
-        {
-            if (type == EVENT_CALLBACK_TYPE.STOPPED)
-            {
-                //AudioManager.s_Instance.CleanUp(currentVoiceInstance);
-
-                if (currentRecipeVoiceQueue.Count > 0)
-                {
-                    StartRecipeVoice(currentRecipeVoiceQueue.Dequeue());
-                }
-            }
-
-            return FMOD.RESULT.OK;
         }
     }
 }
