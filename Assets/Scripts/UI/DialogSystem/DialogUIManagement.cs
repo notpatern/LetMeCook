@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using Audio;
 using FMOD.Studio;
-using System;
-using FMODUnity;
 
 namespace Dialog
 {
@@ -47,6 +45,15 @@ namespace Dialog
                 if (currentPbState == PLAYBACK_STATE.STOPPED)
                 {
                     isMusicPlaying = false;
+
+                    if (dialogInfosQueue.Count > 0)
+                    {
+                        StartCoroutine(StartDialog());
+                    }
+                    else
+                    {
+                        SetActiveDialog(false);
+                    }
                 }
             }
         }
@@ -87,7 +94,6 @@ namespace Dialog
 
             if (!dialogInfos.audioVoice.IsNull)
             {
-
                 currentVoice = AudioManager.s_Instance.CreateInstance(dialogInfos.audioVoice);
                 currentVoice.start();
                 currentVoice.release();
@@ -95,7 +101,7 @@ namespace Dialog
             }
             else
             {
-                Debug.Log("?");
+                isMusicPlaying = false;
             }
 
             if (dialogInfos.loadedContent.args.Length > 0)
@@ -147,7 +153,7 @@ namespace Dialog
             {
                 SetActiveDialog(false);
             }
-            else
+            else if(!isMusicPlaying)
             {
                 //continue dialogs queue
                 StartCoroutine(StartDialog());
