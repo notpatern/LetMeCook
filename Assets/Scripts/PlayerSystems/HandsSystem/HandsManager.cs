@@ -138,6 +138,8 @@ namespace PlayerSystems.HandsSystem
 
         public void PerformHandAction(GameObject food, Hands hand)
         {
+            if (hand.m_IsCrushing) return;
+
             if (!hand.isFoodHandle)
             {
                 if (food)

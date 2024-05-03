@@ -18,7 +18,6 @@ namespace RecipeSystem
         RecipeUI recipeUI;
 
         protected int recipesRemoved = 0;
-        public bool emptyRecipes = false;
 
         [SerializeField] AudioQueueComponent m_AudioQueueComponent;
 
