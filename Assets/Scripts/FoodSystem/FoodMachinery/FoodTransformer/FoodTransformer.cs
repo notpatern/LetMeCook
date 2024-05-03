@@ -52,6 +52,10 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             vines.SetActive((bool)isActive);
         }
 
+        protected Vector3 PerformVectorLerp(Vector3 from, Vector3 to, float t)
+        {
+            return from + (to - from) * Mathf.Clamp01(t);
+        }
         protected override void OnFoodCollected()
         {
             if (!CheckIfCanCook(collectedFoodData[0]))

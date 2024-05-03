@@ -55,11 +55,6 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             m_Particles.position = PerformVectorLerp(m_AnnimationStartPos.position, m_AnnimationEndPos.position, m_LerpDelta);
         }
 
-        Vector3 PerformVectorLerp(Vector3 from, Vector3 to, float t)
-        {
-            return from + (to - from) * Mathf.Clamp01(t);
-        }
-
         protected override bool CheckIfCanCook(FoodData foodData) => foodData.purifiedFood != null;
         
     }
