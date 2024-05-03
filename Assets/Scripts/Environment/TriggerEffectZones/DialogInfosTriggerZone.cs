@@ -4,6 +4,7 @@ using UnityEngine;
 public class DialogInfosTriggerZone : TriggerEffectZone
 {
     public bool destroyOnTrigger;
+    public int index = 0;
     [HideInInspector] public DialogInfos m_CurrentDialogInfos;
     public GameEventScriptableObject m_DialogInfosBindingEvent;
     public GameEventScriptableObject m_CallDialogEvent;

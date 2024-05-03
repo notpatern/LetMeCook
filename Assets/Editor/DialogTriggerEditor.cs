@@ -11,7 +11,6 @@ using UnityEngine;
 public class DialogTriggerEditor : Editor
 {
     DialogLevelData m_DialogLevelData;
-    int index = 0;
     DialogInfos[] loadedDialogInfos;
 
     DialogInfos[][] loadedRandomDialogInfos;
@@ -29,9 +28,9 @@ public class DialogTriggerEditor : Editor
 
         if (!m_DialogLevelData) return;
 
-        index = EditorGUILayout.Popup(
+        picker.index = EditorGUILayout.Popup(
                 "DialogInfos:",
-                index,
+                picker.index,
                 LoadDialogInfosOptions()
             );
 
@@ -40,17 +39,19 @@ public class DialogTriggerEditor : Editor
 
         picker.destroyOnTrigger = EditorGUILayout.Toggle("Destroy On Trigger", picker.destroyOnTrigger);
 
-        if (index >= m_DialogLevelData.dialogInfos.Length)
+        if (picker.index >= m_DialogLevelData.dialogInfos.Length)
         {
-            index = m_DialogLevelData.dialogInfos.Length-1;
+            picker.index = m_DialogLevelData.dialogInfos.Length-1;
         }
 
         GUIStyle style = new GUIStyle(EditorStyles.textArea);
         style.wordWrap = true;
 
         
-        picker.m_CurrentDialogInfos = m_DialogLevelData.dialogInfos[index];
+        picker.m_CurrentDialogInfos = m_DialogLevelData.dialogInfos[picker.index];
         picker.m_CallDialogEvent = EditorGUILayout.ObjectField("Call Dialog Event", picker.m_CallDialogEvent, typeof(GameEventScriptableObject), false) as GameEventScriptableObject;
+    
+        SaveChanges();
     }
 
 
