@@ -39,7 +39,6 @@ namespace Dialog
 
         void Update()
         {
-            //FMOD QUEUE
             if (isMusicPlaying)
             {
                 currentVoice.getPlaybackState(out currentPbState);

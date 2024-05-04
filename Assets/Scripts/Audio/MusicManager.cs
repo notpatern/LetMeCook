@@ -20,7 +20,7 @@ namespace Audio {
             m_Mono = mono;
             markerCallback = new EVENT_CALLBACK(MarkerEventCallback);
             m_LevelMusicData = levelMusicData;
-            m_BackMusicInsatnce = AudioManager.s_Instance.CreateInstance(m_LevelMusicData.m_BackMusic);
+            m_BackMusicInsatnce = AudioManager.s_Instance.CreateUnpausableInstance(m_LevelMusicData.m_BackMusic);
             m_BackMusicInsatnce.setCallback(markerCallback, EVENT_CALLBACK_TYPE.TIMELINE_MARKER);
             m_BackMusicInsatnce.start();
         }

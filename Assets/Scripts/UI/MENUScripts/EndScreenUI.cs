@@ -39,7 +39,7 @@ public class EndScreenUI : MonoBehaviour
         m_EndScreenAnimator.SetTrigger("Start");
 
         ControlOptionsManagement.SetCursorIsPlayMode(false);
-        ControlOptionsManagement.s_Instance.DisableMainPlayerInputs();
+        ControlOptionsManagement.s_Instance.UpdateIsMainControlsActivated(false);
 
         m_ScoreText.text = playerScore.m_Score + "pts";
         m_CompletedRecipesRateText.text = Mathf.RoundToInt(playerScore.m_CompletedRecipes / (float)playerScore.m_TotalRecipes * 100) + "%" + " Completion Rate";
