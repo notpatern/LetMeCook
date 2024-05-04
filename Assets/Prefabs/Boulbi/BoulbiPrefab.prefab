@@ -463,10 +463,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LerpSpeed: 10
-  m_TimeBetweenAnim: 0
+  m_StartOffsetRange: 3
   m_RotationThreshold: 0.2
   m_BoulbiAnim: {fileID: 1912471895595515324}
   m_PositionAtEnd: {fileID: 8327937373271150147}
+  m_trickChance: 2000
 --- !u!95 &1912471895595515324
 Animator:
   serializedVersion: 5
