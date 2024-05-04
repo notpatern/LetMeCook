@@ -12,6 +12,8 @@ public class PizzaEtRavioli : MonoBehaviour
     [SerializeField] private Animator m_BoulbiAnim;
 
     [SerializeField] Transform m_PositionAtEnd;
+    
+    [SerializeField] private int m_trickChance = 2000;
 
     Quaternion m_NextDirection;
 
@@ -19,8 +21,11 @@ public class PizzaEtRavioli : MonoBehaviour
 
     private bool m_isFacingWall;
     private float m_RaycastDistance;
-    
 
+    private bool m_runTrick = false;
+    private string m_currentAnimationName;
+    
+    
     void Start()
     {
         StartCoroutine(StartOffsetCoroutine());
@@ -30,17 +35,19 @@ public class PizzaEtRavioli : MonoBehaviour
     {
         if (!m_isActive)
         {
-            StartRotate();
-            if(Quaternion.Angle(m_NextDirection, transform.rotation) < m_RotationThreshold)
+            if (Random.Range(0, m_trickChance) == 1 && !m_runTrick)
             {
-                if (!CheckForWall())
-                {
-                    StartAnimation();
-                }
-                else
-                {
-                    GetNextDirection();
-                }
+                m_runTrick = true;
+            }
+            
+            if (!m_runTrick)
+            {
+                StartRotate();
+                GoForJump();
+            }
+            else
+            {
+                StartAnimation("LaunchThrow");
             }
         }
     }
@@ -55,17 +62,29 @@ public class PizzaEtRavioli : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, m_NextDirection, m_LerpSpeed * Time.deltaTime);
     }
 
-    void StartAnimation()
+    void StartAnimation(string animationName)
     {
         m_isActive = true;
-        m_BoulbiAnim.SetTrigger("LaunchJump");
+        m_currentAnimationName = animationName;
+        m_BoulbiAnim.SetTrigger(animationName);
     }
 
     void EndAnimation()
     {
         m_isActive = false;
-        transform.position = m_PositionAtEnd.position;
-        GetNextDirection();
+        switch (m_currentAnimationName)
+        {
+            case "LaunchJump":
+                transform.position = m_PositionAtEnd.position;
+                GetNextDirection();
+                break;
+            case "LaunchThrow":
+                m_runTrick = false;
+                break;
+            default:
+                Debug.Log("Là c'est zinzin");
+                break;
+        }
     }
 
     bool CheckForWall()
@@ -80,6 +99,20 @@ public class PizzaEtRavioli : MonoBehaviour
         m_RaycastDistance = Vector3.Distance(m_PositionAtEnd.position ,transform.position);
         GetNextDirection();
         m_isActive = false;
-        
+    }
+
+    void GoForJump()
+    {
+        if(Quaternion.Angle(m_NextDirection, transform.rotation) < m_RotationThreshold)
+        {
+            if (!CheckForWall())
+            {
+                StartAnimation("LaunchJump");
+            }
+            else
+            {
+                GetNextDirection();
+            }
+        }
     }
 }
