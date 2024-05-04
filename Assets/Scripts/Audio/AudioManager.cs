@@ -7,7 +7,8 @@ namespace Audio
 {
     public class AudioManager
     {
-        List<EventInstance> m_EventInstances;
+        List<EventInstance> m_PausableEventInstances;
+        List<EventInstance> m_UnpausableEventInstances;
         public static AudioManager s_Instance { get; private set; }
         public AudioSoundData m_AudioSoundData;
 
@@ -18,6 +19,11 @@ namespace Audio
         [HideInInspector] public Bus m_MasterBus;
         [HideInInspector] public Bus m_MusicBus;
         [HideInInspector] public Bus m_SFXBus;
+
+        PLAYBACK_STATE m_RuntimeClearCheckerPbState;
+
+        BoolTable m_IsPaused;
+        bool m_DirtyPausedState;
 
         public AudioManager()
         {
@@ -35,30 +41,82 @@ namespace Audio
             if(s_Instance == null)
             {
                 s_Instance = new AudioManager();
-                s_Instance.m_EventInstances = new List<EventInstance>();
+                s_Instance.m_PausableEventInstances = new List<EventInstance>();
+                s_Instance.m_UnpausableEventInstances = new List<EventInstance>();
             }
 
             s_Instance.m_AudioSoundData = audioSoundData;
+            s_Instance.m_IsPaused = new BoolTable();
+        }
+
+        public void Update()
+        {
+            CleanStoppedSounds(ref m_PausableEventInstances);
+            CleanStoppedSounds(ref m_UnpausableEventInstances);
+        }
+
+        void CleanStoppedSounds(ref List<EventInstance> eventReferences)
+        {
+            for (int i = 0; i < eventReferences.Count; i++)
+            {
+                eventReferences[i].getPlaybackState(out m_RuntimeClearCheckerPbState);
+
+                if (m_RuntimeClearCheckerPbState == PLAYBACK_STATE.STOPPED)
+                {
+                    eventReferences[i].release();
+                    eventReferences.RemoveAt(i);
+                }
+            }
+        }
+
+        public void SetPause(bool state)
+        {
+            m_IsPaused.Value = state;
+
+            if (m_IsPaused.Value != m_DirtyPausedState)
+            {
+                m_DirtyPausedState = m_IsPaused.Value;
+                for (int i = 0; i < m_PausableEventInstances.Count; i++)
+                {
+                    m_PausableEventInstances[i].setPaused(m_IsPaused.Value);
+                }
+            }
         }
 
         public void PlayOneShot(EventReference sound, Vector3 worldPosition)
         {
-            RuntimeManager.PlayOneShot(sound, worldPosition);
+            EventInstance instance = CreateInstance(sound);
+            instance.set3DAttributes(RuntimeUtils.To3DAttributes(worldPosition));
+            instance.start();
+            instance.release();
         }
 
         public EventInstance CreateInstance(EventReference eventReference)
         {
             EventInstance instance = RuntimeManager.CreateInstance(eventReference);
-            m_EventInstances.Add(instance);
+            m_PausableEventInstances.Add(instance);
+            return instance;
+        }
+
+        public EventInstance CreateUnpausableInstance(EventReference eventReference)
+        {
+            EventInstance instance = RuntimeManager.CreateInstance(eventReference);
+            m_UnpausableEventInstances.Add(instance);
             return instance;
         }
 
         public void CleanUp()
         {
-            for(int i=0; i < m_EventInstances.Count; i++)
+            for(int i=0; i < m_PausableEventInstances.Count; i++)
             {
-                m_EventInstances[i].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                m_EventInstances[i].release();
+                m_PausableEventInstances[i].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                m_PausableEventInstances[i].release();
+            }
+
+            for (int i = 0; i < m_UnpausableEventInstances.Count; i++)
+            {
+                m_UnpausableEventInstances[i].stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                m_UnpausableEventInstances[i].release();
             }
         }
 

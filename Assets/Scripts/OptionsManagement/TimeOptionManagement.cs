@@ -1,3 +1,4 @@
+using Audio;
 using UnityEngine;
 
 namespace TimeOption
@@ -17,7 +18,8 @@ namespace TimeOption
 
             Time.timeScale = m_IsTimeActivated.Value ? 1.0f : 0.0f;
 
-            ControlOptions.ControlOptionsManagement.s_Instance.UpdateIsMainControlsActivated(state);
+            AudioManager.s_Instance.SetPause(!m_IsTimeActivated.Value);
+            //ControlOptions.ControlOptionsManagement.s_Instance.UpdateIsMainControlsActivated(state);
         }
     }
 }

@@ -72,8 +72,9 @@ namespace Manager
             m_LoadPlayerTransform.TriggerEvent(m_Player.transform);
         }
 
-        protected virtual void Update()
+        protected override void Update()
         {
+            base.Update();
             if (m_IsEndStateInit)
             {
                 m_GameEndCondition.Update(Time.deltaTime);

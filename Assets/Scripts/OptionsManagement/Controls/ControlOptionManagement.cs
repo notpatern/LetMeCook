@@ -62,13 +62,13 @@ namespace ControlOptions
             }
         }
 
-        public void EnableMainPlayerInputs()
+        void EnableMainPlayerInputs()
         {
             PlayerInput.PlayerActions playerInput = InputManager.s_PlayerInput.Player;
             playerInput.Enable();
         }
 
-        public void DisableMainPlayerInputs()
+        void DisableMainPlayerInputs()
         {
             PlayerInput.PlayerActions playerInput = InputManager.s_PlayerInput.Player;
             playerInput.Disable();

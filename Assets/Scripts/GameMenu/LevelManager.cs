@@ -33,6 +33,11 @@ namespace Manager
             m_UiManager.LoadUI(m_LevelData.levelUIData, m_LevelData.dialogLevelData, m_EndconditionParentUI);
         }
 
+        protected virtual void Update()
+        {
+            AudioManager.s_Instance.Update();
+        }
+
         void OnDestroy()
         {
             if (AudioManager.s_Instance != null)
