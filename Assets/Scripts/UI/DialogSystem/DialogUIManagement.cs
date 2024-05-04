@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using Audio;
 using FMOD.Studio;
+using PlayerSystems.PlayerInput;
 
 namespace Dialog
 {
@@ -110,7 +111,7 @@ namespace Dialog
                 for (int j = 0; j < dialogInfos.loadedContent.args.Length; j++)
                 {
                     keybindsData = dialogInfos.loadedContent.args[j];
-                    inputActionArg = keybindsData.inputActionReference;
+                    inputActionArg = InputManager.s_PlayerInput.asset.FindAction(keybindsData.inputActionReference.action.id);
                     loadedKeys[j] = inputActionArg.GetBindingDisplayString(keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
                 }
             }
