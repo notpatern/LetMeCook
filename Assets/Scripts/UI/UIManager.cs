@@ -28,13 +28,6 @@ namespace UI
                 LoadPlayerHUDCanvas(levelUIData.playerHUBPrefab);
             }
 
-            if (levelUIData.pauseMenuPrefab)
-            {
-                LoadPauseMenu(levelUIData.pauseMenuPrefab);
-            }
-
-            LoadOptionsMenu(levelUIData.optionMenu, levelUIData.isPauseMenuChild);
-
             if (levelUIData.dialogMenu)
             {
                 LoadDialogsPanel(levelUIData.dialogMenu, dialogLevelData);
@@ -50,6 +43,13 @@ namespace UI
             {
                 LoadRecipeContentParent(levelUIData.recipeContentParent);
             }
+
+            if (levelUIData.pauseMenuPrefab)
+            {
+                LoadPauseMenu(levelUIData.pauseMenuPrefab);
+            }
+
+            LoadOptionsMenu(levelUIData.optionMenu, levelUIData.isPauseMenuChild);
 
             if (levelUIData.endScreenMenuPrefab)
             {

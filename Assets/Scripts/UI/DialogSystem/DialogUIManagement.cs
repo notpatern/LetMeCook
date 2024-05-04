@@ -149,7 +149,7 @@ namespace Dialog
             }
 
             //Stop dialog
-            if (dialogInfosQueue.Count == 0)
+            if (dialogInfosQueue.Count == 0 && !isMusicPlaying)
             {
                 SetActiveDialog(false);
             }
