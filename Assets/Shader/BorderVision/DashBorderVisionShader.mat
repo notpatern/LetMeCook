@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BorderVisionShader
+  m_Name: DashBorderVisionShader
   m_Shader: {fileID: -6465566751694194690, guid: 5caa0449946263d429f3f72c2a83a176,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,9 +38,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _IntersectionDepth: 0.95
+    - _NoiseIntersectionStrength: -1
+    - _NoiseScale: 500
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _IntersectionColor: {r: 1, g: 0.25943395, b: 0.25943395, a: 1}
+    - _NoiseDirection: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2576508990287729113
 MonoBehaviour:

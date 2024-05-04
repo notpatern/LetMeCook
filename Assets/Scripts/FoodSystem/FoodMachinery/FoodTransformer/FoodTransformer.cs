@@ -3,6 +3,7 @@ using ParticleSystemUtility;
 using UnityEngine;
 using UnityEngine.UI;
 using FoodSystem.FoodType;
+using TMPro;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
 {
@@ -28,6 +29,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         float _timer = 0f;
         [SerializeField] protected float cookingTime = 5f;
         protected bool _cooking = false;
+
         void Awake() 
         {
             loadPlayerTransformAtStart.BindEventAction(LoadPlayerTransform);

@@ -1,4 +1,5 @@
 using FoodSystem.FoodType;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FoodSystem.FoodMachinery
@@ -14,16 +15,21 @@ namespace FoodSystem.FoodMachinery
 
         private void OnTriggerStay(Collider other)
         {
-            OnTriggerEnter(other);
+            TriggerEnter(other);
         }
 
         void OnTriggerEnter(Collider other)
         {
+            TriggerEnter(other);
+        }
+
+        void TriggerEnter(Collider other)
+        {
             if (!canCollect) return;
-        
+
             MergedFood tempMergedFood = other.transform.GetComponent<MergedFood>();
             SimpleFood tempSimpleFood = other.transform.GetComponent<SimpleFood>();
-        
+
             if (tempMergedFood != null && collectMergedFood)
             {
                 collectedFood = tempMergedFood;
@@ -33,7 +39,7 @@ namespace FoodSystem.FoodMachinery
             else if (tempSimpleFood != null)
             {
                 collectedFood = tempSimpleFood;
-                collectedFoodData = new [] { tempSimpleFood.data };
+                collectedFoodData = new[] { tempSimpleFood.data };
             }
             else
                 return;
@@ -42,6 +48,8 @@ namespace FoodSystem.FoodMachinery
             collectedFoodGo.transform.rotation = Quaternion.identity;
             OnFoodCollected();
         }
+
+        protected virtual void UpdateFoodInRange(Food food, int amount) { }
 
         protected void ResetCollector()
         {
