@@ -75,23 +75,23 @@ public class EndScreenUI : MonoBehaviour
 
     void UpdateHighScore(LevelData levelData, int score)
     {
-        int[] reachedLevel = SaveSystem.GetSavedData().m_LevelHighScores;
+        int[] levelHighScores = SaveSystem.GetSavedData().m_LevelHighScores;
 
-        if(reachedLevel == null)
+        if(levelHighScores == null)
         {
-            reachedLevel = new int[levelData.levelID + 1];
+            levelHighScores = new int[levelData.levelID + 1];
         }
-        else if(reachedLevel.Length < levelData.levelID + 1)
+        else if(levelHighScores.Length < levelData.levelID + 1)
         {
-            Array.Resize(ref reachedLevel, levelData.levelID + 1);
-        }
-
-        if (score > reachedLevel[levelData.levelID])
-        {
-            reachedLevel[levelData.levelID] = score;
+            Array.Resize(ref levelHighScores, levelData.levelID + 1);
         }
 
-        SaveSystem.SaveLevelReached(reachedLevel);
+        if (score > levelHighScores[levelData.levelID])
+        {
+            levelHighScores[levelData.levelID] = score;
+        }
+
+        SaveSystem.SaveLevelReached(levelHighScores);
     }
 
     void LevelIsWin(LevelData nextLevelData)
