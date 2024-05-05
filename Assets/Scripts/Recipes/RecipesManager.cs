@@ -96,7 +96,7 @@ namespace RecipeSystem
             {
                 gameManager.ForceEndConditionTimerValue(0f);
             }
-            else if(activeRecipes.Count == 0)
+            else if(activeRecipes.Count == 0 && dataBase.randomFillerRecipes.Length > 0)
             {
                 AddNewRecipe(dataBase.randomFillerRecipes[UnityEngine.Random.Range(0, dataBase.randomFillerRecipes.Length)]);
             }
