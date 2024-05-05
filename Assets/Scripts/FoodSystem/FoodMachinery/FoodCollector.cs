@@ -1,5 +1,4 @@
 using FoodSystem.FoodType;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FoodSystem.FoodMachinery
