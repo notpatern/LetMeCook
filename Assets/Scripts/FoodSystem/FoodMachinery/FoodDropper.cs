@@ -13,6 +13,7 @@ namespace FoodSystem.FoodMachinery
         {
             animator.SetTrigger("GetFood");
             GameObject food = Instantiate(data.prefab);
+            food.GetComponent<Animator>().SetTrigger("FoodSpawn");
             return food;
         }
 

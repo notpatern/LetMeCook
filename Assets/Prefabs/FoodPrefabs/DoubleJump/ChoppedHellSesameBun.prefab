@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 6640363004773618717}
   - component: {fileID: 4033413389540713654}
   - component: {fileID: 8465984500107889973}
+  - component: {fileID: 6362060986086790034}
   m_Layer: 8
   m_Name: ChoppedHellSesameBun
   m_TagString: Untagged
@@ -429,6 +430,27 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &6362060986086790034
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7354829722045014985}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 122b4f235b7b0454fb0282f2b87be95a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8341028040781163438
 GameObject:
   m_ObjectHideFlags: 0
