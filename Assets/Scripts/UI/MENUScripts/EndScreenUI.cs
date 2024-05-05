@@ -73,7 +73,8 @@ public class EndScreenUI : MonoBehaviour
 
     void LevelIsWin(LevelData nextLevelData)
     {
-        int reachedLevel = SaveSystem.GetLevelReached();
+        SaveData saveData = SaveSystem.GetSavedData();
+        int reachedLevel = saveData.m_LevelReached;
 
         if (reachedLevel < nextLevelData.levelID)
         {

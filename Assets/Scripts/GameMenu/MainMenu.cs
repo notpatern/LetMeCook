@@ -51,7 +51,7 @@ public class MainMenu : LevelManager
 
     void LoadLevelSelectorBtn()
     {
-        int levelReached = SaveSystem.GetLevelReached();
+        int levelReached = SaveSystem.GetSavedData().m_LevelReached;
 
         m_LevelSelectorPanel.SetActive(false);
         m_LevelSelectorBtn.onClick.AddListener(() => { m_LevelSelectorPanel.SetActive(!m_LevelSelectorPanel.activeSelf); });
