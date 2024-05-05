@@ -33,11 +33,6 @@ namespace RecipeSystem.Core
             }
         }
 
-        void OnTriggerStay(Collider other)
-        {
-            OnTriggerEnter(other);
-        }
-
         protected virtual void OnFoodOk(int potentialRecipe)
         {
             postProcessingManager.ChangeChromaticAberration(1f, 2.5f);
