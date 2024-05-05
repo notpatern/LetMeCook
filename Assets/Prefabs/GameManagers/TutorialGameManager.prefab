@@ -214,6 +214,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3082236493205195409}
   m_SourcePrefab: {fileID: 100100000, guid: 5933f2b56aa15e2479ea94387f939071, type: 3}
+--- !u!114 &51638325655260492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1835037283676621339, guid: 5933f2b56aa15e2479ea94387f939071,
+    type: 3}
+  m_PrefabInstance: {fileID: 1855527471376418647}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710886817793294119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d58855a44564c04dbbbe56b2666530e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &710886817793294119 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1161290626882173040, guid: 5933f2b56aa15e2479ea94387f939071,
@@ -312,6 +324,7 @@ MonoBehaviour:
   mouthAnimator: {fileID: 5401288484746806525}
   receiveParticleParticles: {fileID: 917468930401981285, guid: 950cbe1f335a86249bf8c68803aea7c4,
     type: 3}
+  postProcessingManager: {fileID: 51638325655260492}
   m_TutorialgoalRecipesGaol: {fileID: 4699983668110006517}
 --- !u!4 &7304967354621683517 stripped
 Transform:
@@ -339,5 +352,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataBase: {fileID: 11400000, guid: 8a79171a686fbed4e961ba0ccaf7c189, type: 2}
   SpawnVoice3DPosition: {fileID: 6025927826224168583}
-  emptyRecipes: 0
   m_AudioQueueComponent: {fileID: 4464576755534187665}
