@@ -10,6 +10,7 @@ public class MainMenu : LevelManager
 
     [SerializeField] Button m_LevelSelectorBtn;
     [SerializeField] Button m_OptionBtn;
+    [SerializeField] Button m_QuitBtn;
 
     [SerializeField] InputManager m_InputManager;
 
@@ -30,6 +31,8 @@ public class MainMenu : LevelManager
 
         LoadLevelSelectorBtn();
         m_OptionBtn.onClick.AddListener(() => { m_UiManager.optionMenu.ToggleOptionMenu(); });
+
+        m_QuitBtn.onClick.AddListener(Application.Quit);
 
         LoadDefaultMusicVolumeSelection();
     }
