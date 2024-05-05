@@ -29,7 +29,7 @@ namespace GraphicsOption
         void LoadGraphicOptions()
         {
             LoadResolution();
-            isFullScreen = PlayerPrefs.GetInt("is_fullscreen", 0) != 0 ? true : false;
+            isFullScreen = PlayerPrefs.GetInt("is_fullscreen", 1) != 0 ? true : false;
             m_currentSelectedResolutionID = PlayerPrefs.GetInt("current_resolution_id", m_currentSelectedResolutionID);
             m_DirtySelectedResolutionID = m_currentSelectedResolutionID;
 
