@@ -1,3 +1,4 @@
+using PostProcessing;
 using UnityEngine;
 
 namespace RecipeSystem.Core
@@ -8,7 +9,7 @@ namespace RecipeSystem.Core
         [SerializeField] RecipesManager recipesManager;
         [SerializeField] Animator mouthAnimator;
         [SerializeField] GameObject receiveParticleParticles;
-
+        [SerializeField] PostProcessing.PostProcessingManager postProcessingManager;
         private void OnTriggerEnter(Collider other)
         {
             if (foodlayer == (foodlayer | (1 << other.gameObject.layer)))
@@ -34,6 +35,7 @@ namespace RecipeSystem.Core
 
         protected virtual void OnFoodOk(int potentialRecipe)
         {
+            postProcessingManager.ChangeChromaticAberration(1f, 2.5f);
             recipesManager.CompleteRecipe(potentialRecipe);
         }
     }

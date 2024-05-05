@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8980280446119190634}
   - component: {fileID: 859965252461806114}
+  - component: {fileID: 1835037283676621339}
   - component: {fileID: 4512533049172920879}
   m_Layer: 0
   m_Name: GameManager
@@ -55,6 +56,23 @@ MonoBehaviour:
   m_LoadPlayerTransform: {fileID: 11400000, guid: f7c4a8211971b4846a78dbe99dafeb68,
     type: 2}
   m_RecipesManager: {fileID: 3800780351969097613}
+--- !u!114 &1835037283676621339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161290626882173040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d58855a44564c04dbbbe56b2666530e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PostProcessorReferenceEvent: {fileID: 11400000, guid: 8a4595aca153138479f9a298f0a6167c,
+    type: 2}
+  m_GlobalVolume: {fileID: 4512533049172920879}
+  m_ChromaticAberrationOffset: 0.5
+  m_ChromaticAberrationSpeed: 1
 --- !u!114 &4512533049172920879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +248,7 @@ MonoBehaviour:
   mouthAnimator: {fileID: 5995719528764605354}
   receiveParticleParticles: {fileID: 917468930401981285, guid: 950cbe1f335a86249bf8c68803aea7c4,
     type: 3}
+  postProcessingManager: {fileID: 1835037283676621339}
 --- !u!1 &7014398351059477928
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +299,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataBase: {fileID: 11400000, guid: 92d52b1d7be892248a84b8b5569d2825, type: 2}
   SpawnVoice3DPosition: {fileID: 7880351229194862587}
-  emptyRecipes: 0
   m_AudioQueueComponent: {fileID: 2609119655864437702}
 --- !u!114 &2609119655864437702
 MonoBehaviour:
