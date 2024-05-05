@@ -79,7 +79,7 @@ public class SaveSystem : MonoBehaviour
     public static void SaveLevelReached(int[] levelReached)
     {
         SaveData saveData = GetSavedData();
-        saveData.m_LevelScores = levelReached;
+        saveData.m_LevelHighScores = levelReached;
 
         SaveLevelReached(saveData);
     }
@@ -88,11 +88,11 @@ public class SaveSystem : MonoBehaviour
 public class SaveData
 {
     public int m_LevelReached = 0;
-    public int[] m_LevelScores = new int[0];
+    public int[] m_LevelHighScores = new int[0];
 
     public SaveData(int levelReached, int[] levelScores) 
     {
         m_LevelReached = levelReached;
-        m_LevelScores = levelScores;
+        m_LevelHighScores = levelScores;
     }
 }

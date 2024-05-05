@@ -1,6 +1,6 @@
 using ControlOptions;
+using System;
 using System.Collections;
-using TimeOption;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -33,7 +33,7 @@ public class EndScreenUI : MonoBehaviour
         m_PanelContent.SetActive(state);
     }
 
-    public void InitEndScreen(TempScoreContainer playerScore, LevelData nextLevelData)
+    public void InitEndScreen(TempScoreContainer playerScore, LevelData nextLevelData, LevelData levelData)
     {
         score = playerScore;
         m_EndScreenAnimator.SetTrigger("Start");
@@ -41,7 +41,9 @@ public class EndScreenUI : MonoBehaviour
         ControlOptionsManagement.SetCursorIsPlayMode(false);
         ControlOptionsManagement.s_Instance.UpdateIsMainControlsActivated(false);
 
-        m_ScoreText.text = playerScore.m_Score + "pts";
+        UpdateHighScore(levelData, playerScore.m_Score);
+
+        m_ScoreText.text = playerScore.m_Score + "pts (High Score : " + SaveSystem.GetSavedData().m_LevelHighScores[levelData.levelID] + ")";
         m_CompletedRecipesRateText.text = Mathf.RoundToInt(playerScore.m_CompletedRecipes / (float)playerScore.m_TotalRecipes * 100) + "%" + " Completion Rate";
         m_CompletedRecipes.text = playerScore.m_CompletedRecipes + " Finished Recipes";
         m_MissedRecipes.text = (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes) + " Missed Recipes";
@@ -71,10 +73,30 @@ public class EndScreenUI : MonoBehaviour
         m_RestartLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
+    void UpdateHighScore(LevelData levelData, int score)
+    {
+        int[] reachedLevel = SaveSystem.GetSavedData().m_LevelHighScores;
+
+        if(reachedLevel == null)
+        {
+            reachedLevel = new int[levelData.levelID + 1];
+        }
+        else if(reachedLevel.Length < levelData.levelID + 1)
+        {
+            Array.Resize(ref reachedLevel, levelData.levelID + 1);
+        }
+
+        if (score > reachedLevel[levelData.levelID])
+        {
+            reachedLevel[levelData.levelID] = score;
+        }
+
+        SaveSystem.SaveLevelReached(reachedLevel);
+    }
+
     void LevelIsWin(LevelData nextLevelData)
     {
-        SaveData saveData = SaveSystem.GetSavedData();
-        int reachedLevel = saveData.m_LevelReached;
+        int reachedLevel = SaveSystem.GetSavedData().m_LevelReached;
 
         if (reachedLevel < nextLevelData.levelID)
         {

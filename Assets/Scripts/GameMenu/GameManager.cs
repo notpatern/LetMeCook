@@ -58,7 +58,7 @@ namespace Manager
             m_Player.gameObject.SetActive(false);
             m_MusicManager.IncreaseMusicTypeOffsetAmount();
             m_UiManager.pauseMenu.SetBlockPauseMenu(true, true);
-            m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(m_Score, m_RecipesNb, m_CompletedRecipes, m_LevelData.requiredScore, m_Player.GetGroundedTime()), m_NextLevelData);
+            m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(m_Score, m_RecipesNb, m_CompletedRecipes, m_LevelData.requiredScore, m_Player.GetGroundedTime()), m_NextLevelData, m_LevelData);
             m_UiManager.endScreen.SetActive(true);
         }
 
