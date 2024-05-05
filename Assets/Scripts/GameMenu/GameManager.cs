@@ -31,6 +31,15 @@ namespace Manager
             m_LevelDuration = m_RecipesManager.GetLevelDurationBasedOnRecipesDataBase();
 
             InitEndCondition();
+
+            int[] levelHigScore = SaveSystem.GetSavedData().m_LevelHighScores;
+            if(levelHigScore != null)
+            {
+                foreach (int t in levelHigScore)
+                {
+                    Debug.Log(t);
+                }
+            }
         }
 
         protected virtual void InitRecipeManager()
