@@ -15,6 +15,7 @@ namespace RecipeSystem.Core
         [SerializeField] GameObject rectList;
         [SerializeField] GameObject lastRecipeIndicator;
         [SerializeField] TMP_Text scoreGive;
+        [SerializeField] TMP_Text recipeTime;
         public GameRecipe gameRecipe;
 
         public void Init(GameRecipe recipe, Transform parent, bool isLastRecipe)
@@ -51,6 +52,8 @@ namespace RecipeSystem.Core
 
             timeVisual.color = timeColor;
             background.color = timeColor;
+
+            recipeTime.text = Mathf.FloorToInt(gameRecipe.timeRemaining) + "s";
         }
     }
 }
