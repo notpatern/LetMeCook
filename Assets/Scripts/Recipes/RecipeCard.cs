@@ -14,6 +14,7 @@ namespace RecipeSystem.Core
         [SerializeField] GameObject ingredientPrefab;
         [SerializeField] GameObject rectList;
         [SerializeField] GameObject lastRecipeIndicator;
+        [SerializeField] TMP_Text scoreGive;
         public GameRecipe gameRecipe;
 
         public void Init(GameRecipe recipe, Transform parent, bool isLastRecipe)
@@ -38,6 +39,8 @@ namespace RecipeSystem.Core
 
                 lastIngredient = ingredient;
             }
+
+            scoreGive.text = "+" + gameRecipe.recipe.addedScore;
         }
 
         void Update()
