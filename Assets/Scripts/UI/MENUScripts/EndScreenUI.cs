@@ -43,8 +43,10 @@ public class EndScreenUI : MonoBehaviour
 
         UpdateHighScore(levelData, playerScore.m_Score);
 
+        int completionRate = Mathf.RoundToInt(playerScore.m_CompletedRecipes / (float)playerScore.m_TotalRecipes * 100);
+
         m_ScoreText.text = playerScore.m_Score + "pts (High Score : " + SaveSystem.GetSavedData().m_LevelHighScores[levelData.levelID] + ")";
-        m_CompletedRecipesRateText.text = Mathf.RoundToInt(playerScore.m_CompletedRecipes / (float)playerScore.m_TotalRecipes * 100) + "%" + " Completion Rate";
+        m_CompletedRecipesRateText.text = completionRate + "%" + " Completion Rate";
         m_CompletedRecipes.text = playerScore.m_CompletedRecipes + " Finished Recipes";
         m_MissedRecipes.text = (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes) + " Missed Recipes";
         m_GroundedTime.text = playerScore.m_PlayerGroundedTime.ToString("0.#") + "s" + " Spend on the Ground";
@@ -64,7 +66,7 @@ public class EndScreenUI : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ActiveStarWithOffsetTransition(playerScore.m_RequiredScore));
+            StartCoroutine(ActiveStarWithOffsetTransition(completionRate));
             LevelIsWin(nextLevelData);
             m_NextLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(nextLevelData.linkedScenePath));
         }
@@ -104,18 +106,18 @@ public class EndScreenUI : MonoBehaviour
         }
     }
 
-    IEnumerator ActiveStarWithOffsetTransition(int minimumRequiredScoreOverflow)
+    IEnumerator ActiveStarWithOffsetTransition(int completionRate)
     {
         
         m_ActiveStarsGo[0].SetActive(true);
         yield return new WaitForSeconds(m_StarActivationTransitionTime);
 
-        if (score.m_Score >= minimumRequiredScoreOverflow * 2)
+        if (completionRate >= 50)
         {
             m_ActiveStarsGo[1].SetActive(true);
             yield return new WaitForSeconds(m_StarActivationTransitionTime);
         }
-        if (score.m_CompletedRecipes == (float)score.m_TotalRecipes)
+        if (completionRate >= 100)
         {
             m_ActiveStarsGo[2].SetActive(true);
             yield return new WaitForSeconds(m_StarActivationTransitionTime);
