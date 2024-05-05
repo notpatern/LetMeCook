@@ -91,7 +91,6 @@ namespace RecipeSystem
 
             recipeUI.RemoveCard(gameRecipe);
             activeRecipes.RemoveAt(recipeId);
-            recipesRemoved++;
 
             if (dataBase.recipesContainers.Length - recipesRemoved == 0)
             {
@@ -100,6 +99,10 @@ namespace RecipeSystem
             else if(activeRecipes.Count == 0)
             {
                 AddNewRecipe(dataBase.randomFillerRecipes[UnityEngine.Random.Range(0, dataBase.randomFillerRecipes.Length)]);
+            }
+            else
+            {
+                recipesRemoved++;
             }
 
             return true;
