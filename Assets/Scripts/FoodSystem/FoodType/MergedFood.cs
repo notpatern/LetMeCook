@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using RecipeSystem;
 
 namespace FoodSystem.FoodType
 {
@@ -11,7 +12,30 @@ namespace FoodSystem.FoodType
         [SerializeField] Transform cookedCanvasContent;
         [SerializeField] GameObject contentItemPrefab;
 
+        [SerializeField] GameEventScriptableObject onUpdateRecipeListGiveRecipeManager;
+
+        [SerializeField] MeshRenderer crystalMeshRenderer;
+        [SerializeField] Material existingRecipe;
+        [SerializeField] Material nonExistingRecipe;
+
         List<MergedFoodUIItem> mergedFoodUIItems = new List<MergedFoodUIItem>();
+
+        RecipesManager recipesManager;
+
+        void Awake()
+        {
+            onUpdateRecipeListGiveRecipeManager.BindEventAction(OnUpdateRecipeListGiveRecipeManager);
+        }
+
+        public void Init(RecipesManager recipesManager)
+        {
+            this.recipesManager = recipesManager;
+        }
+
+        void OnUpdateRecipeListGiveRecipeManager(object arg)
+        {
+            crystalMeshRenderer.material = recipesManager.GetRecipeFoodId(this) > -1 ? existingRecipe : nonExistingRecipe;
+        }
 
         public override string GetContext() => "food bag";
 
@@ -19,6 +43,8 @@ namespace FoodSystem.FoodType
         {
             data.Add(newFood.data);
             AddFoodInUIContent(newFood.data);
+
+            OnUpdateRecipeListGiveRecipeManager(null);
         }
 
         public override void AddFood(MergedFood mergedFood)
@@ -29,6 +55,8 @@ namespace FoodSystem.FoodType
 
                 AddFoodInUIContent(foodData);
             }
+
+            OnUpdateRecipeListGiveRecipeManager(null);
         }
 
         void AddFoodInUIContent(FoodData foodData)

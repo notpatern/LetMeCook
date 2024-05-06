@@ -23,10 +23,11 @@ namespace Manager
         override protected void Awake()
         { 
             base.Awake();
-            m_Player.Init();
-            m_Player.InitUI(m_UiManager);
 
             InitRecipeManager();
+
+            m_Player.Init(m_RecipesManager);
+            m_Player.InitUI(m_UiManager);
 
             m_LevelDuration = m_RecipesManager.GetLevelDurationBasedOnRecipesDataBase();
 

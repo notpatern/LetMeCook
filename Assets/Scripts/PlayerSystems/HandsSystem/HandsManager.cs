@@ -4,6 +4,7 @@ using UnityEngine;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
 using Audio;
+using RecipeSystem;
 
 namespace PlayerSystems.HandsSystem
 {
@@ -29,10 +30,12 @@ namespace PlayerSystems.HandsSystem
         [SerializeField] GemBraceletVisual[] m_GemBraceletMoveTechVisual;
 
         Transform m_CameraTr;
+        RecipesManager m_RecipeManager;
 
-        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator, Transform cameraTr)
+        public void Init(Rigidbody momentumRb, Animator playerPrefabAnimator, Transform cameraTr, RecipesManager recipeManager)
         {
             m_CameraTr = cameraTr;
+            m_RecipeManager = recipeManager;
             m_LeftHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, ClearHandMoveTech);
             m_RightHand.InitData(m_ThrowForce, momentumRb, m_ThrowMomentumForwardDirection, m_ThrowMomentumPlayerRb, playerPrefabAnimator, m_GrabbedFoodParticlePrefab, cameraTr, ClearHandMoveTech);
 
@@ -308,6 +311,7 @@ namespace PlayerSystems.HandsSystem
             //Replace simpleFood in hand with a Merged food
             GameObject handMergedGo = UnityEngine.Object.Instantiate(m_MergedFoodPrefab);
             MergedFood mergedFood = handMergedGo.GetComponent<MergedFood>();
+            mergedFood.Init(m_RecipeManager);
             mergedFood.AddFood(simpleToReplace);
 
             handToReplace.DestroyFood();

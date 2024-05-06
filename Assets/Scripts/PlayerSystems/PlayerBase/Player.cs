@@ -1,4 +1,3 @@
-
 using PlayerSystems.HandsSystem;
 using PlayerSystems.MovementFSMCore;
 using PlayerSystems.PlayerInput;
@@ -17,14 +16,14 @@ namespace PlayerSystems.PlayerBase
         [SerializeField] Animator m_PlayerPrefabAnimator;
         [SerializeField] MovementFsmCore m_MovementFsmCore;
 
-        public void Init()
+        public void Init(RecipeSystem.RecipesManager recipesManager)
         {
             m_PlayerInteraction.InitPlayerInteraction(m_HandsManager);
             m_PlayerInteraction.BindPerformInteraction(m_HandsManager.UseHand);
             m_InputManager.BindHandAction(m_PlayerInteraction.ActiveInteraction);
             m_InputManager.BindMergeHandInput(m_HandsManager.MergeFood);
 
-            m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator, m_MovementFsmCore.camera);
+            m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator, m_MovementFsmCore.camera, recipesManager);
             InitFsmCore();
         }
 

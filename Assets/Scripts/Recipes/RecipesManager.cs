@@ -21,6 +21,8 @@ namespace RecipeSystem
 
         [SerializeField] AudioQueueComponent m_AudioQueueComponent;
 
+        [SerializeField] GameEventScriptableObject m_OnUpdateRecipeListGiveRecipeManager;
+
         public void Init(GameManager gameManager, RecipeUI recipeUI)
         {
             this.gameManager = gameManager;
@@ -76,6 +78,8 @@ namespace RecipeSystem
 
             gameManager.AddRecipesCount(1);
 
+            m_OnUpdateRecipeListGiveRecipeManager.TriggerEvent(null);
+
             return newGameRecipe;
         }
 
@@ -98,12 +102,14 @@ namespace RecipeSystem
             }
             else if(activeRecipes.Count == 0 && dataBase.randomFillerRecipes.Length > 0)
             {
-                AddNewRecipe(dataBase.randomFillerRecipes[UnityEngine.Random.Range(0, dataBase.randomFillerRecipes.Length)]);
+                AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)]);
             }
             else
             {
                 recipesRemoved++;
             }
+
+            m_OnUpdateRecipeListGiveRecipeManager.TriggerEvent(null);
 
             return true;
         }
