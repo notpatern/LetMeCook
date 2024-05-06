@@ -25,9 +25,12 @@ namespace Dialog
         PLAYBACK_STATE currentPbState;
         //
 
-        const string c_ALPHACOLOR = "<color=#00000000>";
+        const string c_ALPHACOLOR = "<size=0><color=00000000>";
+        const string c_KEYOPTIONS = "<b><color=#FE4119FF>[";
+        const string c_KEYENDOPTIONS = "]</b></color>";
 
         bool isMusicPlaying = false;
+        Coroutine currentDialog;
 
         public void Init(DialogLevelData dialogLevelData)
         {
@@ -39,8 +42,13 @@ namespace Dialog
 
         void Update()
         {
-            if (isMusicPlaying)
+            if (isMusicPlaying && !isInDialog)
             {
+                if(!isInDialog && dialogInfosQueue.Count > 0)
+                {
+                    currentVoice.stop(STOP_MODE.IMMEDIATE);
+                }
+
                 currentVoice.getPlaybackState(out currentPbState);
                 if (currentPbState == PLAYBACK_STATE.STOPPED)
                 {
@@ -48,7 +56,7 @@ namespace Dialog
 
                     if (dialogInfosQueue.Count > 0)
                     {
-                        StartCoroutine(StartDialog());
+                        StartCoroutine(StartDialog(false));
                     }
                     else
                     {
@@ -60,22 +68,26 @@ namespace Dialog
 
         void OnStartDialogEvent(object args)
         {
-            StartDialogQueue((DialogInfos)args);
+            StartDialogQueue((DialogInfos)args, true);
         }
 
-        public bool StartDialogQueue(DialogInfos dialogInfos)
-
+        public bool StartDialogQueue(DialogInfos dialogInfos, bool overrideLastDialog)
         {
             dialogInfosQueue.Enqueue(dialogInfos);
+           
+            if (!overrideLastDialog && isInDialog) return false;
 
-            if (isInDialog || isMusicPlaying) return false;
+            if(currentDialog != null)
+            {
+                StopCoroutine(currentDialog);
+            }
 
-            StartCoroutine(StartDialog());
+            currentDialog = StartCoroutine(StartDialog(overrideLastDialog));
 
             return true;
         }
 
-        IEnumerator StartDialog()
+        IEnumerator StartDialog(bool overrideLastDialog)
         {
             DialogInfos dialogInfos = dialogInfosQueue.Dequeue();
             string displayText = "";
@@ -92,6 +104,11 @@ namespace Dialog
             KeybindsData keybindsData;
             string[] loadedKeys = new string[dialogInfos.loadedContent.args.Length];
 
+            if(isMusicPlaying && overrideLastDialog)
+            {
+                currentVoice.stop(STOP_MODE.IMMEDIATE);
+            }
+
             if (!dialogInfos.audioVoice.IsNull)
             {
                 currentVoice = AudioManager.s_Instance.CreateInstance(dialogInfos.audioVoice);
@@ -106,12 +123,11 @@ namespace Dialog
 
             if (dialogInfos.loadedContent.args.Length > 0)
             {
-                loadedKeys = new string[dialogInfos.loadedContent.args.Length];
                 for (int j = 0; j < dialogInfos.loadedContent.args.Length; j++)
                 {
                     keybindsData = dialogInfos.loadedContent.args[j];
                     inputActionArg = InputManager.s_PlayerInput.asset.FindAction(keybindsData.inputActionReference.action.id);
-                    loadedKeys[j] = inputActionArg.GetBindingDisplayString(keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+                    loadedKeys[j] = c_KEYOPTIONS + inputActionArg.GetBindingDisplayString(keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames) + c_KEYENDOPTIONS;
                 }
             }
 
@@ -129,9 +145,18 @@ namespace Dialog
                 }
 
                 alphaIndex = 0;
+                bool isBaliseOpended = false;
                 foreach (char c in defaultLoadedText)
                 {
-                    alphaIndex++;
+                    int offset = ReturnBaliseOffset(ref isBaliseOpended, defaultLoadedText, alphaIndex);
+                    
+                    alphaIndex += offset;
+
+                    if(alphaIndex > defaultLoadedText.Length)
+                    {
+                        alphaIndex = defaultLoadedText.Length;
+                    }
+
                     displayText = defaultLoadedText.Insert(alphaIndex, c_ALPHACOLOR);
                     dialogText.text = displayText;
 
@@ -140,8 +165,7 @@ namespace Dialog
 
                 if (i + 1 < dialogInfos.loadedContent.loadedString.Length)
                 {
-                    displayText = defaultLoadedText + "...";
-                    dialogText.text = displayText;
+                    dialogText.text = defaultLoadedText + "...";
                 }
 
 
@@ -156,8 +180,53 @@ namespace Dialog
             else if(!isMusicPlaying)
             {
                 //continue dialogs queue
-                StartCoroutine(StartDialog());
+                StartCoroutine(StartDialog(overrideLastDialog));
             }
+            else
+            {
+                isInDialog = false;
+            }
+        }
+
+        int ReturnBaliseOffset(ref bool isBaliseOpended, string defaultLoadedText, int alphaIndex)
+        {
+            if (isBaliseOpended)
+            {
+                if (CheckForBaliseAndReturnOffset(defaultLoadedText, c_KEYENDOPTIONS, alphaIndex))
+                {
+                    isBaliseOpended = false;
+                    return c_KEYENDOPTIONS.Length;
+                }
+            }
+            else
+            {
+                if (CheckForBaliseAndReturnOffset(defaultLoadedText, c_KEYOPTIONS, alphaIndex))
+                {
+                    isBaliseOpended = true;
+                    return c_KEYOPTIONS.Length;
+                }
+            }
+
+            return 1;
+        }
+
+        bool CheckForBaliseAndReturnOffset(string data, string balise, int alphaIndex)
+        {
+            if (data.Length - alphaIndex >= balise.Length && data[alphaIndex] == balise[0])
+            {
+                for (int j = 0; j < balise.Length; j++)
+                {
+                    if (data[alphaIndex + j] != balise[j])
+                    {
+                        return false;
+                    }
+
+                }
+
+                return true;
+            }
+
+            return false;
         }
 
         void SetActiveDialog(bool state)
