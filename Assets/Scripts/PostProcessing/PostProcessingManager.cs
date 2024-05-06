@@ -13,12 +13,15 @@ namespace PostProcessing
         [SerializeField] float m_ChromaticAberrationSpeed = 1f;
         ChromaticAberration m_ChromaticAberration;
         float m_DefaultChromaticAberration;
+        bool m_DefaultChromaticAberrationStartActivationState;
+        Coroutine m_CurrentChromaticAberation;
 
         void Awake()
         {
             if (m_GlobalVolume.profile.TryGet(out m_ChromaticAberration))
             {
                 m_DefaultChromaticAberration = m_ChromaticAberration.intensity.value;
+                m_DefaultChromaticAberrationStartActivationState = m_ChromaticAberration.active;
             }
             else
             {
@@ -33,7 +36,12 @@ namespace PostProcessing
 
         public void ChangeChromaticAberration(float value, float duration)
         {
-            StartCoroutine(ChangeChromaticAbberationInTimeCoroutine(value, duration));
+            if(m_CurrentChromaticAberation != null)
+            {
+                StopCoroutine(m_CurrentChromaticAberation);
+            }
+
+            m_CurrentChromaticAberation = StartCoroutine(ChangeChromaticAbberationInTimeCoroutine(value, duration));
         }
 
         IEnumerator ChangeChromaticAbberationInTimeCoroutine(float value, float duration)
@@ -60,7 +68,8 @@ namespace PostProcessing
             }
 
             m_ChromaticAberration.intensity.value = m_DefaultChromaticAberration;
-            m_ChromaticAberration.active = false;
+            m_ChromaticAberration.active = m_DefaultChromaticAberrationStartActivationState;
+            m_CurrentChromaticAberation = null;
         }
     }
 }
