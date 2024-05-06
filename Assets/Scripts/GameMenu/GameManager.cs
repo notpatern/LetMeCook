@@ -32,7 +32,6 @@ namespace Manager
             m_LevelDuration = m_RecipesManager.GetLevelDurationBasedOnRecipesDataBase();
 
             InitEndCondition();
-            m_UiManager.UpdateScore(m_Score);
         }
 
         protected virtual void InitRecipeManager()

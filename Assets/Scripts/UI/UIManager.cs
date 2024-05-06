@@ -70,13 +70,13 @@ namespace UI
 
         void LoadScoreWorldUI(GameObject scorePrefab, Transform parent)
         {
-            scoreText = Object.Instantiate(scorePrefab, parent).GetComponent<EndConditionUI>().GetComponent<TMP_Text>();
+            scoreText = Object.Instantiate(scorePrefab, parent).GetComponent<TMP_Text>();
             UpdateScore(0);
         }
 
         public void UpdateScore(int amount)
         {
-            scoreText.text = amount.ToString();
+            scoreText.text = "! " + amount + " !";
         }
 
         void LoadEndConditionUI(GameObject endConditionPrefab, Transform parent)
