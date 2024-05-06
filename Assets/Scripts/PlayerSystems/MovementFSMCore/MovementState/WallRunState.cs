@@ -1,5 +1,6 @@
 
 using PlayerSystems.MovementFSMCore.MovementContext;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,14 +25,16 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
             float[] fovValues = { fsmCore.cameraData.wallRunFov, fsmCore.cameraData.wallRunFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
-            
+
             if (_context.wallRight)
             {
-                fsmCore.onTiltChange.TriggerEvent(fsmCore.cameraData.wallRunTilt);
+                float[] zTilt = { fsmCore.cameraData.wallRunTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
+                fsmCore.onTiltChange.TriggerEvent(zTilt);
             }
             else
             {
-                fsmCore.onTiltChange.TriggerEvent(-fsmCore.cameraData.wallRunTilt);
+                float[] zTilt = { -fsmCore.cameraData.wallRunTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
+                fsmCore.onTiltChange.TriggerEvent(zTilt);
             }
             var velocity = fsmCore.rb.velocity;
             velocity = new Vector3(velocity.x, 0f, velocity.z);
@@ -105,7 +108,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         {
             float[] fovValues = { fsmCore.cameraData.defaultFov, fsmCore.cameraData.defaultFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
-            fsmCore.onTiltChange.TriggerEvent(fsmCore.cameraData.defaultTilt);
+            float[] zTilt = { fsmCore.cameraData.defaultTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
+            fsmCore.onTiltChange.TriggerEvent(zTilt);
             fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, fsmCore.canJump, true, fsmCore.canWallRun, _context.wallInfo));
         }
     }

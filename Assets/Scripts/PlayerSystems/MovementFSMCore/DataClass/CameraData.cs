@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace PlayerSystems.MovementFSMCore.DataClass
 {
@@ -13,6 +12,7 @@ namespace PlayerSystems.MovementFSMCore.DataClass
         public float dashFovTimeToSet;
         public float wallRunFov;
         public float wallRunFovTimeToSet;
+        public float wallRunTiltTimeToSet;
         public float wallRunTilt;
     }
 }

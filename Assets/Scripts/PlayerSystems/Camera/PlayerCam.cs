@@ -51,8 +51,9 @@ namespace PlayerSystems.Camera
 
         void DoTilt(object zTiltValue)
         {
-            transform.DOLocalRotate(new Vector3(0, 0, (float)zTiltValue), 0.25f);
-            _handCamera.DOLocalRotate(new Vector3(0, 0, (float)zTiltValue), 0.25f);
+            var array = (float[])zTiltValue;
+            transform.DOLocalRotate(new Vector3(0, 0, array[0]), array[1]);
+            _handCamera.DOLocalRotate(new Vector3(0, 0, array[0]), array[1]);
         }
     }
 }

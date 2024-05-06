@@ -14,6 +14,10 @@ namespace ItemLaunch
         [SerializeField, Range(0, 1)] float t1 = 0.5f;
         [SerializeField, Range(0, 1)] float t2 = 0.3f;
 
+        [SerializeField] LineRenderer lineRenderer;
+        int numPoints = 50;
+        Vector3[] positions = new Vector3[50];
+
         [Header("Throw Property")]
         [Range(0.01f, 2f)] public float throwSpeed;
 
@@ -22,7 +26,34 @@ namespace ItemLaunch
         public Vector3 StartTangent => Vector3.Lerp(StartPoint, EndPoint, t1) + Vector3.up * height;
         public Vector3 EndTangent => Vector3.Lerp(EndPoint, StartPoint, t2) + Vector3.up * height;
 
-        #if UNITY_EDITOR
+        private void Start()
+        {
+            lineRenderer.positionCount = positions.Length;
+            DrawCubicCurve();
+        }
+
+        void DrawCubicCurve()
+        {
+            for (int i = 0; i < numPoints; i++)
+            {
+                float _t = i / (float)numPoints;
+                positions[i] = BezierCubicAlgorithm(_t);
+            }
+            lineRenderer.SetPositions(positions);
+        }
+
+        Vector3 BezierCubicAlgorithm(float currentT)
+        {
+            Vector3 a = Vector3.Lerp(StartPoint, StartTangent, currentT);
+            Vector3 b = Vector3.Lerp(StartTangent, EndTangent, currentT);
+            Vector3 c = Vector3.Lerp(EndTangent, EndPoint, currentT);
+            Vector3 d = Vector3.Lerp(a, b, currentT);
+            Vector3 e = Vector3.Lerp(b, c, currentT);
+
+            return Vector3.Lerp(d, e, currentT);
+        }
+
+#if UNITY_EDITOR
         void OnDrawGizmos()
         {
             if (!debugMode)
