@@ -6,7 +6,7 @@ namespace ItemLaunch
     public class ItemLauncher : MonoBehaviour
     {
         [SerializeField] bool debugMode = true;
-    
+
         [Header("Curve Properties")]
         public Transform spawnPoint;
         [SerializeField] Transform endPoint;
@@ -14,12 +14,21 @@ namespace ItemLaunch
         [SerializeField, Range(0, 1)] float t1 = 0.5f;
         [SerializeField, Range(0, 1)] float t2 = 0.3f;
 
+        [HideInInspector] public bool state = false;
+        [HideInInspector] public float curveFadeTime;
+        float timer = 0;
+        float lerpDelta = 0;
+        bool isTransitionning = false;
+        int lerpDirection = 1;
+
         [SerializeField] LineRenderer lineRenderer;
+        [SerializeField] float width;
         int numPoints = 50;
         Vector3[] positions = new Vector3[50];
 
         [Header("Throw Property")]
         [Range(0.01f, 2f)] public float throwSpeed;
+
 
         public Vector3 StartPoint => spawnPoint.position;
         public Vector3 EndPoint => endPoint.position;
@@ -29,7 +38,47 @@ namespace ItemLaunch
         private void Start()
         {
             lineRenderer.positionCount = positions.Length;
+            lineRenderer.widthMultiplier = 0;
             DrawCubicCurve();
+        }
+
+        public void ChangeState(bool state)
+        {
+            this.state = state;
+            isTransitionning = true;
+        }
+
+        private void Update()
+        {
+            if (isTransitionning)
+            {
+                timer += Time.deltaTime;
+                lerpDelta += Time.deltaTime / curveFadeTime * lerpDirection;
+
+                UpdateMovement();
+
+                if (timer >= curveFadeTime)
+                {
+                    isTransitionning = false;
+                    timer = 0f;
+                    lerpDelta = 0f;
+                }
+            }
+        }
+
+        void UpdateMovement()
+        {
+            float multiplier = 0;
+            if (state)
+            {
+                multiplier = lerpDelta;
+            }
+            else
+            {
+                multiplier = 1 - lerpDelta;
+            }
+
+            lineRenderer.widthMultiplier = width * multiplier;
         }
 
         void DrawCubicCurve()

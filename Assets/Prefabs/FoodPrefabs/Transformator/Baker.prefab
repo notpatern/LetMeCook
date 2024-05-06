@@ -177,6 +177,7 @@ MonoBehaviour:
   progressFill: {fileID: 6123233011037439801}
   animator: {fileID: 3908404589749268418}
   cookParticleInstanceManager: {fileID: 6968986569004081372}
+  curveFadeTime: 2
   cookingFoodPos: {fileID: 6012026790291789977}
   cookingTime: 5
 --- !u!114 &7674622604260740335
@@ -197,7 +198,10 @@ MonoBehaviour:
   height: 9
   t1: 0.5
   t2: 0.3
+  state: 0
+  curveFadeTime: 0
   lineRenderer: {fileID: 8251949889771960403}
+  width: 0.7
   throwSpeed: 1
 --- !u!95 &3908404589749268418
 Animator:

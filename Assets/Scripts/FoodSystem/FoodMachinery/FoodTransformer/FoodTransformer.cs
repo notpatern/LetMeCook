@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using FoodSystem.FoodType;
 using TMPro;
+using Unity.VisualScripting;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
 {
@@ -20,6 +21,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         Transform playerTr;
         [SerializeField] Animator animator;
         [SerializeField] ParticleInstanceManager cookParticleInstanceManager;
+        [SerializeField] float curveFadeTime;
 
         protected ItemLauncher launcher;
 
@@ -41,6 +43,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         protected virtual void Start()
         {
+            launcher.curveFadeTime = curveFadeTime;
             cookParticleInstanceManager.Stop(false);
         }
 
@@ -65,6 +68,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 ResetCollector();
                 return;
             }
+
+            launcher.ChangeState(true);
 
             cookParticleInstanceManager.Play();
             animator.SetTrigger("Cook");
@@ -96,11 +101,15 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             }
             else
                 ReleaseFood();
+
+            
         }
 
         protected virtual void ReleaseFood()
         {
             Destroy(collectedFoodGo);
+
+            launcher.ChangeState(false);
 
             cookParticleInstanceManager.Stop(false);
             animator.SetTrigger("Throw");

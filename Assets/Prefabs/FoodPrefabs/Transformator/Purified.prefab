@@ -9844,6 +9844,7 @@ MonoBehaviour:
   progressFill: {fileID: 1015994563005632271}
   animator: {fileID: 2655264467435653161}
   cookParticleInstanceManager: {fileID: 5320820010052261853}
+  curveFadeTime: 2
   cookingFoodPos: {fileID: 4132198806565389892}
   cookingTime: 8
   m_AnnimationStartPos: {fileID: 4069149557427122810}
@@ -9867,7 +9868,10 @@ MonoBehaviour:
   height: 14.1
   t1: 0.41
   t2: 0.15
+  state: 0
+  curveFadeTime: 0
   lineRenderer: {fileID: 5533143550226195400}
+  width: 0.7
   throwSpeed: 0.8
 --- !u!65 &-5458143480275879100
 BoxCollider:
