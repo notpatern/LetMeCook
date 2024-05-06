@@ -95,6 +95,7 @@ namespace RecipeSystem
 
             recipeUI.RemoveCard(gameRecipe);
             activeRecipes.RemoveAt(recipeId);
+            recipesRemoved++;
 
             if (dataBase.recipesContainers.Length - recipesRemoved == 0)
             {
@@ -103,10 +104,7 @@ namespace RecipeSystem
             else if(activeRecipes.Count == 0 && dataBase.randomFillerRecipes.Length > 0)
             {
                 AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)]);
-            }
-            else
-            {
-                recipesRemoved++;
+                recipesRemoved--;
             }
 
             m_OnUpdateRecipeListGiveRecipeManager.TriggerEvent(null);
@@ -180,7 +178,7 @@ namespace RecipeSystem
 
         public float GetLevelDurationBasedOnRecipesDataBase()
         {
-            float result = 0f;
+            float result = dataBase.m_StartPeriodOffset;
             for(int i=0; i < dataBase.recipesContainers.Length - 1; i++)
             {
                 result += dataBase.recipesContainers[i].m_WaitPeriod;
