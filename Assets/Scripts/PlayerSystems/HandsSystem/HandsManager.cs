@@ -18,6 +18,7 @@ namespace PlayerSystems.HandsSystem
 
         [Header("Hands")]
         [SerializeField] GameEventScriptableObject m_GameEventCanSpawnMagicalFogForMerge;
+        [SerializeField] GameEventScriptableObject m_OnFoodPickupGameEvent;
         [SerializeField] GameObject m_GrabbedFoodParticlePrefab;
         [SerializeField] Hands m_LeftHand;
         [SerializeField] Hands m_RightHand;
@@ -147,6 +148,7 @@ namespace PlayerSystems.HandsSystem
             {
                 if (food)
                 {
+                    m_OnFoodPickupGameEvent.TriggerEvent(food);
                     PutInHand(food, hand, true, true, false);
                 }
             }

@@ -3,8 +3,7 @@ using ParticleSystemUtility;
 using UnityEngine;
 using UnityEngine.UI;
 using FoodSystem.FoodType;
-using TMPro;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
 {
@@ -23,8 +22,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         [SerializeField] ParticleInstanceManager cookParticleInstanceManager;
         [SerializeField] float curveFadeTime;
 
-
-        protected int foodInQueue = 0;
+        List<SimpleFood> foodInQueue = new List<SimpleFood>();
 
         protected ItemLauncher launcher;
         [SerializeField] QueueTextFollow queueText;
@@ -36,6 +34,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         [SerializeField] protected float cookingTime = 5f;
         protected bool _cooking = false;
 
+        [SerializeField] GameEventScriptableObject m_OnFoodPickupGameEvent;
+
         void Awake() 
         {
             loadPlayerTransformAtStart.BindEventAction(LoadPlayerTransform);
@@ -43,28 +43,58 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             vines.SetActive(false);
             progressBarUI.SetActive(false);
             launcher = GetComponent<ItemLauncher>();
+            m_OnFoodPickupGameEvent.BindEventAction(OnFoodPickupGameEventRemoveFromQueue);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            Food go = other.gameObject.GetComponentInParent<Food>();
-
-            if (go != null)
+            SimpleFood food = other.gameObject.GetComponentInParent<SimpleFood>();
+            if(IsQueueFittable(food, true))
             {
-                foodInQueue++;
-                queueText.text.text = foodInQueue + " Queued";
+                foodInQueue.Add(food);
+                UpdateQueueText();
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            Food go = other.gameObject.GetComponentInParent<Food>();
+            SimpleFood food = other.gameObject.GetComponentInParent<SimpleFood>();
 
-            if (go != null)
+            RemoveFromQueue(food);
+        }
+
+        void OnFoodPickupGameEventRemoveFromQueue(object arg)
+        {
+            GameObject foodGo = (GameObject)arg;
+            RemoveFromQueue(foodGo.GetComponent<SimpleFood>());
+
+        }
+
+        void RemoveFromQueue(SimpleFood food)
+        {
+            if (IsQueueFittable(food, false))
             {
-                foodInQueue--;
-                queueText.text.text = foodInQueue + " Queued";
+                foodInQueue.Remove(food);
+                UpdateQueueText();
             }
+        }
+
+        void UpdateQueueText()
+        {
+            queueText.text.text = foodInQueue.Count + " Queued";
+        }
+
+        bool IsQueueFittable(SimpleFood food, bool isIn)
+        {
+            if (food != null && CheckIfCanCook(food.GetFoodDatas()[0]))
+            {
+                if ((!foodInQueue.Contains(food)) == isIn)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         protected virtual void Start()
@@ -95,12 +125,12 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 return;
             }
 
-            foodInQueue--;
-
             launcher.ChangeState(true);
 
             cookParticleInstanceManager.Play();
             animator.SetTrigger("Cook");
+
+            RemoveFromQueue(collectedFoodGo.GetComponent<SimpleFood>());
 
             progressBarUI.SetActive(true);
             canCollect = false;
