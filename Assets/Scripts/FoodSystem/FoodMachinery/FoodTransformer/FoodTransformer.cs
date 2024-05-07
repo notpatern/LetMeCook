@@ -23,7 +23,11 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         [SerializeField] ParticleInstanceManager cookParticleInstanceManager;
         [SerializeField] float curveFadeTime;
 
+
+        protected int foodInQueue = 0;
+
         protected ItemLauncher launcher;
+        [SerializeField] QueueTextFollow queueText;
 
         [Header("Food during cooking")]
         [SerializeField] protected Transform cookingFoodPos;
@@ -39,6 +43,28 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             vines.SetActive(false);
             progressBarUI.SetActive(false);
             launcher = GetComponent<ItemLauncher>();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Food go = other.gameObject.GetComponentInParent<Food>();
+
+            if (go != null)
+            {
+                foodInQueue++;
+                queueText.text.text = foodInQueue + " Queued";
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            Food go = other.gameObject.GetComponentInParent<Food>();
+
+            if (go != null)
+            {
+                foodInQueue--;
+                queueText.text.text = foodInQueue + " Queued";
+            }
         }
 
         protected virtual void Start()
@@ -68,6 +94,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 ResetCollector();
                 return;
             }
+
+            foodInQueue--;
 
             launcher.ChangeState(true);
 

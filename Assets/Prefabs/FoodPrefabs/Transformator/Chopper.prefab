@@ -86,6 +86,7 @@ MonoBehaviour:
   animator: {fileID: 5840504697518832111}
   cookParticleInstanceManager: {fileID: 1862663603014289379}
   curveFadeTime: 2
+  queueText: {fileID: 6221857092620782579}
   cookingFoodPos: {fileID: 9083274010841945693}
   cookingTime: 5
   m_AnnimationStartPos: {fileID: 8734262296828751691}
@@ -124,10 +125,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16119
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -10472,7 +10473,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nothing Queued
+  m_text: 0 Queued
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5b7c6e2ae424f464fa1af98cab383d5a, type: 2}
   m_sharedMaterial: {fileID: -8900648452885130472, guid: 5b7c6e2ae424f464fa1af98cab383d5a,
@@ -20454,7 +20455,7 @@ Transform:
   m_GameObject: {fileID: 5657240191368075599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.39, z: 0}
+  m_LocalPosition: {x: 0, y: -0.816, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20474,7 +20475,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTransform: {fileID: 11400000, guid: f7c4a8211971b4846a78dbe99dafeb68, type: 2}
-  lerpSpeed: 3
+  lerpSpeed: 5
+  minimumViewingDistance: 3
+  maximumViewingDistance: 10
+  text: {fileID: 471234228990947561}
 --- !u!1 &5853614215720795572
 GameObject:
   m_ObjectHideFlags: 0

@@ -91,13 +91,13 @@ namespace FoodSystem.FoodType
         {
             SetActiveColliders(false);
             launchableItem.QuitBezierCurve();
-            rb.isKinematic = true;
             transform.SetParent(hand);
             transform.position = hand.position;
             transform.localRotation = Quaternion.identity;
             ChangeLayer("Player");
 
             trailRenderer.enabled = false;
+            rb.isKinematic = true;
         }
 
         public virtual void RemoveFromHand()
