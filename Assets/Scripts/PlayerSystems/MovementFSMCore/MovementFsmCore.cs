@@ -64,12 +64,7 @@ namespace PlayerSystems.MovementFSMCore
 
         public void InitPostProcessingManger(object obj)
         {
-            Debug.Log("pipi");
             postProcessingManager = (PostProcessingManager)obj;
-            if (postProcessingManager == null)
-            {
-                Debug.Log("prout");
-            }
         }
 
         public void Update()
