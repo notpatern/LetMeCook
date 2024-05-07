@@ -9,7 +9,7 @@ namespace RecipeSystem.Core
         [SerializeField] RecipesManager recipesManager;
         [SerializeField] Animator mouthAnimator;
         [SerializeField] GameObject receiveParticleParticles;
-        [SerializeField] PostProcessing.PostProcessingManager postProcessingManager;
+        [SerializeField] PostProcessingManager postProcessingManager;
         private void OnTriggerEnter(Collider other)
         {
             if (foodlayer == (foodlayer | (1 << other.gameObject.layer)))

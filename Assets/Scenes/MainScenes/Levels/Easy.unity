@@ -1831,6 +1831,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8200596601819509652, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
+      propertyPath: m_MovementFsmCore.minimunSpeedEffect
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200596601819509652, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
+      propertyPath: m_MovementFsmCore.speedEffectMultiplier
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2521,7 +2531,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1383029900332671992, guid: 2e8114ab5334cc541acc69c5db4a2004,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 2e8114ab5334cc541acc69c5db4a2004, type: 3}
 --- !u!4 &229191859 stripped
 Transform:
@@ -22991,7 +23005,11 @@ PrefabInstance:
     - {fileID: 1326450201666392980, guid: d5814653177e147259d1e8fee34de708, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2442615641385435809, guid: d5814653177e147259d1e8fee34de708,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d5814653177e147259d1e8fee34de708, type: 3}
 --- !u!4 &973418662 stripped
 Transform:
@@ -49035,7 +49053,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2050031666419376495, guid: 0ab8149eb87fd4866b6d1c106b518a44,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 0ab8149eb87fd4866b6d1c106b518a44, type: 3}
 --- !u!4 &1343889955 stripped
 Transform:

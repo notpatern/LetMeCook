@@ -3,6 +3,7 @@ using PlayerSystems.MovementFSMCore;
 using PlayerSystems.PlayerInput;
 using UnityEngine;
 using Player.Interaction;
+using PostProcessing;
 
 namespace PlayerSystems.PlayerBase
 {
@@ -15,6 +16,7 @@ namespace PlayerSystems.PlayerBase
         [SerializeField] Rigidbody m_PlayerRb;
         [SerializeField] Animator m_PlayerPrefabAnimator;
         [SerializeField] MovementFsmCore m_MovementFsmCore;
+        [SerializeField] GameEventScriptableObject m_PostPorcessingManagerEvent;
 
         public void Init(RecipeSystem.RecipesManager recipesManager)
         {
@@ -58,7 +60,7 @@ namespace PlayerSystems.PlayerBase
 
         public void InitFsmCore()
         {
-            m_MovementFsmCore.Init(m_PlayerRb);
+            m_MovementFsmCore.Init(m_PlayerRb, m_PostPorcessingManagerEvent);
             m_InputManager.BindWasdMovement(m_MovementFsmCore.OnMovementInputEvent);
             m_InputManager.BindJump(m_MovementFsmCore.OnJumpInputEvent);
             m_InputManager.BindDash(m_MovementFsmCore.OnDashInputEvent);

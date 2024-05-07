@@ -39,7 +39,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             Movement();
         }
 
-        protected virtual Vector2 FindVelRelativeToLook()
+        public virtual Vector2 FindVelRelativeToLook()
         {
             float lookAngle = fsmCore.orientation.transform.eulerAngles.y;
             var velocity = fsmCore.rb.velocity;

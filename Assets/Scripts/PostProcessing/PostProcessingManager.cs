@@ -16,6 +16,9 @@ namespace PostProcessing
         bool m_DefaultChromaticAberrationStartActivationState;
         Coroutine m_CurrentChromaticAberation;
 
+        MotionBlur m_MotionBlur;
+        float m_DefaultMotionBlur;
+
         void Awake()
         {
             if (m_GlobalVolume.profile.TryGet(out m_ChromaticAberration))
@@ -27,11 +30,34 @@ namespace PostProcessing
             {
                 Debug.LogError("No Chromatic Aberration on Global Volume " + m_GlobalVolume.profile.name);
             }
+
+            if (m_GlobalVolume.profile.TryGet(out m_MotionBlur))
+            {
+                m_DefaultMotionBlur = m_MotionBlur.intensity.value;
+            }
+            else
+            {
+                Debug.LogError("No Chromatic Aberration on Global Volume " + m_GlobalVolume.profile.name);
+            }
         }
 
         void Start()
         {
             m_PostProcessorReferenceEvent.TriggerEvent(this);
+        }
+
+        public void ChangeMotionBlur(float value)
+        {
+            m_MotionBlur.active = true;
+            if (value > 1)
+            {
+                value = 1;
+            }
+            if (value < m_DefaultMotionBlur)
+            {
+                value = m_DefaultMotionBlur;
+            }
+            m_MotionBlur.intensity.value = value;
         }
 
         public void ChangeChromaticAberration(float value, float duration)

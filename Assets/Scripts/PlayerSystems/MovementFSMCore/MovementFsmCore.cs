@@ -2,6 +2,7 @@ using System;
 using PlayerSystems.MovementFSMCore.DataClass;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using PlayerSystems.MovementFSMCore.MovementState;
+using PostProcessing;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,6 +28,8 @@ namespace PlayerSystems.MovementFSMCore
 
         public Transform camera;
 
+        private PostProcessingManager postProcessingManager;
+
         [Header("Player")] 
         [HideInInspector] public Rigidbody rb;
         public Transform orientation;
@@ -38,6 +41,8 @@ namespace PlayerSystems.MovementFSMCore
         [HideInInspector] public bool canDash;
         [HideInInspector] public bool canWallRun;
         [HideInInspector] public float coyoteTime;
+        [SerializeField] float minimunSpeedEffect;
+        [SerializeField] float speedEffectMultiplier;
         private bool _jumpInput;
         private bool _dashInput;
 
@@ -45,9 +50,10 @@ namespace PlayerSystems.MovementFSMCore
     
         public Vector2 Input { private set; get; }
 
-        public void Init(Rigidbody rb)
+        public void Init(Rigidbody rb, GameEventScriptableObject ppm)
         {
             this.rb = rb;
+            ppm.BindEventAction(InitPostProcessingManger);
             Stamina = staminaData.maxStamina;
             canJump = false;
             canDash = false;
@@ -55,7 +61,17 @@ namespace PlayerSystems.MovementFSMCore
             _currentState = new GroundState(new GroundContext(groundData), this);
             _currentState.Init();
         }
-    
+
+        public void InitPostProcessingManger(object obj)
+        {
+            Debug.Log("pipi");
+            postProcessingManager = (PostProcessingManager)obj;
+            if (postProcessingManager == null)
+            {
+                Debug.Log("prout");
+            }
+        }
+
         public void Update()
         {
             HandleGroundedState();
@@ -65,9 +81,23 @@ namespace PlayerSystems.MovementFSMCore
                 RegenerateStamina(staminaData.staminaToRegenerate);
             }
 
-            if(_currentState.GetType() == typeof(GroundState))
+            if (_currentState.GetType() == typeof(GroundState))
             {
                 _groundedTime += Time.deltaTime;
+            }
+
+            HandleLensDistortionBasedOnPlayerSpeed();
+        }
+
+        void HandleLensDistortionBasedOnPlayerSpeed()
+        {
+            if (rb.velocity.magnitude >= minimunSpeedEffect)
+            {
+                float playerSpeed = _currentState.FindVelRelativeToLook().y;
+                float value = playerSpeed - minimunSpeedEffect;
+                value = value * speedEffectMultiplier;
+                
+                postProcessingManager.ChangeMotionBlur(value);
             }
         }
 
