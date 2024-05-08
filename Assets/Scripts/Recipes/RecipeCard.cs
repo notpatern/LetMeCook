@@ -14,6 +14,7 @@ namespace RecipeSystem.Core
         [SerializeField] GameObject ingredientPrefab;
         [SerializeField] GameObject rectList;
         [SerializeField] GameObject lastRecipeIndicator;
+        [SerializeField] GameObject bonusRecipeIndicator;
         [SerializeField] TMP_Text scoreGive;
         [SerializeField] TMP_Text recipeTime;
         public GameRecipe gameRecipe;
@@ -26,6 +27,7 @@ namespace RecipeSystem.Core
             titleText.text = gameRecipe.recipe.nametag;
 
             lastRecipeIndicator.SetActive(isLastRecipe);
+            bonusRecipeIndicator.SetActive(gameRecipe.isBonusRecipe);
 
             FoodData lastIngredient = null;
             GameObject currentParentContent = null;
