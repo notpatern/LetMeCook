@@ -6,6 +6,9 @@ namespace FoodSystem.FoodType
 {
     public class MergedFood : Food
     { 
+        [SerializeField] GameObject existingRecipeDecalProjector;
+        [SerializeField] GameObject existingFoodFog;
+
         List<FoodData> data = new List<FoodData>();
         [SerializeField] GameObject infosCanvas;
         [SerializeField] Transform rawCanvasContent;
@@ -22,8 +25,9 @@ namespace FoodSystem.FoodType
 
         RecipesManager recipesManager;
 
-        void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             onUpdateRecipeListGiveRecipeManager.BindEventAction(OnUpdateRecipeListGiveRecipeManager);
         }
 
@@ -34,7 +38,10 @@ namespace FoodSystem.FoodType
 
         void OnUpdateRecipeListGiveRecipeManager(object arg)
         {
-            crystalMeshRenderer.material = recipesManager.GetRecipeFoodId(this) > -1 ? existingRecipe : nonExistingRecipe;
+            bool existing = recipesManager.GetRecipeFoodId(this) > -1;
+            crystalMeshRenderer.material = existing ? existingRecipe : nonExistingRecipe;
+            currentDecalProjector = existing ? existingRecipeDecalProjector : decalProjector;
+            currentFoodFog = existing ? existingFoodFog : foodFog;
         }
 
         public override string GetContext() => "food bag";

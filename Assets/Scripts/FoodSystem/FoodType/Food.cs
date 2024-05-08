@@ -13,12 +13,20 @@ namespace FoodSystem.FoodType
         [SerializeField] TrailRenderer trailRenderer;
         [SerializeField] LayerMask isGround;
         [SerializeField] LaunchableItem launchableItem;
-        [SerializeField] GameObject decalProjector;
-        [SerializeField] GameObject foodFog;
+        [SerializeField] protected GameObject decalProjector;
+        protected GameObject currentDecalProjector;
+        [SerializeField] protected GameObject foodFog;
+        protected GameObject currentFoodFog;
         [SerializeField] float groundedDistance;
 
         static GameObject[] decals = new GameObject[GameManager.maxDecalsNumber];
         static int currentFoodDecals = 0;
+
+        protected virtual void Awake()
+        {
+            currentDecalProjector = decalProjector;
+            currentFoodFog = foodFog;
+        }
 
         public GameObject StartInteraction()
         {
@@ -58,14 +66,14 @@ namespace FoodSystem.FoodType
                 Destroy(decals[currentFoodDecals]);
             }
 
-            GameObject decal = Instantiate(decalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
+            GameObject decal = Instantiate(currentDecalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
             Vector3 rotation = new Vector3(decal.transform.rotation.eulerAngles.x, decal.transform.rotation.eulerAngles.y, Random.RandomRange(0, 360));
             decal.transform.rotation = Quaternion.EulerAngles(rotation);
             decal.transform.SetParent(collision.transform);
 
             decals[id] = decal;
             currentFoodDecals++;
-            Instantiate(foodFog, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
+            Instantiate(currentFoodFog, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
         }
 
         public abstract string GetContext();
