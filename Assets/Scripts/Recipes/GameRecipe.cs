@@ -5,13 +5,15 @@ namespace RecipeSystem.Core
     public class GameRecipe
     {
         public Recipe recipe;
+        public bool isBonusRecipe;
 
-        [HideInInspector] public float timeRemaining;
-        [HideInInspector] public bool isFailed = false;
+        public float timeRemaining;
+        public bool isFailed = false;
 
-        public void Init(Recipe recipe)
+        public void Init(Recipe recipe, bool isBonusRecipe)
         {
             this.recipe = recipe;
+            this.isBonusRecipe = isBonusRecipe;
             timeRemaining = recipe.secondsToComplete;
         }
 

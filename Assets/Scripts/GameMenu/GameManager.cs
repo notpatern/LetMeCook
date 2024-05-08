@@ -1,4 +1,6 @@
+using DG.Tweening.Core.Easing;
 using RecipeSystem;
+using RecipeSystem.Core;
 using UnityEngine;
 
 namespace Manager
@@ -14,6 +16,7 @@ namespace Manager
         int m_Score = 0;
         int m_RecipesNb = 0;
         int m_CompletedRecipes = 0;
+        int m_BonusRecipes = 0;
 
         protected bool m_IsEndStateInit = false;
         protected float m_LevelDuration = 0f;
@@ -59,7 +62,7 @@ namespace Manager
             m_Player.gameObject.SetActive(false);
             m_MusicManager.IncreaseMusicTypeOffsetAmount();
             m_UiManager.pauseMenu.SetBlockPauseMenu(true, true);
-            m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(m_Score, m_RecipesNb, m_CompletedRecipes, m_LevelData.requiredScore, m_Player.GetGroundedTime()), m_NextLevelData, m_LevelData);
+            m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(m_Score, m_RecipesNb, m_CompletedRecipes, m_BonusRecipes, m_LevelData.requiredScore, m_Player.GetGroundedTime()), m_NextLevelData, m_LevelData);
             m_UiManager.endScreen.SetActive(true);
         }
 
@@ -99,9 +102,21 @@ namespace Manager
             m_RecipesNb += amount;
         }
 
-        public void AddAcomplishedRecipes(int amount)
+        public void AddAcomplishedRecipes(GameRecipe gameRecipe)
         {
-            m_CompletedRecipes += amount;
+            if (gameRecipe.isBonusRecipe)
+            {
+                m_BonusRecipes++;
+            }
+            else
+            {
+                m_CompletedRecipes ++;
+            }
+        }
+
+        public void AddBonusRecipes(int amount)
+        {
+            m_BonusRecipes += amount;
         }
     }
 }

@@ -56,7 +56,7 @@ namespace RecipeSystem
 
             for (int i = 0; i < dataBase.recipesContainers.Length; i++)
             {
-                AddNewRecipe(dataBase.recipesContainers[i].m_Recipe);
+                AddNewRecipe(dataBase.recipesContainers[i].m_Recipe, false);
                 yield return new WaitForSeconds(dataBase.recipesContainers[i].m_WaitPeriod);
             }
         }
@@ -66,17 +66,20 @@ namespace RecipeSystem
         /// Return the instantiated GameRecipe.
         /// </summary>
         /// <param name="recipe"></param>
-        public GameRecipe AddNewRecipe(Recipe recipe)
+        GameRecipe AddNewRecipe(Recipe recipe, bool isBonus)
         {
             GameRecipe newGameRecipe = new GameRecipe();
-            newGameRecipe.Init(recipe);
+            newGameRecipe.Init(recipe, isBonus);
 
             m_AudioQueueComponent.StartSound(recipe.vocaloidVoice);
 
             activeRecipes.Add(newGameRecipe);
             recipeUI.AddNewCard(newGameRecipe, dataBase.recipesContainers.Length - recipesRemoved - 1 == 0);
 
-            gameManager.AddRecipesCount(1);
+            if (!isBonus)
+            {
+                gameManager.AddRecipesCount(1);
+            }
 
             m_OnUpdateRecipeListGiveRecipeManager.TriggerEvent(null);
 
@@ -103,7 +106,7 @@ namespace RecipeSystem
             }
             else if(activeRecipes.Count == 0 && dataBase.randomFillerRecipes.Length > 0)
             {
-                AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)]);
+                AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)], true);
                 recipesRemoved--;
             }
 
@@ -123,7 +126,8 @@ namespace RecipeSystem
             RemoveRecipe(recipeId);
 
             gameManager.AddScore(gameRecipe.recipe.addedScore);
-            gameManager.AddAcomplishedRecipes(1);
+
+            gameManager.AddAcomplishedRecipes(gameRecipe);
         }
 
         /// <summary>

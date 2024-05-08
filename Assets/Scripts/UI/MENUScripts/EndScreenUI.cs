@@ -19,6 +19,7 @@ public class EndScreenUI : MonoBehaviour
     [SerializeField] TMP_Text m_CompletedRecipesRateText;
     [SerializeField] TMP_Text m_CompletedRecipes;
     [SerializeField] TMP_Text m_MissedRecipes;
+    [SerializeField] TMP_Text m_BonusRecipes;
     [SerializeField] TMP_Text m_GroundedTime;
 
     [Header("Buttons")]
@@ -48,7 +49,8 @@ public class EndScreenUI : MonoBehaviour
         m_ScoreText.text = playerScore.m_Score + "pts (High Score : " + SaveSystem.GetSavedData().m_LevelHighScores[levelData.levelID] + ")";
         m_CompletedRecipesRateText.text = completionRate + "%" + " Completion Rate";
         m_CompletedRecipes.text = playerScore.m_CompletedRecipes + " Finished Recipes";
-        m_MissedRecipes.text = (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes) + " Missed Recipes";
+        m_MissedRecipes.text = (playerScore.m_BonusRecipes) + " Missed Recipes";
+        m_BonusRecipes.text = (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes) + " Bonus Recipes";
         m_GroundedTime.text = playerScore.m_PlayerGroundedTime.ToString("0.#") + "s" + " Spend on the Ground";
 
         foreach (GameObject star in m_ActiveStarsGo)
@@ -130,14 +132,16 @@ public class TempScoreContainer
     public int m_Score;
     public int m_TotalRecipes;
     public int m_CompletedRecipes;
+    public int m_BonusRecipes;
     public int m_RequiredScore;
     public float m_PlayerGroundedTime;
 
-    public TempScoreContainer(int score, int totalRecipes, int completedRecipes, int requiredScore, float playerGroundedTime)
+    public TempScoreContainer(int score, int totalRecipes, int completedRecipes, int bonusRecipes, int requiredScore, float playerGroundedTime)
     {
         m_Score = score;
         m_TotalRecipes = totalRecipes;
         m_CompletedRecipes = completedRecipes;
+        m_BonusRecipes = bonusRecipes;
         m_RequiredScore = requiredScore;
         m_PlayerGroundedTime = playerGroundedTime;
     }
