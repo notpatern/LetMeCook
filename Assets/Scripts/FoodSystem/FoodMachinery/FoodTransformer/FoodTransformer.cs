@@ -70,7 +70,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         }
 
-        void RemoveFromQueue(SimpleFood food)
+        protected void RemoveFromQueue(SimpleFood food)
         {
             if (IsQueueFittable(food, false))
             {
