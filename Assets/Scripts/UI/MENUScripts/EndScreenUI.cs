@@ -58,11 +58,13 @@ public class EndScreenUI : MonoBehaviour
             star.SetActive(false);
         }
 
+        SaveData data = SaveSystem.GetSavedData();
+
         if (!nextLevelData)
         {
             Destroy(m_NextLevelButton.gameObject);
         }
-        else if (playerScore.m_RequiredScore > playerScore.m_Score || SaveSystem.GetSavedData().m_LevelReached == levelData.levelID)
+        else if (playerScore.m_RequiredScore > playerScore.m_Score && data.m_LevelReached <= levelData.levelID && playerScore.m_RequiredScore > data.m_LevelHighScores[levelData.levelID])
         {
             m_NextLevelButton.interactable = false;
         }
