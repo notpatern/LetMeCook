@@ -49,8 +49,8 @@ public class EndScreenUI : MonoBehaviour
         m_ScoreText.text = playerScore.m_Score + "pts (High Score : " + SaveSystem.GetSavedData().m_LevelHighScores[levelData.levelID] + ")";
         m_CompletedRecipesRateText.text = completionRate + "%" + " Completion Rate";
         m_CompletedRecipes.text = playerScore.m_CompletedRecipes + " Finished Recipes";
-        m_MissedRecipes.text = (playerScore.m_BonusRecipes) + " Missed Recipes";
-        m_BonusRecipes.text = (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes) + " Bonus Recipes";
+        m_MissedRecipes.text = (playerScore.m_TotalRecipes - playerScore.m_CompletedRecipes) + " Missed Recipes";
+        m_BonusRecipes.text = (playerScore.m_BonusRecipes) + " Bonus Recipes";
         m_GroundedTime.text = playerScore.m_PlayerGroundedTime.ToString("0.#") + "s" + " Spend on the Ground";
 
         foreach (GameObject star in m_ActiveStarsGo)

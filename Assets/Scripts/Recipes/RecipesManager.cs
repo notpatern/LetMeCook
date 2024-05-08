@@ -18,6 +18,7 @@ namespace RecipeSystem
         RecipeUI recipeUI;
 
         protected int recipesRemoved = 0;
+        protected int mainRecipeStarted = 0;
 
         [SerializeField] AudioQueueComponent m_AudioQueueComponent;
 
@@ -56,6 +57,7 @@ namespace RecipeSystem
 
             for (int i = 0; i < dataBase.recipesContainers.Length; i++)
             {
+                mainRecipeStarted++;
                 AddNewRecipe(dataBase.recipesContainers[i].m_Recipe, false);
                 yield return new WaitForSeconds(dataBase.recipesContainers[i].m_WaitPeriod);
             }
@@ -74,7 +76,7 @@ namespace RecipeSystem
             m_AudioQueueComponent.StartSound(recipe.vocaloidVoice);
 
             activeRecipes.Add(newGameRecipe);
-            recipeUI.AddNewCard(newGameRecipe, dataBase.recipesContainers.Length - recipesRemoved - 1 == 0);
+            recipeUI.AddNewCard(newGameRecipe, dataBase.recipesContainers.Length == mainRecipeStarted);
 
             if (!isBonus)
             {
@@ -106,8 +108,8 @@ namespace RecipeSystem
             }
             else if(activeRecipes.Count == 0 && dataBase.randomFillerRecipes.Length > 0)
             {
-                AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)], true);
                 recipesRemoved--;
+                AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)], true);
             }
 
             m_OnUpdateRecipeListGiveRecipeManager.TriggerEvent(null);

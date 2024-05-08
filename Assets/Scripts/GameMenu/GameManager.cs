@@ -110,13 +110,8 @@ namespace Manager
             }
             else
             {
-                m_CompletedRecipes ++;
+                m_CompletedRecipes++;
             }
-        }
-
-        public void AddBonusRecipes(int amount)
-        {
-            m_BonusRecipes += amount;
         }
     }
 }
