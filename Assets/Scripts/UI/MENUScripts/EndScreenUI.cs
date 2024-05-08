@@ -62,7 +62,7 @@ public class EndScreenUI : MonoBehaviour
         {
             Destroy(m_NextLevelButton.gameObject);
         }
-        else if (playerScore.m_RequiredScore > playerScore.m_Score)
+        else if (playerScore.m_RequiredScore > playerScore.m_Score || SaveSystem.GetSavedData().m_LevelReached == levelData.levelID)
         {
             m_NextLevelButton.interactable = false;
         }
