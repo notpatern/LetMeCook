@@ -48,7 +48,6 @@ namespace FoodSystem.FoodType
             );
         }
 
-        [System.Obsolete]
         private void OnCollisionEnter(Collision collision)
         {
             int id = 0;
@@ -67,8 +66,8 @@ namespace FoodSystem.FoodType
             }
 
             GameObject decal = Instantiate(currentDecalProjector, collision.contacts[0].point, Quaternion.LookRotation(-collision.contacts[0].normal));
-            Vector3 rotation = new Vector3(decal.transform.rotation.eulerAngles.x, decal.transform.rotation.eulerAngles.y, Random.RandomRange(0, 360));
-            decal.transform.rotation = Quaternion.EulerAngles(rotation);
+            Vector3 rotation = new Vector3(decal.transform.rotation.eulerAngles.x, decal.transform.rotation.eulerAngles.y, Random.Range(0f, 360f));
+            decal.transform.rotation = Quaternion.Euler(rotation);
             decal.transform.SetParent(collision.transform);
 
             decals[id] = decal;
