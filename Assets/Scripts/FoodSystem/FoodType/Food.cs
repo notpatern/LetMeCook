@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using ItemLaunch;
 using Manager;
+using Audio;
 
 namespace FoodSystem.FoodType
 {
@@ -73,6 +74,8 @@ namespace FoodSystem.FoodType
             decals[id] = decal;
             currentFoodDecals++;
             Instantiate(currentFoodFog, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal));
+
+            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_FoodBounceImpact, transform.position);
         }
 
         public abstract string GetContext();

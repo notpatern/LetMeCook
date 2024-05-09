@@ -1,4 +1,5 @@
-﻿using PlayerSystems.MovementFSMCore.MovementContext;
+﻿using Audio;
+using PlayerSystems.MovementFSMCore.MovementContext;
 using UnityEngine;
 
 namespace PlayerSystems.MovementFSMCore.MovementState
@@ -92,6 +93,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             fsmCore.rb.velocity = new Vector3();
             context.canDash = false;
             fsmCore.SwitchState<DashState>(typeof(DashState), new DashContext(fsmCore.dashData, context.canJump, context.canDash));
+
+            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDash, fsmCore.rb.position);
         }
     }
 }

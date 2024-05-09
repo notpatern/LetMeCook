@@ -1,3 +1,4 @@
+using Audio;
 using PostProcessing;
 using UnityEngine;
 
@@ -35,6 +36,7 @@ namespace RecipeSystem.Core
 
         protected virtual void OnFoodOk(int potentialRecipe)
         {
+            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_DeliverySound, transform.position);
             postProcessingManager.ChangeChromaticAberration(1f, 2.5f);
             recipesManager.CompleteRecipe(potentialRecipe);
         }

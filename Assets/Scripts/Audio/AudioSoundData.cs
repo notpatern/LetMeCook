@@ -8,6 +8,7 @@ public class AudioSoundData : ScriptableObject
     public EventReference m_PlayerThrowSound;
     public EventReference m_PlayerPickFood;
     public EventReference m_PlayerMergeFood;
+    public EventReference m_PlayerEmptyMergeFood;
     public EventReference m_PlayerCrunchFood;
 
     [Header("PlayerMovement")]
