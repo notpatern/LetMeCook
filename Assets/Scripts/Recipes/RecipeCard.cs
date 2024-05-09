@@ -44,6 +44,7 @@ namespace RecipeSystem.Core
             }
 
             scoreGive.text = "+" + gameRecipe.recipe.addedScore;
+            GetComponent<RectTransform>().localScale = Vector3.one;
         }
 
         void Update()
