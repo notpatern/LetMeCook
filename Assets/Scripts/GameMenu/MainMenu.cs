@@ -30,7 +30,9 @@ public class MainMenu : LevelManager
         m_InputManager.BindTogglePauseMenu(() => { m_UiManager.optionMenu.HandleMenuLayer(); });
 
         LoadLevelSelectorBtn();
-        m_OptionBtn.onClick.AddListener(() => { m_UiManager.optionMenu.ToggleOptionMenu(); });
+        m_OptionBtn.onClick.AddListener(() => {
+            SetActivePanel(m_UiManager.optionMenu.GetPanelGo(), !m_UiManager.optionMenu.GetPanelGo().activeSelf);
+        });
 
         m_QuitBtn.onClick.AddListener(Application.Quit);
 
@@ -57,7 +59,9 @@ public class MainMenu : LevelManager
         int levelReached = SaveSystem.GetSavedData().m_LevelReached;
 
         m_LevelSelectorPanel.SetActive(false);
-        m_LevelSelectorBtn.onClick.AddListener(() => { m_LevelSelectorPanel.SetActive(!m_LevelSelectorPanel.activeSelf); });
+        m_LevelSelectorBtn.onClick.AddListener(() => { 
+            SetActivePanel(m_LevelSelectorPanel, !m_LevelSelectorPanel.activeSelf);
+        });
 
         for (int i=0; i< m_Levels.Length; i++)
         {
@@ -66,5 +70,17 @@ public class MainMenu : LevelManager
 
             m_Levels[i].m_LevelButton.interactable = i > levelReached ? false : true;
         }
+    }
+
+    void SetActivePanel(GameObject panelToActive, bool state)
+    {
+        CloseAllPanel();
+        panelToActive.SetActive(state);
+    }
+
+    void CloseAllPanel()
+    {
+        m_UiManager.optionMenu.SetActiveOptionMenu(false);
+        m_LevelSelectorPanel.SetActive(false);
     }
 }

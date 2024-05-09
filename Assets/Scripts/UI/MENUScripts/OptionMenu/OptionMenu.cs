@@ -15,6 +15,7 @@ namespace UI.MENUScripts
         [SerializeField] GameObject m_GraphicsPanel;
         [SerializeField] GameObject m_ControlsPanel;
         [SerializeField] GameObject m_VolumeOptionPanel;
+        GameObject optionPanel;
 
         [Header("Menu References")]
         [SerializeField] ResolutionUIMenu m_ResolutionUIMenu;
@@ -22,6 +23,7 @@ namespace UI.MENUScripts
 
         void Awake()
         {
+            optionPanel = gameObject;
             m_GraphicsPanel.SetActive(false);
             
             m_GraphicsParameter.onClick.AddListener(ToggleGraphicsParameter);
@@ -33,7 +35,17 @@ namespace UI.MENUScripts
 
         public void ToggleOptionMenu() 
         {
-            SetActiveOptionMenu(!gameObject.activeSelf);
+            SetActiveOptionMenu(!IsPanelActive());
+        }
+
+        public bool IsPanelActive()
+        {
+            return optionPanel.activeSelf;
+        }
+
+        public GameObject GetPanelGo()
+        {
+            return optionPanel;
         }
 
         public bool HandleMenuLayer()
@@ -56,7 +68,7 @@ namespace UI.MENUScripts
                 return true;
             }
 
-            if(gameObject.activeSelf)
+            if(optionPanel.activeSelf)
             {
                 ToggleOptionMenu();
                 return true;
@@ -67,7 +79,7 @@ namespace UI.MENUScripts
 
         public void SetActiveOptionMenu(bool state)
         {
-            gameObject.SetActive(state);
+            optionPanel.SetActive(state);
             CloseAllPanel();
         }
 
