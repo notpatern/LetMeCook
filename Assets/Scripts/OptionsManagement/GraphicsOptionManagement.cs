@@ -14,7 +14,7 @@ namespace GraphicsOption
         int m_currentSelectedResolutionID;
         int m_DirtySelectedResolutionID;
         Resolution[] m_deviceAvailableResolutions;
-        float[] m_authorizedRatios = {16f/9f, 4f/3f};
+        float[] m_authorizedRatios = {16f/9f, 4f/3f, 16f/10f};
         //------------------
 
         public static void LoadGraphicsOptionManagement()
