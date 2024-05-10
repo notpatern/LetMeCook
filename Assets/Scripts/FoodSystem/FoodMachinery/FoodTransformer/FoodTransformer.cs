@@ -79,7 +79,13 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         protected void CheckForPlayingCookingSound(EventReference eventReference)
         {
             cookingSound.getPlaybackState(out cookingPBState);
-            if (cookingPBState == PLAYBACK_STATE.STOPPED)
+            if (cookingPBState != PLAYBACK_STATE.STOPPED)
+            {
+                cookingSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                cookingSound.release();
+            }
+
+            if (_cooking)
             {
                 cookingSound = AudioManager.s_Instance.Create3DInstance(eventReference, transform.position);
                 cookingSound.start();

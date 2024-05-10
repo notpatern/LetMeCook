@@ -17,9 +17,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         protected override void OnFoodCollected()
         {
-            CheckForPlayingCookingSound(AudioManager.s_Instance.m_AudioSoundData.m_PurifierCooking);
-
             base.OnFoodCollected();
+            CheckForPlayingCookingSound(AudioManager.s_Instance.m_AudioSoundData.m_PurifierCooking);
         }
 
         protected override void ReleaseFood()
