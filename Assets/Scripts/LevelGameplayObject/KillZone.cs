@@ -6,6 +6,7 @@ public class KillZone : MonoBehaviour
 {
     [SerializeField] Transform respawnPoint;
     [SerializeField] GameObject portalParticles;
+    [SerializeField] bool clearHands = true;
     [SerializeField] Vector3 fallPortalOffset;
     [SerializeField] Vector3 spawnPortalOffset;
     [SerializeField] float portalDuration;
@@ -17,7 +18,11 @@ public class KillZone : MonoBehaviour
         PlayerSystems.PlayerBase.Player player = other.GetComponent<PlayerSystems.PlayerBase.Player>();
         if (player)
         {
-            player.CrunchFoodInHands(true);
+            if (clearHands)
+            {
+                player.CrunchFoodInHands(true);
+            }
+            
             StartCoroutine(StartTeleportDelay(player));
         }
         else if(other.GetComponent<IDestructible>() != null)
