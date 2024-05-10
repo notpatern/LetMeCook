@@ -1163,7 +1163,6 @@ GameObject:
   - component: {fileID: 752536526}
   - component: {fileID: 752536528}
   - component: {fileID: 752536527}
-  - component: {fileID: 752536529}
   m_Layer: 5
   m_Name: SetDefaultVolume
   m_TagString: Untagged
@@ -1203,8 +1202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 0.90588236}
+  m_Material: {fileID: 2100000, guid: fd5d36c50c17f094c8055583564a2e9b, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.54509807}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1229,25 +1228,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752536525}
   m_CullTransparentMesh: 1
---- !u!114 &752536529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752536525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8b2ed11d675446c5a49da1ea296d490, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectFactor: 0
-  m_ColorFactor: 1
-  m_BlurFactor: 0.207
-  m_EffectMode: 4
-  m_ColorMode: 0
-  m_BlurMode: 0
-  m_AdvancedBlur: 1
 --- !u!1 &856105569
 GameObject:
   m_ObjectHideFlags: 0
@@ -5781,8 +5761,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7100720874160970495}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9932911, z: -0, w: -0.11564113}
-  m_LocalPosition: {x: 12.3660145, y: -2.2, z: 3.4884834}
+  m_LocalRotation: {x: 0, y: 0.96126175, z: 0, w: 0.27563742}
+  m_LocalPosition: {x: 14.5, y: -2.2, z: 18.64}
   m_LocalScale: {x: 0.6020335, y: 0.6020335, z: 0.6020335}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5792,7 +5772,7 @@ Transform:
   - {fileID: 1637114829383776820}
   - {fileID: 5455226854096574069}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 193.281, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 148, z: 0}
 --- !u!114 &7775455863257812105
 MonoBehaviour:
   m_ObjectHideFlags: 0
