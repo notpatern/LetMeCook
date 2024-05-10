@@ -16,7 +16,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         protected override void ReleaseFood()
         {
             cookingSound.stop(STOP_MODE.ALLOWFADEOUT);
-            Debug.Log("stop sound");
+            cookingSound.release();
 
             GameObject newFood = Instantiate(collectedFoodData[0].bakedFood.prefab,
                 launcher.StartPoint, Quaternion.identity);

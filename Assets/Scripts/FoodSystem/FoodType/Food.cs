@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using ItemLaunch;
 using Manager;
 using Audio;
+using FMOD.Studio;
+using FMODUnity;
 
 namespace FoodSystem.FoodType
 {
     public abstract class Food : MonoBehaviour, IInteractable, IDestructible
     {
+        bool isInHand = false;
+        bool isGrounded = false;
         [SerializeField] public Collider[] cols;
         [SerializeField] Rigidbody rb;
         [SerializeField] TrailRenderer trailRenderer;
@@ -23,6 +27,9 @@ namespace FoodSystem.FoodType
         static GameObject[] decals = new GameObject[GameManager.maxDecalsNumber];
         static int currentFoodDecals = 0;
 
+        EventInstance airSound;
+        PLAYBACK_STATE pbState;
+
         protected virtual void Awake()
         {
             currentDecalProjector = decalProjector;
@@ -34,14 +41,38 @@ namespace FoodSystem.FoodType
             return gameObject;
         }
 
-        private void FixedUpdate()
+        void Update()
         {
-            rb.drag = Grounded() ? 5 : 0;
+            if (!isInHand)
+            {
+                CheckGrounded();
+
+                airSound.getPlaybackState(out pbState);
+                if(!isGrounded && pbState == PLAYBACK_STATE.STOPPED)
+                {
+                    airSound = AudioManager.s_Instance.CreateInstance(AudioManager.s_Instance.m_AudioSoundData.m_FoodAirThrowingEffect);
+                    RuntimeManager.AttachInstanceToGameObject(airSound, transform);
+                    airSound.start();
+                }
+                else if(isGrounded && pbState == PLAYBACK_STATE.PLAYING)
+                {
+                    airSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    airSound.release();
+                }
+            }
         }
 
-        public bool Grounded()
+        private void FixedUpdate()
         {
-            return Physics.Raycast(
+            if (!isInHand)
+            {
+                rb.drag = isGrounded ? 5 : 0;
+            }
+        }
+
+        public void CheckGrounded()
+        {
+            isGrounded = Physics.Raycast(
                 rb.position,
                 Vector3.down,
                 groundedDistance,
@@ -108,6 +139,8 @@ namespace FoodSystem.FoodType
 
             trailRenderer.enabled = false;
             rb.isKinematic = true;
+            isInHand = true;
+            airSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
 
         public virtual void RemoveFromHand()
@@ -119,6 +152,7 @@ namespace FoodSystem.FoodType
             ChangeLayer("Food");
 
             trailRenderer.enabled = true;
+            isInHand = false;
         }
 
         void ChangeLayer(string layerName)
