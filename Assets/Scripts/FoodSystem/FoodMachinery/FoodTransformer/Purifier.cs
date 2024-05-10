@@ -15,22 +15,17 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         [SerializeField] Transform m_AnnimationEndPos;
         [SerializeField] Transform m_Particles;
 
-        EventInstance cookingSound;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            cookingSound = AudioManager.s_Instance.Create3DInstance(AudioManager.s_Instance.m_AudioSoundData.m_PurifierCooking, transform.position);
-        }
-
         protected override void OnFoodCollected()
         {
+            CheckForPlayingCookingSound(AudioManager.s_Instance.m_AudioSoundData.m_PurifierCooking);
+
             base.OnFoodCollected();
-            cookingSound.start();
         }
 
         protected override void ReleaseFood()
         {
+            cookingSound.stop(STOP_MODE.ALLOWFADEOUT);
+
             GameObject newFood = Instantiate(collectedFoodData[0].purifiedFood.prefab,
                 launcher.StartPoint, Quaternion.identity);
 
@@ -40,7 +35,6 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             m_LerpDirection = 1;
 
             base.ReleaseFood();
-            cookingSound.stop(STOP_MODE.ALLOWFADEOUT);
         }
 
         protected override void Update()

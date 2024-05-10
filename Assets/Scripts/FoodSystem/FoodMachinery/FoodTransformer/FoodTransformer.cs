@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using FoodSystem.FoodType;
 using System.Collections.Generic;
 using Audio;
+using FMOD.Studio;
+using FMODUnity;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
 {
@@ -36,6 +38,9 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         protected bool _cooking = false;
 
         [SerializeField] GameEventScriptableObject m_OnFoodPickupGameEvent;
+
+        protected EventInstance cookingSound;
+        PLAYBACK_STATE cookingPBState;
 
         protected virtual void Awake() 
         {
@@ -69,6 +74,16 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             GameObject foodGo = (GameObject)arg;
             RemoveFromQueue(foodGo.GetComponent<SimpleFood>());
 
+        }
+
+        protected void CheckForPlayingCookingSound(EventReference eventReference)
+        {
+            cookingSound.getPlaybackState(out cookingPBState);
+            if (cookingPBState == PLAYBACK_STATE.STOPPED)
+            {
+                cookingSound = AudioManager.s_Instance.Create3DInstance(eventReference, transform.position);
+                cookingSound.start();
+            }
         }
 
         protected void RemoveFromQueue(SimpleFood food)
