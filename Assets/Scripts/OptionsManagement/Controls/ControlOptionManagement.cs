@@ -72,10 +72,6 @@ namespace ControlOptions
         {
             PlayerInput.PlayerActions playerInput = InputManager.s_PlayerInput.Player;
             playerInput.Disable();
-            foreach(InputAction action in playerInput.Get())
-            {
-                action.Disable();
-            }
             playerInput.TogglePauseMenu.Enable();
         }
 
