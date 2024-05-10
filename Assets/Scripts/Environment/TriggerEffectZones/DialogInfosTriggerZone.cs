@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class DialogInfosTriggerZone : TriggerEffectZone
 {
+    public GameObject triggerZone;
+    public bool secondHandActivation;
     public bool destroyOnTrigger;
     public int index = 0;
     [HideInInspector] public DialogInfos m_CurrentDialogInfos;
@@ -10,6 +12,14 @@ public class DialogInfosTriggerZone : TriggerEffectZone
     public GameEventScriptableObject m_CallDialogEvent;
 
     bool isDestroyed;
+
+    private void Awake()
+    {
+        if (secondHandActivation)
+        {
+            triggerZone.SetActive(false);
+        }
+    }
 
     protected override void TriggerFunc(Collider other)
     {
@@ -21,6 +31,11 @@ public class DialogInfosTriggerZone : TriggerEffectZone
         {
             isDestroyed = true;
             Destroy(gameObject);
+        }
+
+        if (secondHandActivation)
+        {
+            triggerZone.SetActive(true);
         }
     }
 }

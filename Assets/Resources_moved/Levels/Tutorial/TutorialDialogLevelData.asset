@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb12d5f9764f70246ac242d7c0f963af, type: 3}
   m_Name: TutorialDialogLevelData
   m_EditorClassIdentifier: 
-  sentenceDelay: 1
+  sentenceDelay: 2
   sentenceMaxLength: 210
   sentenceMinLength: 20
   letterDelay: 0.01
@@ -37,10 +37,10 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 3c3151d02000c024fbba63f96c1e701e, type: 2}
   - noGameContentNameID: green food presentation
     pnjName: Hades
-    content: 'To pick up the food you can use either {1} or {2}.
+    content: 'Approach the green obelisk.To pick up the food you can use either {1}
+      or {2}.
 
-      Double jump
-      by pressing {0} in the air! '
+      Double jump by pressing {0} in the air! Go to the Red Obelisk.'
     audioVoice:
       Guid:
         Data1: 541754684
@@ -50,15 +50,17 @@ MonoBehaviour:
       Path: event:/SFX/VoiceLinuTuto/GreenObeliskTuto
     loadedContent:
       loadedString:
+      - Approach the Green Obelisk.
       - To pick up the food you can use either {1} or {2}.
       - 'Double jump by pressing {0} in the air! '
+      - Go to the Red Obelisk.
       args:
       - {fileID: 11400000, guid: 339c0ddda31ecbc42a35484b2b531506, type: 2}
       - {fileID: 11400000, guid: 2a1c617a8fc2ce242a63dc03a8cb8308, type: 2}
       - {fileID: 11400000, guid: c1622e0b2475d2f4e9376984d1a544eb, type: 2}
   - noGameContentNameID: Dash red food presentation
     pnjName: Hades
-    content: Dash using {0}.
+    content: Dash using {0}. Go Right to the White Obelisk.
     audioVoice:
       Guid:
         Data1: 1422082431
@@ -69,6 +71,7 @@ MonoBehaviour:
     loadedContent:
       loadedString:
       - Dash using {0}.
+      - Go Right to the White Obelisk.
       args:
       - {fileID: 11400000, guid: d95760f549da0104d9755425969eac16, type: 2}
   - noGameContentNameID: WallRunDash food presentation
@@ -92,3 +95,92 @@ MonoBehaviour:
         carrying. Once you\u2019ve stored them you can\u2019t get them out."
       args:
       - {fileID: 11400000, guid: 0ffd2b561e85c374dbccac9363ec52d2, type: 2}
+  - noGameContentNameID: Recap
+    pnjName: Hades
+    content: 'To Recap: Steak lets you dash. Cheese lets you Wall Run. Bun lets you
+      Double Jump.'
+    audioVoice:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    loadedContent:
+      loadedString:
+      - 'To Recap: Steak lets you dash. Cheese lets you Wall Run. Bun lets you Double
+        Jump.'
+      args: []
+  - noGameContentNameID: Baker intro
+    pnjName: Hades
+    content: The steak goes in the Frying Pan in front of you.
+    audioVoice:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    loadedContent:
+      loadedString:
+      - The steak goes in the Frying Pan in front of you.
+      args: []
+  - noGameContentNameID: Purifier intro
+    pnjName: Hades
+    content: The Cheese goes in the Purifier.
+    audioVoice:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    loadedContent:
+      loadedString:
+      - The Cheese goes in the Purifier.
+      args: []
+  - noGameContentNameID: Chopper intro
+    pnjName: Hades
+    content: The Bun goes in the Chopper to your Right
+    audioVoice:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    loadedContent:
+      loadedString:
+      - The Bun goes in the Chopper to your Right
+      args: []
+  - noGameContentNameID: Mouth intro
+    pnjName: Hades
+    content: Now that you have every Cooked ingredient in your Crystal, throw them
+      in the GIGANTIC MOUTH in front of you.
+    audioVoice:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    loadedContent:
+      loadedString:
+      - Now that you have every Cooked ingredient in your Crystal, throw them in
+        the GIGANTIC MOUTH in front of you.
+      args: []
+  - noGameContentNameID: Recipe intro
+    pnjName: Hades
+    content: Top left corner of your screen contains the Recipes you need to feed
+      me.
+    audioVoice:
+      Guid:
+        Data1: 0
+        Data2: 0
+        Data3: 0
+        Data4: 0
+      Path: 
+    loadedContent:
+      loadedString:
+      - Top left corner of your screen contains the Recipes you need to feed me.
+      args: []

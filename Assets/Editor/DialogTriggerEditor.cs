@@ -46,11 +46,18 @@ public class DialogTriggerEditor : Editor
 
         GUIStyle style = new GUIStyle(EditorStyles.textArea);
         style.wordWrap = true;
-
         
         picker.m_CurrentDialogInfos = m_DialogLevelData.dialogInfos[picker.index];
         picker.m_CallDialogEvent = EditorGUILayout.ObjectField("Call Dialog Event", picker.m_CallDialogEvent, typeof(GameEventScriptableObject), false) as GameEventScriptableObject;
-    
+
+
+        picker.secondHandActivation = EditorGUILayout.Toggle("Second Hand Activation", picker.secondHandActivation);
+
+        if (picker.secondHandActivation)
+        {
+            picker.triggerZone = EditorGUILayout.ObjectField("Game Object", picker.triggerZone, typeof(GameObject), true) as GameObject;
+        }
+
         SaveChanges();
     }
 
