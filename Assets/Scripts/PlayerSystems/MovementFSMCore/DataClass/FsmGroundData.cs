@@ -6,5 +6,6 @@ namespace PlayerSystems.MovementFSMCore.DataClass
     public class FsmGroundData : FsmData
     {
         public float friction;
+        public float jumpHeldFriction;
     }
 }

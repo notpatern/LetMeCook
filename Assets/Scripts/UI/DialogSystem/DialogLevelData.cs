@@ -8,7 +8,8 @@ namespace Dialog
     public class DialogLevelData : ScriptableObject
     {
         [Header("Parameters")]
-        public float sentenceDelay;
+        public float delayAfterDialog;
+        public float delayAfterSentence;
         public int sentenceMaxLength;
         public int sentenceMinLength;
         public float letterDelay;

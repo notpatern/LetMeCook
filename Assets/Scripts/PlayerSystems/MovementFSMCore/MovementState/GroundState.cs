@@ -23,7 +23,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         {
             if (fsmCore.jumpHeld)
             {
-                fsmCore.rb.drag = 0f;
+                fsmCore.rb.drag = _context.jumpHeldFriction;
                 return;
             }
 

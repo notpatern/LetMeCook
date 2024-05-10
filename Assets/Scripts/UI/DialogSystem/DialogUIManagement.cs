@@ -169,8 +169,10 @@ namespace Dialog
                 }
 
 
-                yield return new WaitForSeconds(dialogLevelData.sentenceDelay);
+                yield return new WaitForSeconds(dialogLevelData.delayAfterSentence);
             }
+
+            yield return new WaitForSeconds(dialogLevelData.delayAfterDialog);
 
             //Stop dialog
             if (dialogInfosQueue.Count == 0 && !isMusicPlaying)
