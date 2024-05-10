@@ -7,7 +7,8 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         private readonly FsmGroundData _groundDataContext;
 
         public float friction;
-        
+        public float jumpHeldFriction;
+
         public GroundContext(FsmGroundData groundDataContext, bool canJump = true, bool canDash = false, bool canWallRun = true) : base(groundDataContext, canJump, canDash, canWallRun)
         {
             _groundDataContext = groundDataContext;
@@ -17,6 +18,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         {
             base.Init();
             friction = _groundDataContext.friction;
+            jumpHeldFriction = _groundDataContext.jumpHeldFriction;
         }
     }
 }
