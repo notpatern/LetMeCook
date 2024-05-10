@@ -47,6 +47,8 @@ namespace UI.MENUScripts
         {
             bool state = !gameObject.activeSelf;
 
+            ControlOptionsManagement.s_Instance.UpdateIsMainControlsActivated(!state);
+
             if (state || HandleMenuLayer())
             {
                 TimeOptionManagement.SetActiveTime(!state);
