@@ -1,3 +1,4 @@
+using Audio;
 using FoodSystem.FoodType;
 using ItemLaunch;
 using ParticleSystemUtility;
@@ -70,6 +71,8 @@ namespace FoodSystem.FoodMachinery
             collectedFoodGo.transform.rotation = Quaternion.identity;
             collectedFoodGo.transform.SetParent(foodSpawn, false);
             canCollect = false;
+
+            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_StartPlatformCollector, transform.position);
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using FoodSystem.FoodType;
 using System.Collections.Generic;
+using Audio;
 
 namespace FoodSystem.FoodMachinery.FoodTransformer
 {
@@ -36,7 +37,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         [SerializeField] GameEventScriptableObject m_OnFoodPickupGameEvent;
 
-        void Awake() 
+        protected virtual void Awake() 
         {
             loadPlayerTransformAtStart.BindEventAction(LoadPlayerTransform);
             simpleNotCookedFoodChangeMoveTechStateEvent.BindEventAction(SimpleFoodChangeMoveTechState);
@@ -142,6 +143,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             collectedFoodGo.transform.SetParent(cookingFoodPos, false);
             collectedFoodGo.GetComponent<Collider>().enabled = false;
             collectedFoodGo.GetComponent<Rigidbody>().isKinematic = true;
+
+            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_StartCookingCollector, transform.position);
         }
 
         protected virtual void Update()

@@ -98,6 +98,14 @@ namespace Audio
             return instance;
         }
 
+        public EventInstance Create3DInstance(EventReference eventReference, Vector3 position)
+        {
+            EventInstance instance = RuntimeManager.CreateInstance(eventReference);
+            m_PausableEventInstances.Add(instance);
+            instance.set3DAttributes(RuntimeUtils.To3DAttributes(position));
+            return instance;
+        }
+
         public EventInstance CreateUnpausableInstance(EventReference eventReference)
         {
             EventInstance instance = RuntimeManager.CreateInstance(eventReference);

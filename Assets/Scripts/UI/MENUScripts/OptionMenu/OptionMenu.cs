@@ -15,7 +15,7 @@ namespace UI.MENUScripts
         [SerializeField] GameObject m_GraphicsPanel;
         [SerializeField] GameObject m_ControlsPanel;
         [SerializeField] GameObject m_VolumeOptionPanel;
-        GameObject optionPanel;
+        [SerializeField] GameObject optionPanel;
 
         [Header("Menu References")]
         [SerializeField] ResolutionUIMenu m_ResolutionUIMenu;
@@ -23,7 +23,6 @@ namespace UI.MENUScripts
 
         void Awake()
         {
-            optionPanel = gameObject;
             m_GraphicsPanel.SetActive(false);
             
             m_GraphicsParameter.onClick.AddListener(ToggleGraphicsParameter);

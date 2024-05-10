@@ -1,3 +1,5 @@
+using Audio;
+using FMOD.Studio;
 using ItemLaunch;
 using UnityEngine;
 
@@ -12,6 +14,20 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         [SerializeField] Transform m_AnnimationEndPos;
         [SerializeField] Transform m_BladeTr;
 
+        EventInstance cookingSound;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            cookingSound = AudioManager.s_Instance.Create3DInstance(AudioManager.s_Instance.m_AudioSoundData.m_ChopperCooking, transform.position);
+        }
+
+        protected override void OnFoodCollected()
+        {
+            base.OnFoodCollected();
+            cookingSound.start();
+        }
+
         protected override void ReleaseFood()
         {
             GameObject newFood = Instantiate(collectedFoodData[0].choppedFood.prefab,
@@ -21,6 +37,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             m_LerpDelta = 0f;
 
             base.ReleaseFood();
+            cookingSound.stop(STOP_MODE.ALLOWFADEOUT);
         }
 
         protected override void Update()
