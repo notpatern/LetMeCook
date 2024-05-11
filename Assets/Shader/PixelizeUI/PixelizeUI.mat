@@ -67,8 +67,9 @@ Material:
     - _DecalMeshDepthBias: 0
     - _DecalMeshViewBias: 0
     - _DrawOrder: 0
-    - _MovingSpeed: 0
-    - _Munimum_Alpha: 1
+    - _InvertStrength: 5
+    - _MovingSpeed: 10
+    - _Munimum_Alpha: 0.906
     - _NoiseScale: 10
     - _PixelSize: 50
     - _QueueControl: 0
@@ -76,5 +77,6 @@ Material:
     - _noiseScale: 1
     - _randomScale: 1
     m_Colors:
-    - _Color: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _SecondColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
   m_BuildTextureStacks: []
