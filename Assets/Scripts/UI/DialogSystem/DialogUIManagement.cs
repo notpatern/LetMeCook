@@ -26,8 +26,8 @@ namespace Dialog
         //
 
         const string c_ALPHACOLOR = "<size=0><color=00000000>";
-        const string c_KEYOPTIONS = "<b><color=#FE4119FF>[";
-        const string c_KEYENDOPTIONS = "]</b></color>";
+        public static string c_KEYOPTIONS = "<b><color=#FE4119FF>[";
+        public static string c_KEYENDOPTIONS = "]</b></color>";
 
         bool isMusicPlaying = false;
         Coroutine currentDialog;

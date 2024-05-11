@@ -5,6 +5,10 @@ namespace Manager
     public class TutorialGameManager : GameManager
     {
         [SerializeField] Transform respawnTr;
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
         void OnTriggerEnter(Collider other)
         {

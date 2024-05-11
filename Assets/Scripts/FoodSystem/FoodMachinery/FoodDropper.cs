@@ -9,7 +9,7 @@ namespace FoodSystem.FoodMachinery
         [FormerlySerializedAs("_data")] public FoodData data;
         [SerializeField] Animator animator;
 
-        public GameObject StartInteraction()
+        public virtual GameObject StartInteraction()
         {
             animator.SetTrigger("GetFood");
             GameObject food = Instantiate(data.prefab);
