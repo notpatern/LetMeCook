@@ -18,6 +18,7 @@ namespace Tutorial
         [SerializeField] TutorialInstuctionObject m_OptionalNextTask;
 
         bool m_isInTask = false;
+        bool m_IsTaskFinished = false;
 
         void Awake()
         {
@@ -63,6 +64,10 @@ namespace Tutorial
 
         public void OnCompleteTask()
         {
+            if (m_IsTaskFinished) return;
+
+            m_IsTaskFinished = true;
+
             m_CanvasWorldGo.SetActive(false);
             m_isInTask = false;
 

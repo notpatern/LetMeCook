@@ -1,6 +1,8 @@
 using Audio;
 using PostProcessing;
 using UnityEngine;
+using System.Collections.Generic;
+using FoodSystem.FoodType;
 
 namespace RecipeSystem.Core
 {
@@ -11,15 +13,27 @@ namespace RecipeSystem.Core
         [SerializeField] Animator mouthAnimator;
         [SerializeField] GameObject receiveParticleParticles;
         [SerializeField] PostProcessingManager postProcessingManager;
+
+        List<Food> processedFood;
+
+        private void OnTriggerStay(Collider other)
+        {
+            OnTriggerEnter(other);
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (foodlayer == (foodlayer | (1 << other.gameObject.layer)))
             {
                 // Try to get the food component
-                var food = other.GetComponent<FoodSystem.FoodType.Food>();
-                if (!food) return;
+                Food currentFood = other.GetComponent<Food>();
 
-                int potentialRecipe = recipesManager.GetRecipeFoodId(food);
+                if (!currentFood || processedFood.Contains(currentFood)) return;
+
+                processedFood.Add(currentFood);
+                int currentId = processedFood.Count - 1;
+
+                int potentialRecipe = recipesManager.GetRecipeFoodId(processedFood[currentId]);
 
                 // Completed recipe
                 if (potentialRecipe >= 0)
@@ -30,6 +44,7 @@ namespace RecipeSystem.Core
                 Instantiate(receiveParticleParticles, other.bounds.ClosestPoint(other.transform.position), transform.rotation);
 
                 mouthAnimator.SetTrigger("EatFood");
+                processedFood.Remove(currentFood);
                 Destroy(other.gameObject);
             }
         }
