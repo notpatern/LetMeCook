@@ -195,8 +195,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
             cookParticleInstanceManager.Stop(false);
             animator.SetTrigger("Throw");
-            collectedFoodGo.GetComponent<Food>().SetActiveColliders(true);
             collectedFoodGo.GetComponent<Food>().SetActiveTrails(true);
+            collectedFoodGo.GetComponent<Food>().SetActiveColliders(true);
             progressBarUI.SetActive(false);
             ResetCollector();
             canCollect = true;

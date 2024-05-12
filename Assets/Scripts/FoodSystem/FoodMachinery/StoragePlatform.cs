@@ -57,7 +57,7 @@ namespace FoodSystem.FoodMachinery
         protected override void OnFoodCollected()
         {
             energyStockagePaltform.SetActive(true);
-            collectedFoodGo.GetComponent<LaunchableItem>().QuitBezierCurve();
+            collectedFoodGo.GetComponent<LaunchableItem>().QuitBezierCurve(false);
             activeParticle.Play();
 
             collisionToEnableOnFoodStocked.enabled = true;

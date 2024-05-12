@@ -1,3 +1,4 @@
+using FoodSystem.FoodType;
 using UnityEngine;
 
 namespace ItemLaunch
@@ -27,13 +28,22 @@ namespace ItemLaunch
                 _t += Time.deltaTime * _launcher.throwSpeed;
             }
             else
-                QuitBezierCurve();
+                QuitBezierCurve(true);
         }
 
-        void OnCollisionEnter(Collision other) { QuitBezierCurve(); }
+        void OnCollisionEnter(Collision other) { QuitBezierCurve(true); }
 
-        public void QuitBezierCurve()
+        public void QuitBezierCurve(bool activeCollider)
         {
+            if (activeCollider)
+            {
+                Food food = GetComponent<Food>();
+                if (food)
+                {
+                    food.SetActiveColliders(true);
+                }
+            }
+
             _doingTheBezierCurve = false;
         }
     

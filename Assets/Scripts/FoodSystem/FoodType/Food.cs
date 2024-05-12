@@ -131,7 +131,7 @@ namespace FoodSystem.FoodType
         public virtual void PutInHand(Transform hand)
         {
             SetActiveColliders(false);
-            launchableItem.QuitBezierCurve();
+            launchableItem.QuitBezierCurve(false);
             transform.SetParent(hand);
             transform.position = hand.position;
             transform.localRotation = Quaternion.identity;
