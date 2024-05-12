@@ -7,9 +7,9 @@ namespace RecipeSystem.Core
     {
         [SerializeField] TutorialGameManager m_TutorialgoalRecipesGaol;
 
-        protected override void OnFoodOk(int potentialRecipe)
+        protected override void OnFoodOk(int potentialRecipe, FoodSystem.FoodType.Food currentFood)
         {
-            base.OnFoodOk(potentialRecipe);
+            base.OnFoodOk(potentialRecipe, currentFood);
             m_TutorialgoalRecipesGaol.TriggerFinishLevelEndCondition();
 
         }

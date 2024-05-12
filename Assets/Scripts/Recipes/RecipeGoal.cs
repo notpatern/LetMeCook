@@ -28,32 +28,31 @@ namespace RecipeSystem.Core
                 // Try to get the food component
                 Food currentFood = other.GetComponent<Food>();
 
-                if (!currentFood || processedFood.Contains(currentFood)) return;
-
-                processedFood.Add(currentFood);
-                int currentId = processedFood.Count - 1;
-
-                int potentialRecipe = recipesManager.GetRecipeFoodId(processedFood[currentId]);
+                int potentialRecipe = recipesManager.GetRecipeFoodId(currentFood);
 
                 // Completed recipe
                 if (potentialRecipe >= 0)
                 {
-                    OnFoodOk(potentialRecipe);
+                    OnFoodOk(potentialRecipe, currentFood);
                 }
+                processedFood.Add(currentFood);
 
                 Instantiate(receiveParticleParticles, other.bounds.ClosestPoint(other.transform.position), transform.rotation);
 
                 mouthAnimator.SetTrigger("EatFood");
-                processedFood.Remove(currentFood);
                 Destroy(other.gameObject);
             }
         }
 
-        protected virtual void OnFoodOk(int potentialRecipe)
+        protected virtual void OnFoodOk(int potentialRecipe, Food currentFood)
         {
+            if (!currentFood || processedFood.Contains(currentFood)) return;
+
             AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_DeliverySound, transform.position);
             postProcessingManager.ChangeChromaticAberration(1f, 2.5f);
             recipesManager.CompleteRecipe(potentialRecipe);
+
+            processedFood.Remove(currentFood);
         }
     }
 }
