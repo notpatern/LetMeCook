@@ -16,6 +16,7 @@ namespace Tutorial
         [SerializeField] KeybindsData[] m_Keys;
 
         [SerializeField] TutorialInstuctionObject m_OptionalNextTask;
+        [SerializeField] Animator m_PanelAnimator;
 
         bool m_isInTask = false;
         bool m_IsTaskFinished = false;
@@ -25,7 +26,10 @@ namespace Tutorial
             m_OnLoadPlayerTransformEvent.BindEventAction(OnLoadPlayerTransform);
 
             m_CanvasWorldGo.SetActive(false);
+        }
 
+        private void Start()
+        {
             if (m_IsStartingOnStart)
             {
                 StartTask();
@@ -59,6 +63,7 @@ namespace Tutorial
             string data = string.Format(m_TutoText.text, loadedKeys);
             m_TutoText.text = data;
             m_CanvasWorldGo.SetActive(true);
+            m_PanelAnimator.SetTrigger("OpenPanel");
             m_isInTask = true;
         }
 
@@ -68,13 +73,19 @@ namespace Tutorial
 
             m_IsTaskFinished = true;
 
-            m_CanvasWorldGo.SetActive(false);
             m_isInTask = false;
 
             if (m_OptionalNextTask)
             {
                 m_OptionalNextTask.StartTask();
             }
+
+            m_PanelAnimator.SetTrigger("ClosePanel");
+        }
+
+        void ClosePanel()
+        {
+            m_CanvasWorldGo.SetActive(false);
         }
     }
 
