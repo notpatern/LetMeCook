@@ -14,7 +14,7 @@ namespace RecipeSystem.Core
         [SerializeField] GameObject receiveParticleParticles;
         [SerializeField] PostProcessingManager postProcessingManager;
 
-        List<Food> processedFood;
+        List<Food> processedFood = new List<Food>();
 
         private void OnTriggerStay(Collider other)
         {
