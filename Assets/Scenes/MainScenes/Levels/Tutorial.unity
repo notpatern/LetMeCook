@@ -557,6 +557,125 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &73363320
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 969110561}
+    m_Modifications:
+    - target: {fileID: 902967974472927991, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -6.389
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.931
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.284
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433724333225396061, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_Keys.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3433724333225396061, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_IsStartingOnStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_text
+      value: Throw the finished crystal in the <color=#FE4119FF>MOUTH</color>
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6992662619934619024, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialPanelThrowing
+      objectReference: {fileID: 0}
+    - target: {fileID: 8804293265099718896, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8804293265099718896, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 8804293265099718896, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.812
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f01b5293738780f4ba691e6f29e72f70, type: 3}
+--- !u!4 &73363321 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+    type: 3}
+  m_PrefabInstance: {fileID: 73363320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &90426101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6288,12 +6407,12 @@ PrefabInstance:
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_text
-      value: "You can put food on standby\n\u2193"
+      value: "You can put <color=#FE4119FF>food</color> on <color=#FE4119FF>standby</color>\n\u2193"
       objectReference: {fileID: 0}
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_fontSize
-      value: 0.13
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
@@ -13959,6 +14078,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &969110561 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6465372081156731275, guid: a5578045f5c58e041a0e4c53f2178352,
+    type: 3}
+  m_PrefabInstance: {fileID: 2957610967826495450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &995743642
 GameObject:
   m_ObjectHideFlags: 0
@@ -14979,12 +15104,12 @@ PrefabInstance:
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_text
-      value: "Throw the food \nto bake it"
+      value: "Throw the food \nto <color=#FE4119FF>bake</color> it"
       objectReference: {fileID: 0}
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_fontSize
-      value: 0.15
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
@@ -35426,7 +35551,7 @@ PrefabInstance:
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_text
-      value: "Look ! \nIt will throw the food over there"
+      value: "Look ! \nIt will <color=#FE4119FF>throw the food</color> over there"
       objectReference: {fileID: 0}
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
@@ -39596,7 +39721,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6465372081156731275, guid: a5578045f5c58e041a0e4c53f2178352,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 73363321}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5578045f5c58e041a0e4c53f2178352, type: 3}
 --- !u!33 &3623333330288116467
@@ -39615,6 +39744,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 861694467}
     m_Modifications:
+    - target: {fileID: 117658936409026478, guid: 3e4788a714f69eb41ba12b146cec61ad,
+        type: 3}
+      propertyPath: m_text
+      value: Use {0} while food in hand to <color=#FE4119FF>dash</color>
+      objectReference: {fileID: 0}
     - target: {fileID: 4148376281251818355, guid: 3e4788a714f69eb41ba12b146cec61ad,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -39782,6 +39916,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WallrunFoodDropper (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5349077421755567900, guid: f40cc024c7897824f9698b2e3c9f4516,
+        type: 3}
+      propertyPath: m_text
+      value: With food in hand you can <color=#FE4119FF>wallrun</color>
+      objectReference: {fileID: 0}
     - target: {fileID: 7260728826319157195, guid: f40cc024c7897824f9698b2e3c9f4516,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -39848,12 +39987,12 @@ PrefabInstance:
     - target: {fileID: 893624990742649999, guid: bd50aa88a60662d41bc3d048fad4b3b9,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -0.120000035
+      value: -0.1542
       objectReference: {fileID: 0}
     - target: {fileID: 893624990742649999, guid: bd50aa88a60662d41bc3d048fad4b3b9,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.017099977
       objectReference: {fileID: 0}
     - target: {fileID: 7714418483661553004, guid: bd50aa88a60662d41bc3d048fad4b3b9,
         type: 3}
@@ -39913,7 +40052,8 @@ PrefabInstance:
     - target: {fileID: 9150494256529842256, guid: bd50aa88a60662d41bc3d048fad4b3b9,
         type: 3}
       propertyPath: m_text
-      value: Use [Espace] while in air food in hand to double jump
+      value: Use {0} while in air <color=#FE4119FF>with food in hand</color> to double
+        jump
       objectReference: {fileID: 0}
     - target: {fileID: 9150494256529842256, guid: bd50aa88a60662d41bc3d048fad4b3b9,
         type: 3}
@@ -39923,7 +40063,7 @@ PrefabInstance:
     - target: {fileID: 9150494256529842256, guid: bd50aa88a60662d41bc3d048fad4b3b9,
         type: 3}
       propertyPath: m_fontSizeMax
-      value: 0.13
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 9150494256529842256, guid: bd50aa88a60662d41bc3d048fad4b3b9,
         type: 3}
