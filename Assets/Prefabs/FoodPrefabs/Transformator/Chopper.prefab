@@ -79,6 +79,7 @@ MonoBehaviour:
   loadPlayerTransformAtStart: {fileID: 11400000, guid: f7c4a8211971b4846a78dbe99dafeb68,
     type: 2}
   vines: {fileID: 2987331756227029114}
+  deactivedVines: {fileID: 1037299950043528623}
   simpleNotCookedFoodChangeMoveTechStateEvent: {fileID: 11400000, guid: db588259c8e434f4fa8c9bd6b89e1383,
     type: 2}
   progressBarUI: {fileID: 716733370590407088}
@@ -30841,6 +30842,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49bafc898fb80e148a4c0a14084fd5e8, type: 3}
+--- !u!1 &1037299950043528623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6796929484655632198, guid: 49bafc898fb80e148a4c0a14084fd5e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 5780002428767757033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2987331756227029114 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8737990371025291923, guid: 49bafc898fb80e148a4c0a14084fd5e8,

@@ -16,6 +16,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         [Header("Actions with movetech and food")]
         [SerializeField] GameEventScriptableObject loadPlayerTransformAtStart;
         [SerializeField] GameObject vines;
+        [SerializeField] GameObject deactivedVines;
         [SerializeField] GameEventScriptableObject simpleNotCookedFoodChangeMoveTechStateEvent;
         [Header("World UI")]
         [SerializeField] GameObject progressBarUI;
@@ -48,6 +49,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             loadPlayerTransformAtStart.BindEventAction(LoadPlayerTransform);
             simpleNotCookedFoodChangeMoveTechStateEvent.BindEventAction(SimpleFoodChangeMoveTechState);
             vines.SetActive(false);
+            deactivedVines.SetActive(true);
             progressBarUI.SetActive(false);
             launcher = GetComponent<ItemLauncher>();
             m_OnFoodPickupGameEvent.BindEventAction(OnFoodPickupGameEventRemoveFromQueue);
@@ -135,6 +137,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         void SimpleFoodChangeMoveTechState(object isActive)
         {
             vines.SetActive((bool)isActive);
+            deactivedVines.SetActive(!(bool)isActive);
         }
 
         protected Vector3 PerformVectorLerp(Vector3 from, Vector3 to, float t)
