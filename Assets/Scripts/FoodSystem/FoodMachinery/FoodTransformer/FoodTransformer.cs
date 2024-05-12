@@ -38,6 +38,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         protected bool _cooking = false;
 
         [SerializeField] GameEventScriptableObject m_OnFoodPickupGameEvent;
+        [SerializeField] GameObject m_QueueParticles;
 
         protected EventInstance cookingSound;
         PLAYBACK_STATE cookingPBState;
@@ -57,6 +58,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             SimpleFood food = other.gameObject.GetComponentInParent<SimpleFood>();
             if(IsQueueFittable(food, true))
             {
+                Instantiate(m_QueueParticles, other.transform.position, Quaternion.identity);
                 foodInQueue.Add(food);
                 UpdateQueueText();
             }
