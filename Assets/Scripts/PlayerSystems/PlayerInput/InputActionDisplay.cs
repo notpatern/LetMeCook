@@ -31,7 +31,7 @@ namespace Player.Input
 
         void SetButtonText()
         {
-            m_rebindButton.GetComponentInChildren<TextMeshProUGUI>().text = m_action.GetBindingDisplayString(m_keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames);
+            m_rebindButton.GetComponentInChildren<TextMeshProUGUI>().text = m_action.GetBindingDisplayString(m_keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames).ToUpper();
         }
 
         void RebindAction()
