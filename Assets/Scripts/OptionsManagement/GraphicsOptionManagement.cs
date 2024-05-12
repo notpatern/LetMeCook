@@ -53,7 +53,8 @@ namespace GraphicsOption
 
         string GetResolutionString(in Resolution resolution)
         {
-            return ((int)resolution.refreshRateRatio.value).ToString() + "fps | " + resolution.width + "x" + resolution.height;
+            // return ((int)resolution.refreshRateRatio.value).ToString() + "fps | " + resolution.width + "x" + resolution.height;
+            return resolution.width + "x" + resolution.height;
         }
 
         void LoadResolution()
