@@ -43,8 +43,11 @@ namespace PlayerSystems.MovementFSMCore
         [HideInInspector] public bool canDash;
         [HideInInspector] public bool canWallRun;
         [HideInInspector] public float coyoteTime;
-        [SerializeField] float minimunSpeedEffect;
-        [SerializeField] float minimunSpeedLineEffect;
+        [SerializeField] float _minimunSpeedEffect;
+        [SerializeField] float _minimunSpeedLineEffect;
+        [SerializeField] float _lineMinimumDuration = 0.5f;
+        [SerializeField] float _lineMinimumMagnitudeDisparition = 10f;
+        float _lineTimer = 0f;
         [SerializeField] float speedEffectMultiplier;
         private bool _jumpInput;
         private bool _dashInput;
@@ -89,27 +92,36 @@ namespace PlayerSystems.MovementFSMCore
 
         void HandleLensDistortionBasedOnPlayerSpeed()
         {
-            if (rb.velocity.magnitude >= minimunSpeedEffect)
+            if (rb.velocity.magnitude >= _minimunSpeedEffect)
             {
                 float playerSpeed = _currentState.FindVelRelativeToLook().y;
-                float value = playerSpeed - minimunSpeedEffect;
+                float value = playerSpeed - _minimunSpeedEffect;
                 value = value * speedEffectMultiplier;
 
                 postProcessingManager.ChangeMotionBlur(value);
             }
 
-            if (rb.velocity.magnitude >= minimunSpeedLineEffect)
+            if (rb.velocity.magnitude >= _minimunSpeedLineEffect || _lineTimer > 0f && rb.velocity.magnitude > _lineMinimumMagnitudeDisparition)
             {
                 if (!_playerSpeedEffect.gameObject.activeSelf)
                 {
+                    _lineTimer = _lineMinimumDuration;
                     _playerSpeedEffect.gameObject.SetActive(true);
                 }
+
+                _lineTimer -= Time.deltaTime;
                 _playerSpeedEffect.rotation = Quaternion.LookRotation(rb.velocity);
             }
-            else if (_playerSpeedEffect.gameObject.activeSelf)
+            else if (_playerSpeedEffect.gameObject.activeSelf )
             {
-                _playerSpeedEffect.gameObject.SetActive(false);
+                _lineTimer -= Time.deltaTime;
+
+                if (_lineTimer <= 0f)
+                {
+                    _playerSpeedEffect.gameObject.SetActive(false);
+                }
             }
+
         }
 
         public float GetGroundedTime()
