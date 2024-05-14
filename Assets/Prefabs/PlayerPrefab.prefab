@@ -1774,8 +1774,11 @@ MonoBehaviour:
     canDash: 0
     canWallRun: 0
     coyoteTime: 0
-    minimunSpeedEffect: 18
-    minimunSpeedLineEffect: 22
+    _minimunSpeedEffect: 18
+    _minimunSpeedLineEffect: 23
+    _lineMinimumDuration: 0.5
+    _lineMinimumMagnitudeDisparition: 20
+    _lineSpeedEffectRotationSpeed: 10
     speedEffectMultiplier: 0.01
   m_PostPorcessingManagerEvent: {fileID: 11400000, guid: 8a4595aca153138479f9a298f0a6167c,
     type: 2}
@@ -3400,6 +3403,51 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2273996888658209234}
     m_Modifications:
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: ColorBySpeedModule.range.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: TrailModule.colorOverTrail.maxColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 0.37254903
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: TrailModule.colorOverLifetime.maxColor.a
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.key0.a
+      value: 0.4392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.key1.a
+      value: 0.4392157
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: ColorBySpeedModule.gradient.maxGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555527398181324619, guid: 924abf48731dbc8408eb0ee31b6a1569,
         type: 3}
       propertyPath: m_LocalPosition.x
