@@ -1,3 +1,4 @@
+using Audio;
 using Manager;
 using PlayerSystems.PlayerInput;
 using System;
@@ -27,11 +28,14 @@ public class MainMenu : LevelManager
 
     void Start()
     {
-        m_InputManager.BindTogglePauseMenu(() => { m_UiManager.optionMenu.HandleMenuLayer(); });
+        m_InputManager.BindTogglePauseMenu(() => { 
+            m_UiManager.optionMenu.HandleMenuLayer();
+        });
 
         LoadLevelSelectorBtn();
         m_OptionBtn.onClick.AddListener(() => {
             SetActivePanel(m_UiManager.optionMenu.GetPanelGo(), !m_UiManager.optionMenu.GetPanelGo().activeSelf);
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_OpenUiMenu);
         });
 
         m_QuitBtn.onClick.AddListener(Application.Quit);

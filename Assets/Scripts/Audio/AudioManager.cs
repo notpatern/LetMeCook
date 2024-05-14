@@ -83,6 +83,13 @@ namespace Audio
             }
         }
 
+        public void PlayOneShot2D(EventReference sound)
+        {
+            EventInstance instance = CreateInstance(sound);
+            instance.start();
+            instance.release();
+        }
+
         public void PlayOneShot(EventReference sound, Vector3 worldPosition)
         {
             EventInstance instance = CreateInstance(sound);

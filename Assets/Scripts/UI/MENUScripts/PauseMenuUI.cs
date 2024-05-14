@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using ControlOptions;
+using Audio;
 
 namespace UI.MENUScripts
 {
@@ -26,8 +27,14 @@ namespace UI.MENUScripts
             if(continueButton)
                 continueButton.onClick.AddListener(ToggleActiveMenuState);
 
-            if(quitButton)
-                quitButton.onClick.AddListener(() => { GoToLevel(targetedQuitLevel.linkedScenePath); });
+            if (quitButton)
+            {
+                quitButton.onClick.AddListener(() =>
+                {
+                    AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_QuitMenuSound);
+                    GoToLevel(targetedQuitLevel.linkedScenePath);
+                });
+            }
 
             if(restartButton)
                 restartButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(SceneManager.GetActiveScene().buildIndex));
@@ -83,6 +90,7 @@ namespace UI.MENUScripts
 
         public void ToggleOptionMenu()
         {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_OpenUiMenu);
             optionMenu.ToggleOptionMenu();
         }
     }

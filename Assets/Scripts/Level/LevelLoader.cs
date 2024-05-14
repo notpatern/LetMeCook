@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TimeOption;
+using Audio;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class LevelLoader : MonoBehaviour
 
     public bool LoadLevel(int id)
     {
+        AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_StartLevelButton);
         StartLoadingScreen();
         StartCoroutine(LoadLevelAsync(StartOperation(id)));
 

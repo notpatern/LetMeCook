@@ -2,6 +2,7 @@ using UnityEngine;
 using ControlOptions;
 using UnityEngine.UI;
 using Player.Input;
+using Audio;
 
 namespace UI.MENUScripts.Options
 {
@@ -37,6 +38,7 @@ namespace UI.MENUScripts.Options
 
         void OnSliderValueChange(float value)
         {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_SliderUI);
             ControlOptionsManagement.s_Instance.SetMouseSensitivity(value);
         }
     }

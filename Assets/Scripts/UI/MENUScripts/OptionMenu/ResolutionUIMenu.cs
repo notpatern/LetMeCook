@@ -26,8 +26,6 @@ namespace UI.MENUScripts.Options
             m_SetFullScreenMode.onValueChanged.AddListener(GraphicsOptionManagement.s_Instance.SetFullScreenMode);
             m_LeftButtonResolution.onClick.AddListener(() => {SwitchToNextResolution(-1);});
             m_RightButtonResolution.onClick.AddListener(() => {SwitchToNextResolution(1);});
-            
-            m_SetFullScreenMode.onValueChanged.AddListener(GraphicsOptionManagement.s_Instance.SetFullScreenMode);
 
             m_ApplyGraphicsParameters.onClick.AddListener(GraphicsOptionManagement.s_Instance.ApplyGraphicsOptions);
 

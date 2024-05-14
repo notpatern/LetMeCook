@@ -1,3 +1,4 @@
+using Audio;
 using PlayerSystems.PlayerInput;
 using TMPro;
 using UnityEngine;
@@ -36,6 +37,8 @@ namespace Player.Input
 
         void RebindAction()
         {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_PauseAndOptionMenuButton);
+
             m_rebindButton.GetComponentInChildren<TextMeshProUGUI>().text = "...";
 
             ControlsRemapping.SuccessfulRebinding += OnSuccessfulRebinding;

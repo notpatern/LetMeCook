@@ -1,3 +1,4 @@
+using Audio;
 using UI.MENUScripts.Options;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,6 @@ namespace UI.MENUScripts
 
         [Header("Menu References")]
         [SerializeField] ResolutionUIMenu m_ResolutionUIMenu;
-        [SerializeField] ControlOptionsUIMenu m_ControlOptionUIMenu;
 
         void Awake()
         {
@@ -49,7 +49,8 @@ namespace UI.MENUScripts
 
         public bool HandleMenuLayer()
         {
-            if(m_ControlsPanel.activeSelf)
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_QuitMenuSound);
+            if (m_ControlsPanel.activeSelf)
             {
                 ToggleControlsParameter();
                 return true;
@@ -112,6 +113,11 @@ namespace UI.MENUScripts
 
         void TogglePanel(GameObject go)
         {
+            if (!go.activeSelf)
+            {
+                AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_OpenUiMenu);
+            }
+
             CloseAllPanel(go);
             go.SetActive(!go.activeSelf);
         }

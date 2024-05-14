@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Audio;
 
 namespace GraphicsOption
 {
@@ -38,6 +39,8 @@ namespace GraphicsOption
 
         public void ApplyGraphicsOptions()
         {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_SwitchResolutionAndToggle);
+
             UpdateResolution();
         }
 
@@ -88,6 +91,7 @@ namespace GraphicsOption
 
         public void SetFullScreenMode(bool state)
         {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_SwitchResolutionAndToggle);
             isFullScreen = state;
         }
 

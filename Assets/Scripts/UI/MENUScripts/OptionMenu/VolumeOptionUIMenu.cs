@@ -19,18 +19,24 @@ namespace UI.MENUScripts.Options
 
         public void SetMasterVolume(float volume)
         {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_SliderUI);
+
             AudioManager.s_Instance.SetMasterVolume(volume);
             m_MasterVolume.value = volume;
         }
 
         public void SetMusicVolume(float volume)
         {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_SliderUI);
+
             AudioManager.s_Instance.SetMusicVolume(volume);
             m_MusicVolume.value = volume;
         }
 
         public void SetSFXVolume(float volume)
         {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_SliderUI);
+
             AudioManager.s_Instance.SetSFXVolume(volume);
             m_SFXVolume.value = volume;
         }
