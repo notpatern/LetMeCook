@@ -32,4 +32,11 @@ public class AudioSoundData : ScriptableObject
     [Header("MouthGoal")]
     public EventReference m_DeliverySound;
 
+    [Header("UI")]
+    public EventReference m_OpenUiMenu;
+    public EventReference m_PauseAndOptionMenuButton;
+    public EventReference m_QuitMenuSound;
+    public EventReference m_SliderUI;
+    public EventReference m_SwitchResolutionAndToggle;
+    public EventReference m_StartLevelButton;
 }
