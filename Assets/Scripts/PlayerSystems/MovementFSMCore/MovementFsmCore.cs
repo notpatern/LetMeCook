@@ -47,6 +47,7 @@ namespace PlayerSystems.MovementFSMCore
         [SerializeField] float _minimunSpeedLineEffect;
         [SerializeField] float _lineMinimumDuration = 0.5f;
         [SerializeField] float _lineMinimumMagnitudeDisparition = 10f;
+        [SerializeField] float _lineSpeedEffectRotationSpeed = 3f;
         float _lineTimer = 0f;
         [SerializeField] float speedEffectMultiplier;
         private bool _jumpInput;
@@ -106,11 +107,12 @@ namespace PlayerSystems.MovementFSMCore
                 if (!_playerSpeedEffect.gameObject.activeSelf)
                 {
                     _lineTimer = _lineMinimumDuration;
+                    _playerSpeedEffect.rotation = Quaternion.LookRotation(rb.velocity);
                     _playerSpeedEffect.gameObject.SetActive(true);
                 }
 
                 _lineTimer -= Time.deltaTime;
-                _playerSpeedEffect.rotation = Quaternion.LookRotation(rb.velocity);
+                _playerSpeedEffect.rotation = Quaternion.Lerp(_playerSpeedEffect.rotation, Quaternion.LookRotation(rb.velocity), Time.deltaTime * _lineSpeedEffectRotationSpeed);
             }
             else if (_playerSpeedEffect.gameObject.activeSelf )
             {
