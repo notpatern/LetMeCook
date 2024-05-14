@@ -3,7 +3,6 @@ using PlayerSystems.MovementFSMCore;
 using PlayerSystems.PlayerInput;
 using UnityEngine;
 using Player.Interaction;
-using PostProcessing;
 
 namespace PlayerSystems.PlayerBase
 {

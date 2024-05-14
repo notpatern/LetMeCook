@@ -36,12 +36,15 @@ namespace PlayerSystems.MovementFSMCore
         public float Stamina { get; set; }
         private UnityEvent<float> _onStaminaUpdate = new UnityEvent<float>();
 
+        [SerializeField] Transform _playerSpeedEffect;
+
         [HideInInspector] public bool jumpHeld;
         [HideInInspector] public bool canJump;
         [HideInInspector] public bool canDash;
         [HideInInspector] public bool canWallRun;
         [HideInInspector] public float coyoteTime;
         [SerializeField] float minimunSpeedEffect;
+        [SerializeField] float minimunSpeedLineEffect;
         [SerializeField] float speedEffectMultiplier;
         private bool _jumpInput;
         private bool _dashInput;
@@ -91,8 +94,21 @@ namespace PlayerSystems.MovementFSMCore
                 float playerSpeed = _currentState.FindVelRelativeToLook().y;
                 float value = playerSpeed - minimunSpeedEffect;
                 value = value * speedEffectMultiplier;
-                
+
                 postProcessingManager.ChangeMotionBlur(value);
+            }
+
+            if (rb.velocity.magnitude >= minimunSpeedLineEffect)
+            {
+                if (!_playerSpeedEffect.gameObject.activeSelf)
+                {
+                    _playerSpeedEffect.gameObject.SetActive(true);
+                }
+                _playerSpeedEffect.rotation = Quaternion.LookRotation(rb.velocity);
+            }
+            else if (_playerSpeedEffect.gameObject.activeSelf)
+            {
+                _playerSpeedEffect.gameObject.SetActive(false);
             }
         }
 
