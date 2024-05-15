@@ -23,7 +23,7 @@ Material:
   m_Name: MoonGodRays
   m_Shader: {fileID: -6465566751694194690, guid: 636a00c62b74e1640b4cf24d76b0aa3a,
     type: 3}
-  m_Parent: {fileID: 0}
+  m_Parent: {fileID: 2100000, guid: f6bff40098fef7d41929d05c2bbf8998, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -36,25 +36,10 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs:
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+    m_TexEnvs: []
     m_Ints: []
     m_Floats:
     - _FadePosition: 0.422
-    - _QueueControl: 0
-    - _QueueOffset: 0
     m_Colors:
-    - _BaseColor: {r: 0.990566, g: 0.9879875, b: 0.864409, a: 1}
     - _LerpAmounts: {r: 0, g: 1.06, b: 0, a: 0}
   m_BuildTextureStacks: []

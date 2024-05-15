@@ -1347,7 +1347,7 @@ Transform:
   m_GameObject: {fileID: 3267811529547466810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.248}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1774,7 +1774,7 @@ MonoBehaviour:
     canDash: 0
     canWallRun: 0
     coyoteTime: 0
-    _minimunSpeedEffect: 18
+    _minimunSpeedEffect: 20
     _minimunSpeedLineEffect: 23
     _lineMinimumDuration: 0.5
     _lineMinimumMagnitudeDisparition: 20
@@ -3410,13 +3410,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
         type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
       propertyPath: TrailModule.colorOverTrail.maxColor.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
         type: 3}
       propertyPath: TrailModule.colorOverTrail.maxColor.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
         type: 3}
@@ -3471,7 +3481,7 @@ PrefabInstance:
     - target: {fileID: 5555527398181324619, guid: 924abf48731dbc8408eb0ee31b6a1569,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7071068
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 5555527398181324619, guid: 924abf48731dbc8408eb0ee31b6a1569,
         type: 3}
@@ -3486,7 +3496,7 @@ PrefabInstance:
     - target: {fileID: 5555527398181324619, guid: 924abf48731dbc8408eb0ee31b6a1569,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5555527398181324619, guid: 924abf48731dbc8408eb0ee31b6a1569,
         type: 3}

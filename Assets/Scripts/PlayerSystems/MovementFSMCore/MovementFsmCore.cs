@@ -102,19 +102,21 @@ namespace PlayerSystems.MovementFSMCore
                 postProcessingManager.ChangeMotionBlur(value);
             }
 
-            if (rb.velocity.magnitude >= _minimunSpeedLineEffect || _lineTimer > 0f && rb.velocity.magnitude > _lineMinimumMagnitudeDisparition)
+            Vector3 velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            if (velocity.magnitude >= _minimunSpeedLineEffect || _lineTimer > 0f && velocity.magnitude > _lineMinimumMagnitudeDisparition)
             {
                 if (!_playerSpeedEffect.gameObject.activeSelf)
                 {
                     _lineTimer = _lineMinimumDuration;
-                    _playerSpeedEffect.rotation = Quaternion.LookRotation(rb.velocity);
+                    _playerSpeedEffect.rotation = Quaternion.LookRotation(velocity);
                     _playerSpeedEffect.gameObject.SetActive(true);
                 }
 
                 _lineTimer -= Time.deltaTime;
-                _playerSpeedEffect.rotation = Quaternion.Lerp(_playerSpeedEffect.rotation, Quaternion.LookRotation(rb.velocity), Time.deltaTime * _lineSpeedEffectRotationSpeed);
+                _playerSpeedEffect.rotation = Quaternion.Lerp(_playerSpeedEffect.rotation, Quaternion.LookRotation(velocity), Time.deltaTime * _lineSpeedEffectRotationSpeed);
             }
-            else if (_playerSpeedEffect.gameObject.activeSelf )
+            else if (_playerSpeedEffect.gameObject.activeSelf)
             {
                 _lineTimer -= Time.deltaTime;
 
