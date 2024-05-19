@@ -72,16 +72,12 @@ namespace GraphicsOption
                 {
                     currentResolutionId ++;
                     m_deviceAvailableResolutions[currentResolutionId] = Screen.resolutions[i];
-
-                    if(IsResolutionsSameSize(Screen.resolutions[i], Screen.currentResolution))
-                    {
-                        m_currentSelectedResolutionID = currentResolutionId;
-                    }
                 }
             }
 
             Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId+1);
 
+            m_currentSelectedResolutionID = m_deviceAvailableResolutions.Length - 1;
         }
         
         bool IsResolutionsSameSize(in Resolution a, in Resolution b)
