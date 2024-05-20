@@ -127,9 +127,8 @@ namespace RecipeSystem
             GameRecipe gameRecipe = activeRecipes[recipeId];
             RemoveRecipe(recipeId);
 
-            gameManager.AddScore(gameRecipe.recipe.addedScore);
-
             gameManager.AddAcomplishedRecipes(gameRecipe);
+            gameManager.AddScore(gameRecipe.recipe.addedScore);
         }
 
         /// <summary>
@@ -180,6 +179,18 @@ namespace RecipeSystem
 
             // No recipe match the food(s)
             return -1;
+        }
+
+        public int GetMaxScoreOnMainRecipesFeed()
+        {
+            int result = 0;
+
+            for (int i = 0; i < dataBase.recipesContainers.Length; i++)
+            {
+                result += dataBase.recipesContainers[i].m_Recipe.addedScore;
+            }
+
+            return result;
         }
 
         public float GetLevelDurationBasedOnRecipesDataBase()

@@ -28,7 +28,12 @@ namespace RecipeSystem.Core
                 // Try to get the food component
                 Food currentFood = other.GetComponent<Food>();
 
-                int potentialRecipe = recipesManager.GetRecipeFoodId(currentFood);
+                int potentialRecipe = -1;
+
+                if (currentFood)
+                {
+                    potentialRecipe = recipesManager.GetRecipeFoodId(currentFood);
+                }
 
                 // Completed recipe
                 if (potentialRecipe >= 0)
