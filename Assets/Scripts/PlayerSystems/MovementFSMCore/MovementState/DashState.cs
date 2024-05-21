@@ -23,6 +23,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             
             float[] fovValues = { fsmCore.cameraData.dashFov, fsmCore.cameraData.dashFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
+
+            fsmCore.dashSound.start();
             
             _dashDirection = fsmCore.camera.forward;
             fsmCore.rb.AddForce(_dashDirection * (fsmCore.rb.velocity.magnitude + _context.dashForce), ForceMode.Impulse);

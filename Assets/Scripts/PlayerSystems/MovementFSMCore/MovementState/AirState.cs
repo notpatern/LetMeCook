@@ -79,6 +79,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             var vel = fsmCore.rb.velocity;
             fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
 
+            fsmCore.doubleJumpSound.start();
+
             fsmCore.rb.AddForce(Vector3.up * _context.doubleJumpForce, ForceMode.Impulse);
             context.canJump = false;
         }

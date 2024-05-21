@@ -1,4 +1,6 @@
 using System;
+using Audio;
+using FMOD.Studio;
 using PlayerSystems.MovementFSMCore.DataClass;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using PlayerSystems.MovementFSMCore.MovementState;
@@ -25,6 +27,11 @@ namespace PlayerSystems.MovementFSMCore
         public FsmGroundData groundData;
         public FsmDashData dashData;
         public StaminaData staminaData;
+
+        public EventInstance wallRunSound;
+        public EventInstance jumpSound;
+        public EventInstance doubleJumpSound;
+        public EventInstance dashSound;
 
         public Transform camera;
 
@@ -72,6 +79,10 @@ namespace PlayerSystems.MovementFSMCore
         public void InitPostProcessingManger(object obj)
         {
             postProcessingManager = (PostProcessingManager)obj;
+        }
+
+        public void CreateSoundInstances() {
+            wallRunSound = AudioManager.s_Instance.CreateInstance(AudioManager.s_Instance.m_AudioSoundData.m_PlayerWallrun);
         }
 
         public void Update()
