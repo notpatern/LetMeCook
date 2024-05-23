@@ -71,12 +71,17 @@ namespace UI
         void LoadScoreWorldUI(GameObject scorePrefab, Transform parent)
         {
             scoreText = Object.Instantiate(scorePrefab, parent).GetComponent<TMP_Text>();
-            UpdateScore(0);
+            UpdateScore(0, null, 0);
         }
 
-        public void UpdateScore(int amount)
+        public void UpdateScore(int amount, bool[] scoreUnlocked, int scoreUntilNextStar)
         {
             scoreText.text = "! " + amount + " !";
+
+            if (playerHUD)
+            {
+                playerHUD.UpdateScore(scoreUnlocked, scoreUntilNextStar);
+            }
         }
 
         void LoadEndConditionUI(GameObject endConditionPrefab, Transform parent)

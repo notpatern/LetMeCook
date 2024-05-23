@@ -40,6 +40,8 @@ namespace Manager
         {
             m_EndconditionParentUI.gameObject.SetActive(true);
             m_RecipesManager.Init(this, m_UiManager.recipeUI);
+
+            UpdateScoreUI();
         }
 
         protected virtual void InitEndCondition()
@@ -93,7 +95,23 @@ namespace Manager
         {
             m_Score += scoreAmount;
 
-            m_UiManager.UpdateScore(m_Score);
+            UpdateScoreUI();
+        }
+
+        void UpdateScoreUI()
+        {
+            int maxMainRecipesFeedScore = m_RecipesManager.GetMaxScoreOnMainRecipesFeed();
+
+            int scoreWithoutBonus = 0;
+
+            if (m_RecipesManager.dataBase.randomFillerRecipes.Length > 0)
+            {
+                scoreWithoutBonus = m_Score - m_BonusRecipes * m_RecipesManager.dataBase.randomFillerRecipes[0].addedScore;
+            }
+
+            int requiredScoreUntilNextStar = m_LevelData.requiredScore > m_Score ? m_LevelData.requiredScore - m_Score : m_UiManager.endScreen.GetRequiredScoreUntilNextStar(scoreWithoutBonus, maxMainRecipesFeedScore);
+
+            m_UiManager.UpdateScore(m_Score, m_UiManager.endScreen.GetUnlockedStars(scoreWithoutBonus, maxMainRecipesFeedScore, m_LevelData.requiredScore), requiredScoreUntilNextStar);
         }
 
         public void AddRecipesCount(int amount)

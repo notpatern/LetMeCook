@@ -40,6 +40,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Jump()
         {
             base.Jump();
+            fsmCore.jumpSound.start();
             fsmCore.coyoteTime = 0f;
         }
     }

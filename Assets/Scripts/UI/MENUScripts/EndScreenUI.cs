@@ -27,8 +27,6 @@ public class EndScreenUI : MonoBehaviour
     [SerializeField] Button m_GotoMainMenuButton;
     [SerializeField] Button m_RestartLevelButton;
 
-    TempScoreContainer score;
-
     public void SetActive(bool state)
     {
         m_PanelContent.SetActive(state);
@@ -36,7 +34,6 @@ public class EndScreenUI : MonoBehaviour
 
     public void InitEndScreen(TempScoreContainer playerScore, LevelData nextLevelData, LevelData levelData)
     {
-        score = playerScore;
         m_EndScreenAnimator.SetTrigger("Start");
 
         ControlOptionsManagement.SetCursorIsPlayMode(false);
@@ -126,6 +123,45 @@ public class EndScreenUI : MonoBehaviour
             m_ActiveStarsGo[2].SetActive(true);
             yield return new WaitForSeconds(m_StarActivationTransitionTime);
         }
+    }
+
+    public bool[] GetUnlockedStars(int score, int maxMainRecipesFeedScore, int minimumRequiredScore)
+    {
+        bool[] result = new bool[GetStarsNumber()];
+
+        if (score < minimumRequiredScore) return result;
+
+        for (int i = 0; i < result.Length; i++)
+        {
+            if (i / (float)(GetStarsNumber()-1) <= score / (float)maxMainRecipesFeedScore)
+            {
+                result[i] = true;
+            }
+        }
+
+        return result;
+    }
+
+    public int GetRequiredScoreUntilNextStar(int score, int maxMainRecipesFeedScore)
+    {
+        for (int i = 0; i < GetStarsNumber(); i++)
+        {
+            if(i / (float)(GetStarsNumber()-1) <= score / (float)maxMainRecipesFeedScore)
+            {
+                continue;
+            }
+
+            return Mathf.FloorToInt(i / (float)(GetStarsNumber() - 1) * maxMainRecipesFeedScore) - score;
+        }
+
+        return 0;
+    }
+
+
+
+    public int GetStarsNumber()
+    {
+        return m_ActiveStarsGo.Length;
     }
 }
 

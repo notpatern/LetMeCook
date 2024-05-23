@@ -1,7 +1,5 @@
 
 using PlayerSystems.MovementFSMCore.MovementContext;
-using System.Data;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace PlayerSystems.MovementFSMCore.MovementState
@@ -22,6 +20,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _context.Init();
             _context.canJump = true;
             GetWallDirection();
+
+            fsmCore.wallRunSound.start();
 
             float[] fovValues = { fsmCore.cameraData.wallRunFov, fsmCore.cameraData.wallRunFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
@@ -106,6 +106,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
         private void ExitState()
         {
+            fsmCore.wallRunSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             float[] fovValues = { fsmCore.cameraData.defaultFov, fsmCore.cameraData.defaultFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
             float[] zTilt = { fsmCore.cameraData.defaultTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
