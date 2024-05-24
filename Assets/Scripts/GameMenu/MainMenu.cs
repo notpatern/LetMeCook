@@ -33,6 +33,7 @@ public class MainMenu : LevelManager
         });
 
         LoadLevelSelectorBtn();
+
         m_OptionBtn.onClick.AddListener(() => {
             SetActivePanel(m_UiManager.optionMenu.GetPanelGo(), !m_UiManager.optionMenu.GetPanelGo().activeSelf);
             AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_OpenUiMenu);
@@ -86,5 +87,10 @@ public class MainMenu : LevelManager
     {
         m_UiManager.optionMenu.SetActiveOptionMenu(false);
         m_LevelSelectorPanel.SetActive(false);
+    }
+
+    public void OnButtonHover()
+    {
+        AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
     }
 }

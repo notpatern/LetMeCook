@@ -34,6 +34,7 @@ public class AudioSoundData : ScriptableObject
 
     [Header("UI")]
     public EventReference m_OpenUiMenu;
+    public EventReference m_HoverUIButtons;
     public EventReference m_PauseAndOptionMenuButton;
     public EventReference m_QuitMenuSound;
     public EventReference m_SliderUI;
