@@ -1069,7 +1069,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3085044357016221366}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1305,6 +1305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onFovChange: {fileID: 11400000, guid: 730093bf5e7e26f4587a6e9f7bc31e38, type: 2}
   onTiltChange: {fileID: 11400000, guid: 422f8c111f492344aa9f6147565f547c, type: 2}
+  onShake: {fileID: 11400000, guid: 83f559788aa0fdf4dacdafafbec461dd, type: 2}
   orientation: {fileID: 4604464782735597648}
   camera: {fileID: 7932818568912763235}
   camHolder: {fileID: 79585516526279688}

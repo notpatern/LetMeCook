@@ -9,11 +9,14 @@ namespace PlayerSystems.Camera
     {
         public GameEventScriptableObject onFovChange;
         public GameEventScriptableObject onTiltChange;
+        public GameEventScriptableObject onShake;
         
         public Transform orientation;
         public new Transform camera;
         public Transform camHolder;
         [SerializeField] Transform _handCamera;
+
+        private Transform cameraPosition;
 
         float _xRotation;
         float _yRotation;
@@ -22,11 +25,13 @@ namespace PlayerSystems.Camera
         {
             onFovChange.BindEventAction(DoFov);
             onTiltChange.BindEventAction(DoTilt);
+            onShake.BindEventAction(DoShake);
         }
 
         void Start()
         {
             ControlOptionsManagement.SetCursorIsPlayMode(true);
+            cameraPosition = camera.transform;
         }
 
         void Update()
@@ -56,11 +61,14 @@ namespace PlayerSystems.Camera
             _handCamera.DOLocalRotate(new Vector3(0, 0, array[0]), array[1]);
         }
 
+        Tween shake;
+
         void DoShake(object shakeValue) {
             /// summary:
             /// float duration, float strength, int vibrator, float randomness
-           var array = (float[])shakeValue;
-            transform.DOShakePosition(array[0], array[1], (int)array[2], array[3], false, true, ShakeRandomnessMode.Full);
+            var array = (float[])shakeValue;
+            shake.Complete();
+            shake = camera.transform.DOShakePosition(array[0], array[1], (int)array[2], array[3], false, true, ShakeRandomnessMode.Harmonic);
         }
     }
 }
