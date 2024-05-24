@@ -23,7 +23,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
             fsmCore.wallRunSound.start();
 
-            float[] fovValues = { 0, fsmCore.cameraData.wallRunFov, fsmCore.cameraData.wallRunFovTimeToSet };
+            float[] fovValues = { fsmCore.cameraData.wallRunFov, fsmCore.cameraData.wallRunFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
 
             if (_context.wallRight)
@@ -33,7 +33,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             }
             else
             {
-                float[] zTilt = { -fsmCore.cameraData.wallRunTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
+                float[] zTilt = { 0, -fsmCore.cameraData.wallRunTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
                 fsmCore.onTiltChange.TriggerEvent(zTilt);
             }
             var velocity = fsmCore.rb.velocity;
@@ -109,7 +109,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             fsmCore.wallRunSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             float[] fovValues = { fsmCore.cameraData.defaultFov, fsmCore.cameraData.defaultFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
-            float[] zTilt = { fsmCore.cameraData.defaultTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
+            float[] zTilt = { 0, fsmCore.cameraData.defaultTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
             fsmCore.onTiltChange.TriggerEvent(zTilt);
             fsmCore.SwitchState<AirState>(typeof(AirState), new AirContext(fsmCore.airData, _context.exitTime, fsmCore.canJump, true, fsmCore.canWallRun, _context.wallInfo));
         }

@@ -16,6 +16,8 @@ namespace PlayerSystems.MovementFSMCore.DataClass
         public float wallRunTilt;
         public float doubleJumpTilt;
         public float doubleJumpTiltTimeToSet;
+        public float doubleJumpTiltTimeReset;
+        public float doubleJumpSpeedMultiplier;
         public float acceptedShakeDuration;
         public float rejectedShakeDuration;
         public float acceptedShakeStrength;

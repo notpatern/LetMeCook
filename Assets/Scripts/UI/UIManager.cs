@@ -76,7 +76,7 @@ namespace UI
 
         public void UpdateScore(int amount, bool[] scoreUnlocked, int scoreUntilNextStar)
         {
-            scoreText.text = "! " + amount + " !";
+            scoreText.text = amount.ToString();
 
             if (playerHUD)
             {

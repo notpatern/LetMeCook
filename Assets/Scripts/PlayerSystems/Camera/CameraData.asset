@@ -21,13 +21,15 @@ MonoBehaviour:
   wallRunFovTimeToSet: 0.25
   wallRunTiltTimeToSet: 0.5
   wallRunTilt: 10
-  doubleJumpTilt: 10
-  doubleJumpTiltTimeToSet: 0.5
+  doubleJumpTilt: 2.25
+  doubleJumpTiltTimeToSet: 0.15
+  doubleJumpTiltTimeReset: 0.45
+  doubleJumpSpeedMultiplier: 14
   acceptedShakeDuration: 0.7
   rejectedShakeDuration: 0.7
-  acceptedShakeStrength: 1
-  rejectedShakeStrength: 2
-  acceptedShakeVibrator: 20
-  rejectedShakeVibrator: 20
+  acceptedShakeStrength: 0.5
+  rejectedShakeStrength: 3.5
+  acceptedShakeVibrator: 30
+  rejectedShakeVibrator: 50
   acceptedShakeRandomness: 30
   rejectedShakeRandomness: 50

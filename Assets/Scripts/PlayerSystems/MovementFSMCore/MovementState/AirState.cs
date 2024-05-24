@@ -88,12 +88,12 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         }
 
         IEnumerator JumpImpulse() {
-            float[] zTilt = { fsmCore.cameraData.doubleJumpTilt, 0, fsmCore.cameraData.doubleJumpTiltTimeToSet };
+            float[] zTilt = { fsmCore.cameraData.doubleJumpTilt + fsmCore.rb.velocity.magnitude / fsmCore.cameraData.doubleJumpSpeedMultiplier, 0, fsmCore.cameraData.doubleJumpTiltTimeToSet };
             fsmCore.onTiltChange.TriggerEvent(zTilt);
 
             yield return new WaitForSeconds(fsmCore.cameraData.doubleJumpTiltTimeToSet);
 
-            float[] newzTilt = { 0, 0, fsmCore.cameraData.doubleJumpTiltTimeToSet };
+            float[] newzTilt = { 0, 0, fsmCore.cameraData.doubleJumpTiltTimeReset };
             fsmCore.onTiltChange.TriggerEvent(newzTilt);
         }
         

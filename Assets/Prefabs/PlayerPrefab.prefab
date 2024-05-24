@@ -1779,8 +1779,9 @@ MonoBehaviour:
     _minimunSpeedLineEffect: 23
     _lineMinimumDuration: 0.5
     _lineMinimumMagnitudeDisparition: 20
-    _lineSpeedEffectRotationSpeed: 10
+    _lineSpeedEffectRotationSpeed: 200
     speedEffectMultiplier: 0.01
+    mono: {fileID: 0}
   m_PostPorcessingManagerEvent: {fileID: 11400000, guid: 8a4595aca153138479f9a298f0a6167c,
     type: 2}
 --- !u!114 &1342482868074891331
@@ -3404,6 +3405,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2273996888658209234}
     m_Modifications:
+    - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 110043294431794378, guid: 924abf48731dbc8408eb0ee31b6a1569,
         type: 3}
       propertyPath: ColorBySpeedModule.range.y
