@@ -13,10 +13,9 @@ public class DialogInfosTriggerZone : TriggerEffectZone
 
     bool isDestroyed;
 
-    private void Awake()
+    private void Start()
     {
-        if (secondHandActivation)
-        {
+        if (secondHandActivation) {
             triggerZone.SetActive(false);
         }
     }

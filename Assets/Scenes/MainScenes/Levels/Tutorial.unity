@@ -563,7 +563,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 969110561}
+    m_TransformParent: {fileID: 1236204102}
     m_Modifications:
     - target: {fileID: 902967974472927991, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
@@ -572,38 +572,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.99629134
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.305094
+      objectReference: {fileID: 0}
+    - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.63
+      value: -2.54
       objectReference: {fileID: 0}
     - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.74
+      value: -0.88
       objectReference: {fileID: 0}
     - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.73
+      value: 12.673
       objectReference: {fileID: 0}
     - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7212465
       objectReference: {fileID: 0}
     - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.6926786
       objectReference: {fileID: 0}
     - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2997020695840051574, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
@@ -6407,12 +6417,13 @@ PrefabInstance:
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_text
-      value: "You can put <color=#FE4119FF>food</color> on <color=#FE4119FF>standby</color>\n\u2193"
+      value: "You can <color=#FE4119FF>queue</color> the <color=#FE4119FF>food</color>
+        by throwing it at the cooker\n\u2193"
       objectReference: {fileID: 0}
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_fontSize
-      value: 0.13
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
@@ -14419,12 +14430,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!4 &969110561 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6465372081156731275, guid: a5578045f5c58e041a0e4c53f2178352,
-    type: 3}
-  m_PrefabInstance: {fileID: 2957610967826495450}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1017441736
 GameObject:
   m_ObjectHideFlags: 0
@@ -19095,7 +19100,8 @@ Transform:
   m_LocalPosition: {x: -25.1, y: 5.9, z: 381.73}
   m_LocalScale: {x: 3.2814, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 73363321}
   m_Father: {fileID: 1189205547}
   m_LocalEulerAnglesHint: {x: 0, y: 87.685, z: 0}
 --- !u!114 &1236204103
@@ -27220,7 +27226,7 @@ PrefabInstance:
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
       propertyPath: m_text
-      value: This platform store the food !
+      value: This platform stores the food !
       objectReference: {fileID: 0}
     - target: {fileID: 6154071695775450681, guid: f01b5293738780f4ba691e6f29e72f70,
         type: 3}
@@ -39722,11 +39728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6465372081156731275, guid: a5578045f5c58e041a0e4c53f2178352,
-        type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 73363321}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5578045f5c58e041a0e4c53f2178352, type: 3}
 --- !u!1001 &3990554652307048066
@@ -40225,6 +40227,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578952772261922349, guid: 8c3a23f5efc8d394bbc989c0330485f5,
+        type: 3}
+      propertyPath: m_text
+      value: 'Throw the <color=#FE4119FF>steak</color>
+
+        to <color=#FE4119FF>bake</color>
+        it'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

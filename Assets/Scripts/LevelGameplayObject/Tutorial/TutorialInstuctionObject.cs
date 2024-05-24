@@ -21,8 +21,7 @@ namespace Tutorial
         bool m_isInTask = false;
         bool m_IsTaskFinished = false;
 
-        void Awake()
-        {
+        private void Awake() {
             m_OnLoadPlayerTransformEvent.BindEventAction(OnLoadPlayerTransform);
 
             m_CanvasWorldGo.SetActive(false);
