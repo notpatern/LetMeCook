@@ -59,7 +59,7 @@ namespace PlayerSystems.PlayerBase
 
         public void InitFsmCore()
         {
-            m_MovementFsmCore.Init(m_PlayerRb, m_PostPorcessingManagerEvent);
+            m_MovementFsmCore.Init(m_PlayerRb, m_PostPorcessingManagerEvent, this);
             m_InputManager.BindWasdMovement(m_MovementFsmCore.OnMovementInputEvent);
             m_InputManager.BindJump(m_MovementFsmCore.OnJumpInputEvent);
             m_InputManager.BindDash(m_MovementFsmCore.OnDashInputEvent);

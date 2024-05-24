@@ -23,12 +23,12 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
             fsmCore.wallRunSound.start();
 
-            float[] fovValues = { fsmCore.cameraData.wallRunFov, fsmCore.cameraData.wallRunFovTimeToSet };
+            float[] fovValues = { 0, fsmCore.cameraData.wallRunFov, fsmCore.cameraData.wallRunFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
 
             if (_context.wallRight)
             {
-                float[] zTilt = { fsmCore.cameraData.wallRunTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
+                float[] zTilt = { 0, fsmCore.cameraData.wallRunTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
                 fsmCore.onTiltChange.TriggerEvent(zTilt);
             }
             else

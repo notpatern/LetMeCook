@@ -60,9 +60,11 @@ namespace PlayerSystems.MovementFSMCore
         float _groundedTime = 0f;
     
         public Vector2 Input { private set; get; }
+        [HideInInspector] public MonoBehaviour mono;
 
-        public void Init(Rigidbody rb, GameEventScriptableObject ppm)
+        public void Init(Rigidbody rb, GameEventScriptableObject ppm, MonoBehaviour mono)
         {
+            this.mono = mono;
             this.rb = rb;
             ppm.BindEventAction(InitPostProcessingManger);
             Stamina = staminaData.maxStamina;

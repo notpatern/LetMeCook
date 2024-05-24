@@ -57,8 +57,8 @@ namespace PlayerSystems.Camera
         void DoTilt(object zTiltValue)
         {
             var array = (float[])zTiltValue;
-            transform.DOLocalRotate(new Vector3(0, 0, array[0]), array[1]);
-            _handCamera.DOLocalRotate(new Vector3(0, 0, array[0]), array[1]);
+            transform.DOLocalRotate(new Vector3(array[0], 0, array[1]), array[2]);
+            _handCamera.DOLocalRotate(new Vector3(array[0], 0, array[1]), array[2]);
         }
 
         Tween shake;

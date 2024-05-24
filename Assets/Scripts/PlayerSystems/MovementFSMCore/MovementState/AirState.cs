@@ -1,5 +1,6 @@
 ﻿using Audio;
 using PlayerSystems.MovementFSMCore.MovementContext;
+using System.Collections;
 using UnityEngine;
 
 namespace PlayerSystems.MovementFSMCore.MovementState
@@ -78,10 +79,22 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             var vel = fsmCore.rb.velocity;
             fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
 
-            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDoubleJump, fsmCore.rb.position);
+            fsmCore.mono.StartCoroutine(JumpImpulse());
 
+            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDoubleJump, fsmCore.rb.position);
+                
             fsmCore.rb.AddForce(Vector3.up * _context.doubleJumpForce, ForceMode.Impulse);
             context.canJump = false;
+        }
+
+        IEnumerator JumpImpulse() {
+            float[] zTilt = { fsmCore.cameraData.doubleJumpTilt, 0, fsmCore.cameraData.doubleJumpTiltTimeToSet };
+            fsmCore.onTiltChange.TriggerEvent(zTilt);
+
+            yield return new WaitForSeconds(fsmCore.cameraData.doubleJumpTiltTimeToSet);
+
+            float[] newzTilt = { 0, 0, fsmCore.cameraData.doubleJumpTiltTimeToSet };
+            fsmCore.onTiltChange.TriggerEvent(newzTilt);
         }
         
         private bool CanWallRun()
