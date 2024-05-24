@@ -29,9 +29,6 @@ namespace PlayerSystems.MovementFSMCore
         public StaminaData staminaData;
 
         public EventInstance wallRunSound;
-        public EventInstance jumpSound;
-        public EventInstance doubleJumpSound;
-        public EventInstance dashSound;
 
         public Transform camera;
 

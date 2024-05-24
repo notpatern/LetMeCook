@@ -104,7 +104,7 @@ namespace Manager
 
             int scoreWithoutBonus = 0;
 
-            if (m_RecipesManager.dataBase.randomFillerRecipes.Length > 0)
+            if (m_RecipesManager.dataBase.randomFillerRecipes != null && m_RecipesManager.dataBase.randomFillerRecipes.Length > 0)
             {
                 scoreWithoutBonus = m_Score - m_BonusRecipes * m_RecipesManager.dataBase.randomFillerRecipes[0].addedScore;
             }

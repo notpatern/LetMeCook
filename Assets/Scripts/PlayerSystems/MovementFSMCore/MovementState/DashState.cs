@@ -2,6 +2,7 @@
 using PlayerSystems.MovementFSMCore.MovementContext;
 using UnityEngine;
 using System.Collections;
+using Audio;
 
 namespace PlayerSystems.MovementFSMCore.MovementState
 {
@@ -24,8 +25,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             float[] fovValues = { fsmCore.cameraData.dashFov, fsmCore.cameraData.dashFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
 
-            fsmCore.dashSound.start();
-            
+            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDash, fsmCore.rb.position);
+
             _dashDirection = fsmCore.camera.forward;
             fsmCore.rb.AddForce(_dashDirection * (fsmCore.rb.velocity.magnitude + _context.dashForce), ForceMode.Impulse);
         }

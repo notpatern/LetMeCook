@@ -1,4 +1,5 @@
 ﻿
+using Audio;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using UnityEngine;
 
@@ -40,7 +41,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Jump()
         {
             base.Jump();
-            fsmCore.jumpSound.start();
+            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerJump, fsmCore.rb.position);
             fsmCore.coyoteTime = 0f;
         }
     }

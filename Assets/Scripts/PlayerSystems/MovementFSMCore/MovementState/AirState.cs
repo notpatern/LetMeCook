@@ -1,5 +1,4 @@
-﻿using System;
-using PlayerSystems.MovementFSMCore.DataClass;
+﻿using Audio;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using UnityEngine;
 
@@ -79,7 +78,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             var vel = fsmCore.rb.velocity;
             fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
 
-            fsmCore.doubleJumpSound.start();
+            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDoubleJump, fsmCore.rb.position);
 
             fsmCore.rb.AddForce(Vector3.up * _context.doubleJumpForce, ForceMode.Impulse);
             context.canJump = false;
