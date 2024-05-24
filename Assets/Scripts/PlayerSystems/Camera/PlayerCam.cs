@@ -55,5 +55,12 @@ namespace PlayerSystems.Camera
             transform.DOLocalRotate(new Vector3(0, 0, array[0]), array[1]);
             _handCamera.DOLocalRotate(new Vector3(0, 0, array[0]), array[1]);
         }
+
+        void DoShake(object shakeValue) {
+            /// summary:
+            /// float duration, float strength, int vibrator, float randomness
+           var array = (float[])shakeValue;
+            transform.DOShakePosition(array[0], array[1], (int)array[2], array[3], false, true, ShakeRandomnessMode.Full);
+        }
     }
 }
