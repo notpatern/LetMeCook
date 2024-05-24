@@ -9,6 +9,7 @@ namespace UI.MENUScripts
 {
     public class PauseMenuUI : MonoBehaviour
     {
+        public Transform optionMenuParent;
         OptionMenu optionMenu;
         [SerializeField] Button optionMenuButton;
         [SerializeField] Button continueButton;
@@ -92,6 +93,11 @@ namespace UI.MENUScripts
         {
             AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_OpenUiMenu);
             optionMenu.ToggleOptionMenu();
+        }
+
+        public void OnButtonHover()
+        {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Audio;
 using ControlOptions;
 using System;
 using System.Collections;
@@ -162,6 +163,11 @@ public class EndScreenUI : MonoBehaviour
     public int GetStarsNumber()
     {
         return m_ActiveStarsGo.Length;
+    }
+
+    public void OnButtonHover()
+    {
+        AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
     }
 }
 
