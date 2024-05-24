@@ -401,6 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3912698114646668840}
   - component: {fileID: 7653823474555231438}
+  - component: {fileID: 3486494152784771824}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -481,6 +482,35 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3486494152784771824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437706827970188529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &512668388826875101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,6 +1364,7 @@ GameObject:
   - component: {fileID: 8585203323531858307}
   - component: {fileID: 7569085036924593502}
   - component: {fileID: 6183401185922140973}
+  - component: {fileID: 8945208224292158176}
   m_Layer: 5
   m_Name: LeftResolutionButton
   m_TagString: Untagged
@@ -1442,6 +1473,35 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8945208224292158176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544562501901314473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1673389692429909206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1514,7 @@ GameObject:
   - component: {fileID: 6323086840009255128}
   - component: {fileID: 633156824412813784}
   - component: {fileID: 2397468787263688176}
+  - component: {fileID: 8311856504028222077}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1575,6 +1636,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8311856504028222077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673389692429909206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1693436727313817036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,6 +1957,7 @@ GameObject:
   - component: {fileID: 685827705604094120}
   - component: {fileID: 7237212421910151485}
   - component: {fileID: 6824064168883778354}
+  - component: {fileID: 2111884738960602451}
   m_Layer: 5
   m_Name: RightResolutionButton
   m_TagString: Untagged
@@ -1975,6 +2066,35 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2111884738960602451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073705629498461724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2118703097555807178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,6 +3414,7 @@ GameObject:
   - component: {fileID: 1920417117399505982}
   - component: {fileID: 325823387758867929}
   - component: {fileID: 4170791810697840291}
+  - component: {fileID: 7595284359255559885}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -3359,6 +3480,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7595284359255559885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4154378893615908257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4373319997290765826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3643,6 +3793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4790077575900481070}
   - component: {fileID: 7878035501352908394}
+  - component: {fileID: 2808258129626009092}
   m_Layer: 5
   m_Name: GeneralVolumeSlider
   m_TagString: Untagged
@@ -3735,6 +3886,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2808258129626009092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4859698765813944693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &4892543595269582648
 GameObject:
   m_ObjectHideFlags: 0
@@ -4108,6 +4288,7 @@ GameObject:
   - component: {fileID: 2731586559501057032}
   - component: {fileID: 5847074574838576011}
   - component: {fileID: 2426759116871095886}
+  - component: {fileID: 7837190791313228546}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -4229,6 +4410,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7837190791313228546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673700065135141977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6521800210843370124
 GameObject:
   m_ObjectHideFlags: 0
@@ -4646,8 +4856,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.5
-  m_fontSizeBase: 53.5
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4835,6 +5045,7 @@ GameObject:
   - component: {fileID: 215680028203721398}
   - component: {fileID: 7970363894608103905}
   - component: {fileID: 5711858621545229675}
+  - component: {fileID: 2753313486699925282}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -4956,6 +5167,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2753313486699925282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7132354254223829423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7262387474306672398
 GameObject:
   m_ObjectHideFlags: 0
@@ -5175,6 +5415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7120159741627056281}
   - component: {fileID: 5522985923239234994}
+  - component: {fileID: 1731308393836951194}
   m_Layer: 5
   m_Name: GeneralVolumeSlider
   m_TagString: Untagged
@@ -5267,6 +5508,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1731308393836951194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702605164952065340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7768383521428829196
 GameObject:
   m_ObjectHideFlags: 0
@@ -5352,6 +5622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7932742928665831356}
   - component: {fileID: 2454343287017598125}
+  - component: {fileID: 2082657970950820869}
   m_Layer: 5
   m_Name: GeneralVolumeSlider
   m_TagString: Untagged
@@ -5444,6 +5715,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2082657970950820869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7951437183365162581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8029149633152291863
 GameObject:
   m_ObjectHideFlags: 0
@@ -6146,6 +6446,7 @@ GameObject:
   - component: {fileID: 4613204258086063255}
   - component: {fileID: 6065732913027395933}
   - component: {fileID: 3759482738561057031}
+  - component: {fileID: 946643134301141403}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -6267,6 +6568,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &946643134301141403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9191921387772231771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3260585678239225926}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &2545722069411990779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6283,12 +6613,12 @@ PrefabInstance:
     - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
       propertyPath: m_fontSize
-      value: 50.1
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 50.1
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
@@ -6309,6 +6639,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ApplyButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3260585678239225926}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.MENUScripts.OptionMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4852078091913457171, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
@@ -6446,10 +6791,35 @@ PrefabInstance:
       propertyPath: m_text
       value: Graphics
       objectReference: {fileID: 0}
+    - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 56
+      objectReference: {fileID: 0}
     - target: {fileID: 4000346194444571622, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
       propertyPath: m_Name
       value: GraphicButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3260585678239225926}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.MENUScripts.OptionMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4852078091913457171, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
@@ -6554,7 +6924,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4000346194444571622, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3930999324498622319}
   m_SourcePrefab: {fileID: 100100000, guid: cee6fd0fd248a9a45b9edd9f4ea106c1, type: 3}
 --- !u!224 &2606100006089979256 stripped
 RectTransform:
@@ -6568,12 +6942,47 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7457030198732921707}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5834594597638129805}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5834594597638129805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4000346194444571622, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 7457030198732921707}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3930999324498622319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5834594597638129805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: UI.MENUScripts.OptionMenu, Assembly-CSharp
+          m_MethodName: OnButtonHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &8034251894902519751
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6587,10 +6996,35 @@ PrefabInstance:
       propertyPath: m_text
       value: Controls
       objectReference: {fileID: 0}
+    - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 56
+      objectReference: {fileID: 0}
     - target: {fileID: 4000346194444571622, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
       propertyPath: m_Name
       value: ControlButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3260585678239225926}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.MENUScripts.OptionMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4852078091913457171, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
@@ -6728,10 +7162,35 @@ PrefabInstance:
       propertyPath: m_text
       value: Volume
       objectReference: {fileID: 0}
+    - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 56
+      objectReference: {fileID: 0}
     - target: {fileID: 4000346194444571622, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
       propertyPath: m_Name
       value: VolumeButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3260585678239225926}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.MENUScripts.OptionMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4852078091913457171, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}

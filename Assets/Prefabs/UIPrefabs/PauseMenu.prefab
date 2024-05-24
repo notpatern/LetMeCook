@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0505d918010ca4cbfcf70affb5350c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionMenuParent: {fileID: 6615858180428550801}
   optionMenuButton: {fileID: 3020576879724899285}
   continueButton: {fileID: 2926662477332480300}
   quitButton: {fileID: 6830909667402571184}
@@ -372,6 +373,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: QuitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6512719160423032365}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.MENUScripts.PauseMenuUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4852078091913457171, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
@@ -524,6 +540,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: RestartButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6512719160423032365}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.MENUScripts.PauseMenuUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4852078091913457171, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -675,6 +706,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6512719160423032365}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.MENUScripts.PauseMenuUI, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4852078091913457171, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
       propertyPath: m_Pivot.x
@@ -808,6 +854,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}
+      propertyPath: m_text
+      value: Continue
+      objectReference: {fileID: 0}
+    - target: {fileID: 147392178090319479, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
       propertyPath: m_fontSize
       value: 56
       objectReference: {fileID: 0}
@@ -825,6 +876,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ContinueButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6512719160423032365}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnButtonHover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697709113230926524, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UI.MENUScripts.PauseMenuUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4852078091913457171, guid: cee6fd0fd248a9a45b9edd9f4ea106c1,
         type: 3}

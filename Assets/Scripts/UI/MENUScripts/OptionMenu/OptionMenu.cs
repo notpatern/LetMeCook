@@ -121,5 +121,10 @@ namespace UI.MENUScripts
             CloseAllPanel(go);
             go.SetActive(!go.activeSelf);
         }
+
+        public void OnButtonHover()
+        {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
+        }
     }
 }

@@ -108,7 +108,7 @@ namespace UI
 
         void LoadOptionsMenu(GameObject prefab, bool isPauseMenuChild)
         {
-            GameObject go = isPauseMenuChild ? Object.Instantiate(prefab, pauseMenu.transform) : Object.Instantiate(prefab, menuCanvas.transform);
+            GameObject go = isPauseMenuChild ? Object.Instantiate(prefab, pauseMenu.optionMenuParent) : Object.Instantiate(prefab, menuCanvas.transform);
             go.SetActive(false);
 
             optionMenu = go.GetComponent<MENUScripts.OptionMenu>();

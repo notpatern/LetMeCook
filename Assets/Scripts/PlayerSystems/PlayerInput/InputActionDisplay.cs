@@ -56,5 +56,10 @@ namespace Player.Input
         {
             m_rebindButton.onClick.RemoveAllListeners();
         }
+
+        public void OnButtonHover()
+        {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
+        }
     }
 }
