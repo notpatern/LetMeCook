@@ -15,10 +15,12 @@ namespace Audio
         [HideInInspector] public float m_MasterVolume = 1;
         [HideInInspector] public float m_MusicVolume = 1;
         [HideInInspector] public float m_SFXVolume = 1;
+        [HideInInspector] public float m_VoiceVolume = 1;
 
         [HideInInspector] public Bus m_MasterBus;
         [HideInInspector] public Bus m_MusicBus;
         [HideInInspector] public Bus m_SFXBus;
+        [HideInInspector] public Bus m_VoiceBus;
 
         PLAYBACK_STATE m_RuntimeClearCheckerPbState;
 
@@ -30,10 +32,12 @@ namespace Audio
             m_MasterBus = RuntimeManager.GetBus("bus:/");
             m_MusicBus = RuntimeManager.GetBus("bus:/Music");
             m_SFXBus = RuntimeManager.GetBus("bus:/SFX");
+            m_VoiceBus = RuntimeManager.GetBus("bus:/Voice");
 
             SetMasterVolume(PlayerPrefs.GetFloat("VOLUME_MASTER", 0.1f));
             SetMusicVolume(PlayerPrefs.GetFloat("VOLUME_MUSIC", 0.1f));
             SetSFXVolume(PlayerPrefs.GetFloat("VOLUME_SFX", 0.1f));
+            SetVoiceVolume(PlayerPrefs.GetFloat("VOLUME_VOICE", 0.1f));
         }
 
         public static void InitAudioManager(AudioSoundData audioSoundData)
@@ -155,6 +159,13 @@ namespace Audio
             m_SFXVolume = volume;
             m_SFXBus.setVolume(volume);
         }
-    }
+
+        public void SetVoiceVolume(float volume)
+        {
+            PlayerPrefs.SetFloat("VOLUME_VOICE", volume);
+            m_VoiceVolume = volume;
+            m_VoiceBus.setVolume(volume);
+        }
+}
 
 }

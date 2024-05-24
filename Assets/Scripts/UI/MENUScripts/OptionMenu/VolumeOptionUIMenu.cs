@@ -9,6 +9,7 @@ namespace UI.MENUScripts.Options
         [SerializeField] Slider m_MasterVolume;
         [SerializeField] Slider m_MusicVolume;
         [SerializeField] Slider m_SFXVolume;
+        [SerializeField] Slider m_VoiceVolume;
 
         private void Start()
         {
@@ -39,6 +40,14 @@ namespace UI.MENUScripts.Options
 
             AudioManager.s_Instance.SetSFXVolume(volume);
             m_SFXVolume.value = volume;
+        }
+
+        public void SetVoiceVolume(float volume)
+        {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_SliderUI);
+
+            AudioManager.s_Instance.SetVoiceVolume(volume);
+            m_VoiceVolume.value = volume;
         }
     }
 }
