@@ -32,7 +32,7 @@ public class PlayerHUD : MonoBehaviour
 
         if(starsUnlock[0])
         {
-            scoreToReach.text = "Next star in : " + scoreUntilNextStar;
+            scoreToReach.text = "Next star in : " + scoreUntilNextStar + " <color=#F77D1C>(not bonus)</color>";
         }
         else
         {

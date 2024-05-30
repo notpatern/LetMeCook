@@ -126,11 +126,11 @@ public class EndScreenUI : MonoBehaviour
         }
     }
 
-    public bool[] GetUnlockedStars(int score, int maxMainRecipesFeedScore, int minimumRequiredScore)
+    public bool[] GetUnlockedStars(int score, int maxMainRecipesFeedScore, int minimumRequiredScore, bool isMinimumRequeredScore)
     {
         bool[] result = new bool[GetStarsNumber()];
 
-        if (score < minimumRequiredScore) return result;
+        if (!isMinimumRequeredScore) return result;
 
         for (int i = 0; i < result.Length; i++)
         {
