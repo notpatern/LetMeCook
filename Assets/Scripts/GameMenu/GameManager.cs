@@ -111,7 +111,7 @@ namespace Manager
 
             int requiredScoreUntilNextStar = m_LevelData.requiredScore > m_Score ? m_LevelData.requiredScore - m_Score : m_UiManager.endScreen.GetRequiredScoreUntilNextStar(scoreWithoutBonus, maxMainRecipesFeedScore);
 
-            m_UiManager.UpdateScore(m_Score, m_UiManager.endScreen.GetUnlockedStars(scoreWithoutBonus, maxMainRecipesFeedScore, m_LevelData.requiredScore, scoreWithoutBonus >= maxMainRecipesFeedScore), requiredScoreUntilNextStar);
+            m_UiManager.UpdateScore(m_Score, m_UiManager.endScreen.GetUnlockedStars(scoreWithoutBonus, maxMainRecipesFeedScore, m_LevelData.requiredScore, m_Score >= m_LevelData.requiredScore), requiredScoreUntilNextStar);
         }
 
         public void AddRecipesCount(int amount)
