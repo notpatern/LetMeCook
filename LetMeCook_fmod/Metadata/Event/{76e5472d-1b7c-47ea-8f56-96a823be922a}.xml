@@ -73,7 +73,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{e15881e5-d4c0-4552-ab24-dc6a529a0d19}">
 		<property name="volume">
-			<value>4</value>
+			<value>10</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{70689dee-ce4d-4673-8f2a-522889cf1eeb}</destination>
@@ -104,11 +104,21 @@
 	</object>
 	<object class="MixerBusPanner" id="{1f9acd02-332b-4013-85fb-3e2b9677adbe}" />
 	<object class="SingleSound" id="{e8bf01af-e15d-42d6-b478-6712631eb2e3}">
+		<property name="startOffset">
+			<value>6.5</value>
+		</property>
+		<property name="volume">
+			<value>0.5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{a4e26af4-08a3-486b-bf7f-c6fdac74fb51}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{5249231b-5f1c-4760-866f-e5a4f47c29d6}" />
 	<object class="MixerBusFader" id="{e76d9af8-18bc-41dd-b2ce-f1a4bd7b6ba3}" />
-	<object class="SpatialiserEffect" id="{21bd3145-a43b-4f8b-99ae-3f6a1314db92}" />
+	<object class="SpatialiserEffect" id="{21bd3145-a43b-4f8b-99ae-3f6a1314db92}">
+		<property name="panBlend">
+			<value>0</value>
+		</property>
+	</object>
 </objects>

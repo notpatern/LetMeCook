@@ -41,7 +41,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Jump()
         {
             base.Jump();
-            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerJump, fsmCore.rb.position);
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_PlayerJump);
             fsmCore.coyoteTime = 0f;
         }
     }

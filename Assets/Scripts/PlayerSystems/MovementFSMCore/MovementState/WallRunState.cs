@@ -1,4 +1,5 @@
 
+using Audio;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using UnityEngine;
 
@@ -101,6 +102,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Jump()
         {
             base.Jump();
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDoubleJump);
             fsmCore.rb.AddForce(_wallNormal * _context.sideJumpForce, ForceMode.Impulse);
             ExitState();
         }
