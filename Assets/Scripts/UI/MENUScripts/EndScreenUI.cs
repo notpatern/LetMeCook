@@ -65,12 +65,10 @@ public class EndScreenUI : MonoBehaviour
         else if (playerScore.m_RequiredScore > playerScore.m_Score && data.m_LevelReached <= levelData.levelID)
         {
             m_NextLevelButton.interactable = false;
-            Debug.Log("not unlocked");
         }
         else
         {
 
-            Debug.Log("not unlocked : " + completionRate);
             StartCoroutine(ActiveStarWithOffsetTransition(completionRate));
             LevelIsWin(nextLevelData);
             m_NextLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(nextLevelData.linkedScenePath));
