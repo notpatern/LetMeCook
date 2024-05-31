@@ -18,6 +18,7 @@ public class MainMenu : LevelManager
     [Header("Level Selector")]
     [SerializeField] GameObject m_LevelSelectorPanel;
     [SerializeField] LevelButtons[] m_Levels;
+    [SerializeField] Image mapPreview; 
 
     [Serializable]
     class LevelButtons
@@ -77,6 +78,12 @@ public class MainMenu : LevelManager
         }
     }
 
+    public void SetHoverPreview(LevelData levelData)
+    {
+        mapPreview.sprite = levelData.mapPreviewIcon;
+        AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
+    }
+
     void SetActivePanel(GameObject panelToActive, bool state)
     {
         CloseAllPanel();
@@ -87,10 +94,5 @@ public class MainMenu : LevelManager
     {
         m_UiManager.optionMenu.SetActiveOptionMenu(false);
         m_LevelSelectorPanel.SetActive(false);
-    }
-
-    public void OnButtonHover()
-    {
-        AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
     }
 }
