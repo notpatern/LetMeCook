@@ -190,8 +190,6 @@ namespace PlayerSystems.HandsSystem
 
             m_LeftHand.m_Animator.SetTrigger("CrunchFood");
             m_RightHand.m_Animator.SetTrigger("CrunchFood");
-
-            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerCrunchFood, m_CameraTr.position);
         }
 
         public void ClearHandMoveTech(Hands hand)
@@ -257,8 +255,6 @@ namespace PlayerSystems.HandsSystem
                 movedHand.SetFood(null, false, false);
 
                 m_GameEventCanSpawnMagicalFogForMerge.TriggerEvent(false);
-
-                AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerEmptyMergeFood, m_CameraTr.position);
             }
             else if(finalMergedHandType == typeof(SimpleFood))
             {
@@ -274,9 +270,6 @@ namespace PlayerSystems.HandsSystem
 
                 m_HandsEnableMoveTech.CallUpdateNotCookedSimpleFoodMoveTechEvent();
                 ReplaceSimpleFoodHandWithMergedFood(finalMergeHand, (SimpleFood)currentFinalPosHandData.Item2, movedHand, currentMovedPosHandData.Item1);
-
-
-                AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerMergeFood, m_CameraTr.position);
             }
             else if(finalMergedHandType == typeof(MergedFood))
             {
@@ -290,9 +283,6 @@ namespace PlayerSystems.HandsSystem
                 finalMergeHand.PutItHand(currentMovedPosHandData.Item1, true, false);
                 //AddFoodInHand(currentFinalPosHandData.Item2, currentMovedPosHandData.Item2);
                 movedHand.DestroyFood();
-
-
-                AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerMergeFood, m_CameraTr.position);
             }
             else
             {

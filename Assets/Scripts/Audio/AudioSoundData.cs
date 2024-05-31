@@ -7,9 +7,6 @@ public class AudioSoundData : ScriptableObject
     [Header("PlayerFoodAction")]
     public EventReference m_PlayerThrowSound;
     public EventReference m_PlayerPickFood;
-    public EventReference m_PlayerMergeFood;
-    public EventReference m_PlayerEmptyMergeFood;
-    public EventReference m_PlayerCrunchFood;
 
     [Header("PlayerMovement")]
     public EventReference m_PlayerGroundImpact;
@@ -31,6 +28,7 @@ public class AudioSoundData : ScriptableObject
 
     [Header("MouthGoal")]
     public EventReference m_DeliverySound;
+    public EventReference m_DeliverySoundFailure;
 
     [Header("UI")]
     public EventReference m_OpenUiMenu;
