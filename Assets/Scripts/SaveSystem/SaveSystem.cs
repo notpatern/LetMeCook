@@ -15,7 +15,7 @@ public class SaveSystem : MonoBehaviour
         return m_LoadedData;
     }
 
-    static void SaveLevelReached(SaveData saveData)
+    static void Save(SaveData saveData)
     {
         m_LoadedData = saveData;
         string path = Application.persistentDataPath + "/Save.exe";
@@ -34,7 +34,7 @@ public class SaveSystem : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            SaveLevelReached(new SaveData(0, null));
+            Save(new SaveData(0, null, null));
         }
 
         string data = File.ReadAllText(path);
@@ -49,8 +49,8 @@ public class SaveSystem : MonoBehaviour
         }
         catch
         {
-            saveData = new SaveData(0, null);
-            SaveLevelReached(saveData);
+            saveData = new SaveData(0, null, null);
+            Save(saveData);
         }
 
         return saveData;
@@ -73,7 +73,7 @@ public class SaveSystem : MonoBehaviour
         SaveData saveData = GetSavedData();
         saveData.m_LevelReached = levelReached;
 
-        SaveLevelReached(saveData);
+        Save(saveData);
     }
 
     public static void SaveLevelReached(int[] levelReached)
@@ -81,7 +81,15 @@ public class SaveSystem : MonoBehaviour
         SaveData saveData = GetSavedData();
         saveData.m_LevelHighScores = levelReached;
 
-        SaveLevelReached(saveData);
+        Save(saveData);
+    }
+
+    public static void SaveLevelsStar(int[] levelUnlockedStarsNumber)
+    {
+        SaveData saveData = GetSavedData();
+        saveData.m_LevelUnlockedStarsNumber = levelUnlockedStarsNumber;
+
+        Save(saveData);
     }
 }
 
@@ -89,10 +97,12 @@ public class SaveData
 {
     public int m_LevelReached = 0;
     public int[] m_LevelHighScores = new int[0];
+    public int[] m_LevelUnlockedStarsNumber = new int[0];
 
-    public SaveData(int levelReached, int[] levelScores) 
+    public SaveData(int levelReached, int[] levelScores, int[] levelUnlockedStarsNumber) 
     {
         m_LevelReached = levelReached;
         m_LevelHighScores = levelScores;
+        m_LevelUnlockedStarsNumber = levelUnlockedStarsNumber;
     }
 }
