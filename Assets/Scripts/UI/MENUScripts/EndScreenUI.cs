@@ -3,6 +3,8 @@ using ControlOptions;
 using System;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Build.Pipeline.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,7 +13,9 @@ public class EndScreenUI : MonoBehaviour
 {
     [SerializeField] GameObject m_PanelContent;
     [SerializeField] Animator m_EndScreenAnimator;
-    [Header("Stars")]
+    
+    [Header("Stars")] 
+    [SerializeField] TMP_Text m_ScoreTitle;
     [SerializeField] GameObject[] m_ActiveStarsGo;
     [SerializeField] float m_StarActivationTransitionTime = 0.5f;
 
@@ -44,6 +48,8 @@ public class EndScreenUI : MonoBehaviour
 
         int completionRate = Mathf.RoundToInt(playerScore.m_CompletedRecipes / (float)playerScore.m_TotalRecipes * 100);
 
+        SetScoreTitle(GetPlayerStarsNumber(playerScore.m_Score, playerScore.m_RequiredScore, completionRate));
+        
         m_ScoreText.text = playerScore.m_Score + "pts (High Score : " + SaveSystem.GetSavedData().m_LevelHighScores[levelData.levelID] + ")";
         m_CompletedRecipesRateText.text = completionRate + "%" + " Completion Rate";
         m_CompletedRecipes.text = playerScore.m_CompletedRecipes + " Finished Recipes";
@@ -110,7 +116,6 @@ public class EndScreenUI : MonoBehaviour
 
     IEnumerator ActiveStarWithOffsetTransition(int completionRate)
     {
-        
         m_ActiveStarsGo[0].SetActive(true);
         yield return new WaitForSeconds(m_StarActivationTransitionTime);
 
@@ -139,7 +144,6 @@ public class EndScreenUI : MonoBehaviour
                 result[i] = true;
             }
         }
-
         return result;
     }
 
@@ -158,8 +162,6 @@ public class EndScreenUI : MonoBehaviour
         return 0;
     }
 
-
-
     public int GetStarsNumber()
     {
         return m_ActiveStarsGo.Length;
@@ -168,6 +170,42 @@ public class EndScreenUI : MonoBehaviour
     public void OnButtonHover()
     {
         AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
+    }
+
+    public int GetPlayerStarsNumber(int PlayerScore, int RequiredScore, int completionRate)
+    {
+        if (completionRate >= 100)
+        {
+            return 3;
+        }
+        if (completionRate >= 50)
+        {
+            return 2;
+        }
+        if (PlayerScore > RequiredScore)
+        {
+            return 1;
+        }
+        return 0;
+    }
+    
+    public void SetScoreTitle(int starNumber)
+    {
+        switch (starNumber)
+        {
+            case 0:
+                m_ScoreTitle.text = "You're so cooked...";
+                break;
+            case 1:
+                m_ScoreTitle.text = "It's a good start";
+                break;
+            case 2:
+                m_ScoreTitle.text = "Well done ! (get it?)";
+                break;
+            case 3:
+                m_ScoreTitle.text = "Chef's kiss";
+                break;
+        }
     }
 }
 
