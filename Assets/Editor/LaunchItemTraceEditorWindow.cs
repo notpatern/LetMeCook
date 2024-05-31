@@ -1,9 +1,7 @@
 using ItemLaunch;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(ItemLauncher), true)]
 public class LaunchItemTraceEditorWindow : EditorWindow
 {
     ItemLauncher m_ItemLauncher;
