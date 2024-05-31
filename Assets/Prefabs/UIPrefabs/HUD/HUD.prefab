@@ -119,11 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInteractionUI: {fileID: 7041621024521873210}
   staminaFill: {fileID: 8288640537497773307}
-  scoreToReach: {fileID: 7107971335813862374}
-  nextStars:
-  - {fileID: 7244979677618276555}
-  - {fileID: 2290603409099157334}
-  - {fileID: 3833102381643453226}
+  scoreUI: {fileID: 0}
 --- !u!1 &1973732462782919084
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intereactionText: {fileID: 3887684128396719417}
-  m_keybindsData: {fileID: 11400000, guid: 8988e124c469bad4a87366761f489db9, type: 2}
+  m_keybindsData: {fileID: 0}
 --- !u!1 &3631576808948317889
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,10 +512,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6765130511036211214}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00003964581, y: -0.000030517578}
-  m_SizeDelta: {x: 592.85, y: 26.303}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -0.000009128231, y: 0}
+  m_SizeDelta: {x: 592.85, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3253640254149564839
 CanvasRenderer:
@@ -542,14 +538,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2216981, g: 0.7024035, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 447e4c58abe312d488ce8946bd7109ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2675a11d3a048d840bb440a24c21d2ab, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -595,7 +591,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000025749, y: -423}
-  m_SizeDelta: {x: 592.85, y: 26.303}
+  m_SizeDelta: {x: 592.85, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &773490365940521247
 CanvasRenderer:
@@ -618,14 +614,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.254717, g: 0.254717, b: 0.254717, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 447e4c58abe312d488ce8946bd7109ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 10d6a46f0cd901e4792dae2d43c0acc1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -722,6 +718,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HudStar (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1588292685890412968, guid: e193300967d83fc4f8a96270555aa6fb,
+        type: 3}
+      propertyPath: m_EffectFactor
+      value: 0.29208413
       objectReference: {fileID: 0}
     - target: {fileID: 4514901055526277237, guid: e193300967d83fc4f8a96270555aa6fb,
         type: 3}
@@ -834,12 +835,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1454813514638192160}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3833102381643453226 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2378291349578169610, guid: e193300967d83fc4f8a96270555aa6fb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1454813514638192160}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4524069010653499996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -852,6 +847,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HudStar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1588292685890412968, guid: e193300967d83fc4f8a96270555aa6fb,
+        type: 3}
+      propertyPath: m_EffectFactor
+      value: 0.29208413
       objectReference: {fileID: 0}
     - target: {fileID: 4514901055526277237, guid: e193300967d83fc4f8a96270555aa6fb,
         type: 3}
@@ -964,12 +964,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4524069010653499996}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2290603409099157334 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2378291349578169610, guid: e193300967d83fc4f8a96270555aa6fb,
-    type: 3}
-  m_PrefabInstance: {fileID: 4524069010653499996}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5010876634935408065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -982,6 +976,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HudStar (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1588292685890412968, guid: e193300967d83fc4f8a96270555aa6fb,
+        type: 3}
+      propertyPath: m_EffectFactor
+      value: 0.29208413
       objectReference: {fileID: 0}
     - target: {fileID: 4514901055526277237, guid: e193300967d83fc4f8a96270555aa6fb,
         type: 3}
@@ -1088,12 +1087,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e193300967d83fc4f8a96270555aa6fb, type: 3}
---- !u!1 &7244979677618276555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2378291349578169610, guid: e193300967d83fc4f8a96270555aa6fb,
-    type: 3}
-  m_PrefabInstance: {fileID: 5010876634935408065}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8872675479787611572 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4514901055526277237, guid: e193300967d83fc4f8a96270555aa6fb,
