@@ -3,8 +3,6 @@ using ControlOptions;
 using System;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Build.Pipeline.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
