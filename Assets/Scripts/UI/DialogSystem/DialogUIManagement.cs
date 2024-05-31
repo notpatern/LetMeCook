@@ -90,9 +90,9 @@ namespace Dialog
         IEnumerator StartDialog(bool overrideLastDialog)
         {
             DialogInfos dialogInfos = dialogInfosQueue.Dequeue();
-            string displayText = "";
-            int alphaIndex = 0;
-            string defaultLoadedText;
+            //string displayText = "";
+            //int alphaIndex = 0;
+            //string defaultLoadedText;
             //Start dialog
             if (!isInDialog)
             {
@@ -100,8 +100,8 @@ namespace Dialog
             }
 
             pnjNameDialogText.text = dialogInfos.pnjName;
-            InputAction inputActionArg;
-            KeybindsData keybindsData;
+            //InputAction inputActionArg;
+            //KeybindsData keybindsData;
             string[] loadedKeys = new string[dialogInfos.loadedContent.args.Length];
 
             if(isMusicPlaying && overrideLastDialog)
