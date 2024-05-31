@@ -5,6 +5,7 @@ using Dialog;
 public class LevelData : ScriptableObject
 {
     public Sprite mapPreviewIcon;
+    public string levelDescription;
     public LevelUIData levelUIData;
     public DialogLevelData dialogLevelData;
     public LevelMusicData levelMusicData;
