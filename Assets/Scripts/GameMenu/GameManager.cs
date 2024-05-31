@@ -1,3 +1,4 @@
+using PlayerSystems.PlayerBase;
 using RecipeSystem;
 using RecipeSystem.Core;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Manager
         [SerializeField, Tooltip("Can be null")] protected LevelData m_NextLevelData;
         [SerializeField] GameEventScriptableObject m_LoadPlayerTransform;
         [SerializeField] RecipesManager m_RecipesManager;
+        [SerializeField] GameObject scoreWorldInfoUIPrefab;
 
         int m_Score = 0;
         int m_RecipesNb = 0;
@@ -95,7 +97,20 @@ namespace Manager
         {
             m_Score += scoreAmount;
 
+            if(m_Score < 0)
+            {
+                m_Score = 0;
+            }
+
             UpdateScoreUI();
+        }
+
+        public void AddScore(int scoreAmount, Vector3 foodPositionForFeedbackWorldUIText)
+        {
+            Quaternion lookAtPlayer = Quaternion.LookRotation(foodPositionForFeedbackWorldUIText - m_Player.transform.position, Vector3.up);
+            Instantiate(scoreWorldInfoUIPrefab, foodPositionForFeedbackWorldUIText, lookAtPlayer).GetComponent<ScoreWorldInfoUI>().InitText(scoreAmount);
+
+            AddScore(scoreAmount);
         }
 
         void UpdateScoreUI()

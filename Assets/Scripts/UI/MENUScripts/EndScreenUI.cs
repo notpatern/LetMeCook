@@ -134,7 +134,7 @@ public class EndScreenUI : MonoBehaviour
 
         for (int i = 0; i < result.Length; i++)
         {
-            if (i / (float)(GetStarsNumber()-1) <= score / (float)maxMainRecipesFeedScore)
+            if (i / (float)(GetStarsNumber() - 1) <= score / (float)maxMainRecipesFeedScore)
             {
                 result[i] = true;
             }

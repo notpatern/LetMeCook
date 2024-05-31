@@ -22,4 +22,6 @@ public class EyeFollow : MonoBehaviour
         Vector3 direction = playerTransform.position - transform.position;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), lerpSpeed * Time.deltaTime);
     }
+
+   
 }

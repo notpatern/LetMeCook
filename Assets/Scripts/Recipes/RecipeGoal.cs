@@ -72,7 +72,8 @@ namespace RecipeSystem.Core
             };
             onShake.TriggerEvent(shakeValues);
             postProcessingManager.ChangeChromaticAberration(1f, 2.5f);
-            recipesManager.CompleteRecipe(potentialRecipe);
+
+            recipesManager.CompleteRecipe(potentialRecipe, currentFood.transform.position);
 
             processedFood.Remove(currentFood);
         }

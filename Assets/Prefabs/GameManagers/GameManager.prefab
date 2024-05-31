@@ -56,6 +56,8 @@ MonoBehaviour:
   m_LoadPlayerTransform: {fileID: 11400000, guid: f7c4a8211971b4846a78dbe99dafeb68,
     type: 2}
   m_RecipesManager: {fileID: 3800780351969097613}
+  scoreWorldInfoUIPrefab: {fileID: 7065758623177256831, guid: 0ad58c60493fac74b8f2b41ef2a0cf0d,
+    type: 3}
 --- !u!114 &1835037283676621339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +252,8 @@ MonoBehaviour:
   receiveParticleParticles: {fileID: 917468930401981285, guid: 950cbe1f335a86249bf8c68803aea7c4,
     type: 3}
   postProcessingManager: {fileID: 1835037283676621339}
+  cameraData: {fileID: 0}
+  onShake: {fileID: 0}
 --- !u!1 &7014398351059477928
 GameObject:
   m_ObjectHideFlags: 0

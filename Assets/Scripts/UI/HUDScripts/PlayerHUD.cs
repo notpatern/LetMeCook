@@ -34,16 +34,16 @@ public class PlayerHUD : MonoBehaviour
         {
             scoreToReach.text = "Next star in : " + scoreUntilNextStar + " <color=#F77D1C>(not bonus)</color>";
         }
-        else
-        {
-            return;
-        }
 
-        int length = starsUnlock.Length > nextStars.Length ? starsUnlock.Length : nextStars.Length;
+        SetActivePlayerHudStars(starsUnlock.Length, starsUnlock);
+    }
 
+    void SetActivePlayerHudStars(int checkLength, bool[] states)
+    {
+        int length = checkLength > nextStars.Length ? checkLength : nextStars.Length;
         for (int i = 0; i < length; i++)
         {
-            nextStars[i].SetActive(starsUnlock[i]);
+            nextStars[i].SetActive(states[i]);
         }
     }
 }

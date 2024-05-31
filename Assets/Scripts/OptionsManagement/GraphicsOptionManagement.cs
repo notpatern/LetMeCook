@@ -63,12 +63,11 @@ namespace GraphicsOption
         void LoadResolution()
         {
             m_deviceAvailableResolutions = new Resolution[Screen.resolutions.Length];
-            RefreshRate defaultResolutionFrameRate = Screen.currentResolution.refreshRateRatio;
 
             int currentResolutionId = -1;
             for(int i=0; i<Screen.resolutions.Length; i++)
             {
-                if(IsAuthorizedRatio(Screen.resolutions[i]) && Screen.resolutions[i].refreshRateRatio.value == defaultResolutionFrameRate.value)
+                if(IsAuthorizedRatio(Screen.resolutions[i]))
                 {
                     currentResolutionId ++;
                     m_deviceAvailableResolutions[currentResolutionId] = Screen.resolutions[i];
@@ -128,7 +127,6 @@ namespace GraphicsOption
             }
 
             Screen.SetResolution(m_deviceAvailableResolutions[m_currentSelectedResolutionID].width, m_deviceAvailableResolutions[m_currentSelectedResolutionID].height, isFullScreen);
-            
             PlayerPrefs.SetInt("is_fullscreen", isFullScreen ? 1 : 0);
             
             PlayerPrefs.SetInt("current_resolution_id", m_currentSelectedResolutionID);

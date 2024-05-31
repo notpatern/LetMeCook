@@ -122,13 +122,13 @@ namespace RecipeSystem
         /// </summary>
         /// <param name="recipe"></param>
         /// <returns></returns>
-        public void CompleteRecipe(int recipeId)
+        public void CompleteRecipe(int recipeId, Vector3 foodPosition)
         {
             GameRecipe gameRecipe = activeRecipes[recipeId];
             RemoveRecipe(recipeId);
 
             gameManager.AddAcomplishedRecipes(gameRecipe);
-            gameManager.AddScore(gameRecipe.recipe.addedScore);
+            gameManager.AddScore(gameRecipe.recipe.addedScore, foodPosition);
         }
 
         /// <summary>
@@ -204,6 +204,11 @@ namespace RecipeSystem
             result += dataBase.recipesContainers[dataBase.recipesContainers.Length - 1].m_Recipe.secondsToComplete;
 
             return result;
+        }
+
+        public Recipe GetActiveRecipeData(int recipeId)
+        {
+            return activeRecipes[recipeId].recipe;
         }
     }
 }
