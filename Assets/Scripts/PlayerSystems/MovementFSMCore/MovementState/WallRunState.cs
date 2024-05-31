@@ -9,6 +9,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         private readonly WallRunContext _context;
         private Vector3 _wallDirection;
         private Vector3 _wallNormal;
+
         public WallRunState(WallRunContext wallRunContext, MovementFsmCore fsmCore) : base(wallRunContext, fsmCore)
         {
             this._context = wallRunContext;

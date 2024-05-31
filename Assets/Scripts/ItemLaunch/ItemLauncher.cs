@@ -1,4 +1,3 @@
-using FoodSystem.FoodType;
 using UnityEditor;
 using UnityEngine;
 
@@ -22,10 +21,8 @@ namespace ItemLaunch
         bool isTransitionning = false;
         int lerpDirection = 1;
 
-        [SerializeField] LineRenderer lineRenderer;
+        public LineRenderer lineRenderer;
         [SerializeField] float width;
-        int numPoints = 50;
-        Vector3[] positions = new Vector3[50];
 
         [Header("Throw Property")]
         [Range(0.01f, 2f)] public float throwSpeed;
@@ -38,9 +35,7 @@ namespace ItemLaunch
 
         private void Start()
         {
-            lineRenderer.positionCount = positions.Length;
             lineRenderer.widthMultiplier = 0;
-            DrawCubicCurve();
         }
 
         public void ChangeState(bool state)
@@ -80,27 +75,6 @@ namespace ItemLaunch
             }
 
             lineRenderer.widthMultiplier = width * multiplier;
-        }
-
-        void DrawCubicCurve()
-        {
-            for (int i = 0; i < numPoints; i++)
-            {
-                float _t = i / (float)numPoints;
-                positions[i] = BezierCubicAlgorithm(_t);
-            }
-            lineRenderer.SetPositions(positions);
-        }
-
-        Vector3 BezierCubicAlgorithm(float currentT)
-        {
-            Vector3 a = Vector3.Lerp(StartPoint, StartTangent, currentT);
-            Vector3 b = Vector3.Lerp(StartTangent, EndTangent, currentT);
-            Vector3 c = Vector3.Lerp(EndTangent, EndPoint, currentT);
-            Vector3 d = Vector3.Lerp(a, b, currentT);
-            Vector3 e = Vector3.Lerp(b, c, currentT);
-
-            return Vector3.Lerp(d, e, currentT);
         }
 
 #if UNITY_EDITOR
