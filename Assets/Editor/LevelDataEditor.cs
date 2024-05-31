@@ -13,6 +13,7 @@ public class LevelDataEditor : Editor
         serializedObject.Update();
 
         EditorGUI.BeginChangeCheck();
+        picker.mapPreviewIcon = EditorGUILayout.ObjectField("Icon map", picker.mapPreviewIcon, typeof(Sprite), false) as Sprite;
         picker.levelID = EditorGUILayout.IntField(new GUIContent("Level ID (first is 0)", ""), picker.levelID);
         SceneAsset newScene = EditorGUILayout.ObjectField("Linked Scene", oldScene, typeof(SceneAsset), false) as SceneAsset;
         picker.levelMusicData = EditorGUILayout.ObjectField("Level Music Data", picker.levelMusicData, typeof(LevelMusicData), false) as LevelMusicData;

@@ -90,18 +90,18 @@ namespace Dialog
         IEnumerator StartDialog(bool overrideLastDialog)
         {
             DialogInfos dialogInfos = dialogInfosQueue.Dequeue();
-            string displayText = "";
-            int alphaIndex = 0;
-            string defaultLoadedText;
+            //string displayText = "";
+            //int alphaIndex = 0;
+            //string defaultLoadedText;
             //Start dialog
             if (!isInDialog)
             {
-                SetActiveDialog(true);
+                // SetActiveDialog(true);
             }
 
             pnjNameDialogText.text = dialogInfos.pnjName;
-            InputAction inputActionArg;
-            KeybindsData keybindsData;
+            //InputAction inputActionArg;
+            //KeybindsData keybindsData;
             string[] loadedKeys = new string[dialogInfos.loadedContent.args.Length];
 
             if(isMusicPlaying && overrideLastDialog)
@@ -121,56 +121,56 @@ namespace Dialog
                 isMusicPlaying = false;
             }
 
-            if (dialogInfos.loadedContent.args.Length > 0)
-            {
-                for (int j = 0; j < dialogInfos.loadedContent.args.Length; j++)
-                {
-                    keybindsData = dialogInfos.loadedContent.args[j];
-                    inputActionArg = InputManager.s_PlayerInput.asset.FindAction(keybindsData.inputActionReference.action.id);
-                    loadedKeys[j] = c_KEYOPTIONS + inputActionArg.GetBindingDisplayString(keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames) + c_KEYENDOPTIONS;
-                }
-            }
+           // if (dialogInfos.loadedContent.args.Length > 0)
+           // {
+           //     for (int j = 0; j < dialogInfos.loadedContent.args.Length; j++)
+           //     {
+           //         keybindsData = dialogInfos.loadedContent.args[j];
+           //         inputActionArg = InputManager.s_PlayerInput.asset.FindAction(keybindsData.inputActionReference.action.id);
+           //         loadedKeys[j] = c_KEYOPTIONS + inputActionArg.GetBindingDisplayString(keybindsData.bindingIndex, InputBinding.DisplayStringOptions.DontUseShortDisplayNames) + c_KEYENDOPTIONS;
+           //     }
+           // }
+           //
+           //for (int i = 0; i < dialogInfos.loadedContent.loadedString.Length; i++)
+           //{
+           //    defaultLoadedText = dialogInfos.loadedContent.loadedString[i];
+           //    
+           //    if (dialogInfos.loadedContent.args.Length > 0)
+           //    {
+           //        defaultLoadedText = string.Format(defaultLoadedText, loadedKeys);
+           //    }
+           //    else
+           //    {
+           //        defaultLoadedText = dialogInfos.loadedContent.loadedString[i];
+           //    }
+           //
+           //    alphaIndex = 0;
+           //    bool isBaliseOpended = false;
+           //    foreach (char c in defaultLoadedText)
+           //    {
+           //        int offset = ReturnBaliseOffset(ref isBaliseOpended, defaultLoadedText, alphaIndex);
+           //        
+           //        alphaIndex += offset;
+           //
+           //        if(alphaIndex > defaultLoadedText.Length)
+           //        {
+           //            alphaIndex = defaultLoadedText.Length;
+           //        }
+           //
+           //        displayText = defaultLoadedText.Insert(alphaIndex, c_ALPHACOLOR);
+           //        dialogText.text = displayText;
+           //
+           //        yield return new WaitForSeconds(dialogLevelData.letterDelay);
+           //    }
+           //
+           //    if (i + 1 < dialogInfos.loadedContent.loadedString.Length)
+           //    {
+           //        dialogText.text = defaultLoadedText + "...";
+           //    }
+           //
 
-            for (int i = 0; i < dialogInfos.loadedContent.loadedString.Length; i++)
-            {
-                defaultLoadedText = dialogInfos.loadedContent.loadedString[i];
-                
-                if (dialogInfos.loadedContent.args.Length > 0)
-                {
-                    defaultLoadedText = string.Format(defaultLoadedText, loadedKeys);
-                }
-                else
-                {
-                    defaultLoadedText = dialogInfos.loadedContent.loadedString[i];
-                }
-
-                alphaIndex = 0;
-                bool isBaliseOpended = false;
-                foreach (char c in defaultLoadedText)
-                {
-                    int offset = ReturnBaliseOffset(ref isBaliseOpended, defaultLoadedText, alphaIndex);
-                    
-                    alphaIndex += offset;
-
-                    if(alphaIndex > defaultLoadedText.Length)
-                    {
-                        alphaIndex = defaultLoadedText.Length;
-                    }
-
-                    displayText = defaultLoadedText.Insert(alphaIndex, c_ALPHACOLOR);
-                    dialogText.text = displayText;
-
-                    yield return new WaitForSeconds(dialogLevelData.letterDelay);
-                }
-
-                if (i + 1 < dialogInfos.loadedContent.loadedString.Length)
-                {
-                    dialogText.text = defaultLoadedText + "...";
-                }
-
-
-                yield return new WaitForSeconds(dialogLevelData.delayAfterSentence);
-            }
+            //    yield return new WaitForSeconds(dialogLevelData.delayAfterSentence);
+            //}
 
             yield return new WaitForSeconds(dialogLevelData.delayAfterDialog);
 

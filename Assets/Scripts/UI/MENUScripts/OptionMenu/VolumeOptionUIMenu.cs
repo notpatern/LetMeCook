@@ -16,6 +16,7 @@ namespace UI.MENUScripts.Options
             m_MasterVolume.value = AudioManager.s_Instance.m_MasterVolume;
             m_MusicVolume.value = AudioManager.s_Instance.m_MusicVolume;
             m_SFXVolume.value = AudioManager.s_Instance.m_SFXVolume;
+            m_VoiceVolume.value = AudioManager.s_Instance.m_VoiceVolume;
         }
 
         public void SetMasterVolume(float volume)
