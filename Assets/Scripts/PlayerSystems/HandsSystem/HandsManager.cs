@@ -1,6 +1,7 @@
 using System;
 using Player.HandSystem;
 using UnityEngine;
+using UnityEngine.UI;
 using FoodSystem.FoodType;
 using UnityEngine.Events;
 using Audio;
@@ -52,7 +53,7 @@ namespace PlayerSystems.HandsSystem
 
             for (int i = 0; i < m_GemBraceletMoveTechVisual.Length; i++)
             {
-                m_GemBraceletMoveTechVisual[i].ChangeGemsMat(m_DefaultGemBraceletVisualMaterial);
+                m_GemBraceletMoveTechVisual[i].UpdateBraceletVisual(m_DefaultGemBraceletVisualMaterial);
             }
 
             BindUpdateDashState(action => 
@@ -75,11 +76,11 @@ namespace PlayerSystems.HandsSystem
         {
             if (isActive)
             {
-                m_GemBraceletMoveTechVisual[gemBraceletId].ChangeGemsMat();
+                m_GemBraceletMoveTechVisual[gemBraceletId].UpdateBraceletVisual();
             }
             else
             {
-                m_GemBraceletMoveTechVisual[gemBraceletId].ChangeGemsMat(m_DefaultGemBraceletVisualMaterial);
+                m_GemBraceletMoveTechVisual[gemBraceletId].UpdateBraceletVisual(m_DefaultGemBraceletVisualMaterial);
             }
         }
         
@@ -331,8 +332,18 @@ namespace PlayerSystems.HandsSystem
     {
         [SerializeField] MeshRenderer[] m_Gems;
         [SerializeField] Material m_DefaultActiveGemMat;
+        [SerializeField] Sprite m_DefaultMoveTechIcon;
+        [SerializeField] Sprite m_EmptyMoveTechIcon;
+        [SerializeField] Image m_MoveTechIcon;
 
-        public void ChangeGemsMat(Material newMat = null)
+        public void UpdateBraceletVisual(Material mat = null)
+        {
+            m_MoveTechIcon.sprite = mat ? m_EmptyMoveTechIcon : m_DefaultMoveTechIcon;
+
+            ChangeGemsMat(mat);
+        }
+
+        void ChangeGemsMat(Material newMat = null)
         {
             if(!newMat)
             {
