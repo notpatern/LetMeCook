@@ -26,13 +26,13 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateScore(bool[] starsUnlock, int scoreUntilNextStar)
     {
-        scoreToReach.text = "First star in : " + scoreUntilNextStar;
+        scoreToReach.text = "First star in : " + scoreUntilNextStar + " points";
 
         if (starsUnlock == null || starsUnlock.Length == 0) return;
 
         if(starsUnlock[0])
         {
-            scoreToReach.text = "Next star in : " + scoreUntilNextStar + " <color=#F77D1C>(not bonus)</color>";
+            scoreToReach.text = "Next star in : " + scoreUntilNextStar + " points <color=#F77D1C>(without bonus recipes)</color>";
         }
 
         SetActivePlayerHudStars(starsUnlock.Length, starsUnlock);
