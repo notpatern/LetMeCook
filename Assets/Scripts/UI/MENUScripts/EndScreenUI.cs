@@ -46,6 +46,8 @@ public class EndScreenUI : MonoBehaviour
 
         int completionRate = Mathf.RoundToInt(playerScore.m_CompletedRecipes / (float)playerScore.m_TotalRecipes * 100);
 
+        UpdateUnlockedStarsSave(levelData, playerScore.m_Score, completionRate);
+
         SetScoreTitle(GetPlayerStarsNumber(playerScore.m_Score, playerScore.m_RequiredScore, completionRate));
         
         m_ScoreText.text = playerScore.m_Score + "pts (High Score : " + SaveSystem.GetSavedData().m_LevelHighScores[levelData.levelID] + ")";
@@ -101,6 +103,24 @@ public class EndScreenUI : MonoBehaviour
         }
 
         SaveSystem.SaveLevelReached(levelHighScores);
+    }
+
+    void UpdateUnlockedStarsSave(LevelData levelData, int score, int completionRate)
+    {
+        int[] levelStars = SaveSystem.GetSavedData().m_LevelHighScores;
+
+        if (levelStars == null)
+        {
+            levelStars = new int[levelData.levelID + 1];
+        }
+        else if (levelStars.Length < levelData.levelID + 1)
+        {
+            Array.Resize(ref levelStars, levelData.levelID + 1);
+        }
+
+        GetPlayerStarsNumber(score, levelData.requiredScore, completionRate);
+
+        SaveSystem.SaveLevelsStar(levelStars);
     }
 
     void LevelIsWin(LevelData nextLevelData)
