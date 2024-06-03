@@ -22,6 +22,7 @@ public class MainMenu : LevelManager
     [SerializeField] Image m_MapPreview; 
     [SerializeField] TMP_Text m_LevelDesciption;
     [SerializeField] GameObject[] m_Stars;
+    [SerializeField] Sprite[] m_StarSprites;
 
     [Serializable]
     class LevelButtons
@@ -72,18 +73,23 @@ public class MainMenu : LevelManager
             SetActivePanel(m_LevelSelectorPanel, !m_LevelSelectorPanel.activeSelf);
         });
 
+        SaveData save = SaveSystem.GetSavedData();
         for (int i=0; i< m_Levels.Length; i++)
         {
             int iCopy = i;
             m_Levels[i].m_LevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(m_Levels[iCopy].m_LevelData.linkedScenePath));
 
             m_Levels[i].m_LevelButton.interactable = i > levelReached ? false : true;
+            
+            //Set star amount
+            if (save.m_LevelUnlockedStarsNumber != null && i+1 < save.m_LevelUnlockedStarsNumber.Length)
+            {
+                print($"lvl {i+1}");
+                print($"m_LevelUnlockedStarsNumber {i+1} : " + save.m_LevelUnlockedStarsNumber[i+1]);
+                print($"m_LevelHighScores {i+1} : " + save.m_LevelHighScores[i+1]);
+                m_Stars[i].GetComponent<Image>().sprite = m_StarSprites[save.m_LevelUnlockedStarsNumber[i]];
+            }
         }
-    }
-
-    void DisplayLevelStars()
-    {
-        
     }
 
     public void SetHoverPreview(LevelData levelData)
@@ -91,14 +97,6 @@ public class MainMenu : LevelManager
         m_MapPreview.sprite = levelData.mapPreviewIcon;
         m_LevelDesciption.text = levelData.levelDescription;
         AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
-
-        SaveData save = SaveSystem.GetSavedData();
-
-        int length = m_Stars.Length;
-        for (int i = 0; i < length; i++)
-        {
-            m_Stars[i].SetActive(save.m_LevelUnlockedStarsNumber.Length > levelData.levelID && save.m_LevelUnlockedStarsNumber[i] > i);
-        }
     }
 
     void SetActivePanel(GameObject panelToActive, bool state)
