@@ -1,4 +1,3 @@
-using PlayerSystems.PlayerBase;
 using RecipeSystem;
 using RecipeSystem.Core;
 using UnityEngine;
@@ -51,7 +50,7 @@ namespace Manager
             if (m_IsEndStateInit) return;
 
             m_GameEndCondition = new DefaultGameEndCondition();
-            m_GameEndCondition.InitGameEndCondition(m_LevelDuration, m_UiManager.endConditionUI);
+            m_GameEndCondition.InitGameEndCondition(m_LevelDuration, m_UiManager.endConditionUI, m_EndconditionHandParentUI);
             m_GameEndCondition.BindOnEndCondition(() =>
             {
                 TriggerEndScreenSystem();
@@ -122,6 +121,10 @@ namespace Manager
             if (m_RecipesManager.dataBase.randomFillerRecipes != null && m_RecipesManager.dataBase.randomFillerRecipes.Length > 0)
             {
                 scoreWithoutBonus = m_Score - m_BonusRecipes * m_RecipesManager.dataBase.randomFillerRecipes[0].addedScore;
+            }
+            else
+            {
+                Debug.LogError("GameManager Score, no randomFillerRecipes is null or length == 0");
             }
 
             int requiredScoreUntilNextStar = m_LevelData.requiredScore > m_Score ? m_LevelData.requiredScore - m_Score : m_UiManager.endScreen.GetRequiredScoreUntilNextStar(scoreWithoutBonus, maxMainRecipesFeedScore);

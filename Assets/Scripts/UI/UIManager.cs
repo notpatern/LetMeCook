@@ -19,7 +19,7 @@ namespace UI
         TMP_Text scoreText;
 
         //if there are problems with multiple layers then do a layer system with an UIContent parent or something and add a layer parameter
-        public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData, Transform endConditionParent)
+        public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData, Transform endConditionParent, Transform scoreTextParent)
         {
             LoadBaseCanvas(levelUIData.canvasPrefab);
 
@@ -36,7 +36,7 @@ namespace UI
             if(levelUIData.endConditionPrefab && endConditionParent)
             {
                 LoadEndConditionUI(levelUIData.endConditionPrefab, endConditionParent);
-                LoadScoreWorldUI(levelUIData.scorePrefab, endConditionParent);
+                LoadScoreWorldUI(levelUIData.scorePrefab, scoreTextParent);
             }
 
             if (levelUIData.recipeContentParent)

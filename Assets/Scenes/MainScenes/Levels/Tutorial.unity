@@ -35614,6 +35614,12 @@ Transform:
   - {fileID: 2004116271}
   m_Father: {fileID: 1189205547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1799738243 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3078038744206083309, guid: 454dc75f7bd5fb94f845e816427da00a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1463037841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1808293923
 Mesh:
   m_ObjectHideFlags: 0
@@ -43825,13 +43831,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_EndconditionParentUI
       value: 
-      objectReference: {fileID: 1463037842}
+      objectReference: {fileID: 1799738243}
     - target: {fileID: 4699983668110006517, guid: a5578045f5c58e041a0e4c53f2178352,
         type: 3}
       propertyPath: scoreWorldInfoUIPrefab
       value: 
       objectReference: {fileID: 7065758623177256831, guid: 0ad58c60493fac74b8f2b41ef2a0cf0d,
         type: 3}
+    - target: {fileID: 4699983668110006517, guid: a5578045f5c58e041a0e4c53f2178352,
+        type: 3}
+      propertyPath: m_EndconditionHandParentUI
+      value: 
+      objectReference: {fileID: 1463037842}
     - target: {fileID: 5629889461613389735, guid: a5578045f5c58e041a0e4c53f2178352,
         type: 3}
       propertyPath: m_Mesh

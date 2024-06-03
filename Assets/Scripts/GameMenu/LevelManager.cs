@@ -11,6 +11,7 @@ namespace Manager
         [SerializeField] AudioSoundData m_AudioSoundData;
         public LevelData m_LevelData;
         [SerializeField, Tooltip("can be null")] protected Transform m_EndconditionParentUI;
+        [SerializeField, Tooltip("can be null")] protected Transform m_EndconditionHandParentUI;
 
         protected MusicManager m_MusicManager;
 
@@ -30,7 +31,7 @@ namespace Manager
             m_MusicManager.InitializeMusic(m_LevelData.levelMusicData, this);
 
             m_UiManager = new UIManager();
-            m_UiManager.LoadUI(m_LevelData.levelUIData, m_LevelData.dialogLevelData, m_EndconditionParentUI);
+            m_UiManager.LoadUI(m_LevelData.levelUIData, m_LevelData.dialogLevelData, m_EndconditionParentUI, m_EndconditionHandParentUI);
         }
 
         protected virtual void Update()
