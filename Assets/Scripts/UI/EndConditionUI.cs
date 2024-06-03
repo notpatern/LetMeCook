@@ -12,9 +12,9 @@ namespace UI
             timerText.text = "";
         }
 
-        public void UpdateText(string data)
+        public void UpdateText(string data, string hexColor)
         {
-            timerText.text = data;
+            timerText.text = $"<color={hexColor}>{data}</color>";
         }
     }
 
