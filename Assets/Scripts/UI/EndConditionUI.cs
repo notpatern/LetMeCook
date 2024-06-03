@@ -11,6 +11,14 @@ namespace UI
         [SerializeField] GameObject warningGo;
         [SerializeField] GameObject warningGoInHand;
 
+        void Start()
+        {
+            timerText.text = "";
+            timeRemainingWarning.text = "";
+            warningGo.SetActive(false);
+            warningGoInHand.SetActive(false);
+        }
+
         public void Init(Transform timerParent)
         {
             timerText.transform.SetParent(timerParent);
