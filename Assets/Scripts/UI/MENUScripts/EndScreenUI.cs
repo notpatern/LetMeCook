@@ -110,6 +110,7 @@ public class EndScreenUI : MonoBehaviour
     void UpdateUnlockedStarsSave(LevelData levelData, int score, int completionRate)
     {
         int[] levelStars = SaveSystem.GetSavedData().m_LevelUnlockedStarsNumber;
+        int newStarsNb = GetPlayerStarsNumber(score, levelData.requiredScore, completionRate);
 
         if (levelStars == null)
         {
@@ -119,8 +120,11 @@ public class EndScreenUI : MonoBehaviour
         {
             Array.Resize(ref levelStars, levelData.levelID + 1);
         }
+        else if (levelStars[levelData.levelID] < newStarsNb)
+        {
+            levelStars[levelData.levelID] = newStarsNb;
+        }
 
-        GetPlayerStarsNumber(score, levelData.requiredScore, completionRate);
 
         SaveSystem.SaveLevelsStar(levelStars);
     }

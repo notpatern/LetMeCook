@@ -82,16 +82,13 @@ public class MainMenu : LevelManager
             m_Levels[i].m_LevelButton.interactable = i > levelReached ? false : true;
             
             //Set star amount
-            print("Niveau " + i);
-            print("0 : m_LevelUnlockedStarsNumber " + save.m_LevelUnlockedStarsNumber[0]);
-            print("0 : m_LevelHighScores " + save.m_LevelHighScores[0]);
-            print("1 : m_LevelUnlockedStarsNumber " + save.m_LevelUnlockedStarsNumber[1]);
-            print("1 : m_LevelHighScores " + save.m_LevelHighScores[1]);
-            print("2 : m_LevelUnlockedStarsNumber " + save.m_LevelUnlockedStarsNumber[2]);
-            print("2 : m_LevelHighScores " + save.m_LevelHighScores[2]);
-            
-            
-            m_Stars[i].GetComponent<Image>().sprite = m_StarSprites[save.m_LevelUnlockedStarsNumber[i]];
+            if (save.m_LevelUnlockedStarsNumber != null && i+1 < save.m_LevelUnlockedStarsNumber.Length)
+            {
+                print($"lvl {i+1}");
+                print($"m_LevelUnlockedStarsNumber {i+1} : " + save.m_LevelUnlockedStarsNumber[i+1]);
+                print($"m_LevelHighScores {i+1} : " + save.m_LevelHighScores[i+1]);
+                m_Stars[i].GetComponent<Image>().sprite = m_StarSprites[save.m_LevelUnlockedStarsNumber[i]];
+            }
         }
     }
 
@@ -100,14 +97,6 @@ public class MainMenu : LevelManager
         m_MapPreview.sprite = levelData.mapPreviewIcon;
         m_LevelDesciption.text = levelData.levelDescription;
         AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
-
-        SaveData save = SaveSystem.GetSavedData();
-
-        int length = m_Stars.Length;
-        for (int i = 0; i < length; i++)
-        {
-            //m_Stars[i].SetActive(save.m_LevelUnlockedStarsNumber.Length > levelData.levelID && save.m_LevelUnlockedStarsNumber[i] > i);
-        }
     }
 
     void SetActivePanel(GameObject panelToActive, bool state)
