@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6602c4a7cf417244bb0fbb75904e5d5d, type: 3}
+  m_Name: EasyLevelRecipesData 1
+  m_EditorClassIdentifier: 
+  recipesContainers:
+  - m_Recipe: {fileID: 11400000, guid: fda6737e69d4bc643912fe178de6f1a3, type: 2}
+    m_WaitPeriod: 25.8
+  - m_Recipe: {fileID: 11400000, guid: fda6737e69d4bc643912fe178de6f1a3, type: 2}
+    m_WaitPeriod: 25
+  - m_Recipe: {fileID: 11400000, guid: fda6737e69d4bc643912fe178de6f1a3, type: 2}
+    m_WaitPeriod: 25
+  randomFillerRecipes:
+  - {fileID: 11400000, guid: a1f38c14836b273459e7445db32fd3ba, type: 2}
+  - {fileID: 11400000, guid: fda6737e69d4bc643912fe178de6f1a3, type: 2}
+  - {fileID: 11400000, guid: e414004825fc0a145ae7610afd95d803, type: 2}
+  m_StartPeriodOffset: 2
