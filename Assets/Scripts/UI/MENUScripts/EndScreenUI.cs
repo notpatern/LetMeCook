@@ -74,8 +74,10 @@ public class EndScreenUI : MonoBehaviour
         }
         else
         {
-
-            StartCoroutine(ActiveStarWithOffsetTransition(completionRate));
+            if (playerScore.m_RequiredScore > playerScore.m_Score)
+            {
+                StartCoroutine(ActiveStarWithOffsetTransition(completionRate));
+            }
             LevelIsWin(nextLevelData);
             m_NextLevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(nextLevelData.linkedScenePath));
         }
