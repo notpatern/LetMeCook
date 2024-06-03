@@ -20,8 +20,7 @@ public class AudioSoundData : ScriptableObject
     public EventReference m_FoodAirThrowingEffect;
 
     [Header("Transformator")]
-    public EventReference m_StartCookingCollector;
-    public EventReference m_StartPlatformCollector;
+    public EventReference m_FoodInCookingRange;
     public EventReference m_BakerCooking;
     public EventReference m_ChopperCooking;
     public EventReference m_PurifierCooking;

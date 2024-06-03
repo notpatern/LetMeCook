@@ -63,6 +63,8 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 Instantiate(m_QueueParticles, other.transform.position, Quaternion.identity);
                 foodInQueue.Add(food);
                 UpdateQueueText();
+
+                AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_FoodInCookingRange, transform.position);
             }
         }
 
@@ -169,8 +171,6 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             collectedFoodGo.transform.SetParent(cookingFoodPos, false);
             collectedFoodGo.GetComponent<Collider>().enabled = false;
             collectedFoodGo.GetComponent<Rigidbody>().isKinematic = true;
-
-            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_StartCookingCollector, transform.position);
         }
 
         protected virtual void Update()
