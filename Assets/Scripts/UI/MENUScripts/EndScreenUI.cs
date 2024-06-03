@@ -109,7 +109,7 @@ public class EndScreenUI : MonoBehaviour
 
     void UpdateUnlockedStarsSave(LevelData levelData, int score, int completionRate)
     {
-        int[] levelStars = SaveSystem.GetSavedData().m_LevelHighScores;
+        int[] levelStars = SaveSystem.GetSavedData().m_LevelUnlockedStarsNumber;
 
         if (levelStars == null)
         {

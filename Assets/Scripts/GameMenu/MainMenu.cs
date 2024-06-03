@@ -22,6 +22,7 @@ public class MainMenu : LevelManager
     [SerializeField] Image m_MapPreview; 
     [SerializeField] TMP_Text m_LevelDesciption;
     [SerializeField] GameObject[] m_Stars;
+    [SerializeField] Sprite[] m_StarSprites;
 
     [Serializable]
     class LevelButtons
@@ -72,18 +73,26 @@ public class MainMenu : LevelManager
             SetActivePanel(m_LevelSelectorPanel, !m_LevelSelectorPanel.activeSelf);
         });
 
+        SaveData save = SaveSystem.GetSavedData();
         for (int i=0; i< m_Levels.Length; i++)
         {
             int iCopy = i;
             m_Levels[i].m_LevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(m_Levels[iCopy].m_LevelData.linkedScenePath));
 
             m_Levels[i].m_LevelButton.interactable = i > levelReached ? false : true;
+            
+            //Set star amount
+            print("Niveau " + i);
+            print("0 : m_LevelUnlockedStarsNumber " + save.m_LevelUnlockedStarsNumber[0]);
+            print("0 : m_LevelHighScores " + save.m_LevelHighScores[0]);
+            print("1 : m_LevelUnlockedStarsNumber " + save.m_LevelUnlockedStarsNumber[1]);
+            print("1 : m_LevelHighScores " + save.m_LevelHighScores[1]);
+            print("2 : m_LevelUnlockedStarsNumber " + save.m_LevelUnlockedStarsNumber[2]);
+            print("2 : m_LevelHighScores " + save.m_LevelHighScores[2]);
+            
+            
+            m_Stars[i].GetComponent<Image>().sprite = m_StarSprites[save.m_LevelUnlockedStarsNumber[i]];
         }
-    }
-
-    void DisplayLevelStars()
-    {
-        
     }
 
     public void SetHoverPreview(LevelData levelData)
@@ -97,7 +106,7 @@ public class MainMenu : LevelManager
         int length = m_Stars.Length;
         for (int i = 0; i < length; i++)
         {
-            m_Stars[i].SetActive(save.m_LevelUnlockedStarsNumber.Length > levelData.levelID && save.m_LevelUnlockedStarsNumber[i] > i);
+            //m_Stars[i].SetActive(save.m_LevelUnlockedStarsNumber.Length > levelData.levelID && save.m_LevelUnlockedStarsNumber[i] > i);
         }
     }
 
