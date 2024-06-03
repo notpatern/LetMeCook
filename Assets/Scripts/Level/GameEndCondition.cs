@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UI;
 using UnityEngine;
 using Audio;
+using FMOD.Studio;
 
 namespace Manager
 {
@@ -17,7 +18,7 @@ namespace Manager
     [Serializable]
     public class DefaultGameEndCondition : GameEndCondition
     {
-        public UnityEvent UnityEvent = new UnityEvent();
+        public UnityEvent m_OnEndConditionEvent = new UnityEvent();
         public float m_Timer { get; set; }
         bool m_IsFinish = false;
         EndConditionUI m_EndConditionUI;
@@ -25,14 +26,15 @@ namespace Manager
         bool m_IsRemainingTimeWarningShowed = false;
         [SerializeField] float m_TimeRemainingWarningSeconds = 10f;
         float m_TimerWarningDuration = 3f;
-
-        int m_secondRemaining;
+        EventInstance warningRemainingTimeTicTac;
 
         public void InitGameEndCondition(float time, EndConditionUI endConditionUI, Transform timerParent)
         {
             m_Timer = time;
             m_EndConditionUI = endConditionUI;
             endConditionUI.Init(timerParent);
+
+            m_OnEndConditionEvent.AddListener(() => { warningRemainingTimeTicTac.stop(STOP_MODE.ALLOWFADEOUT); });
         }
 
         public void Update(float dt)
@@ -41,7 +43,7 @@ namespace Manager
             {
                 m_Timer = 0f;
                 m_IsFinish = true;
-                UnityEvent.Invoke();
+                m_OnEndConditionEvent.Invoke();
             }
 
             if (m_IsFinish)
@@ -73,13 +75,8 @@ namespace Manager
                 {
                     m_EndConditionUI.ActiveWarningPanel(m_TimerWarningDuration);
                     m_IsRemainingTimeWarningShowed = true;
-                    m_secondRemaining = Mathf.RoundToInt(m_TimeRemainingWarningSeconds);
-                }
-
-                if(seconds <= m_secondRemaining)
-                {
-                    m_secondRemaining -= 1;
-                    AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_LevelTimeRemainingWarning);
+                    warningRemainingTimeTicTac = AudioManager.s_Instance.CreateInstance(AudioManager.s_Instance.m_AudioSoundData.m_LevelTimeRemainingWarning);
+                    warningRemainingTimeTicTac.start();
                 }
             }
             else
@@ -92,7 +89,7 @@ namespace Manager
 
         public void BindOnEndCondition(UnityAction action)
         {
-            UnityEvent.AddListener(action);
+            m_OnEndConditionEvent.AddListener(action);
         }
     }
 }
