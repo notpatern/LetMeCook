@@ -105,7 +105,7 @@ namespace GraphicsOption
 
             foreach(float ratio in m_authorizedRatios)
             {
-                if (ratio == a.width / (float)a.height && a.refreshRateRatio.CompareTo(Screen.currentResolution.refreshRateRatio) > 0)
+                if (ratio == a.width / (float)a.height && a.refreshRateRatio.value == Screen.currentResolution.refreshRateRatio.value)
                 {
                     return true;
                 }
