@@ -74,7 +74,7 @@ public class EndScreenUI : MonoBehaviour
         }
         else
         {
-            if (playerScore.m_RequiredScore playerScore.m_Score)
+            if (playerScore.m_RequiredScore < playerScore.m_Score)
             {
                 StartCoroutine(ActiveStarWithOffsetTransition(completionRate));
             }
