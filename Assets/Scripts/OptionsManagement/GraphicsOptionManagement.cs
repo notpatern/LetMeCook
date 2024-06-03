@@ -106,7 +106,7 @@ namespace GraphicsOption
 
             foreach(ulong ratio in m_authorizedRatios)
             {
-                Debug.Log(ratio + " | width " + a.width + " | height" + a.height + "refresh : " + a.refreshRateRatio.value + " | refresh current : " + Screen.currentResolution.refreshRateRatio.value);
+                //Debug.Log(ratio + " | width " + a.width + " | height" + a.height + "refresh : " + a.refreshRateRatio.value + " | refresh current : " + Screen.currentResolution.refreshRateRatio.value);
                 if (ratio == (ulong)a.width / (ulong)a.height && a.refreshRateRatio.value == Screen.currentResolution.refreshRateRatio.value)
                 {
                     return true;
