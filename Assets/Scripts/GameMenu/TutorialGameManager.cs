@@ -35,6 +35,8 @@ namespace Manager
 
         void StartInitDefaultEndCondition()
         {
+            m_EndconditionParentUI.gameObject.SetActive(true);
+            m_EndconditionHandParentUI.gameObject.SetActive(true);
             m_Score = 0;
             m_RecipesNb = 0;
             m_CompletedRecipes = 0;

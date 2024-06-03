@@ -37,7 +37,14 @@ namespace Manager
 
         public void Update(float dt)
         {
-            if(m_IsFinish)
+            if (m_Timer <= 0f)
+            {
+                m_Timer = 0f;
+                m_IsFinish = true;
+                UnityEvent.Invoke();
+            }
+
+            if (m_IsFinish)
             {
                 return;
             }
@@ -45,13 +52,6 @@ namespace Manager
             m_Timer -= dt;
 
             UpdateUI();
-
-            if (m_Timer <= 0f)
-            {
-                m_Timer = 0f;
-                m_IsFinish = true;
-                UnityEvent.Invoke();
-            }
         }
 
         void UpdateUI()
