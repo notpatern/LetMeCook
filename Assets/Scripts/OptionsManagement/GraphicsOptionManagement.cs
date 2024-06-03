@@ -67,12 +67,9 @@ namespace GraphicsOption
             int currentResolutionId = -1;
             for (int i = 0; i < Screen.resolutions.Length; i++)
             {
-                if (IsAuthorizedRatio(Screen.resolutions[i]))
-                {
-                    currentResolutionId++;
-                    m_deviceAvailableResolutions[currentResolutionId].width = Screen.resolutions[i].width;
-                    m_deviceAvailableResolutions[currentResolutionId].height = Screen.resolutions[i].height;
-                }
+                currentResolutionId++;
+                m_deviceAvailableResolutions[currentResolutionId].width = Screen.resolutions[i].width;
+                m_deviceAvailableResolutions[currentResolutionId].height = Screen.resolutions[i].height;
             }
 
             Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId + 1);
