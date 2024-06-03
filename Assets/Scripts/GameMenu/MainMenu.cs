@@ -81,6 +81,11 @@ public class MainMenu : LevelManager
         }
     }
 
+    void DisplayLevelStars()
+    {
+        
+    }
+
     public void SetHoverPreview(LevelData levelData)
     {
         m_MapPreview.sprite = levelData.mapPreviewIcon;

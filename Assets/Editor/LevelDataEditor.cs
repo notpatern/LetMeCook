@@ -15,6 +15,7 @@ public class LevelDataEditor : Editor
         EditorGUI.BeginChangeCheck();
         picker.mapPreviewIcon = EditorGUILayout.ObjectField("Icon map", picker.mapPreviewIcon, typeof(Sprite), false) as Sprite;
         picker.levelID = EditorGUILayout.IntField(new GUIContent("Level ID (first is 0)", ""), picker.levelID);
+        picker.levelDescription = EditorGUILayout.TextField(new GUIContent("Level Description", ""), picker.levelDescription);
         SceneAsset newScene = EditorGUILayout.ObjectField("Linked Scene", oldScene, typeof(SceneAsset), false) as SceneAsset;
         picker.levelMusicData = EditorGUILayout.ObjectField("Level Music Data", picker.levelMusicData, typeof(LevelMusicData), false) as LevelMusicData;
         picker.levelUIData = EditorGUILayout.ObjectField("Level UI Data", picker.levelUIData, typeof(LevelUIData), false) as LevelUIData;
