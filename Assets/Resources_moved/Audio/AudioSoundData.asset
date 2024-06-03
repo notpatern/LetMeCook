@@ -26,27 +26,6 @@ MonoBehaviour:
       Data3: 1246485645
       Data4: -925894289
     Path: event:/SFX/PlayerFoodAction/PlayerPickFood
-  m_PlayerMergeFood:
-    Guid:
-      Data1: -1935046261
-      Data2: 1315722896
-      Data3: -1203071359
-      Data4: 1740383848
-    Path: event:/SFX/PlayerFoodAction/PlayerMergeFood
-  m_PlayerEmptyMergeFood:
-    Guid:
-      Data1: -399083545
-      Data2: 1235897432
-      Data3: -427178053
-      Data4: 2040825563
-    Path: event:/SFX/PlayerFoodAction/PlayerEmptyMergeFood
-  m_PlayerCrunchFood:
-    Guid:
-      Data1: 1549738295
-      Data2: 1130542706
-      Data3: 839478449
-      Data4: 2036954274
-    Path: event:/SFX/PlayerFoodAction/PlayerCruchFood
   m_PlayerGroundImpact:
     Guid:
       Data1: 2021246021
@@ -96,20 +75,13 @@ MonoBehaviour:
       Data3: -2088699519
       Data4: 1718659537
     Path: event:/SFX/Food/FoodThrowingSound
-  m_StartCookingCollector:
+  m_FoodInCookingRange:
     Guid:
       Data1: 308744095
       Data2: 1237817342
       Data3: 1888862141
       Data4: 937725278
-    Path: event:/SFX/Transformator/StartCookingCollector
-  m_StartPlatformCollector:
-    Guid:
-      Data1: -1668979240
-      Data2: 1187343997
-      Data3: -1112542322
-      Data4: 1262090535
-    Path: event:/SFX/Transformator/StartStockageCollector
+    Path: event:/SFX/Transformator/FoodInCookingRange
   m_BakerCooking:
     Guid:
       Data1: 1000235719

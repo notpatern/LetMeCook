@@ -1,7 +1,6 @@
 using System;
 using UnityEngine.Events;
 using UI;
-using UnityEngine;
 
 namespace Manager
 {
@@ -50,7 +49,10 @@ namespace Manager
         {
             int minutes = (int)(m_Timer / 60f);
             int seconds = (int)(m_Timer % 60f);
-            m_EndConditionUI.UpdateText(minutes.ToString("0") + ":" + seconds.ToString("00"));
+
+            string color = minutes == 0 && seconds <= 10 ? "#FF6537" : "#FFFFFF";
+
+            m_EndConditionUI.UpdateText(minutes.ToString("0") + ":" + seconds.ToString("00"), color);
         }
 
         public void BindOnEndCondition(UnityAction action)
