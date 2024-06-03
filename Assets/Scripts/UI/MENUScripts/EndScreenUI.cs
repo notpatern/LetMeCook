@@ -129,7 +129,7 @@ public class EndScreenUI : MonoBehaviour
     {
         int reachedLevel = SaveSystem.GetSavedData().m_LevelReached;
 
-        if (reachedLevel < nextLevelData.levelID)
+        if (nextLevelData!= null && reachedLevel < nextLevelData.levelID)
         {
             SaveSystem.SaveLevelReached(nextLevelData.levelID);
         }
