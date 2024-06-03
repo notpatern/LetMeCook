@@ -15,9 +15,12 @@ namespace RecipeSystem.Core
         [SerializeField] GameObject rectList;
         [SerializeField] GameObject lastRecipeIndicator;
         [SerializeField] GameObject bonusRecipeIndicator;
+        [SerializeField] GameObject WarningRecipeIndicator;
         [SerializeField] TMP_Text scoreGive;
         [SerializeField] TMP_Text recipeTime;
         public GameRecipe gameRecipe;
+        float timerRemainingBefore = 10f;
+        bool isInWarningState = false;
 
         public void Init(GameRecipe recipe, Transform parent, bool isLastRecipe)
         {
@@ -45,6 +48,7 @@ namespace RecipeSystem.Core
 
             scoreGive.text = "+" + gameRecipe.recipe.addedScore;
             GetComponent<RectTransform>().localScale = Vector3.one;
+            WarningRecipeIndicator.SetActive(false);
         }
 
         void Update()
@@ -57,6 +61,12 @@ namespace RecipeSystem.Core
             background.color = timeColor;
 
             recipeTime.text = Mathf.FloorToInt(gameRecipe.timeRemaining) + "s";
+
+            if(!isInWarningState && gameRecipe.timeRemaining < timerRemainingBefore)
+            {
+                isInWarningState = true;
+                WarningRecipeIndicator.SetActive(true);
+            }
         }
     }
 }
