@@ -18,6 +18,8 @@ public class AudioSoundData : ScriptableObject
     [Header("Food")]
     public EventReference m_FoodBounceImpact;
     public EventReference m_FoodAirThrowingEffect;
+    public EventReference m_LevelTimeRemainingWarning;
+    //public EventReference m_RecipeTimeRemainingWarning;
 
     [Header("Transformator")]
     public EventReference m_FoodInCookingRange;

@@ -24,6 +24,8 @@ namespace RecipeSystem
 
         [SerializeField] GameEventScriptableObject m_OnUpdateRecipeListGiveRecipeManager;
 
+        bool m_IsRecipeFinished = false;
+
         public void Init(GameManager gameManager, RecipeUI recipeUI)
         {
             this.gameManager = gameManager;
@@ -105,12 +107,15 @@ namespace RecipeSystem
             if (dataBase.recipesContainers.Length - recipesRemoved == 0)
             {
                 gameManager.ForceEndConditionTimerValue(0f);
+                m_IsRecipeFinished = true;
             }
             else if(activeRecipes.Count == 0 && dataBase.randomFillerRecipes.Length > 0)
             {
-                recipesRemoved--;
-                AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)], true);
-                Debug.Log("add recipe bonus");
+                if (!m_IsRecipeFinished)
+                {
+                    recipesRemoved--;
+                    AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)], true);
+                }
             }
 
             m_OnUpdateRecipeListGiveRecipeManager.TriggerEvent(null);

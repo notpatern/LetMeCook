@@ -2,6 +2,7 @@ using System;
 using UnityEngine.Events;
 using UI;
 using UnityEngine;
+using Audio;
 
 namespace Manager
 {
@@ -24,6 +25,8 @@ namespace Manager
         bool m_IsRemainingTimeWarningShowed = false;
         [SerializeField] float m_TimeRemainingWarningSeconds = 10f;
         float m_TimerWarningDuration = 3f;
+
+        int m_secondRemaining;
 
         public void InitGameEndCondition(float time, EndConditionUI endConditionUI, Transform timerParent)
         {
@@ -70,6 +73,13 @@ namespace Manager
                 {
                     m_EndConditionUI.ActiveWarningPanel(m_TimerWarningDuration);
                     m_IsRemainingTimeWarningShowed = true;
+                    m_secondRemaining = Mathf.RoundToInt(m_TimeRemainingWarningSeconds);
+                }
+
+                if(seconds <= m_secondRemaining)
+                {
+                    m_secondRemaining -= 1;
+                    AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_LevelTimeRemainingWarning);
                 }
             }
             else

@@ -8,6 +8,9 @@ namespace Manager
         protected override void Awake()
         {
             base.Awake();
+
+            m_EndconditionParentUI.gameObject.SetActive(false);
+            m_EndconditionHandParentUI.gameObject.SetActive(false);
         }
 
         void OnTriggerEnter(Collider other)
@@ -41,6 +44,7 @@ namespace Manager
             m_GameEndCondition.BindOnEndCondition(() =>
             {
                 m_EndconditionParentUI.gameObject.SetActive(false);
+                m_EndconditionHandParentUI.gameObject.SetActive(false);
                 m_IsEndStateInit = false;
                 m_Player.SetPosition(respawnTr.position);
                 m_Player.CrunchFoodInHands(false);
