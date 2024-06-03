@@ -65,18 +65,27 @@ namespace GraphicsOption
             m_deviceAvailableResolutions = new Resolution[Screen.resolutions.Length];
 
             int currentResolutionId = -1;
-            for(int i=0; i<Screen.resolutions.Length; i++)
+            for (int i = 0; i < Screen.resolutions.Length; i++)
             {
-                if(IsAuthorizedRatio(Screen.resolutions[i]))
+                if (IsAuthorizedRatio(Screen.resolutions[i]))
                 {
-                    currentResolutionId ++;
-                    m_deviceAvailableResolutions[currentResolutionId] = Screen.resolutions[i];
+                    currentResolutionId++;
+                    m_deviceAvailableResolutions[currentResolutionId].width = Screen.resolutions[i].width;
+                    m_deviceAvailableResolutions[currentResolutionId].height = Screen.resolutions[i].height;
                 }
             }
 
-            Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId+1);
+            Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId + 1);
 
             m_currentSelectedResolutionID = m_deviceAvailableResolutions.Length - 1;
+
+            for (int i = 0; i < m_deviceAvailableResolutions.Length; i++)
+            { 
+                if (m_deviceAvailableResolutions[i].width == Screen.width && m_deviceAvailableResolutions[i].width == Screen.height)
+                {
+                    m_currentSelectedResolutionID = i;
+                }
+            }
         }
         
         bool IsResolutionsSameSize(in Resolution a, in Resolution b)

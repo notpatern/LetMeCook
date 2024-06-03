@@ -1,4 +1,7 @@
 
+using Audio;
+using FMOD.Studio;
+using FMODUnity;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using UnityEngine;
 
@@ -10,9 +13,13 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         private Vector3 _wallDirection;
         private Vector3 _wallNormal;
 
+        EventInstance wallRunSoundInstance;
+
         public WallRunState(WallRunContext wallRunContext, MovementFsmCore fsmCore) : base(wallRunContext, fsmCore)
         {
             this._context = wallRunContext;
+            wallRunSoundInstance = AudioManager.s_Instance.CreateInstance(AudioManager.s_Instance.m_AudioSoundData.m_PlayerWallrun);
+            RuntimeManager.AttachInstanceToGameObject(wallRunSoundInstance, fsmCore.rb.transform);
         }
 
         public override void Init()
@@ -22,7 +29,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _context.canJump = true;
             GetWallDirection();
 
-            fsmCore.wallRunSound.start();
+            wallRunSoundInstance.start();
 
             float[] fovValues = { fsmCore.cameraData.wallRunFov, fsmCore.cameraData.wallRunFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
@@ -101,13 +108,14 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         public override void Jump()
         {
             base.Jump();
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDoubleJump);
             fsmCore.rb.AddForce(_wallNormal * _context.sideJumpForce, ForceMode.Impulse);
             ExitState();
         }
 
         private void ExitState()
         {
-            fsmCore.wallRunSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            wallRunSoundInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             float[] fovValues = { fsmCore.cameraData.defaultFov, fsmCore.cameraData.defaultFovTimeToSet };
             fsmCore.onFovChange.TriggerEvent(fovValues);
             float[] zTilt = { 0, fsmCore.cameraData.defaultTilt, fsmCore.cameraData.wallRunTiltTimeToSet };

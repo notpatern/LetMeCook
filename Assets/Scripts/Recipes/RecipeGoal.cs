@@ -44,7 +44,12 @@ namespace RecipeSystem.Core
                 {
                     OnFoodOk(potentialRecipe, currentFood);
                 }
-                else {
+                else 
+                {
+                    if (!currentFood || processedFood.Contains(currentFood)) return;
+
+                    AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_DeliverySoundFailure);
+
                     float[] shakeValues = {
                         cameraData.rejectedShakeDuration, cameraData.rejectedShakeStrength, cameraData.rejectedShakeVibrator, cameraData.rejectedShakeRandomness
                     };
@@ -66,7 +71,7 @@ namespace RecipeSystem.Core
                 return;
             }
 
-            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_DeliverySound, transform.position);
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_DeliverySound);
             float[] shakeValues = {
                 cameraData.acceptedShakeDuration, cameraData.acceptedShakeStrength, cameraData.acceptedShakeVibrator, cameraData.acceptedShakeRandomness
             };

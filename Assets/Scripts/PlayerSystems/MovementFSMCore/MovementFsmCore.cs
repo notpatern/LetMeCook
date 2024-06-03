@@ -28,8 +28,6 @@ namespace PlayerSystems.MovementFSMCore
         public FsmDashData dashData;
         public StaminaData staminaData;
 
-        public EventInstance wallRunSound;
-
         public Transform camera;
 
         private PostProcessingManager postProcessingManager;
@@ -78,10 +76,6 @@ namespace PlayerSystems.MovementFSMCore
         public void InitPostProcessingManger(object obj)
         {
             postProcessingManager = (PostProcessingManager)obj;
-        }
-
-        public void CreateSoundInstances() {
-            wallRunSound = AudioManager.s_Instance.CreateInstance(AudioManager.s_Instance.m_AudioSoundData.m_PlayerWallrun);
         }
 
         public void Update()

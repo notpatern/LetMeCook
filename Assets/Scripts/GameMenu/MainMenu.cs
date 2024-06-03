@@ -2,6 +2,7 @@ using Audio;
 using Manager;
 using PlayerSystems.PlayerInput;
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +19,9 @@ public class MainMenu : LevelManager
     [Header("Level Selector")]
     [SerializeField] GameObject m_LevelSelectorPanel;
     [SerializeField] LevelButtons[] m_Levels;
-    [SerializeField] Image mapPreview; 
+    [SerializeField] Image m_MapPreview; 
+    [SerializeField] TMP_Text m_LevelDesciption;
+    [SerializeField] GameObject[] m_Stars;
 
     [Serializable]
     class LevelButtons
@@ -80,8 +83,17 @@ public class MainMenu : LevelManager
 
     public void SetHoverPreview(LevelData levelData)
     {
-        mapPreview.sprite = levelData.mapPreviewIcon;
+        m_MapPreview.sprite = levelData.mapPreviewIcon;
+        m_LevelDesciption.text = levelData.levelDescription;
         AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
+
+        SaveData save = SaveSystem.GetSavedData();
+
+        int length = m_Stars.Length;
+        for (int i = 0; i < length; i++)
+        {
+            m_Stars[i].SetActive(save.m_LevelUnlockedStarsNumber.Length > levelData.levelID && save.m_LevelUnlockedStarsNumber[i] > i);
+        }
     }
 
     void SetActivePanel(GameObject panelToActive, bool state)

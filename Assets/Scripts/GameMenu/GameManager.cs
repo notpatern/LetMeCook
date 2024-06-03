@@ -14,10 +14,10 @@ namespace Manager
         [SerializeField] RecipesManager m_RecipesManager;
         [SerializeField] GameObject scoreWorldInfoUIPrefab;
 
-        int m_Score = 0;
-        int m_RecipesNb = 0;
-        int m_CompletedRecipes = 0;
-        int m_BonusRecipes = 0;
+        protected int m_Score = 0;
+        protected int m_RecipesNb = 0;
+        protected int m_CompletedRecipes = 0;
+        protected int m_BonusRecipes = 0;
 
         protected bool m_IsEndStateInit = false;
         protected float m_LevelDuration = 0f;

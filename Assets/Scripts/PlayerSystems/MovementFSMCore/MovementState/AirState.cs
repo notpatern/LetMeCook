@@ -81,7 +81,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
             fsmCore.mono.StartCoroutine(JumpImpulse());
 
-            AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDoubleJump, fsmCore.rb.position);
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDoubleJump);
                 
             fsmCore.rb.AddForce(Vector3.up * _context.doubleJumpForce, ForceMode.Impulse);
             context.canJump = false;
