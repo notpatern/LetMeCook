@@ -120,11 +120,11 @@ public class EndScreenUI : MonoBehaviour
         {
             Array.Resize(ref levelStars, levelData.levelID + 1);
         }
-        else if (levelStars[levelData.levelID] < newStarsNb)
+        
+        if (levelStars[levelData.levelID] < newStarsNb)
         {
             levelStars[levelData.levelID] = newStarsNb;
         }
-
 
         SaveSystem.SaveLevelsStar(levelStars);
     }

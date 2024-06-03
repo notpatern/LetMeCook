@@ -69,7 +69,6 @@ namespace GraphicsOption
             {
                 if (IsAuthorizedRatio(Screen.resolutions[i]))
                 {
-                    Debug.Log("d");
                     currentResolutionId++;
                     m_deviceAvailableResolutions[currentResolutionId].width = Screen.resolutions[i].width;
                     m_deviceAvailableResolutions[currentResolutionId].height = Screen.resolutions[i].height;

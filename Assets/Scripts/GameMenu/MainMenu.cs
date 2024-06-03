@@ -21,7 +21,6 @@ public class MainMenu : LevelManager
     [SerializeField] LevelButtons[] m_Levels;
     [SerializeField] Image m_MapPreview; 
     [SerializeField] TMP_Text m_LevelDesciption;
-    [SerializeField] GameObject[] m_Stars;
     [SerializeField] Sprite[] m_StarSprites;
 
     [Serializable]
@@ -29,6 +28,7 @@ public class MainMenu : LevelManager
     {
         public Button m_LevelButton;
         public LevelData m_LevelData;
+        public Image m_Stars;
     }
 
     void Start()
@@ -82,12 +82,9 @@ public class MainMenu : LevelManager
             m_Levels[i].m_LevelButton.interactable = i > levelReached ? false : true;
             
             //Set star amount
-            if (save.m_LevelUnlockedStarsNumber != null && i+1 < save.m_LevelUnlockedStarsNumber.Length)
+            if (save.m_LevelUnlockedStarsNumber != null && save.m_LevelUnlockedStarsNumber.Length > i)
             {
-                print($"lvl {i+1}");
-                print($"m_LevelUnlockedStarsNumber {i+1} : " + save.m_LevelUnlockedStarsNumber[i+1]);
-                print($"m_LevelHighScores {i+1} : " + save.m_LevelHighScores[i+1]);
-                m_Stars[i].GetComponent<Image>().sprite = m_StarSprites[save.m_LevelUnlockedStarsNumber[i]];
+                m_Levels[i].m_Stars.sprite = m_StarSprites[save.m_LevelUnlockedStarsNumber[i]];
             }
         }
     }
