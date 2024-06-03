@@ -110,6 +110,7 @@ namespace RecipeSystem
             {
                 recipesRemoved--;
                 AddNewRecipe(dataBase.randomFillerRecipes[Random.Range(0, dataBase.randomFillerRecipes.Length)], true);
+                Debug.Log("add recipe bonus");
             }
 
             m_OnUpdateRecipeListGiveRecipeManager.TriggerEvent(null);

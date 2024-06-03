@@ -67,9 +67,12 @@ namespace GraphicsOption
             int currentResolutionId = -1;
             for (int i = 0; i < Screen.resolutions.Length; i++)
             {
-                currentResolutionId++;
-                m_deviceAvailableResolutions[currentResolutionId].width = Screen.resolutions[i].width;
-                m_deviceAvailableResolutions[currentResolutionId].height = Screen.resolutions[i].height;
+                if (IsAuthorizedRatio(Screen.resolutions[i]))
+                {
+                    currentResolutionId++;
+                    m_deviceAvailableResolutions[currentResolutionId].width = Screen.resolutions[i].width;
+                    m_deviceAvailableResolutions[currentResolutionId].height = Screen.resolutions[i].height;
+                }
             }
 
             Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId + 1);
@@ -102,7 +105,7 @@ namespace GraphicsOption
 
             foreach(float ratio in m_authorizedRatios)
             {
-                if (Mathf.FloatToHalf(ratio) == Mathf.FloatToHalf(a.width / (float)a.height))
+                if (ratio == a.width / (float)a.height && a.refreshRateRatio == Screen.currentResolution.refreshRateRatio)
                 {
                     return true;
                 }
