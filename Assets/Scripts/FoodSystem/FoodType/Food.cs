@@ -48,7 +48,6 @@ namespace FoodSystem.FoodType
             if (!isInHand)
             {
                 CheckGrounded();
-                Debug.Log(forceInAirAudio);
 
                 airSound.getPlaybackState(out pbState);
                 if(!isGrounded && pbState == PLAYBACK_STATE.STOPPED && rb.velocity.sqrMagnitude > 2f || forceInAirAudio && pbState == PLAYBACK_STATE.STOPPED)
