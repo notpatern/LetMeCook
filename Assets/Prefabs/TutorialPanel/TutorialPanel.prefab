@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8804293265099718896}
   - component: {fileID: 2686886035154121927}
   - component: {fileID: 7557620794897114077}
-  - component: {fileID: 6068716589284230138}
   m_Layer: 10
   m_Name: TutoWorldCanvas
   m_TagString: Untagged
@@ -85,23 +84,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &6068716589284230138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1629796971385465073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &3405662160504714113
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,8 +231,8 @@ CanvasGroup:
   m_GameObject: {fileID: 3405662160504714113}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &5538103626418449993
 GameObject:
@@ -338,8 +320,8 @@ CanvasGroup:
   m_GameObject: {fileID: 5538103626418449993}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &6407876411444650598
 GameObject:
