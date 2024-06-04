@@ -39,7 +39,7 @@ namespace Manager
 
         public void Update(float dt)
         {
-            if (m_Timer <= 0f)
+            if (!m_IsFinish && m_Timer <= 0f)
             {
                 m_Timer = 0f;
                 m_IsFinish = true;

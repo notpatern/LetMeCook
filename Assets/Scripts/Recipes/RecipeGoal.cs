@@ -60,6 +60,8 @@ namespace RecipeSystem.Core
 
                 Instantiate(receiveParticleParticles, other.bounds.ClosestPoint(other.transform.position), transform.rotation);
 
+                currentFood.StopInAirSound();
+
                 mouthAnimator.SetTrigger("EatFood");
                 Destroy(other.gameObject);
             }

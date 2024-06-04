@@ -58,10 +58,15 @@ namespace FoodSystem.FoodType
                 }
                 else if((isGrounded || rb.velocity.sqrMagnitude <= 2f) && pbState == PLAYBACK_STATE.PLAYING && !forceInAirAudio)
                 {
-                    airSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                    airSound.release();
+                    StopInAirSound();
                 }
             }
+        }
+
+        public void StopInAirSound()
+        {
+            airSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            airSound.release();
         }
 
         public void SetForcedInAirSound(bool state)
