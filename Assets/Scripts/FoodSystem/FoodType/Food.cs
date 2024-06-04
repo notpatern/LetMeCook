@@ -30,6 +30,8 @@ namespace FoodSystem.FoodType
         EventInstance airSound;
         PLAYBACK_STATE pbState;
 
+        bool forceInAirAudio = false;
+
         protected virtual void Awake()
         {
             currentDecalProjector = decalProjector;
@@ -46,20 +48,26 @@ namespace FoodSystem.FoodType
             if (!isInHand)
             {
                 CheckGrounded();
+                Debug.Log(forceInAirAudio);
 
                 airSound.getPlaybackState(out pbState);
-                if(!isGrounded && pbState == PLAYBACK_STATE.STOPPED)
+                if(!isGrounded && pbState == PLAYBACK_STATE.STOPPED && rb.velocity.sqrMagnitude > 2f || forceInAirAudio && pbState == PLAYBACK_STATE.STOPPED)
                 {
                     airSound = AudioManager.s_Instance.CreateInstance(AudioManager.s_Instance.m_AudioSoundData.m_FoodAirThrowingEffect);
                     RuntimeManager.AttachInstanceToGameObject(airSound, transform);
                     airSound.start();
                 }
-                else if(isGrounded && pbState == PLAYBACK_STATE.PLAYING)
+                else if((isGrounded || rb.velocity.sqrMagnitude <= 2f) && pbState == PLAYBACK_STATE.PLAYING && !forceInAirAudio)
                 {
                     airSound.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     airSound.release();
                 }
             }
+        }
+
+        public void SetForcedInAirSound(bool state)
+        {
+            forceInAirAudio = state;
         }
 
         private void FixedUpdate()

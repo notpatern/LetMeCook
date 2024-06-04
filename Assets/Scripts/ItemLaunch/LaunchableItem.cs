@@ -15,6 +15,7 @@ namespace ItemLaunch
             transform.LookAt(launcher.transform);
             _doingTheBezierCurve = true;
             GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<Food>().SetForcedInAirSound(true);
         }
     
         void Update()
@@ -35,15 +36,15 @@ namespace ItemLaunch
 
         public void QuitBezierCurve(bool activeCollider)
         {
-            if (activeCollider)
+            Food food = GetComponent<Food>();
+            if (food)
             {
-                Food food = GetComponent<Food>();
-                if (food)
+                if (activeCollider)
                 {
                     food.PutFoodInWorld();
                 }
 
-
+                food.SetForcedInAirSound(false);
             }
 
             _doingTheBezierCurve = false;
