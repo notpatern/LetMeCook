@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{9d89a0ff-debd-448a-8ef9-4fef4ae1f5b5}">
+		<property name="name">
+			<value>PlayerLongWooshVolume</value>
+		</property>
+		<relationship name="folder">
+			<destination>{50880d7e-5170-4673-b788-93b86c562cfe}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6786ca1e-b0fa-4cda-bc79-84423c6d407a}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6786ca1e-b0fa-4cda-bc79-84423c6d407a}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

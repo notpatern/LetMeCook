@@ -1,20 +1,18 @@
 using System;
-using Audio;
-using FMOD.Studio;
 using PlayerSystems.MovementFSMCore.DataClass;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using PlayerSystems.MovementFSMCore.MovementState;
 using PostProcessing;
 using UnityEngine;
 using UnityEngine.Events;
-
+using FMOD.Studio;
 
 namespace PlayerSystems.MovementFSMCore
 {
     [Serializable]
     public class MovementFsmCore : IStamina
     {
-        [Header("References")] [SerializeField]
+        [Header("References")]
         public LayerMask isGround;
 
         public GameEventScriptableObject onFovChange;
@@ -50,6 +48,7 @@ namespace PlayerSystems.MovementFSMCore
         [SerializeField] float _lineMinimumDuration = 0.5f;
         [SerializeField] float _lineMinimumMagnitudeDisparition = 10f;
         [SerializeField] float _lineSpeedEffectRotationSpeed = 3f;
+        [SerializeField] float _windSpeedSoundEffectMaxMagnitude = 100f;
         float _lineTimer = 0f;
         [SerializeField] float speedEffectMultiplier;
         private bool _jumpInput;
@@ -59,6 +58,13 @@ namespace PlayerSystems.MovementFSMCore
     
         public Vector2 Input { private set; get; }
         [HideInInspector] public MonoBehaviour mono;
+
+        EventInstance playerSpeedWindSound;
+
+        ~MovementFsmCore()
+        {
+            playerSpeedWindSound.stop(STOP_MODE.IMMEDIATE);
+        }
 
         public void Init(Rigidbody rb, GameEventScriptableObject ppm, MonoBehaviour mono)
         {
@@ -71,6 +77,9 @@ namespace PlayerSystems.MovementFSMCore
             canWallRun = false;
             _currentState = new GroundState(new GroundContext(groundData), this);
             _currentState.Init();
+
+            playerSpeedWindSound = Audio.AudioManager.s_Instance.CreateInstance(Audio.AudioManager.s_Instance.m_AudioSoundData.m_PlayerWindSpeed);
+            playerSpeedWindSound.start();
         }
 
         public void InitPostProcessingManger(object obj)
@@ -106,6 +115,15 @@ namespace PlayerSystems.MovementFSMCore
                 postProcessingManager.ChangeMotionBlur(value);
             }
 
+            if (!Grounded())
+            {
+                playerSpeedWindSound.setParameterByName("PlayerLongWooshVolume", rb.velocity.magnitude / _windSpeedSoundEffectMaxMagnitude);
+            }
+            else
+            {
+                playerSpeedWindSound.setParameterByName("PlayerLongWooshVolume", 0f);
+            }
+
             Vector3 velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
             if (velocity.magnitude >= _minimunSpeedLineEffect || _lineTimer > 0f && velocity.magnitude > _lineMinimumMagnitudeDisparition)
@@ -129,7 +147,6 @@ namespace PlayerSystems.MovementFSMCore
                     _playerSpeedEffect.gameObject.SetActive(false);
                 }
             }
-
         }
 
         public float GetGroundedTime()

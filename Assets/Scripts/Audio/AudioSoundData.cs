@@ -14,6 +14,7 @@ public class AudioSoundData : ScriptableObject
     public EventReference m_PlayerWallrun;
     public EventReference m_PlayerDoubleJump;
     public EventReference m_PlayerDash;
+    public EventReference m_PlayerWindSpeed;
 
     [Header("Food")]
     public EventReference m_FoodBounceImpact;
