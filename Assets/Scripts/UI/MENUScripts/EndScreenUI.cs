@@ -66,7 +66,6 @@ public class EndScreenUI : MonoBehaviour
 
         if (!nextLevelData)
         {
-            Debug.Log("te");
             Destroy(m_NextLevelButton.gameObject);
         }
         if (playerScore.m_RequiredScore > playerScore.m_Score && data.m_LevelReached <= levelData.levelID)
