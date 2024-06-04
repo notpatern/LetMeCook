@@ -40,8 +40,10 @@ namespace ItemLaunch
                 Food food = GetComponent<Food>();
                 if (food)
                 {
-                    food.SetActiveColliders(true);
+                    food.PutFoodInWorld();
                 }
+
+
             }
 
             _doingTheBezierCurve = false;

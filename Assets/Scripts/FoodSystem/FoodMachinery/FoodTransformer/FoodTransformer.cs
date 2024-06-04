@@ -64,7 +64,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
                 foodInQueue.Add(food);
                 UpdateQueueText();
 
-                AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_FoodInCookingRange, transform.position);
+                AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_FoodInCookingRange);
             }
         }
 

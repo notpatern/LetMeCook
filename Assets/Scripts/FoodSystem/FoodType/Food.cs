@@ -145,14 +145,19 @@ namespace FoodSystem.FoodType
 
         public virtual void RemoveFromHand()
         {
-            rb.isKinematic = false;
-            rb.velocity = Vector3.zero;
-            transform.SetParent(null);
-            SetActiveColliders(true);
+            PutFoodInWorld();
             ChangeLayer("Food");
 
             trailRenderer.enabled = true;
             isInHand = false;
+        }
+
+        public void PutFoodInWorld()
+        {
+            rb.isKinematic = false;
+            rb.velocity = Vector3.zero;
+            transform.SetParent(null);
+            SetActiveColliders(true);
         }
 
         void ChangeLayer(string layerName)
