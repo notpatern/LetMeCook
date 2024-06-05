@@ -29,7 +29,15 @@ namespace RecipeSystem.Core
 
             titleText.text = gameRecipe.recipe.nametag;
 
-            lastRecipeIndicator.SetActive(isLastRecipe);
+            if (isLastRecipe)
+            {
+                SetUIAsLastRecipe();
+            }
+            else
+            {
+                lastRecipeIndicator.SetActive(false);
+            }
+
             bonusRecipeIndicator.SetActive(gameRecipe.isBonusRecipe);
 
             FoodData lastIngredient = null;
@@ -49,6 +57,11 @@ namespace RecipeSystem.Core
             scoreGive.text = "+" + gameRecipe.recipe.addedScore;
             GetComponent<RectTransform>().localScale = Vector3.one;
             WarningRecipeIndicator.SetActive(false);
+        }
+
+        public void SetUIAsLastRecipe()
+        {
+            lastRecipeIndicator.SetActive(true);
         }
 
         void Update()

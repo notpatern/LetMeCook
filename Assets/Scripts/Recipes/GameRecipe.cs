@@ -6,15 +6,21 @@ namespace RecipeSystem.Core
     {
         public Recipe recipe;
         public bool isBonusRecipe;
+        public bool isLastRecipe { get; private set; }
 
         public float timeRemaining;
         public bool isFailed = false;
 
-        public void Init(Recipe recipe, bool isBonusRecipe)
+        public void Init(Recipe recipe, bool isBonusRecipe, bool isLastRecipe)
         {
             this.recipe = recipe;
             this.isBonusRecipe = isBonusRecipe;
             timeRemaining = recipe.secondsToComplete;
+
+            if (isLastRecipe)
+            {
+                SetAsLastRecipe();
+            }
         }
 
         public void Update()
@@ -26,6 +32,11 @@ namespace RecipeSystem.Core
             {
                 FailRecipe();
             }
+        }
+
+        public void SetAsLastRecipe()
+        {
+            isLastRecipe = true;
         }
 
         public void FailRecipe()
