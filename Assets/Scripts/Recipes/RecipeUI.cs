@@ -23,6 +23,20 @@ namespace RecipeSystem.Core
         { 
             StartCoroutine(_RemoveCard(recipe)); 
         }
+
+        public RecipeCard GetCard(GameRecipe gameRecipe)
+        {
+            foreach (RecipeCard card in activeRecipeCards)
+            {
+                if(card.gameRecipe == gameRecipe)
+                {
+                    return card;
+                }
+            }
+
+            return null;
+        }
+
         IEnumerator _RemoveCard(GameRecipe recipe)
         {
             // --- animation et trucs sympa ici

@@ -73,12 +73,13 @@ namespace RecipeSystem
         GameRecipe AddNewRecipe(Recipe recipe, bool isBonus)
         {
             GameRecipe newGameRecipe = new GameRecipe();
-            newGameRecipe.Init(recipe, isBonus);
+            bool isLastRecipe = dataBase.recipesContainers.Length == mainRecipeStarted;
+            newGameRecipe.Init(recipe, isBonus, isLastRecipe);
 
             m_AudioQueueComponent.StartSound(recipe.vocaloidVoice);
 
             activeRecipes.Add(newGameRecipe);
-            recipeUI.AddNewCard(newGameRecipe, dataBase.recipesContainers.Length == mainRecipeStarted);
+            recipeUI.AddNewCard(newGameRecipe, isLastRecipe);
 
             if (!isBonus)
             {
@@ -104,6 +105,19 @@ namespace RecipeSystem
             activeRecipes.RemoveAt(recipeId);
             recipesRemoved++;
 
+            if (gameRecipe.isLastRecipe)
+            {
+                if (activeRecipes.Count > 0)
+                {
+                    GameRecipe longestRemainingRecipe = GetLongestrecipe();
+                    if(longestRemainingRecipe != null)
+                    {
+                        longestRemainingRecipe.SetAsLastRecipe();
+                        recipeUI.GetCard(longestRemainingRecipe).SetUIAsLastRecipe();
+                    }
+                }
+            }
+
             if (dataBase.recipesContainers.Length - recipesRemoved == 0)
             {
                 gameManager.ForceEndConditionTimerValue(0f);
@@ -121,6 +135,22 @@ namespace RecipeSystem
             m_OnUpdateRecipeListGiveRecipeManager.TriggerEvent(null);
 
             return true;
+        }
+
+        GameRecipe GetLongestrecipe()
+        {
+            GameRecipe result = null;
+            float longestTimer = 0f;
+            for(int i=0; i < activeRecipes.Count; i++)
+            {
+                if (activeRecipes[i].timeRemaining > longestTimer)
+                {
+                    result = activeRecipes[i];
+                    longestTimer = activeRecipes[i].timeRemaining;
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
