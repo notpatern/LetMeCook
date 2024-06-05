@@ -80,15 +80,14 @@ public class MainMenu : LevelManager
             m_Levels[i].m_LevelButton.onClick.AddListener(() => LevelLoader.s_instance.LoadLevel(m_Levels[iCopy].m_LevelData.linkedScenePath));
 
             m_Levels[i].m_LevelButton.interactable = i > levelReached ? false : true;
-            
-            //Set star amount
-            if(save.m_LevelUnlockedStarsNumber[i] > m_StarSprites.Length)
-            {
-                save.m_LevelUnlockedStarsNumber[i] = m_StarSprites.Length;
-            }
 
             if (save.m_LevelUnlockedStarsNumber != null && save.m_LevelUnlockedStarsNumber.Length > i)
             {
+                if (save.m_LevelUnlockedStarsNumber[i] > m_StarSprites.Length)
+                {
+                    save.m_LevelUnlockedStarsNumber[i] = m_StarSprites.Length;
+                }
+
                 m_Levels[i].m_Stars.sprite = m_StarSprites[save.m_LevelUnlockedStarsNumber[i]];
             }
         }

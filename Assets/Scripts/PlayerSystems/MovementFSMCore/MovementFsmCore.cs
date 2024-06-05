@@ -63,7 +63,7 @@ namespace PlayerSystems.MovementFSMCore
 
         ~MovementFsmCore()
         {
-            playerSpeedWindSound.stop(STOP_MODE.IMMEDIATE);
+            OnEndLevelTriggered();
         }
 
         public void Init(Rigidbody rb, GameEventScriptableObject ppm, MonoBehaviour mono)
@@ -80,6 +80,11 @@ namespace PlayerSystems.MovementFSMCore
 
             playerSpeedWindSound = Audio.AudioManager.s_Instance.CreateInstance(Audio.AudioManager.s_Instance.m_AudioSoundData.m_PlayerWindSpeed);
             playerSpeedWindSound.start();
+        }
+
+        public void OnEndLevelTriggered()
+        {
+            playerSpeedWindSound.stop(STOP_MODE.IMMEDIATE);
         }
 
         public void InitPostProcessingManger(object obj)

@@ -64,6 +64,7 @@ namespace Manager
         {
             AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_EndClockSound);
             m_Player.gameObject.SetActive(false);
+            m_Player.OnEndLevelTriggered();
             m_MusicManager.IncreaseMusicTypeOffsetAmount();
             m_UiManager.pauseMenu.SetBlockPauseMenu(true, true);
             m_UiManager.endScreen.InitEndScreen(new TempScoreContainer(m_Score, m_RecipesNb, m_CompletedRecipes, m_BonusRecipes, m_LevelData.requiredScore, m_Player.GetGroundedTime()), m_NextLevelData, m_LevelData);

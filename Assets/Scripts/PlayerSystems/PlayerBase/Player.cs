@@ -35,6 +35,11 @@ namespace PlayerSystems.PlayerBase
             UpdateFsmJumpHeld();
         }
 
+        public void OnEndLevelTriggered()
+        {
+            m_MovementFsmCore.OnEndLevelTriggered();
+        }
+
         private void FixedUpdate()
         {
             m_MovementFsmCore.FixedUpdate();
