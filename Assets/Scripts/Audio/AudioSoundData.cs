@@ -31,6 +31,7 @@ public class AudioSoundData : ScriptableObject
     [Header("MouthGoal")]
     public EventReference m_DeliverySound;
     public EventReference m_DeliverySoundFailure;
+    public EventReference m_EndClockSound;
 
     [Header("UI")]
     public EventReference m_OpenUiMenu;

@@ -1,3 +1,4 @@
+using Audio;
 using RecipeSystem;
 using RecipeSystem.Core;
 using UnityEngine;
@@ -61,6 +62,7 @@ namespace Manager
 
         protected void TriggerEndScreenSystem()
         {
+            AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_EndClockSound);
             m_Player.gameObject.SetActive(false);
             m_MusicManager.IncreaseMusicTypeOffsetAmount();
             m_UiManager.pauseMenu.SetBlockPauseMenu(true, true);
