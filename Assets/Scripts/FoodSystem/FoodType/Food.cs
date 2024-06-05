@@ -92,8 +92,7 @@ namespace FoodSystem.FoodType
             );
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
+        private void OnCollisionEnter(Collision collision) {
             int id = 0;
             if(currentFoodDecals >= GameManager.maxDecalsNumber)
             {
@@ -166,8 +165,9 @@ namespace FoodSystem.FoodType
 
         public void PutFoodInWorld()
         {
+            print("caca");
             rb.isKinematic = false;
-            rb.velocity = Vector3.zero;
+            // rb.velocity = Vector3.zero;
             transform.SetParent(null);
             SetActiveColliders(true);
         }
