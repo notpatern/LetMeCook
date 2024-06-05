@@ -49,6 +49,10 @@ namespace PlayerSystems.Camera
 
         void DoFov(object fovValue)
         {
+            if (camera == null || _handCamera == null) {
+                return;
+            }
+
             var array = (float[])fovValue;
             GetComponent<UnityEngine.Camera>().DOFieldOfView(array[0], array[1]);
             _handCamera.GetComponent<UnityEngine.Camera>().DOFieldOfView(array[0], array[1]);
@@ -56,6 +60,10 @@ namespace PlayerSystems.Camera
 
         void DoTilt(object zTiltValue)
         {
+            if (camera == null || _handCamera == null) {
+                return;
+            }
+
             var array = (float[])zTiltValue;
             transform.DOLocalRotate(new Vector3(array[0], 0, array[1]), array[2]);
             _handCamera.DOLocalRotate(new Vector3(array[0], 0, array[1]), array[2]);
@@ -66,6 +74,11 @@ namespace PlayerSystems.Camera
         void DoShake(object shakeValue) {
             /// summary:
             /// float duration, float strength, int vibrator, float randomness
+            
+            if (camera == null || _handCamera == null) {
+                return;
+            }
+
             var array = (float[])shakeValue;
             shake.Complete();
             shake = camera.transform.DOShakePosition(array[0], array[1], (int)array[2], array[3], false, true, ShakeRandomnessMode.Harmonic);
