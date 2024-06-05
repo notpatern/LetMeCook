@@ -61,7 +61,10 @@ namespace Audio {
             {
                 if (!m_IsMusicPeriodPlaying)
                 {
-                    m_Mono.StartCoroutine(MusicTimeStampChangeValue());
+                    if (m_Mono)
+                    {
+                        m_Mono.StartCoroutine(MusicTimeStampChangeValue());
+                    }
                 }
             }
 
