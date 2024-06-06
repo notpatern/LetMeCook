@@ -55,8 +55,10 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             m_OnFoodPickupGameEvent.BindEventAction(OnFoodPickupGameEventRemoveFromQueue);
         }
 
-        private void OnTriggerEnter(Collider other)
+        protected override void OnTriggerEnter(Collider other)
         {
+            base.OnTriggerEnter(other);
+
             SimpleFood food = other.gameObject.GetComponentInParent<SimpleFood>();
             if(IsQueueFittable(food, true))
             {

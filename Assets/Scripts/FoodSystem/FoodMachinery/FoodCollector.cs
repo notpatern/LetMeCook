@@ -17,7 +17,7 @@ namespace FoodSystem.FoodMachinery
             TriggerEnter(other);
         }
 
-        void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             TriggerEnter(other);
         }
