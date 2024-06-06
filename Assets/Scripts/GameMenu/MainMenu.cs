@@ -100,6 +100,11 @@ public class MainMenu : LevelManager
         AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
     }
 
+    public void OnHoverUI()
+    {
+        AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
+    }
+
     void SetActivePanel(GameObject panelToActive, bool state)
     {
         CloseAllPanel();
