@@ -57,7 +57,6 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
         protected override void OnTriggerEnter(Collider other)
         {
-            base.OnTriggerEnter(other);
 
             SimpleFood food = other.gameObject.GetComponentInParent<SimpleFood>();
             if(IsQueueFittable(food, true))
