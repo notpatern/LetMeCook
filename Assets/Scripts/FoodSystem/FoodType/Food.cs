@@ -165,7 +165,6 @@ namespace FoodSystem.FoodType
 
         public void PutFoodInWorld()
         {
-            print("caca");
             rb.isKinematic = false;
             // rb.velocity = Vector3.zero;
             transform.SetParent(null);

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -6942139893871543674}
   - component: {fileID: 7674622604260740335}
   - component: {fileID: 4902122956865753365}
-  - component: {fileID: -7756914394425909665}
   - component: {fileID: -5496609113545411383}
   m_Layer: 6
   m_Name: Chopper
@@ -142,27 +141,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3.13
   m_Center: {x: 0, y: -0.68, z: 0}
---- !u!65 &-7756914394425909665
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730659523122247027}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.8390055, z: 1}
-  m_Center: {x: 0, y: -0.13464877, z: 0}
 --- !u!120 &-5496609113545411383
 LineRenderer:
   serializedVersion: 2
@@ -10356,6 +10334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1557085082202284530}
+  - component: {fileID: 6753608857658530412}
   m_Layer: 0
   m_Name: ChopperGFX
   m_TagString: Untagged
@@ -10380,6 +10359,27 @@ Transform:
   - {fileID: 6863233591592331539}
   m_Father: {fileID: 2175303863478672204}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6753608857658530412
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220327450616429384}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 3.41, z: 2}
+  m_Center: {x: 0.008, y: 2.26, z: 0.023}
 --- !u!1 &2442615641385435809
 GameObject:
   m_ObjectHideFlags: 0
