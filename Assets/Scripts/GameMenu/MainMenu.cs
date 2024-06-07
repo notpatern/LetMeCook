@@ -98,6 +98,16 @@ public class MainMenu : LevelManager
         m_MapPreview.sprite = levelData.mapPreviewIcon;
         m_LevelDesciption.text = levelData.levelDescription;
         AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_HoverUIButtons);
+
+        SaveData save = SaveSystem.GetSavedData();
+        if(levelData.levelID < save.m_LevelHighScores.Length)
+        {
+            m_LevelDesciption.text += $"\n\nScore : {save.m_LevelHighScores[levelData.levelID]}";
+        }
+        else
+        {
+            m_LevelDesciption.text += "\n\nScore : No Registered Score";
+        }
     }
 
     public void OnHoverUI()

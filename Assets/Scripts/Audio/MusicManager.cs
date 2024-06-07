@@ -40,6 +40,7 @@ namespace Audio {
             }
 
             m_BackMusicInsatnce.setParameterByName(musicTypeParameter, currentMusicPeriodAmount + m_CurrentMusicPeriodOffset);
+            Debug.Log(currentMusicPeriodAmount + m_CurrentMusicPeriodOffset);
         }
 
         IEnumerator MusicTimeStampChangeValue()
@@ -50,6 +51,7 @@ namespace Audio {
                 
             currentPeriod = m_LevelMusicData.m_MusicPeriod[currentMusicPeriodAmount];
             duration = currentPeriod.m_IsOneShot ? 0: currentPeriod.m_MusicLoopPeriodDuration;
+
             yield return new WaitForSeconds(duration);
             IncreaseMusicPeriodCurrentAmount();
             m_IsMusicPeriodPlaying = false;
