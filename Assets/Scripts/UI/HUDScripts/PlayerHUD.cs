@@ -8,6 +8,19 @@ public class PlayerHUD : MonoBehaviour
     public PlayerInteractionUI playerInteractionUI;
     public Image staminaFill;
 
+    [SerializeField] Image dashImage;
+    [SerializeField] Image jumpImage;
+    [SerializeField] Image wallImage;
+
+    [SerializeField] Color emptyColor;
+    [SerializeField] Color dashColor;
+    [SerializeField] Color jumpColor;
+    [SerializeField] Color wallColor;
+
+    [SerializeField] GameEventScriptableObject dashEvent;
+    [SerializeField] GameEventScriptableObject jumpEvent;
+    [SerializeField] GameEventScriptableObject wallEvent;
+
     [SerializeField] TMP_Text scoreToReach;
     [SerializeField] GameObject[] nextStars;
 
@@ -17,6 +30,37 @@ public class PlayerHUD : MonoBehaviour
         {
             nextStars[i].SetActive(false);
         }
+
+        dashImage.color = emptyColor;
+        jumpImage.color = emptyColor;
+        wallImage.color = emptyColor;
+    }
+
+    private void OnEnable() {
+        dashEvent.BindEventAction(EnableDash);
+        jumpEvent.BindEventAction(EnableJump);
+        wallEvent.BindEventAction(EnableWall);
+    }
+
+    private void EnableDash(object args) {
+        EnableMovetech(dashImage, dashColor, (bool)args);
+    }
+
+    private void EnableJump(object args) {
+        EnableMovetech(jumpImage, jumpColor, (bool)args);
+    }
+
+    private void EnableWall(object args) {
+        EnableMovetech(wallImage, wallColor, (bool)args);
+    }
+
+    private void EnableMovetech(Image movetechImage, Color movetechColor, bool state) 
+    {
+        if (state) {
+            movetechImage.color = movetechColor;
+            return;
+        }
+        movetechImage.color = emptyColor;
     }
 
     public void UpdateStaminaFill(float percentageAmount)
