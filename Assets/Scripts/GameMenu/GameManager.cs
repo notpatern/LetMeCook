@@ -1,4 +1,4 @@
-using Audio;
+ using Audio;
 using RecipeSystem;
 using RecipeSystem.Core;
 using UnityEngine;
@@ -107,12 +107,12 @@ namespace Manager
             UpdateScoreUI();
         }
 
-        public void AddScore(int scoreAmount, Vector3 foodPositionForFeedbackWorldUIText)
+        public void AddScore(int scoreAmount, Vector3 foodPositionForFeedbackWorldUIText, int timeAmount = 0)
         {
             Quaternion lookAtPlayer = Quaternion.LookRotation(foodPositionForFeedbackWorldUIText - m_Player.transform.position, Vector3.up);
-            Instantiate(scoreWorldInfoUIPrefab, foodPositionForFeedbackWorldUIText, lookAtPlayer).GetComponent<ScoreWorldInfoUI>().InitText(scoreAmount);
+            Instantiate(scoreWorldInfoUIPrefab, foodPositionForFeedbackWorldUIText, lookAtPlayer).GetComponent<ScoreWorldInfoUI>().InitText(scoreAmount, timeAmount);
 
-            AddScore(scoreAmount);
+            AddScore(scoreAmount + timeAmount);
         }
 
         void UpdateScoreUI()

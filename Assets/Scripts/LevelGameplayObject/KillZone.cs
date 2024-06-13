@@ -1,9 +1,11 @@
+using Manager;
 using ParticleSystemUtility;
 using System.Collections;
 using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
     [SerializeField] Transform respawnPoint;
     [SerializeField] GameObject portalParticles;
     [SerializeField] bool clearHands = true;
@@ -18,11 +20,7 @@ public class KillZone : MonoBehaviour
         PlayerSystems.PlayerBase.Player player = other.GetComponent<PlayerSystems.PlayerBase.Player>();
         if (player)
         {
-            if (clearHands)
-            {
-                player.CrunchFoodInHands(true);
-            }
-            
+            gameManager.AddScore(-5); // in front of player respawn
             StartCoroutine(StartTeleportDelay(player));
         }
         else if(other.GetComponent<IDestructible>() != null)
