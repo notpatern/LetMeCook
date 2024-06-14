@@ -1,4 +1,4 @@
- using Audio;
+using Audio;
 using RecipeSystem;
 using RecipeSystem.Core;
 using UnityEngine;
@@ -40,7 +40,7 @@ namespace Manager
 
         protected virtual void InitRecipeManager()
         {
-            m_EndconditionParentUI.gameObject.SetActive(true);
+            m_EndconditionWorldParentUI.gameObject.SetActive(true);
             m_RecipesManager.Init(this, m_UiManager.recipeUI);
 
             UpdateScoreUI();
@@ -51,7 +51,7 @@ namespace Manager
             if (m_IsEndStateInit) return;
 
             m_GameEndCondition = new DefaultGameEndCondition();
-            m_GameEndCondition.InitGameEndCondition(m_LevelDuration, m_UiManager.endConditionUI, m_EndconditionHandParentUI);
+            m_GameEndCondition.InitGameEndCondition(m_LevelDuration, m_UiManager.endConditionUI, m_EndconditionPlayerParentUI, m_UiManager.playerWarningText);
             m_GameEndCondition.BindOnEndCondition(() =>
             {
                 TriggerEndScreenSystem();

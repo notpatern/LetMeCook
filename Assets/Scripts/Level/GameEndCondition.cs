@@ -10,7 +10,7 @@ namespace Manager
     public interface GameEndCondition
     {
         float m_Timer { get; set; }
-        public void InitGameEndCondition(float time, EndConditionUI endConditionUI, Transform timerParent);
+        public void InitGameEndCondition(float time, EndConditionUI endConditionUI, Transform timerParent, PlayerWarningText playerWarningText);
         public void Update(float dt);
         public void BindOnEndCondition(UnityAction action);
     }
@@ -28,11 +28,11 @@ namespace Manager
         float m_TimerWarningDuration = 3f;
         EventInstance warningRemainingTimeTicTac;
 
-        public void InitGameEndCondition(float time, EndConditionUI endConditionUI, Transform timerParent)
+        public void InitGameEndCondition(float time, EndConditionUI endConditionUI, Transform timerParent, PlayerWarningText playerWarningText)
         {
             m_Timer = time;
             m_EndConditionUI = endConditionUI;
-            endConditionUI.Init(timerParent);
+            endConditionUI.Init(timerParent, playerWarningText);
 
             m_OnEndConditionEvent.AddListener(() => { warningRemainingTimeTicTac.stop(STOP_MODE.ALLOWFADEOUT); });
         }
