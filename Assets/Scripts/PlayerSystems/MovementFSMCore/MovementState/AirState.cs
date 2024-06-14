@@ -1,6 +1,7 @@
 ﻿using Audio;
 using PlayerSystems.MovementFSMCore.MovementContext;
 using System.Collections;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace PlayerSystems.MovementFSMCore.MovementState
@@ -74,17 +75,25 @@ namespace PlayerSystems.MovementFSMCore.MovementState
                 return;
             }
 
+            DoubleJump();
+        }
+
+        private void DoubleJump() {
             fsmCore.coyoteTime = 0f;
 
             var vel = fsmCore.rb.velocity;
-            fsmCore.rb.velocity = new Vector3(vel.x, 0, vel.z);
+            fsmCore.rb.velocity = new Vector3(vel.x - GetPercentage(vel.x, _context.doubleJumpDeceleration), 0, vel.z - GetPercentage(vel.z, _context.doubleJumpDeceleration));
 
             fsmCore.mono.StartCoroutine(JumpImpulse());
 
             AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDoubleJump);
-                
+
             fsmCore.rb.AddForce(Vector3.up * _context.doubleJumpForce, ForceMode.Impulse);
             context.canJump = false;
+        }
+
+        private float GetPercentage(float startValue, float percetage) {
+            return (startValue * percetage) / 100;
         }
 
         IEnumerator JumpImpulse() {

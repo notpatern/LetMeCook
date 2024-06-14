@@ -8,5 +8,7 @@ namespace PlayerSystems.MovementFSMCore.DataClass
         public float wallCheckDistance;
         public float doubleJumpForce;
         public float restartWallRunFalloffDistance;
+        [Range(0f, 100f)]
+        public float doubleJumpDeceleration;
     }
 }
