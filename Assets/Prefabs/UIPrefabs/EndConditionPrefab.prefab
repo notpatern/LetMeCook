@@ -350,8 +350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 122.1538, y: 33.8327}
+  m_AnchoredPosition: {x: 0, y: -0.0000009536743}
+  m_SizeDelta: {x: 122.1538, y: 16.916}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &819280846679546403
 MonoBehaviour:
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 3912016179687415275}
   timeRemainingWarning: {fileID: 3912016179687415275}
-  warningGoInHand: {fileID: 5111779502387689838}
+  warningGoInWorld: {fileID: 5111779502387689838}
   playerWarningText: {fileID: 0}
 --- !u!1 &6272175211744104746
 GameObject:

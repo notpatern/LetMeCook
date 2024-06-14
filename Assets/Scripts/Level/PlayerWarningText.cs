@@ -18,15 +18,13 @@ public class PlayerWarningText : MonoBehaviour
         m_WarningTimer.text = "";
     }
 
-    public void ActiveWarningPanel(float warningPanelMiddleScreenDuration)
+    public void SetWarningPanelTextTimer(string warningTextTimer)
     {
-        StartCoroutine(WarningScreenMiddle(warningPanelMiddleScreenDuration));
+        m_WarningTimer.text = warningTextTimer;
     }
 
-    IEnumerator WarningScreenMiddle(float duration)
+    public void ActivePanel(bool state)
     {
-        m_WarningGo.SetActive(true);
-        yield return new WaitForSeconds (duration);
-        m_WarningGo.SetActive(false);
+        m_WarningGo.SetActive(state);
     }
 }
