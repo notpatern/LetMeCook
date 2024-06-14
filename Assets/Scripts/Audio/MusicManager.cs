@@ -40,7 +40,6 @@ namespace Audio {
             }
 
             m_BackMusicInsatnce.setParameterByName(musicTypeParameter, currentMusicPeriodAmount + m_CurrentMusicPeriodOffset);
-            Debug.Log(currentMusicPeriodAmount + m_CurrentMusicPeriodOffset);
         }
 
         IEnumerator MusicTimeStampChangeValue()

@@ -32,7 +32,13 @@ namespace ItemLaunch
                 QuitBezierCurve(true);
         }
 
-        void OnCollisionEnter(Collision other) { QuitBezierCurve(true); }
+        void OnCollisionEnter(Collision other) 
+        {
+            if(_doingTheBezierCurve)
+            {
+                QuitBezierCurve(true); 
+            }
+        }
 
         public void QuitBezierCurve(bool activeCollider)
         {

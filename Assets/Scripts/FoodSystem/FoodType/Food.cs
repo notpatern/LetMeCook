@@ -17,6 +17,7 @@ namespace FoodSystem.FoodType
         [SerializeField] Rigidbody rb;
         [SerializeField] TrailRenderer trailRenderer;
         [SerializeField] LayerMask isGround;
+        [SerializeField] Transform excludeFromLayerChangement;
         [SerializeField] LaunchableItem launchableItem;
         [SerializeField] protected GameObject decalProjector;
         protected GameObject currentDecalProjector;
@@ -177,6 +178,8 @@ namespace FoodSystem.FoodType
             Transform[] children = GetComponentsInChildren<Transform>(includeInactive: true);
             foreach (Transform child in children)
             {
+                if(child == excludeFromLayerChangement) continue;
+                
                 child.gameObject.layer = LayerMask.NameToLayer(layerName);
             }
         }

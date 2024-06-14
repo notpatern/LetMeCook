@@ -8,19 +8,19 @@ public class KillZone : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] Transform respawnPoint;
     [SerializeField] GameObject portalParticles;
-    [SerializeField] bool clearHands = true;
     [SerializeField] Vector3 fallPortalOffset;
     [SerializeField] Vector3 spawnPortalOffset;
     [SerializeField] float portalDuration;
     [SerializeField] float startTpDelay;
     [SerializeField] float spawnDelay;
+    [SerializeField] int pointAddedAtTeleportation = -5;
 
     void OnTriggerEnter(Collider other)
     {
         PlayerSystems.PlayerBase.Player player = other.GetComponent<PlayerSystems.PlayerBase.Player>();
         if (player)
         {
-            gameManager.AddScore(-5); // in front of player respawn
+            gameManager.AddScore(pointAddedAtTeleportation); // in front of player respawn
             StartCoroutine(StartTeleportDelay(player));
         }
         else if(other.GetComponent<IDestructible>() != null)

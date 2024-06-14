@@ -107,7 +107,6 @@ namespace Player.HandSystem
 
             Food food = m_HhandledFood.GetComponent<Food>();
 
-            food.GetComponent<Collider>().enabled = true;
             food.RemoveFromHand();
 
             Vector3 momentum = m_ThrowPoint.forward * m_ThrowMomentumForwardDirection.x + m_ThrowPoint.up;

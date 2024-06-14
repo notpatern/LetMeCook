@@ -29,6 +29,8 @@ namespace PlayerSystems.PlayerInput
 
         private void OnEnable()
         {
+            if(s_PlayerInput == null) return;
+
             s_PlayerInput.Enable();
             
             s_PlayerInput.Player.WASD.performed += WasdMovement;
@@ -44,6 +46,8 @@ namespace PlayerSystems.PlayerInput
 
         private void OnDisable()
         {
+            if(s_PlayerInput == null) return;
+            
             s_PlayerInput.Disable();
 
             s_PlayerInput.Player.WASD.performed -= WasdMovement;

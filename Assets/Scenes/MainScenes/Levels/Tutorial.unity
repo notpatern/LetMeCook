@@ -14794,6 +14794,11 @@ PrefabInstance:
       propertyPath: clearHands
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 354912840004182284, guid: f606618a8e606fc48ae28dd77aa1fa00,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2957610967826495451}
     - target: {fileID: 524607708275095604, guid: f606618a8e606fc48ae28dd77aa1fa00,
         type: 3}
       propertyPath: m_Name
@@ -22145,6 +22150,11 @@ PrefabInstance:
       propertyPath: clearHands
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 354912840004182284, guid: f606618a8e606fc48ae28dd77aa1fa00,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2957610967826495451}
     - target: {fileID: 524607708275095604, guid: f606618a8e606fc48ae28dd77aa1fa00,
         type: 3}
       propertyPath: m_Name
@@ -28357,8 +28367,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3321532299713295303, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.04483685
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321532299713295303, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7050813
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321532299713295303, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.03982624
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200596601819509652, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
+      propertyPath: m_HandsManager.m_GemBraceletMoveTechVisual.Array.data[1].m_Gems.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200596601819509652, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
+      propertyPath: m_HandsManager.m_GemBraceletMoveTechVisual.Array.data[2].m_Gems.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200596601819509652, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
+      propertyPath: m_HandsManager.m_GemBraceletMoveTechVisual.Array.data[2].m_Gems.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6065982686876422582, guid: 454dc75f7bd5fb94f845e816427da00a, type: 3}
+    - {fileID: 4591562230426662694, guid: 454dc75f7bd5fb94f845e816427da00a, type: 3}
+    - {fileID: 5674764866378563677, guid: 454dc75f7bd5fb94f845e816427da00a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 454dc75f7bd5fb94f845e816427da00a, type: 3}
