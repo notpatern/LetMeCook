@@ -5,13 +5,10 @@ public class DialogInfosTriggerZone : TriggerEffectZone
 {
     public GameObject triggerZone;
     public bool secondHandActivation;
-    public bool destroyOnTrigger;
     public int index = 0;
     [HideInInspector] public DialogInfos m_CurrentDialogInfos;
     public GameEventScriptableObject m_DialogInfosBindingEvent;
     public GameEventScriptableObject m_CallDialogEvent;
-
-    bool isDestroyed;
 
     private void Start()
     {
@@ -22,15 +19,9 @@ public class DialogInfosTriggerZone : TriggerEffectZone
 
     protected override void TriggerFunc(Collider other)
     {
-        if (isDestroyed) return;
+        if (m_IsDestroyed) return;
 
         m_CallDialogEvent.TriggerEvent(m_CurrentDialogInfos);
-
-        if(destroyOnTrigger)
-        {
-            isDestroyed = true;
-            Destroy(gameObject);
-        }
 
         if (secondHandActivation)
         {

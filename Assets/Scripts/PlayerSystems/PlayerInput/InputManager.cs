@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -16,6 +17,7 @@ namespace PlayerSystems.PlayerInput
         UnityEvent<Player.HandSystem.HandsType> m_OnRightHandInput = new UnityEvent<Player.HandSystem.HandsType>();
         UnityEvent m_MergeHandInput = new UnityEvent();
         UnityEvent m_TogglePauseMenu = new UnityEvent();
+        [SerializeField] GameEventScriptableObject m_PlayerSetActiveInput;
 
         private bool _jumpHeld;
 
@@ -24,6 +26,7 @@ namespace PlayerSystems.PlayerInput
             if (s_PlayerInput == null)
             {
                 s_PlayerInput = new global::PlayerInput();
+                m_PlayerSetActiveInput.BindEventAction(SetActiveInputActionBinding);
             }
         }
 
@@ -42,6 +45,32 @@ namespace PlayerSystems.PlayerInput
             s_PlayerInput.Player.RightHand.performed += RightHand;
             s_PlayerInput.Player.MergeHand.performed += MergeHandInput;
             s_PlayerInput.Player.TogglePauseMenu.performed += TogglePauseMenu;
+        }
+
+        void SetActiveInputActionBinding(object args)
+        {
+            Tuple<KeybindsData, bool> action = args as Tuple<KeybindsData, bool>;
+            SetActiveInput(action.Item1, action.Item2);
+        }
+
+        void SetActiveInput(KeybindsData keybindsData, bool state)
+        {
+            foreach(InputAction input in s_PlayerInput)
+            {
+                if(input == keybindsData.inputActionReference.action)
+                {
+                    if(state)
+                    {
+                        input.Enable();
+                    }
+                    else
+                    {
+                        input.Disable();
+                    }
+
+                    return;
+                }
+            }
         }
 
         private void OnDisable()
