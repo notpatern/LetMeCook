@@ -29,6 +29,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
 
             _dashDirection = fsmCore.camera.forward;
             _dashDirection = new Vector3(_dashDirection.x, 0, _dashDirection.z);
+            base.Jump();
             fsmCore.rb.AddForce(_dashDirection * (fsmCore.rb.velocity.magnitude + _context.dashForce), ForceMode.Impulse);
         }
 

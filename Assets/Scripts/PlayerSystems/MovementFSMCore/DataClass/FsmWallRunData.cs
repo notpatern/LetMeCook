@@ -6,6 +6,7 @@ namespace PlayerSystems.MovementFSMCore.DataClass
     public class FsmWallRunData : FsmData
     {
         public float sideJumpForce;
+        public float upwardsJumpForce;
         public float exitTime;
         public float wallGravity;
         public float wallTime;

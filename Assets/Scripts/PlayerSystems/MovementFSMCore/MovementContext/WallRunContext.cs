@@ -8,6 +8,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
     {
         private readonly FsmWallRunData _wallRunContext;
         public float sideJumpForce;
+        public float upwardsJumpForce;
         public float exitTime;
         public float wallGravity;
         public float wallTime;
@@ -25,6 +26,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         {
             base.Init();
             sideJumpForce = _wallRunContext.sideJumpForce;
+            upwardsJumpForce = _wallRunContext.upwardsJumpForce;
             exitTime = _wallRunContext.exitTime;
             wallGravity = _wallRunContext.wallGravity;
             wallTime = _wallRunContext.wallTime;

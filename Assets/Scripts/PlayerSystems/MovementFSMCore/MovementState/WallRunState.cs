@@ -29,6 +29,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _context.canJump = true;
             GetWallDirection();
 
+            fsmCore.rb.useGravity = context.useGravity;
+
             wallRunSoundInstance.start();
 
             float[] fovValues = { fsmCore.cameraData.wallRunFov, fsmCore.cameraData.wallRunFovTimeToSet };
@@ -60,7 +62,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         private void GetWallDirection()
         {
             _wallNormal = _context.wallInfo.normal;
-            _wallDirection = Vector3.Cross(_wallNormal, fsmCore.rb.transform.up);
+            _wallDirection = Vector3.Cross(_wallNormal, _context.wallInfo.transform.up);
             
             if ((fsmCore.orientation.forward - _wallDirection).magnitude > (fsmCore.orientation.forward + _wallDirection).magnitude)
             {
@@ -97,7 +99,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
                 fsmCore.rb.velocity = velocity;
             }
             fsmCore.rb.AddForce(_wallDirection * (context.movementSpeed * context.movementMultiplier), ForceMode.Force);
-            fsmCore.rb.AddForce(Vector3.down * _context.wallGravity, ForceMode.Force);
+            // fsmCore.rb.AddForce(Vector3.down * _context.wallGravity, ForceMode.Force);
         }
 
         private bool CanStillWallRun()
@@ -109,7 +111,7 @@ namespace PlayerSystems.MovementFSMCore.MovementState
         {
             base.Jump();
             AudioManager.s_Instance.PlayOneShot2D(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDoubleJump);
-            fsmCore.rb.AddForce(_wallNormal * _context.sideJumpForce, ForceMode.Impulse);
+            fsmCore.rb.AddForce(_wallNormal * _context.sideJumpForce + _context.wallInfo.transform.up * _context.upwardsJumpForce, ForceMode.Impulse);
             ExitState();
         }
 
