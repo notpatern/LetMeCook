@@ -164,7 +164,7 @@ namespace RecipeSystem
             RemoveRecipe(recipeId);
 
             gameManager.AddAcomplishedRecipes(gameRecipe);
-            gameManager.AddScore(gameRecipe.recipe.addedScore, foodPosition);
+            gameManager.AddScore(gameRecipe.recipe.addedScore, foodPosition, (int)gameRecipe.timeRemaining);
         }
 
         /// <summary>

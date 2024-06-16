@@ -26,7 +26,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
         [SerializeField] ParticleInstanceManager cookParticleInstanceManager;
         [SerializeField] float curveFadeTime;
 
-        List<SimpleFood> foodInQueue = new List<SimpleFood>();
+        [SerializeField] List<SimpleFood> foodInQueue = new List<SimpleFood>();
 
         protected ItemLauncher launcher;
         [SerializeField] QueueTextFollow queueText;
@@ -159,7 +159,6 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
 
             cookParticleInstanceManager.Play();
             animator.SetTrigger("Cook");
-
             RemoveFromQueue(collectedFoodGo.GetComponent<SimpleFood>());
 
             progressBarUI.SetActive(true);

@@ -37,7 +37,7 @@ public class DialogTriggerEditor : Editor
         LayerMask tempMask = EditorGUILayout.MaskField(InternalEditorUtility.LayerMaskToConcatenatedLayersMask(picker.triggerableLayers), InternalEditorUtility.layers);
         picker.triggerableLayers = InternalEditorUtility.ConcatenatedLayersMaskToLayerMask(tempMask);
 
-        picker.destroyOnTrigger = EditorGUILayout.Toggle("Destroy On Trigger", picker.destroyOnTrigger);
+        picker.m_DestroyOnEnter = EditorGUILayout.Toggle("Destroy On Trigger", picker.m_DestroyOnEnter);
 
         if (picker.index >= m_DialogLevelData.dialogInfos.Length)
         {

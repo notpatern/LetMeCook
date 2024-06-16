@@ -1,7 +1,7 @@
 using Dialog;
 using RecipeSystem.Core;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 namespace UI
 {
@@ -12,6 +12,7 @@ namespace UI
         public MENUScripts.OptionMenu optionMenu;
         public PlayerHUD playerHUD;
         public EndConditionUI endConditionUI;
+        public PlayerWarningText playerWarningText;
         public EndScreenUI endScreen;
         public DialogUIManagement dialogUiManagement;
 
@@ -19,7 +20,7 @@ namespace UI
         TMP_Text scoreText;
 
         //if there are problems with multiple layers then do a layer system with an UIContent parent or something and add a layer parameter
-        public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData, Transform endConditionParent, Transform scoreTextParent)
+        public void LoadUI(LevelUIData levelUIData, DialogLevelData dialogLevelData, Transform m_EndconditionWorldParentUI, Transform m_EndconditionPlayerParentUI, Transform m_ScoreWorldUIParent)
         {
             LoadBaseCanvas(levelUIData.canvasPrefab);
 
@@ -33,10 +34,15 @@ namespace UI
                 LoadDialogsPanel(levelUIData.dialogMenu, dialogLevelData);
             }
 
-            if(levelUIData.endConditionPrefab && endConditionParent)
+            if(levelUIData.endConditionPrefab && levelUIData.playerWarningText && m_EndconditionPlayerParentUI && m_EndconditionWorldParentUI)
             {
-                LoadEndConditionUI(levelUIData.endConditionPrefab, endConditionParent);
-                LoadScoreWorldUI(levelUIData.scorePrefab, scoreTextParent);
+                LoadPlayerWarningText(levelUIData.playerWarningText, m_EndconditionPlayerParentUI);
+                LoadEndConditionUI(levelUIData.endConditionPrefab, m_EndconditionWorldParentUI);
+            }
+
+            if(m_ScoreWorldUIParent)
+            {
+                LoadScoreWorldUI(levelUIData.scorePrefab, m_ScoreWorldUIParent);
             }
 
             if (levelUIData.recipeContentParent)
@@ -82,6 +88,11 @@ namespace UI
             {
                 playerHUD.UpdateScore(scoreUnlocked, scoreUntilNextStar);
             }
+        }
+
+        void LoadPlayerWarningText(GameObject playerWarningTextPrefab, Transform parent) 
+        {
+            playerWarningText = Object.Instantiate(playerWarningTextPrefab, parent).GetComponent<PlayerWarningText>();
         }
 
         void LoadEndConditionUI(GameObject endConditionPrefab, Transform parent)

@@ -17,6 +17,7 @@ public class LevelUIData : ScriptableObject
 
     [Header("GameMode")]
     public GameObject endConditionPrefab;
+    public GameObject playerWarningText;
     public GameObject scorePrefab;
 
     [Header("Recipe UI")]
