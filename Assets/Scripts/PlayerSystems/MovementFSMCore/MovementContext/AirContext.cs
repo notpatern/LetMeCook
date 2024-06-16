@@ -11,6 +11,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
         public float wallCheckDistance;
         public RaycastHit previousWallInfo;
         public float restartWallRunFalloffDistance;
+        public float doubleJumpDeceleration;
         
         public AirContext(FsmAirData airDataContext, float wallRunExitTime = 0, bool canJump = true, bool canDash = true, bool canWallRun = true, RaycastHit previousWallInfo = new RaycastHit()) : base(airDataContext, canJump, canDash, canWallRun)
         {
@@ -25,6 +26,7 @@ namespace PlayerSystems.MovementFSMCore.MovementContext
             doubleJumpForce = _airDataContext.doubleJumpForce;
             wallCheckDistance = _airDataContext.wallCheckDistance;
             restartWallRunFalloffDistance = _airDataContext.restartWallRunFalloffDistance;
+            doubleJumpDeceleration = _airDataContext.doubleJumpDeceleration;
         }
     }
 }

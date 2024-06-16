@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6468e5fec85f4d79bc4019a5ac42cdcb, type: 3}
   m_Name: DashData
   m_EditorClassIdentifier: 
+  coyoteTime: 0
+  jumpLeniency: 0
   movementSpeed: 0
   drag: 5
   movementMultiplier: 0
-  jumpForce: 0
+  jumpForce: 6
   maxMovementSpeed: 0
   useGravity: 0
-  dashForce: 35
+  dashForce: 43
   dashDuration: 0.2
