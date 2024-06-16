@@ -1964,6 +1964,7 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 768
+  m_DestroyOnEnter: 0
 --- !u!65 &78415077
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2074,6 +2075,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &89123851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4699983668110006517, guid: a5578045f5c58e041a0e4c53f2178352,
+    type: 3}
+  m_PrefabInstance: {fileID: 1721040142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d124184f916a6a147910a8db08e0d797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &108936097
 GameObject:
   m_ObjectHideFlags: 0
@@ -8223,6 +8236,11 @@ PrefabInstance:
       propertyPath: clearHands
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 354912840004182284, guid: f606618a8e606fc48ae28dd77aa1fa00,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 89123851}
     - target: {fileID: 524607708275095604, guid: f606618a8e606fc48ae28dd77aa1fa00,
         type: 3}
       propertyPath: m_Name
@@ -10530,12 +10548,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!224 &648941440 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7496924293201628196, guid: 454dc75f7bd5fb94f845e816427da00a,
-    type: 3}
-  m_PrefabInstance: {fileID: 362041663}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &649357712
 GameObject:
   m_ObjectHideFlags: 0
@@ -17190,6 +17202,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8591219141009133227, guid: 6585f239436eabf428a855ee3eaaaea4,
     type: 3}
   m_PrefabInstance: {fileID: 974913561}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1006789417 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2505948428588499968, guid: 454dc75f7bd5fb94f845e816427da00a,
+    type: 3}
+  m_PrefabInstance: {fileID: 362041663}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1011250198 stripped
 MonoBehaviour:
@@ -28237,6 +28255,11 @@ PrefabInstance:
       objectReference: {fileID: 1011250198}
     - target: {fileID: 4699983668110006517, guid: a5578045f5c58e041a0e4c53f2178352,
         type: 3}
+      propertyPath: m_ScoreWorldUIParent
+      value: 
+      objectReference: {fileID: 1006789417}
+    - target: {fileID: 4699983668110006517, guid: a5578045f5c58e041a0e4c53f2178352,
+        type: 3}
       propertyPath: m_EndconditionParentUI
       value: 
       objectReference: {fileID: 161864964}
@@ -28250,7 +28273,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_EndconditionHandParentUI
       value: 
-      objectReference: {fileID: 648941440}
+      objectReference: {fileID: 0}
+    - target: {fileID: 4699983668110006517, guid: a5578045f5c58e041a0e4c53f2178352,
+        type: 3}
+      propertyPath: m_EndconditionPlayerParentUI
+      value: 
+      objectReference: {fileID: 161864964}
     - target: {fileID: 5629889461613389735, guid: a5578045f5c58e041a0e4c53f2178352,
         type: 3}
       propertyPath: m_Mesh
