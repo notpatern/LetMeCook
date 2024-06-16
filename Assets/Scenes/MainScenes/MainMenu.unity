@@ -57893,8 +57893,9 @@ MonoBehaviour:
   m_DefaultLevelData: {fileID: 11400000, guid: 52b1262684663464faab3f400d5afa2f, type: 2}
   m_AudioSoundData: {fileID: 11400000, guid: 90fdf27341fecbd49a33c179ae70c4ae, type: 2}
   m_LevelData: {fileID: 11400000, guid: 1f0f88c0d85e0c344a444ecf3fd43632, type: 2}
-  m_EndconditionParentUI: {fileID: 0}
-  m_EndconditionHandParentUI: {fileID: 0}
+  m_EndconditionWorldParentUI: {fileID: 0}
+  m_EndconditionPlayerParentUI: {fileID: 0}
+  m_ScoreWorldUIParent: {fileID: 0}
   m_DefaultAudioSelectionMenu: {fileID: 5166577957522564869}
   m_LevelSelectorBtn: {fileID: 2785403647156235978}
   m_OptionBtn: {fileID: 2894050682672417218}
@@ -59488,6 +59489,8 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  m_PlayerSetActiveInput: {fileID: 11400000, guid: 57295a28520e0704fa5a084d7f4902c0,
+    type: 2}
 --- !u!224 &5472246370709500772
 RectTransform:
   m_ObjectHideFlags: 0

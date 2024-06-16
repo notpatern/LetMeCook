@@ -8877,6 +8877,80 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &542635846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 542635847}
+  - component: {fileID: 542635849}
+  - component: {fileID: 542635848}
+  m_Layer: 0
+  m_Name: LockRightInput (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &542635847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542635846}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 8.88}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1389666068}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &542635848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542635846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f058aa171c90f49b7d173e8eb016bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerableLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_DestroyOnEnter: 1
+  m_PlayerSetActiveInput: {fileID: 11400000, guid: 57295a28520e0704fa5a084d7f4902c0,
+    type: 2}
+  m_KeybindsData: {fileID: 11400000, guid: c1622e0b2475d2f4e9376984d1a544eb, type: 2}
+  state: 1
+--- !u!65 &542635849
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542635846}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.667059, y: 8.862336, z: 1}
+  m_Center: {x: 0.69780254, y: 3.931168, z: 0}
 --- !u!43 &555734127
 Mesh:
   m_ObjectHideFlags: 0
@@ -9407,9 +9481,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 0}
   secondHandActivation: 0
-  destroyOnTrigger: 1
   index: 5
   m_CurrentDialogInfos:
     noGameContentNameID: Baker intro
@@ -12489,9 +12563,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 0}
   secondHandActivation: 0
-  destroyOnTrigger: 1
   index: 0
   m_CurrentDialogInfos:
     noGameContentNameID: Hades Welcome
@@ -22841,9 +22915,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 1236204101}
   secondHandActivation: 0
-  destroyOnTrigger: 0
   index: 8
   m_CurrentDialogInfos:
     noGameContentNameID: Mouth intro
@@ -24062,9 +24136,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 0}
   secondHandActivation: 0
-  destroyOnTrigger: 1
   index: 4
   m_CurrentDialogInfos:
     noGameContentNameID: Recap
@@ -24319,9 +24393,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 0}
   secondHandActivation: 0
-  destroyOnTrigger: 1
   index: 9
   m_CurrentDialogInfos:
     noGameContentNameID: Recipe intro
@@ -25187,6 +25261,81 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1389666065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1389666068}
+  - component: {fileID: 1389666067}
+  - component: {fileID: 1389666066}
+  m_Layer: 0
+  m_Name: LockRightInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1389666066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389666065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f058aa171c90f49b7d173e8eb016bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerableLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_DestroyOnEnter: 1
+  m_PlayerSetActiveInput: {fileID: 11400000, guid: 57295a28520e0704fa5a084d7f4902c0,
+    type: 2}
+  m_KeybindsData: {fileID: 11400000, guid: c1622e0b2475d2f4e9376984d1a544eb, type: 2}
+  state: 0
+--- !u!65 &1389666067
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389666065}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10.667059, y: 8.862336, z: 1}
+  m_Center: {x: 0.69780254, y: 3.931168, z: 0}
+--- !u!4 &1389666068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389666065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.55, y: -0.35, z: 25.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 542635847}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1399857455
 GameObject:
   m_ObjectHideFlags: 0
@@ -27029,9 +27178,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 0}
   secondHandActivation: 0
-  destroyOnTrigger: 1
   index: 3
   m_CurrentDialogInfos:
     noGameContentNameID: WallRunDash food presentation
@@ -28318,6 +28467,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1342482868074891331, guid: 454dc75f7bd5fb94f845e816427da00a,
+        type: 3}
+      propertyPath: m_PlayerSetActiveInput
+      value: 
+      objectReference: {fileID: 11400000, guid: 57295a28520e0704fa5a084d7f4902c0,
+        type: 2}
     - target: {fileID: 2198265350675532600, guid: 454dc75f7bd5fb94f845e816427da00a,
         type: 3}
       propertyPath: m_Name
@@ -32339,9 +32494,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 0}
   secondHandActivation: 0
-  destroyOnTrigger: 1
   index: 6
   m_CurrentDialogInfos:
     noGameContentNameID: Purifier intro
@@ -33970,9 +34125,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 1236204101}
   secondHandActivation: 1
-  destroyOnTrigger: 1
   index: 7
   m_CurrentDialogInfos:
     noGameContentNameID: Chopper intro
@@ -34060,9 +34215,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 0}
   secondHandActivation: 0
-  destroyOnTrigger: 1
   index: 2
   m_CurrentDialogInfos:
     noGameContentNameID: Dash red food presentation
@@ -35552,6 +35707,7 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 768
+  m_DestroyOnEnter: 0
 --- !u!65 &1795004978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42141,9 +42297,9 @@ MonoBehaviour:
   triggerableLayers:
     serializedVersion: 2
     m_Bits: 512
+  m_DestroyOnEnter: 0
   triggerZone: {fileID: 0}
   secondHandActivation: 0
-  destroyOnTrigger: 1
   index: 1
   m_CurrentDialogInfos:
     noGameContentNameID: green food presentation
@@ -44881,3 +45037,4 @@ SceneRoots:
   - {fileID: 2264166779083283270}
   - {fileID: 1447927587}
   - {fileID: 451277937}
+  - {fileID: 1389666068}

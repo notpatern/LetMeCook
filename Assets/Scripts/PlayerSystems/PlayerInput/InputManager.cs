@@ -57,9 +57,9 @@ namespace PlayerSystems.PlayerInput
         {
             foreach(InputAction input in s_PlayerInput)
             {
-                if(input == keybindsData.inputActionReference.action)
+                if (input.id == keybindsData.inputActionReference.action.id)
                 {
-                    if(state)
+                    if (state)
                     {
                         input.Enable();
                     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SetActivePlayerInputTriggerZone : TriggerEffectZone
@@ -9,7 +10,8 @@ public class SetActivePlayerInputTriggerZone : TriggerEffectZone
     protected override void TriggerFunc(Collider other)
     {
         if (m_IsDestroyed) return;
-        
-        m_PlayerSetActiveInput.TriggerEvent((m_KeybindsData, state));
+
+        Tuple<KeybindsData, bool> action = new (m_KeybindsData, state);
+        m_PlayerSetActiveInput.TriggerEvent(action);
     }
 }
