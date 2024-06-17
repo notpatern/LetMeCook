@@ -10,8 +10,9 @@ namespace Manager
         protected UIManager m_UiManager;
         [SerializeField] AudioSoundData m_AudioSoundData;
         public LevelData m_LevelData;
-        [SerializeField, Tooltip("can be null")] protected Transform m_EndconditionParentUI;
-        [SerializeField, Tooltip("can be null")] protected Transform m_EndconditionHandParentUI;
+        [SerializeField, Tooltip("can be null")] protected Transform m_EndconditionWorldParentUI;
+        [SerializeField, Tooltip("can be null")] protected Transform m_EndconditionPlayerParentUI;
+        [SerializeField, Tooltip("can be null")] protected Transform m_ScoreWorldUIParent;
 
         protected MusicManager m_MusicManager;
 
@@ -31,7 +32,7 @@ namespace Manager
             m_MusicManager.InitializeMusic(m_LevelData.levelMusicData, this);
 
             m_UiManager = new UIManager();
-            m_UiManager.LoadUI(m_LevelData.levelUIData, m_LevelData.dialogLevelData, m_EndconditionParentUI, m_EndconditionHandParentUI);
+            m_UiManager.LoadUI(m_LevelData.levelUIData, m_LevelData.dialogLevelData, m_EndconditionWorldParentUI, m_EndconditionPlayerParentUI, m_ScoreWorldUIParent);
         }
 
         protected virtual void Update()

@@ -1,29 +1,27 @@
+using Manager;
 using ParticleSystemUtility;
 using System.Collections;
 using UnityEngine;
 
 public class KillZone : MonoBehaviour
 {
+    [SerializeField] GameManager gameManager;
     [SerializeField] Transform respawnPoint;
     [SerializeField] GameObject portalParticles;
-    [SerializeField] bool clearHands = true;
     [SerializeField] Vector3 fallPortalOffset;
     [SerializeField] Vector3 spawnPortalOffset;
     [SerializeField] float portalDuration;
     [SerializeField] float startTpDelay;
     [SerializeField] float spawnDelay;
+    [SerializeField] int pointAddedAtTeleportation = -5;
 
     void OnTriggerEnter(Collider other)
     {
         PlayerSystems.PlayerBase.Player player = other.GetComponent<PlayerSystems.PlayerBase.Player>();
         if (player)
         {
-            if (clearHands)
-            {
-                player.CrunchFoodInHands(true);
-            }
-            
-            StartCoroutine(StartTeleportDelay(player));
+            gameManager.AddScore(pointAddedAtTeleportation); // in front of player respawn
+            StartTeleportDelay(player);
         }
         else if(other.GetComponent<IDestructible>() != null)
         {
@@ -31,9 +29,8 @@ public class KillZone : MonoBehaviour
         }
     }
 
-    IEnumerator StartTeleportDelay(PlayerSystems.PlayerBase.Player player)
+    void StartTeleportDelay(PlayerSystems.PlayerBase.Player player)
     {
-        yield return new WaitForSeconds(startTpDelay);
         Vector3 spawnPoint = player.transform.position + fallPortalOffset;
         ParticleInstanceManager portal = Instantiate(portalParticles, spawnPoint, Quaternion.identity).GetComponent<ParticleInstanceManager>();
         StartCoroutine(DestroyPortalDelay(portal));
@@ -41,19 +38,14 @@ public class KillZone : MonoBehaviour
         spawnPoint = respawnPoint.position + spawnPortalOffset;
         ParticleInstanceManager portal2 = Instantiate(portalParticles, spawnPoint, Quaternion.identity).GetComponent<ParticleInstanceManager>();
         StartCoroutine(DestroyPortalDelay(portal2));
-        StartCoroutine(SpawnPlayerDelay(player));
+        
+        player.ClearPlayerStamina();
+        player.SetPosition(respawnPoint.position);
     }
 
     IEnumerator DestroyPortalDelay(ParticleInstanceManager portal)
     {
         yield return new WaitForSeconds(portalDuration);
         portal.Stop(false);
-    }
-
-    IEnumerator SpawnPlayerDelay(PlayerSystems.PlayerBase.Player player)
-    {
-        yield return new WaitForSeconds(spawnDelay);
-        player.ClearPlayerStamina();
-        player.SetPosition(respawnPoint.position);
     }
 }

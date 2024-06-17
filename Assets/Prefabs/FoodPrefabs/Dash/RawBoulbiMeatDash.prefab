@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &218485066574255884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5137256882865322815}
+  - component: {fileID: 3062604185050695116}
+  m_Layer: 0
+  m_Name: SecondaryColliderLayerIgnore
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5137256882865322815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218485066574255884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3781345244461024688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &3062604185050695116
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218485066574255884}
+  m_Material: {fileID: 13400000, guid: 224ffbf92c7a8834bae8cd5036e7843f, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.47
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2939699201371058336
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +264,6 @@ GameObject:
   - component: {fileID: 6458256001630246702}
   - component: {fileID: 8478641122488135801}
   - component: {fileID: 6640363004773618717}
-  - component: {fileID: 4033413389540713654}
   - component: {fileID: 8465984500107889973}
   - component: {fileID: 9220396065175869095}
   m_Layer: 8
@@ -236,6 +288,7 @@ Transform:
   m_Children:
   - {fileID: 7817845503403868493}
   - {fileID: 4971705632506436901}
+  - {fileID: 5137256882865322815}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6458256001630246702
@@ -278,13 +331,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cols:
-  - {fileID: 4033413389540713654}
+  - {fileID: 3062604185050695116}
   - {fileID: 8465984500107889973}
   rb: {fileID: 6458256001630246702}
   trailRenderer: {fileID: 1018286664606913482}
   isGround:
     serializedVersion: 2
     m_Bits: 64
+  excludeFromLayerChangement: {fileID: 5137256882865322815}
   launchableItem: {fileID: 6640363004773618717}
   decalProjector: {fileID: 1401065438823867097, guid: d73c2527c3ce08640b5a35be12b1f98c,
     type: 3}
@@ -303,27 +357,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf37494e7e10484685a552d63b73d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &4033413389540713654
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7354829722045014985}
-  m_Material: {fileID: 13400000, guid: 224ffbf92c7a8834bae8cd5036e7843f, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1.47
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &8465984500107889973
 SphereCollider:
   m_ObjectHideFlags: 0

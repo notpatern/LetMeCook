@@ -8,28 +8,24 @@ namespace UI
     {
         [SerializeField] TMP_Text timerText;
         [SerializeField] TMP_Text timeRemainingWarning;
-        [SerializeField] GameObject warningGo;
-        [SerializeField] GameObject warningGoInHand;
+        [SerializeField] GameObject warningGoInWorld;
+
+        [HideInInspector] public PlayerWarningText playerWarningText;
 
         void Start()
         {
             timerText.text = "";
             timeRemainingWarning.text = "";
-            warningGo.SetActive(false);
-            warningGoInHand.SetActive(false);
+            warningGoInWorld.SetActive(false);
         }
 
-        public void Init(Transform timerParent)
+        public void Init(Transform timerParent, PlayerWarningText newPlayerWarningText)
         {
-            timerText.transform.SetParent(timerParent);
-            timerText.transform.SetAsFirstSibling();
-            warningGoInHand.transform.SetParent(timerParent);
-            timerText.transform.SetAsFirstSibling();
+            playerWarningText = newPlayerWarningText;
 
             timerText.text = "";
             timeRemainingWarning.text = "";
-            warningGo.SetActive(false);
-            warningGoInHand.SetActive(false);
+            warningGoInWorld.SetActive(false);
         }
 
         public void UpdateText(string data, string hexColor)
@@ -44,15 +40,15 @@ namespace UI
 
         IEnumerator WarningScreenMiddle(float duration)
         {
-            warningGo.SetActive(true);
+            playerWarningText.ActivePanel(true);
             yield return new WaitForSeconds (duration);
-            warningGo.SetActive(false);
-            warningGoInHand.SetActive(true);
+            playerWarningText.ActivePanel(false);
+            warningGoInWorld.SetActive(true);
         }
 
         public void ShowRemainingTimeWarning(string remainingTime)
         {
-            timeRemainingWarning.text = remainingTime + "s";
+            playerWarningText.SetWarningPanelTextTimer(remainingTime + "s");
         }
     }
 

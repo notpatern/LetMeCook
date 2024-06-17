@@ -1,5 +1,4 @@
 using FoodSystem;
-using FoodSystem.FoodType;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,6 +31,8 @@ namespace PlayerSystems.HandsSystem
         UnityEvent<bool> m_OnWallRunChangeState = new UnityEvent<bool>();
 
         [SerializeField] GameEventScriptableObject m_WallrunGameEventScriptableObject;
+        [SerializeField] GameEventScriptableObject m_DoubleJumpGameEventScriptableObject;
+        [SerializeField] GameEventScriptableObject m_DashGameEventScriptableObject;
 
         [Header("Game Event SimpleFood MoveTech")]
         [SerializeField] GameEventScriptableObject m_SimpleNotCookedFoodWallrunGameEventScriptableObject;
@@ -120,6 +121,8 @@ namespace PlayerSystems.HandsSystem
             if(m_IsDashActivated.Value != m_DashDirtyState)
             {
                 m_OnDashChangeState.Invoke(m_IsDashActivated.Value);
+
+                m_DashGameEventScriptableObject.TriggerEvent(m_IsDashActivated.Value);
                 m_DashDirtyState = m_IsDashActivated.Value;
             }
             if(m_IsWallRunActivated.Value != m_WallRunDirtyState)
@@ -132,6 +135,8 @@ namespace PlayerSystems.HandsSystem
             if(m_IsDoubleJumpActivated.Value != m_DoubleJumpDirtyState)
             {
                 m_OnDoubleJumpChangeState.Invoke(m_IsDoubleJumpActivated.Value);
+
+                m_DoubleJumpGameEventScriptableObject.TriggerEvent(m_IsDoubleJumpActivated.Value);
                 m_DoubleJumpDirtyState = m_IsDoubleJumpActivated.Value;
             }
 
