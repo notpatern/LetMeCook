@@ -28,6 +28,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerDash, fsmCore.rb.position);
 
             _dashDirection = fsmCore.camera.forward;
+            _dashDirection = new Vector3(_dashDirection.x, 0, _dashDirection.z);
+            base.Jump();
             fsmCore.rb.AddForce(_dashDirection * (fsmCore.rb.velocity.magnitude + _context.dashForce), ForceMode.Impulse);
         }
 

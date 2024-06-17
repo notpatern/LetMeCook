@@ -230,7 +230,7 @@ namespace PlayerSystems.MovementFSMCore
 
         public void OnJumpInputEvent()
         {
-            if ((!_currentState.context.canJump || (!Grounded() && !canJump && _currentState.GetType() != typeof(WallRunState))) && coyoteTime <= 0)
+            if (!_currentState.context.canJump || (!Grounded() && !canJump && _currentState.GetType() != typeof(WallRunState) && _currentState.GetType() != typeof(DashState) && coyoteTime <= 0))
             {
                 return;
             }
