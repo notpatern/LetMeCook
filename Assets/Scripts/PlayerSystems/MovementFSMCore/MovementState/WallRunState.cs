@@ -61,8 +61,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             {
                 _wallDirection = -_wallDirection;
             }
-
-            Debug.Log(_wallDirection);
         }
 
         public override void Update()
