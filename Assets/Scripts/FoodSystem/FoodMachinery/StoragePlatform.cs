@@ -1,9 +1,9 @@
-using Audio;
 using FoodSystem.FoodType;
 using ItemLaunch;
 using ParticleSystemUtility;
 using Player.Interaction;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace FoodSystem.FoodMachinery
 {
@@ -14,6 +14,7 @@ namespace FoodSystem.FoodMachinery
         [SerializeField] Collider interactionTrigger;
         [SerializeField] ParticleInstanceManager activeParticle;
         [SerializeField] GameObject energyStockagePaltform;
+        [SerializeField] Renderer lightInfoRenderer; 
 
         void Awake()
         {
@@ -57,6 +58,7 @@ namespace FoodSystem.FoodMachinery
         protected override void OnFoodCollected()
         {
             energyStockagePaltform.SetActive(true);
+            lightInfoRenderer.material.SetColor("_IntersectionColor", collectedFood.foodColor);
             collectedFoodGo.GetComponent<LaunchableItem>().QuitBezierCurve(false);
             activeParticle.Play();
 

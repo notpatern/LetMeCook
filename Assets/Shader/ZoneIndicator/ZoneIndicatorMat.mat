@@ -45,6 +45,7 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DstBlend: 10
+    - _FadePosition: 0.863
     - _IntersectionDepth: 0.95
     - _NoiseIntersectionStrength: -1
     - _NoiseScale: 500
@@ -58,6 +59,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _IntersectionColor: {r: 1, g: 0.9459553, b: 0.6273585, a: 1}
+    - _LerpAmount: {r: 0.08, g: 1.56, b: 0, a: 0}
     - _NoiseDirection: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2576508990287729113
