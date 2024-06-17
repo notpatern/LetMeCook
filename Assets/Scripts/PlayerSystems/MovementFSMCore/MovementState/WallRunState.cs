@@ -29,7 +29,11 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             _context.canJump = true;
             GetWallDirection();
 
-            fsmCore.rb.useGravity = context.useGravity;
+            var velocity = fsmCore.rb.velocity;
+            velocity = new Vector3(velocity.x, 0f, velocity.z);
+            _context.maxMovementSpeed = velocity.magnitude;
+
+            fsmCore.rb.velocity = _wallDirection * _context.maxMovementSpeed;
 
             wallRunSoundInstance.start();
 
@@ -46,17 +50,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
                 float[] zTilt = { 0, -fsmCore.cameraData.wallRunTilt, fsmCore.cameraData.wallRunTiltTimeToSet };
                 fsmCore.onTiltChange.TriggerEvent(zTilt);
             }
-            var velocity = fsmCore.rb.velocity;
-            velocity = new Vector3(velocity.x, 0f, velocity.z);
-
-            if (velocity.magnitude < _context.maxMovementSpeed)
-            {
-                velocity = velocity.normalized * _context.maxMovementSpeed;
-            }
-
-            fsmCore.rb.velocity = velocity;
-
-            _context.maxMovementSpeed = fsmCore.rb.velocity.magnitude;
         }
 
         private void GetWallDirection()
@@ -68,6 +61,8 @@ namespace PlayerSystems.MovementFSMCore.MovementState
             {
                 _wallDirection = -_wallDirection;
             }
+
+            Debug.Log(_wallDirection);
         }
 
         public override void Update()
@@ -99,7 +94,6 @@ namespace PlayerSystems.MovementFSMCore.MovementState
                 fsmCore.rb.velocity = velocity;
             }
             fsmCore.rb.AddForce(_wallDirection * (context.movementSpeed * context.movementMultiplier), ForceMode.Force);
-            // fsmCore.rb.AddForce(Vector3.down * _context.wallGravity, ForceMode.Force);
         }
 
         private bool CanStillWallRun()
