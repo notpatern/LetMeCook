@@ -14,6 +14,11 @@ namespace FoodSystem.FoodMachinery
         [SerializeField] Collider interactionTrigger;
         [SerializeField] ParticleInstanceManager activeParticle;
         [SerializeField] GameObject energyStockagePaltform;
+        
+        [Header("Beacon properties")]
+        [SerializeField] GameObject zoneIndicatorBeacon;
+        Material zoneIndicatorBeaconMaterialInstance;
+        [SerializeField] Color defaultColor;
 
         void Awake()
         {
@@ -22,6 +27,7 @@ namespace FoodSystem.FoodMachinery
             interactionTrigger.enabled = true;
             energyStockagePaltform.SetActive(false);
             activeParticle.Stop(false);
+            zoneIndicatorBeaconMaterialInstance = zoneIndicatorBeacon.GetComponent<Renderer>().material;
         }
 
         public GameObject StartInteraction()
@@ -56,6 +62,8 @@ namespace FoodSystem.FoodMachinery
 
         protected override void OnFoodCollected()
         {
+            zoneIndicatorBeaconMaterialInstance.SetColor("_IntersectionColor",
+                collectedFoodData.Length == 1 ? collectedFoodData[0].beaconColor : defaultColor);
             energyStockagePaltform.SetActive(true);
             collectedFoodGo.GetComponent<LaunchableItem>().QuitBezierCurve(false);
             activeParticle.Play();
