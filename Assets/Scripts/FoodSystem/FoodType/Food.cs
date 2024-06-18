@@ -20,6 +20,7 @@ namespace FoodSystem.FoodType
         [SerializeField] Transform excludeFromLayerChangement;
         [SerializeField] LaunchableItem launchableItem;
         [SerializeField] protected GameObject decalProjector;
+        public Color32 foodColor;
         protected GameObject currentDecalProjector;
         [SerializeField] protected GameObject foodFog;
         protected GameObject currentFoodFog;

@@ -1,9 +1,9 @@
-using Audio;
 using FoodSystem.FoodType;
 using ItemLaunch;
 using ParticleSystemUtility;
 using Player.Interaction;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace FoodSystem.FoodMachinery
 {
@@ -19,6 +19,7 @@ namespace FoodSystem.FoodMachinery
         [SerializeField] GameObject zoneIndicatorBeacon;
         Material zoneIndicatorBeaconMaterialInstance;
         [SerializeField] Color defaultColor;
+        [SerializeField] Renderer lightInfoRenderer; 
 
         void Awake()
         {
@@ -65,6 +66,7 @@ namespace FoodSystem.FoodMachinery
             zoneIndicatorBeaconMaterialInstance.SetColor("_IntersectionColor",
                 collectedFoodData.Length == 1 ? collectedFoodData[0].beaconColor : defaultColor);
             energyStockagePaltform.SetActive(true);
+            lightInfoRenderer.material.SetColor("_IntersectionColor", collectedFood.foodColor);
             collectedFoodGo.GetComponent<LaunchableItem>().QuitBezierCurve(false);
             activeParticle.Play();
 
