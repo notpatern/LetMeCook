@@ -63,8 +63,7 @@ namespace FoodSystem.FoodMachinery
 
         protected override void OnFoodCollected()
         {
-            zoneIndicatorBeaconMaterialInstance.SetColor("_IntersectionColor",
-                collectedFoodData.Length == 1 ? collectedFoodData[0].beaconColor : defaultColor);
+            zoneIndicatorBeaconMaterialInstance.SetColor("_IntersectionColor", collectedFood.foodColor);
             energyStockagePaltform.SetActive(true);
             lightInfoRenderer.material.SetColor("_IntersectionColor", collectedFood.foodColor);
             collectedFoodGo.GetComponent<LaunchableItem>().QuitBezierCurve(false);
