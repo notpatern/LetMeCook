@@ -26,8 +26,8 @@ namespace PlayerSystems.PlayerInput
             if (s_PlayerInput == null)
             {
                 s_PlayerInput = new global::PlayerInput();
-                m_PlayerSetActiveInput.BindEventAction(SetActiveInputActionBinding);
             }
+            m_PlayerSetActiveInput.BindEventAction(SetActiveInputActionBinding);
         }
 
         private void OnEnable()
@@ -56,7 +56,7 @@ namespace PlayerSystems.PlayerInput
 
         public void SetActiveInput(KeybindsData keybindsData, bool state)
         {
-            foreach(InputAction input in s_PlayerInput)
+            foreach (InputAction input in s_PlayerInput)
             {
                 if (input.id == keybindsData.inputActionReference.action.id)
                 {
