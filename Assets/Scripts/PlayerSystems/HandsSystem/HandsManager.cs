@@ -83,6 +83,22 @@ namespace PlayerSystems.HandsSystem
                 m_GemBraceletMoveTechVisual[gemBraceletId].UpdateBraceletVisual(m_DefaultGemBraceletVisualMaterial);
             }
         }
+
+        public void CallHandAnimation(HandsType handType, string animationName)
+        {
+            switch (handType)
+            {
+                case HandsType.NONE:
+                    Debug.LogError("This should not happen but does.");
+                    break;
+                case HandsType.LEFT:
+                    m_LeftHand.m_Animator.SetTrigger(animationName);
+                    break;
+                case HandsType.RIGHT:
+                    m_RightHand.m_Animator.SetTrigger(animationName);
+                    break;
+            }
+        }
         
         public void UseHand(GameObject food, HandsType handsType)
         {

@@ -3,7 +3,7 @@ using PlayerSystems.MovementFSMCore;
 using PlayerSystems.PlayerInput;
 using UnityEngine;
 using Player.Interaction;
-using UnityEditor.ShaderGraph.Drawing;
+using Player.HandSystem;
 
 namespace PlayerSystems.PlayerBase
 {
@@ -103,6 +103,11 @@ namespace PlayerSystems.PlayerBase
         public void SetActiveRightHand(bool active)
         {
             m_RightHandGo.SetActive(active);
+
+            if(active)
+            {
+                m_HandsManager.CallHandAnimation(HandsType.RIGHT, "HandApparition");
+            }
         }
 
         public float GetGroundedTime()
