@@ -18,7 +18,6 @@ namespace FoodSystem.FoodMachinery
         [Header("Beacon properties")]
         [SerializeField] GameObject zoneIndicatorBeacon;
         Material zoneIndicatorBeaconMaterialInstance;
-        [SerializeField] Color defaultColor;
         [SerializeField] Renderer lightInfoRenderer; 
 
         void Awake()
@@ -31,7 +30,7 @@ namespace FoodSystem.FoodMachinery
             zoneIndicatorBeaconMaterialInstance = zoneIndicatorBeacon.GetComponent<Renderer>().material;
         }
 
-        public GameObject StartInteraction()
+        public virtual GameObject StartInteraction()
         {
             if(!collectedFoodGo)
             {

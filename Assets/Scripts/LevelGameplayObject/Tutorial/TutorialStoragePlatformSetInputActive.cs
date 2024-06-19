@@ -2,7 +2,7 @@ using System;
 using FoodSystem.FoodMachinery;
 using UnityEngine;
 
-public class TutorialDropperSetPlayerInputsActive : FoodDropper
+public class TutorialStoragePlatformSetInputActive : StoragePlatform
 {
     [Header("Tutorial properties")]
     [SerializeField] GameEventScriptableObject m_PlayerSetActiveInput;
