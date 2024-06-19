@@ -9,7 +9,6 @@ public class GameEventScriptableObject : ScriptableObject
 
     public void TriggerEvent(object args = null)
     {
-        Debug.Log(args);
         m_GameEvent.Invoke(args);
         
         if(m_ClearAfterTriggered)

@@ -50,6 +50,7 @@ namespace PlayerSystems.PlayerInput
         void SetActiveInputActionBinding(object args)
         {
             Tuple<KeybindsData, bool> action = args as Tuple<KeybindsData, bool>;
+
             SetActiveInput(action.Item1, action.Item2);
         }
 
