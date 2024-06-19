@@ -54,7 +54,7 @@ namespace PlayerSystems.PlayerInput
             SetActiveInput(action.Item1, action.Item2);
         }
 
-        void SetActiveInput(KeybindsData keybindsData, bool state)
+        public void SetActiveInput(KeybindsData keybindsData, bool state)
         {
             foreach(InputAction input in s_PlayerInput)
             {

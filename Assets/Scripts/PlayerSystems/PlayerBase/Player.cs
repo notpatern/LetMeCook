@@ -3,6 +3,7 @@ using PlayerSystems.MovementFSMCore;
 using PlayerSystems.PlayerInput;
 using UnityEngine;
 using Player.Interaction;
+using UnityEditor.ShaderGraph.Drawing;
 
 namespace PlayerSystems.PlayerBase
 {
@@ -15,10 +16,19 @@ namespace PlayerSystems.PlayerBase
         [SerializeField] Rigidbody m_PlayerRb;
         [SerializeField] Animator m_PlayerPrefabAnimator;
         [SerializeField] MovementFsmCore m_MovementFsmCore;
-        [SerializeField] GameEventScriptableObject m_PostPorcessingManagerEvent;
+        [SerializeField] GameEventScriptableObject m_PostPorcessingManagerEvent; 
+        
+        [Header("Tutorial defined activations")]
+        [SerializeField] GameObject m_RightHandGo;
+        [SerializeField] bool m_IsHandActivedByDefault = true;
 
         public void Init(RecipeSystem.RecipesManager recipesManager)
         {
+            if (!m_IsHandActivedByDefault)
+            {
+                m_RightHandGo.SetActive(false);
+            }
+
             m_PlayerInteraction.InitPlayerInteraction(m_HandsManager);
             m_PlayerInteraction.BindPerformInteraction(m_HandsManager.UseHand);
             m_InputManager.BindHandAction(m_PlayerInteraction.ActiveInteraction);
@@ -88,6 +98,11 @@ namespace PlayerSystems.PlayerBase
         public void CrunchFoodInHands(bool forceAnim)
         {
             m_HandsManager.CrunchFoodInHands(forceAnim);
+        }
+
+        public void SetActiveRightHand(bool active)
+        {
+            m_RightHandGo.SetActive(active);
         }
 
         public float GetGroundedTime()
