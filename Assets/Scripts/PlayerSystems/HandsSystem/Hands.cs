@@ -100,7 +100,8 @@ namespace Player.HandSystem
             Vector3 dist = m_ThrowPoint.position - m_CameraTr.position;
             if (Physics.Raycast(m_CameraTr.position, dist.normalized, out hit, dist.magnitude))
             {
-                m_HhandledFood.transform.position = hit.point;
+                m_HhandledFood.transform.position = hit.point - dist / 2;
+
             }
 
             ThrowFoodVisualEffect();
