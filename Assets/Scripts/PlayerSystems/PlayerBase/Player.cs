@@ -102,9 +102,11 @@ namespace PlayerSystems.PlayerBase
 
         public void SetActiveRightHand(bool active)
         {
+            bool isHandActive = m_RightHandGo.activeSelf;
+
             m_RightHandGo.SetActive(active);
 
-            if(active)
+            if(active && !isHandActive)
             {
                 m_HandsManager.CallHandAnimation(HandsType.RIGHT, "HandApparition");
             }
