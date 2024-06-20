@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5fd44727d1ae8488b931d07aa44dc0, type: 3}
+  m_Name: CheapBurger
+  m_EditorClassIdentifier: 
+  vocaloidVoice:
+    Guid:
+      Data1: -1307987084
+      Data2: 1210152967
+      Data3: -283554663
+      Data4: 908782780
+    Path: event:/SFX/VocaloidLevel0/CheapBurger
+  nametag: Cheap Burger
+  secondsToComplete: 90
+  ingredients:
+  - {fileID: 11400000, guid: e1fb23a4247660f4fbc42a563d4e2505, type: 2}
+  - {fileID: 11400000, guid: 317f06e50476f6a42b3787a6921eb52b, type: 2}
+  addedScore: 20
