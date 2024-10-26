@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace RecipeSystem.Core
 {
-    public class TutorialRecipesGoal : RecipeGoal
+    public class TutorialUniqueRecipeGoal : RecipeGoal
     {
-        [SerializeField] TutorialGameManager m_TutorialgoalRecipesGaol;
-
         protected override void OnFoodOk(int potentialRecipe, FoodSystem.FoodType.Food currentFood)
         {
             base.OnFoodOk(potentialRecipe, currentFood);
-            m_TutorialgoalRecipesGaol.TriggerFinishLevelEndCondition();
+            //m_TutorialgoalRecipesGaol.TriggerFinishLevelEndCondition();
+            Debug.Log("MIAM MIAM");
+
         }
     }
 }
