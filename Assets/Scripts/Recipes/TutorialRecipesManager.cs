@@ -10,7 +10,7 @@ namespace RecipeSystem.Core
         protected override void OnFoodOk(int potentialRecipe, FoodSystem.FoodType.Food currentFood)
         {
             base.OnFoodOk(potentialRecipe, currentFood);
-            m_TutorialgoalRecipesGaol.TriggerFinishLevelEndCondition();
+            //m_TutorialgoalRecipesGaol.TriggerFinishLevelEndCondition();
         }
     }
 }

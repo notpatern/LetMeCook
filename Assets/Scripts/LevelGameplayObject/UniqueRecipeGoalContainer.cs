@@ -16,12 +16,18 @@ namespace LevelGameplayObject
             {
                 recipeGoal.onRecipeComplete.AddListener(RemoveRecipeGoal);
             }
+            
+            
+            //TODO REMOVE THIS
+            //_objectToAnimate.SetTrigger(Show);
+            
+            
+            
         }
 
         void RemoveRecipeGoal(UniqueRecipeGoal recipeGoal)
         {
             recipeGoals.Remove(recipeGoal);
-            print(recipeGoals.Count);
             
             if (recipeGoals.Count == 0)
             {
