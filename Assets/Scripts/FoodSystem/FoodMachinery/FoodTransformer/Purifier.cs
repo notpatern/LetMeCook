@@ -26,7 +26,7 @@ namespace FoodSystem.FoodMachinery.FoodTransformer
             cookingSound.stop(STOP_MODE.ALLOWFADEOUT);
             cookingSound.release();
 
-            GameObject newFood = Instantiate(collectedFoodData[0].purifiedFood.prefab,
+            GameObject newFood = Instantiate(collectedFood.GetFoodDatas()[0].purifiedFood.prefab,
                 launcher.StartPoint, Quaternion.identity);
 
             launcher.ThrowItem(newFood.GetComponent<LaunchableItem>());
