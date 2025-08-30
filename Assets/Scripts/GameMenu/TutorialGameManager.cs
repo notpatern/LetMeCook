@@ -24,12 +24,10 @@ namespace Manager
 
         protected override void InitEndCondition()
         {
-            
         }
 
         protected override void InitRecipeManager()
         {
-            
         }
 
 
@@ -50,6 +48,7 @@ namespace Manager
                 m_IsEndStateInit = false;
                 m_Player.SetPosition(respawnTr.position);
                 m_Player.CrunchFoodInHands(false);
+                TriggerEndScreenSystem();
             });
 
             OnEndConditionInitialized();
