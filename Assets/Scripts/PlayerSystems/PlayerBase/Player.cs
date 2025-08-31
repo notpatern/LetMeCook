@@ -25,10 +25,6 @@ namespace PlayerSystems.PlayerBase
 
         public void Init(RecipeSystem.RecipesManager recipesManager)
         {
-            if (!m_IsHandActivedByDefault)
-            {
-                m_HandsManager.GetHand(HandsType.RIGHT).m_handGO.SetActive(false);
-            }
 
             m_PlayerInteraction.InitPlayerInteraction(m_HandsManager);
             m_PlayerInteraction.BindPerformInteraction(m_HandsManager.UseHand);
@@ -40,6 +36,11 @@ namespace PlayerSystems.PlayerBase
 
             m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator, m_MovementFsmCore.camera, recipesManager);
             InitFsmCore();
+
+            if (!m_IsHandActivedByDefault)
+            {
+                m_HandsManager.GetHand(HandsType.RIGHT).m_handGO.SetActive(false);
+            }
         }
 
         void Update()
