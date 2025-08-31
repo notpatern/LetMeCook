@@ -162,7 +162,6 @@ namespace PlayerSystems.HandsSystem
             if (!hand.m_handGO.activeSelf) return;
 
             if (hand.m_IsCrushing) return;
-            Debug.Log("te");
 
             if (!hand.isFoodHandle)
             {
