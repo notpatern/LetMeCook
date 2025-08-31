@@ -2045,6 +2045,8 @@ MonoBehaviour:
       m_EffectSpawnPoint: {fileID: 570011751970811531}
       m_Animator: {fileID: 4782654478144548433}
       m_HandAnimatorManagement: {fileID: 4871591894362827141}
+      m_handGO: {fileID: 0}
+      m_canThrow: 1
       m_IsCrushing: 0
     m_RightHand:
       m_FoodPosition: {fileID: 6287754216700759419}
@@ -2052,6 +2054,8 @@ MonoBehaviour:
       m_EffectSpawnPoint: {fileID: 115420639327000635}
       m_Animator: {fileID: 942321250605974333}
       m_HandAnimatorManagement: {fileID: 2316508184197310299}
+      m_handGO: {fileID: 0}
+      m_canThrow: 1
       m_IsCrushing: 0
     m_MergedFoodPrefab: {fileID: 7354829722045014985, guid: a04b9f56709f78941815ea4072a5a32b,
       type: 3}
@@ -2130,6 +2134,11 @@ MonoBehaviour:
     speedEffectMultiplier: 0.01
     mono: {fileID: 0}
   m_PostPorcessingManagerEvent: {fileID: 11400000, guid: 8a4595aca153138479f9a298f0a6167c,
+    type: 2}
+  m_IsHandActivedByDefault: 1
+  m_PlayerRightHandActive: {fileID: 11400000, guid: 4cf2fbf1eaaf97b4ea4bce9e0e499a5e,
+    type: 2}
+  m_PlayerSetCanThrow: {fileID: 11400000, guid: 8bd3defdaba1c814cb9da743128f0201,
     type: 2}
 --- !u!114 &1342482868074891331
 MonoBehaviour:

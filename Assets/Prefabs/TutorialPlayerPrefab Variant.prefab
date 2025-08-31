@@ -79,12 +79,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7015590963656703772}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1533877637353011326 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8364608763095009122, guid: 454dc75f7bd5fb94f845e816427da00a,
-    type: 3}
-  m_PrefabInstance: {fileID: 7015590963656703772}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2506039663166854809 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4871591894362827141, guid: 454dc75f7bd5fb94f845e816427da00a,
@@ -156,6 +150,8 @@ MonoBehaviour:
       m_EffectSpawnPoint: {fileID: 7400949538522272151}
       m_Animator: {fileID: 2522864782530187597}
       m_HandAnimatorManagement: {fileID: 2506039663166854809}
+      m_handGO: {fileID: 0}
+      m_canThrow: 1
       m_IsCrushing: 0
     m_RightHand:
       m_FoodPosition: {fileID: 3899824716065239655}
@@ -163,6 +159,8 @@ MonoBehaviour:
       m_EffectSpawnPoint: {fileID: 6973380619433092903}
       m_Animator: {fileID: 7804648960120421409}
       m_HandAnimatorManagement: {fileID: 4717944076810262599}
+      m_handGO: {fileID: 0}
+      m_canThrow: 1
       m_IsCrushing: 0
     m_MergedFoodPrefab: {fileID: 7354829722045014985, guid: a04b9f56709f78941815ea4072a5a32b,
       type: 3}
@@ -239,7 +237,11 @@ MonoBehaviour:
     mono: {fileID: 0}
   m_PostPorcessingManagerEvent: {fileID: 11400000, guid: 8a4595aca153138479f9a298f0a6167c,
     type: 2}
-  m_RightHandGo: {fileID: 1533877637353011326}
+  m_IsHandActivedByDefault: 1
+  m_PlayerRightHandActive: {fileID: 11400000, guid: 4cf2fbf1eaaf97b4ea4bce9e0e499a5e,
+    type: 2}
+  m_PlayerSetCanThrow: {fileID: 11400000, guid: 8bd3defdaba1c814cb9da743128f0201,
+    type: 2}
 --- !u!114 &3459574404901494580 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5863267082977501224, guid: 454dc75f7bd5fb94f845e816427da00a,
@@ -264,7 +266,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7015590963656703772}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533877637353011326}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e1167decd645ac4f9d26b78474cfc7e, type: 3}

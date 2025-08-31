@@ -46,7 +46,7 @@ namespace PlayerSystems.HandsSystem
 
         void BindMoveTechVisualEffect()
         {
-            if(m_GemBraceletMoveTechVisual.Length != 3)
+            if (m_GemBraceletMoveTechVisual.Length != 3)
             {
                 Debug.LogError("MoveTech Bracelet visual not handle withour 3 visuals");
             }
@@ -56,17 +56,17 @@ namespace PlayerSystems.HandsSystem
                 m_GemBraceletMoveTechVisual[i].UpdateBraceletVisual(m_DefaultGemBraceletVisualMaterial);
             }
 
-            BindUpdateDashState(action => 
+            BindUpdateDashState(action =>
             {
                 UpdateGemBraceletVisual(action, 0);
             });
 
-            BindUpdateWallRunState(action => 
+            BindUpdateWallRunState(action =>
             {
                 UpdateGemBraceletVisual(action, 1);
             });
 
-            BindUpdateDoubleJumpState(action => 
+            BindUpdateDoubleJumpState(action =>
             {
                 UpdateGemBraceletVisual(action, 2);
             });
@@ -99,7 +99,7 @@ namespace PlayerSystems.HandsSystem
                     break;
             }
         }
-        
+
         public void UseHand(GameObject food, HandsType handsType)
         {
             switch (handsType)
@@ -135,7 +135,7 @@ namespace PlayerSystems.HandsSystem
 
         public bool IsFoodInHand(HandsType handsType, GameObject food)
         {
-            switch(handsType)
+            switch (handsType)
             {
                 case HandsType.NONE:
                     Debug.LogError("This should not happen but does.");
@@ -159,7 +159,9 @@ namespace PlayerSystems.HandsSystem
 
         public void PerformHandAction(GameObject food, Hands hand)
         {
-            if (hand.m_IsCrushing) return; 
+            if (!hand.m_handGO.activeSelf) return;
+
+            if (hand.m_IsCrushing) return;
 
             if (!hand.isFoodHandle)
             {
@@ -170,7 +172,7 @@ namespace PlayerSystems.HandsSystem
                     AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerPickFood, m_CameraTr.position);
                 }
             }
-            else
+            else if (hand.m_canThrow)
             {
                 ReleaseFromHand(hand);
                 AudioManager.s_Instance.PlayOneShot(AudioManager.s_Instance.m_AudioSoundData.m_PlayerThrowSound, m_CameraTr.position);
@@ -189,7 +191,7 @@ namespace PlayerSystems.HandsSystem
         {
             if (!forceAnim)
             {
-                if(m_LeftHand.isFoodHandle || m_RightHand.isFoodHandle)
+                if (m_LeftHand.isFoodHandle || m_RightHand.isFoodHandle)
                 {
                     CrunchHands();
                 }
@@ -235,11 +237,26 @@ namespace PlayerSystems.HandsSystem
         }
         //-----------------
 
-        void PutInHand(GameObject food, Hands hand, bool activeMoveTechChecker, bool grabAnim, bool forceParticles) 
+        public Hands GetHand(HandsType type)
+        {
+            switch (type)
+            {
+                case HandsType.LEFT:
+                    return m_LeftHand;
+                case HandsType.RIGHT:
+                    return m_RightHand;
+                case HandsType.NONE:
+                    return m_LeftHand;
+                default:
+                    return m_LeftHand;
+            }
+        }
+
+        void PutInHand(GameObject food, Hands hand, bool activeMoveTechChecker, bool grabAnim, bool forceParticles)
         {
             hand.PutItHand(food, grabAnim, forceParticles);
 
-            if(activeMoveTechChecker)
+            if (activeMoveTechChecker)
             {
                 bool isSimpleFood = hand.GetHandFood().GetType() == typeof(SimpleFood);
                 m_HandsEnableMoveTech.LoadMoveTech(hand.GetHandFood().GetFoodDatas().ToArray(), isSimpleFood);
@@ -256,7 +273,7 @@ namespace PlayerSystems.HandsSystem
 
         void MergeHandFood(Hands finalMergeHand, Hands movedHand)
         {
-            if(!movedHand.isFoodHandle) return;
+            if (!movedHand.isFoodHandle) return;
 
             (GameObject, Food) currentFinalPosHandData = finalMergeHand.GetHandInfos();
             (GameObject, Food) currentMovedPosHandData = movedHand.GetHandInfos();
@@ -273,12 +290,12 @@ namespace PlayerSystems.HandsSystem
 
                 m_GameEventCanSpawnMagicalFogForMerge.TriggerEvent(false);
             }
-            else if(finalMergedHandType == typeof(SimpleFood))
+            else if (finalMergedHandType == typeof(SimpleFood))
             {
                 SimpleFood simpleFood = (SimpleFood)currentFinalPosHandData.Item2;
                 m_HandsEnableMoveTech.UpdateNotCookedSimpleFoodMoveTechEvent(simpleFood.data, false);
 
-                
+
                 if (movedHandType == typeof(SimpleFood))
                 {
                     SimpleFood secondSimpleFood = (SimpleFood)currentMovedPosHandData.Item2;
@@ -288,7 +305,7 @@ namespace PlayerSystems.HandsSystem
                 m_HandsEnableMoveTech.CallUpdateNotCookedSimpleFoodMoveTechEvent();
                 ReplaceSimpleFoodHandWithMergedFood(finalMergeHand, (SimpleFood)currentFinalPosHandData.Item2, movedHand, currentMovedPosHandData.Item1);
             }
-            else if(finalMergedHandType == typeof(MergedFood))
+            else if (finalMergedHandType == typeof(MergedFood))
             {
                 if (movedHandType == typeof(SimpleFood))
                 {
@@ -341,6 +358,7 @@ namespace PlayerSystems.HandsSystem
             PutInHand(newGoFood, handToReplace, false, false, false);
             otherHand.DestroyFood();
         }
+
     }
 
     [Serializable]
@@ -361,7 +379,7 @@ namespace PlayerSystems.HandsSystem
 
         void ChangeGemsMat(Material newMat = null)
         {
-            if(!newMat)
+            if (!newMat)
             {
                 newMat = m_DefaultActiveGemMat;
             }

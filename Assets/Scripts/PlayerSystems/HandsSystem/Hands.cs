@@ -12,7 +12,7 @@ namespace Player.HandSystem
         [SerializeField] Transform m_ThrowPoint;
         Transform m_CameraTr;
 
-        [SerializeField] Transform m_EffectSpawnPoint; 
+        [SerializeField] Transform m_EffectSpawnPoint;
         public Animator m_Animator;
         [SerializeField] HandAnimatorManagement m_HandAnimatorManagement;
         ParticleSystemUtility.ParticleInstanceManager m_ParticleInstanceManager;
@@ -20,6 +20,7 @@ namespace Player.HandSystem
         float m_ThrowForce;
         GameObject m_HhandledFood;
         Food m_CurrentFood;
+        [SerializeField] public GameObject m_handGO;
 
         Rigidbody m_MomentumRb;
         Vector2 m_ThrowMomentumForwardDirection;
@@ -29,13 +30,14 @@ namespace Player.HandSystem
         float m_IdleHandAnimSpeed;
         int m_IdleHashFullPathPlayerPrefabForSync;
         GameObject m_GrabbedFoodParticlePrefab;
+        public bool m_canThrow = true;
 
         [HideInInspector] public bool m_IsCrushing = false;
         UnityAction<Hands> m_RemoveHandMoveTechAction;
 
         public void InitData(
             float throwForce, Rigidbody momentumRb, Vector2 throwMomentumForwardDirection,
-            float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle, 
+            float throwMomentumPlayerRb, Animator playerPrefabAnimator, GameObject grabbedFoodParticle,
             Transform cameraTr, UnityAction<Hands> removeHandMoveTechAction
         )
         {
@@ -64,7 +66,7 @@ namespace Player.HandSystem
             if (m_CurrentFood && m_CurrentFood.GetType() == typeof(MergedFood))
             {
                 SimpleFood newSimpleFood = food.GetComponent<SimpleFood>();
-                
+
                 if(newSimpleFood == null)
                 {
                     MergedFood newMergedFood = food.GetComponent<MergedFood>();
