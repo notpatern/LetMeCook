@@ -10,7 +10,8 @@ namespace PlayerSystems.Camera
         public GameEventScriptableObject onFovChange;
         public GameEventScriptableObject onTiltChange;
         public GameEventScriptableObject onShake;
-        
+        public GameEventScriptableObject miniCamTransform;
+
         public Transform orientation;
         public new Transform camera;
         public Transform camHolder;
@@ -45,6 +46,8 @@ namespace PlayerSystems.Camera
 
             camHolder.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, _yRotation, 0);
+
+            miniCamTransform.TriggerEvent(orientation.transform);
         }
 
         void DoFov(object fovValue)
@@ -74,7 +77,7 @@ namespace PlayerSystems.Camera
         void DoShake(object shakeValue) {
             /// summary:
             /// float duration, float strength, int vibrator, float randomness
-            
+
             if (camera == null || _handCamera == null) {
                 return;
             }

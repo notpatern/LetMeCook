@@ -16,8 +16,8 @@ namespace PlayerSystems.PlayerBase
         [SerializeField] Rigidbody m_PlayerRb;
         [SerializeField] Animator m_PlayerPrefabAnimator;
         [SerializeField] MovementFsmCore m_MovementFsmCore;
-        [SerializeField] GameEventScriptableObject m_PostPorcessingManagerEvent; 
-        
+        [SerializeField] GameEventScriptableObject m_PostPorcessingManagerEvent;
+
         [Header("Tutorial defined activations")]
         [SerializeField] GameObject m_RightHandGo;
         [SerializeField] bool m_IsHandActivedByDefault = true;

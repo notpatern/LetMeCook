@@ -9793,6 +9793,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8607776149000528112}
   - {fileID: 5740024184169457715}
   - {fileID: 3299606099250792867}
   - {fileID: 6919487217193504365}
@@ -9836,6 +9837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93fe343795224242a0bf83b511cd2e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectMergedFood: 0
   loadPlayerTransformAtStart: {fileID: 11400000, guid: f7c4a8211971b4846a78dbe99dafeb68,
     type: 2}
   vines: {fileID: 229352716483060947}
@@ -9847,6 +9849,7 @@ MonoBehaviour:
   animator: {fileID: 2655264467435653161}
   cookParticleInstanceManager: {fileID: 5320820010052261853}
   curveFadeTime: 2
+  foodInQueue: []
   queueText: {fileID: 5977323821120582882}
   cookingFoodPos: {fileID: 4132198806565389892}
   cookingTime: 8
@@ -35730,6 +35733,80 @@ Transform:
   - {fileID: 2041764138555182950}
   m_Father: {fileID: 3299606099250792867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6090585592741092126
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2175303863478672204}
+    m_Modifications:
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135557543150106919, guid: f3d29bdd6719efd41b980adc2bb6b187,
+        type: 3}
+      propertyPath: m_Name
+      value: MiniMapIconCooker
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f3d29bdd6719efd41b980adc2bb6b187, type: 3}
+--- !u!4 &8607776149000528112 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2590394002749553646, guid: f3d29bdd6719efd41b980adc2bb6b187,
+    type: 3}
+  m_PrefabInstance: {fileID: 6090585592741092126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7179755117815594129
 PrefabInstance:
   m_ObjectHideFlags: 0

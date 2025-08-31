@@ -543,7 +543,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -5422,8 +5422,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 7920168878249204492}
   - {fileID: 28756636951979423}
   - {fileID: 5539919366351691505}
   - {fileID: 2077674222366853532}
@@ -5462,13 +5463,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9e9f4dffdb94988b5557e6ac1473a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectMergedFood: 0
   foodSpawn: {fileID: 28756636951979423}
   collisionToEnableOnFoodStocked: {fileID: 2868817198905087}
   interactionTrigger: {fileID: 3413463533341010610}
   activeParticle: {fileID: 1780258260127102177}
   energyStockagePaltform: {fileID: 7172452215712624231}
   zoneIndicatorBeacon: {fileID: 303884345923316422}
-  defaultColor: {r: 0.25943398, g: 0.48344302, b: 1, a: 1}
   lightInfoRenderer: {fileID: 6856339339296081558}
 --- !u!65 &3413463533341010610
 BoxCollider:
@@ -15301,3 +15302,77 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &5177321486483763992
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 372990560227329985}
+    m_Modifications:
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4412683106939255519, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+        type: 3}
+      propertyPath: m_Name
+      value: MiniMapIconPedestal
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ec399e4a50e6dc48b97ebe66c155472, type: 3}
+--- !u!4 &7920168878249204492 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3040947723856078868, guid: 2ec399e4a50e6dc48b97ebe66c155472,
+    type: 3}
+  m_PrefabInstance: {fileID: 5177321486483763992}
+  m_PrefabAsset: {fileID: 0}

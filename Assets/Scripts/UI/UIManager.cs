@@ -90,7 +90,7 @@ namespace UI
             }
         }
 
-        void LoadPlayerWarningText(GameObject playerWarningTextPrefab, Transform parent) 
+        void LoadPlayerWarningText(GameObject playerWarningTextPrefab, Transform parent)
         {
             playerWarningText = Object.Instantiate(playerWarningTextPrefab, parent).GetComponent<PlayerWarningText>();
         }
@@ -110,7 +110,7 @@ namespace UI
             playerHUD = Object.Instantiate(canvasPrefab).GetComponent<PlayerHUD>();
         }
 
-        void LoadPauseMenu(GameObject prefab) //Load pause menu canvas 
+        void LoadPauseMenu(GameObject prefab) //Load pause menu canvas
         {
             GameObject pauseMenuGO = Object.Instantiate(prefab, menuCanvas.transform);
             pauseMenuGO.SetActive(false);

@@ -7,6 +7,7 @@ public class PlayerHUD : MonoBehaviour
 {
     public PlayerInteractionUI playerInteractionUI;
     public Image staminaFill;
+    public Image minimap;
 
     [SerializeField] Image dashImage;
     [SerializeField] Image jumpImage;
@@ -54,7 +55,7 @@ public class PlayerHUD : MonoBehaviour
         EnableMovetech(wallImage, wallColor, (bool)args);
     }
 
-    private void EnableMovetech(Image movetechImage, Color movetechColor, bool state) 
+    private void EnableMovetech(Image movetechImage, Color movetechColor, bool state)
     {
         if (state) {
             movetechImage.color = movetechColor;
