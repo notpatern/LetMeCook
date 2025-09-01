@@ -270,7 +270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInteractionUI: {fileID: 7041621024521873210}
   staminaFill: {fileID: 8288640537497773307}
-  minimap: {fileID: 0}
+  minimap:
+    _texture: {fileID: 5697449624896486814}
   dashImage: {fileID: 1493611833660508488}
   jumpImage: {fileID: 4831639037695936821}
   wallImage: {fileID: 8377351545610938178}
@@ -793,7 +794,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2.3569}
+  m_AnchoredPosition: {x: 0, y: 2.356903}
   m_SizeDelta: {x: 861.6525, y: 861.6525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5655334056946324416
@@ -1074,7 +1075,7 @@ PrefabInstance:
     - target: {fileID: 1588292685890412968, guid: e193300967d83fc4f8a96270555aa6fb,
         type: 3}
       propertyPath: m_EffectFactor
-      value: 0.3022388
+      value: 0.51958317
       objectReference: {fileID: 0}
     - target: {fileID: 4514901055526277237, guid: e193300967d83fc4f8a96270555aa6fb,
         type: 3}
@@ -1209,7 +1210,7 @@ PrefabInstance:
     - target: {fileID: 1588292685890412968, guid: e193300967d83fc4f8a96270555aa6fb,
         type: 3}
       propertyPath: m_EffectFactor
-      value: 0.3022388
+      value: 0.51958317
       objectReference: {fileID: 0}
     - target: {fileID: 4514901055526277237, guid: e193300967d83fc4f8a96270555aa6fb,
         type: 3}
@@ -1344,7 +1345,7 @@ PrefabInstance:
     - target: {fileID: 1588292685890412968, guid: e193300967d83fc4f8a96270555aa6fb,
         type: 3}
       propertyPath: m_EffectFactor
-      value: 0.3022388
+      value: 0.51958317
       objectReference: {fileID: 0}
     - target: {fileID: 4514901055526277237, guid: e193300967d83fc4f8a96270555aa6fb,
         type: 3}

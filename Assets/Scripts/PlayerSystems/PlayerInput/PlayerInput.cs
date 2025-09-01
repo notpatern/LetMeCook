@@ -89,6 +89,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HunterVision"",
+                    ""type"": ""Button"",
+                    ""id"": ""89f9475f-1c79-4228-8292-3201b9bfe684"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -267,6 +276,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""MergeHand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""13a49a00-b5ed-4993-b67a-67c436311ae2"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HunterVision"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -282,6 +302,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Player_RightHand = m_Player.FindAction("RightHand", throwIfNotFound: true);
         m_Player_TogglePauseMenu = m_Player.FindAction("TogglePauseMenu", throwIfNotFound: true);
         m_Player_MergeHand = m_Player.FindAction("MergeHand", throwIfNotFound: true);
+        m_Player_HunterVision = m_Player.FindAction("HunterVision", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -350,6 +371,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RightHand;
     private readonly InputAction m_Player_TogglePauseMenu;
     private readonly InputAction m_Player_MergeHand;
+    private readonly InputAction m_Player_HunterVision;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -361,6 +383,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @RightHand => m_Wrapper.m_Player_RightHand;
         public InputAction @TogglePauseMenu => m_Wrapper.m_Player_TogglePauseMenu;
         public InputAction @MergeHand => m_Wrapper.m_Player_MergeHand;
+        public InputAction @HunterVision => m_Wrapper.m_Player_HunterVision;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -391,6 +414,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MergeHand.started += instance.OnMergeHand;
             @MergeHand.performed += instance.OnMergeHand;
             @MergeHand.canceled += instance.OnMergeHand;
+            @HunterVision.started += instance.OnHunterVision;
+            @HunterVision.performed += instance.OnHunterVision;
+            @HunterVision.canceled += instance.OnHunterVision;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -416,6 +442,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MergeHand.started -= instance.OnMergeHand;
             @MergeHand.performed -= instance.OnMergeHand;
             @MergeHand.canceled -= instance.OnMergeHand;
+            @HunterVision.started -= instance.OnHunterVision;
+            @HunterVision.performed -= instance.OnHunterVision;
+            @HunterVision.canceled -= instance.OnHunterVision;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -442,5 +471,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnRightHand(InputAction.CallbackContext context);
         void OnTogglePauseMenu(InputAction.CallbackContext context);
         void OnMergeHand(InputAction.CallbackContext context);
+        void OnHunterVision(InputAction.CallbackContext context);
     }
 }

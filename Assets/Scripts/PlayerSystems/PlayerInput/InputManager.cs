@@ -17,9 +17,11 @@ namespace PlayerSystems.PlayerInput
         UnityEvent<Player.HandSystem.HandsType> m_OnRightHandInput = new UnityEvent<Player.HandSystem.HandsType>();
         UnityEvent m_MergeHandInput = new UnityEvent();
         UnityEvent m_TogglePauseMenu = new UnityEvent();
+        UnityEvent m_Minimap = new UnityEvent();
         [SerializeField] GameEventScriptableObject m_PlayerSetActiveInput;
 
         private bool _jumpHeld;
+        private bool _minimap;
 
         private void Awake()
         {
@@ -45,6 +47,8 @@ namespace PlayerSystems.PlayerInput
             s_PlayerInput.Player.RightHand.performed += RightHand;
             s_PlayerInput.Player.MergeHand.performed += MergeHandInput;
             s_PlayerInput.Player.TogglePauseMenu.performed += TogglePauseMenu;
+            s_PlayerInput.Player.HunterVision.performed += Minimap;
+            s_PlayerInput.Player.HunterVision.canceled += MinimapReleased;
         }
 
         void SetActiveInputActionBinding(object args)
@@ -107,6 +111,28 @@ namespace PlayerSystems.PlayerInput
             _jumpHeld = false;
         }
 
+        UnityEvent<bool> minimap = new UnityEvent<bool>();
+        public void BindMinimapState(UnityAction<bool> action)
+        {
+            minimap.AddListener(action);
+        }
+
+        private void Minimap(InputAction.CallbackContext context)
+        {
+            _minimap = true;
+            minimap.Invoke(_minimap);
+        }
+
+        private void MinimapReleased(InputAction.CallbackContext context)
+        {
+            _minimap = false;
+            minimap.Invoke(_minimap);
+        }
+
+        public bool GetMinimapState() {
+            return _minimap;
+        }
+
         public bool GetJumpHeld()
         {
             return _jumpHeld;
@@ -136,7 +162,6 @@ namespace PlayerSystems.PlayerInput
         {
             m_TogglePauseMenu.Invoke();
         }
-
 
         //Bind event---------------------------
         public void BindWasdMovement(UnityAction<Vector2> action)

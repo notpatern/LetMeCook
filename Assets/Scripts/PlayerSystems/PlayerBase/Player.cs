@@ -4,6 +4,7 @@ using PlayerSystems.PlayerInput;
 using UnityEngine;
 using Player.Interaction;
 using Player.HandSystem;
+using UnityEngine.Events;
 
 namespace PlayerSystems.PlayerBase
 {
@@ -19,32 +20,28 @@ namespace PlayerSystems.PlayerBase
         [SerializeField] GameEventScriptableObject m_PostPorcessingManagerEvent;
 
         [Header("Tutorial defined activations")]
+        [SerializeField] GameObject m_RightHandGo;
         [SerializeField] bool m_IsHandActivedByDefault = true;
-        [SerializeField] GameEventScriptableObject m_PlayerRightHandActive;
-        [SerializeField] GameEventScriptableObject m_PlayerSetCanThrow;
 
         public void Init(RecipeSystem.RecipesManager recipesManager)
         {
+            if (!m_IsHandActivedByDefault)
+            {
+                m_RightHandGo.SetActive(false);
+            }
 
             m_PlayerInteraction.InitPlayerInteraction(m_HandsManager);
             m_PlayerInteraction.BindPerformInteraction(m_HandsManager.UseHand);
             m_InputManager.BindHandAction(m_PlayerInteraction.ActiveInteraction);
             m_InputManager.BindMergeHandInput(m_HandsManager.MergeFood);
 
-            m_PlayerSetCanThrow.BindEventAction(SetHandCanThrow);
-            m_PlayerRightHandActive.BindEventAction(SetActiveRightHandEvent);
-
             m_HandsManager.Init(m_PlayerRb, m_PlayerPrefabAnimator, m_MovementFsmCore.camera, recipesManager);
             InitFsmCore();
-
-            if (!m_IsHandActivedByDefault)
-            {
-                m_HandsManager.GetHand(HandsType.RIGHT).m_handGO.SetActive(false);
-            }
         }
 
         void Update()
         {
+            minimapUpdate.Invoke();
             m_MovementFsmCore.Update();
             m_PlayerInteraction.Update();
             UpdateFsmJumpHeld();
@@ -60,8 +57,17 @@ namespace PlayerSystems.PlayerBase
             m_MovementFsmCore.FixedUpdate();
         }
 
+
+        UnityEvent minimapUpdate = new UnityEvent();
+        private void BindMinimap(UI.MENUScripts.MinimapUI minimap) {
+            minimapUpdate.AddListener(minimap.Update);
+            m_InputManager.BindMinimapState(minimap.MinimapState);
+        }
+
         public void InitUI(UI.UIManager uIManager)
         {
+            BindMinimap(uIManager.playerHUD.minimap);
+
             //Stamina---------
             m_MovementFsmCore.BindStaminaRegeneration(uIManager.playerHUD.UpdateStaminaFill);
 
@@ -105,26 +111,11 @@ namespace PlayerSystems.PlayerBase
             m_HandsManager.CrunchFoodInHands(forceAnim);
         }
 
-        void SetActiveRightHandEvent(object args)
-        {
-            bool action = (bool)args;
-
-            SetActiveRightHand(action);
-        }
-
-        void SetHandCanThrow(object args)
-        {
-            bool action = (bool)args;
-
-            m_HandsManager.GetHand(HandsType.LEFT).m_canThrow = action;
-            m_HandsManager.GetHand(HandsType.RIGHT).m_canThrow = action;
-        }
-
         public void SetActiveRightHand(bool active)
         {
-            bool isHandActive = m_HandsManager.GetHand(HandsType.RIGHT).m_handGO.activeSelf;
+            bool isHandActive = m_RightHandGo.activeSelf;
 
-            m_HandsManager.GetHand(HandsType.RIGHT).m_handGO.SetActive(active);
+            m_RightHandGo.SetActive(active);
 
             if(active && !isHandActive)
             {

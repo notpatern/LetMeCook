@@ -7,7 +7,7 @@ public class PlayerHUD : MonoBehaviour
 {
     public PlayerInteractionUI playerInteractionUI;
     public Image staminaFill;
-    public Image minimap;
+    public UI.MENUScripts.MinimapUI minimap;
 
     [SerializeField] Image dashImage;
     [SerializeField] Image jumpImage;

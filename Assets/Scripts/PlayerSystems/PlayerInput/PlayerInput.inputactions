@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "HunterVision",
+                    "type": "Button",
+                    "id": "89f9475f-1c79-4228-8292-3201b9bfe684",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -243,6 +252,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "MergeHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13a49a00-b5ed-4993-b67a-67c436311ae2",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HunterVision",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

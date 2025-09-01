@@ -2,20 +2,21 @@ using UnityEngine;
 
 namespace UI.MENUScripts
 {
-    public class MinimapUI : MonoBehaviour
+    [System.Serializable]
+    public class MinimapUI
     {
-        [SerializeField] RenderTexture _texture;
+        [SerializeField] GameObject _texture;
         bool state = false;
 
-        public void MenuState(bool state) {
+        public void MinimapState(bool state) {
             this.state = state;
         }
 
-        void Update()
+        public void Update()
         {
-            if (state != gameObject.activeSelf)
+            if (state != _texture.activeSelf)
             {
-                gameObject.SetActive(state);
+                _texture.SetActive(state);
             }
         }
     }

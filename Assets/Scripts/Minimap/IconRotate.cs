@@ -15,7 +15,9 @@ public class IconRotate : MonoBehaviour
 
     void Update()
     {
-        this.transform.rotation = cameraTransform.rotation;
+        if (cameraTransform != null) {
+            this.transform.rotation = cameraTransform.rotation;
+        }
         this.transform.eulerAngles += new Vector3(90, 0, 0);
     }
 }
