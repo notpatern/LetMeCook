@@ -80,6 +80,8 @@ namespace Player.Interaction
 
         public void ActiveInteraction(HandsType handType)
         {
+            if(!m_HandManager.GetHand(handType).m_handGO.activeSelf) return;
+
             if (m_CurrentInteraction != null)
             {
                 if (hit.collider.gameObject != null)
@@ -98,7 +100,7 @@ namespace Player.Interaction
                         return;
                     }
                 }
-                
+
                 if (!m_HandManager.IsFoodHandle(handType))
                 {
                     m_OnActiveInteract.Invoke(m_CurrentInteraction.StartInteraction(), handType);

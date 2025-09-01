@@ -15,7 +15,7 @@ namespace GraphicsOption
         int m_currentSelectedResolutionID;
         int m_DirtySelectedResolutionID;
         Resolution[] m_deviceAvailableResolutions;
-        float[] m_authorizedRatios = {16f/9f, 4f/3f, 16f/10f};
+        float[] m_authorizedRatios = {16f/9f, 4f/3f, 16f/10f, 21f/9f};
         //------------------
 
         public static void LoadGraphicsOptionManagement()
@@ -75,19 +75,26 @@ namespace GraphicsOption
                 }
             }
 
+            if(currentResolutionId == -1)
+            {
+                m_deviceAvailableResolutions[0].width = 1920;
+                m_deviceAvailableResolutions[0].width = 1080;
+                currentResolutionId++;
+            }
+
             Array.Resize(ref m_deviceAvailableResolutions, currentResolutionId + 1);
 
             m_currentSelectedResolutionID = m_deviceAvailableResolutions.Length - 1;
 
             for (int i = 0; i < m_deviceAvailableResolutions.Length; i++)
-            { 
+            {
                 if (m_deviceAvailableResolutions[i].width == Screen.width && m_deviceAvailableResolutions[i].width == Screen.height)
                 {
                     m_currentSelectedResolutionID = i;
                 }
             }
         }
-        
+
         bool IsResolutionsSameSize(in Resolution a, in Resolution b)
         {
             return a.width == b.width && a.height == b.height;
@@ -111,7 +118,7 @@ namespace GraphicsOption
                     return true;
                 }
             }
-            
+
             return false;
         }
 
@@ -138,7 +145,7 @@ namespace GraphicsOption
 
             Screen.SetResolution(m_deviceAvailableResolutions[m_currentSelectedResolutionID].width, m_deviceAvailableResolutions[m_currentSelectedResolutionID].height, isFullScreen);
             PlayerPrefs.SetInt("is_fullscreen", isFullScreen ? 1 : 0);
-            
+
             PlayerPrefs.SetInt("current_resolution_id", m_currentSelectedResolutionID);
         }
     }
